@@ -9,8 +9,8 @@ return new class extends Migration
 {
     public function up(): void
     {
+        // 1. Tambah kolom baru terlebih dahulu
         Schema::table('dokumen_files', function (Blueprint $table) {
-            // Tambah kolom baru setelah kolom lama
             $table->string('category', 20)->default('main')->after('dokumen_id')->index();
             $table->string('stored_name')->nullable()->after('original_name');
             $table->string('stored_path')->nullable()->after('stored_name');
@@ -19,38 +19,49 @@ return new class extends Migration
             $table->unsignedInteger('sort_order')->default(0)->after('is_downloadable');
         });
 
-        // Migrasi data dari file_type lama → category baru
-        DB::statement("
-            UPDATE dokumen_files SET category = CASE
-                WHEN file_type = 'main_file'     THEN 'main'
-                WHEN file_type = 'cover_image'   THEN 'cover'
-                WHEN file_type = 'attachment'    THEN 'attachment'
-                WHEN file_type = 'gallery_image' THEN 'gallery'
-                ELSE 'main'
-            END
-        ");
+        // 2. Ambil data dokumen_files untuk dimigrasi isinya menggunakan PHP murni
+        $files = DB::table('dokumen_files')->get();
 
-        // Migrasi path lama ke stored_path
-        DB::statement("
-            UPDATE dokumen_files
-            SET stored_path = path
-            WHERE stored_path IS NULL AND path IS NOT NULL
-        ");
+        foreach ($files as $file) {
+            $updateData = [];
 
-        // Isi stored_name dari stored_path (basename)
-        // Gunakan SUBSTRING_INDEX untuk MySQL/MariaDB
-        DB::statement("
-            UPDATE dokumen_files
-            SET stored_name = SUBSTRING_INDEX(stored_path, '/', -1)
-            WHERE stored_name IS NULL AND stored_path IS NOT NULL
-        ");
+            // Migrasi data dari file_type lama → category baru
+            if (isset($file->file_type)) {
+                $updateData['category'] = match ($file->file_type) {
+                    'main_file' => 'main',
+                    'cover_image' => 'cover',
+                    'attachment' => 'attachment',
+                    'gallery_image' => 'gallery',
+                    default => 'main',
+                };
+            }
 
-        // Isi extension dari original_name
-        DB::statement("
-            UPDATE dokumen_files
-            SET extension = LOWER(SUBSTRING_INDEX(original_name, '.', -1))
-            WHERE extension IS NULL AND original_name IS NOT NULL AND original_name LIKE '%.%'
-        ");
+            // Migrasi path lama ke stored_path
+            $currentStoredPath = $file->stored_path;
+            if (empty($currentStoredPath) && !empty($file->path)) {
+                $currentStoredPath = $file->path;
+                $updateData['stored_path'] = $currentStoredPath;
+            }
+
+            // Isi stored_name dari stored_path (Pengganti SUBSTRING_INDEX ke-1)
+            if (empty($file->stored_name) && !empty($currentStoredPath)) {
+                $pathParts = explode('/', $currentStoredPath);
+                $updateData['stored_name'] = end($pathParts);
+            }
+
+            // Isi extension dari original_name (Pengganti SUBSTRING_INDEX ke-2)
+            if (empty($file->extension) && !empty($file->original_name) && str_contains($file->original_name, '.')) {
+                $nameParts = explode('.', $file->original_name);
+                $updateData['extension'] = strtolower(end($nameParts));
+            }
+
+            // Lakukan update per baris data jika ada yang berubah
+            if (!empty($updateData)) {
+                DB::table('dokumen_files')
+                    ->where('id', $file->id)
+                    ->update($updateData);
+            }
+        }
     }
 
     public function down(): void
