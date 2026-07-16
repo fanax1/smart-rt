@@ -26,7 +26,7 @@ class AppServiceProvider extends ServiceProvider
     {
         Vite::prefetch(concurrency: 3);
 
-        // Logika pencatatan history login bawaan kamu
+        // Logika pencatatan history login bawaan aplikasi kamu
         Event::listen(Login::class, function (Login $event) {
             UserLoginHistory::create([
                 'user_id' => $event->user->id,
@@ -36,22 +36,24 @@ class AppServiceProvider extends ServiceProvider
             ]);
         });
 
-        // Trik Tambahan: Mengajari SQLite fungsi SUBSTRING_INDEX milik MySQL agar tidak error di Railway
-        if (DB::connection() instanceof \Illuminate\Database\SQLiteConnection) {
-            DB::connection()->getPdo()->sqliteCreateFunction('SUBSTRING_INDEX', function ($string, $delim, $count) {
-                if ($count > 0) {
-                    $parts = explode($delim, $string, $count + 1);
-                    array_pop($parts);
-                    return implode($delim, $parts);
-                } else {
-                    $parts = explode($delim, $string);
-                    $count = abs($count);
-                    if ($count >= count($parts)) {
-                        return $string;
+        // Trik Aman: Mengajari SQLite fungsi SUBSTRING_INDEX hanya saat diakses via Web (Bukan saat Build/Console)
+        if (!app()->runningInConsole()) {
+            if (DB::connection() instanceof \Illuminate\Database\SQLiteConnection) {
+                DB::connection()->getPdo()->sqliteCreateFunction('SUBSTRING_INDEX', function ($string, $delim, $count) {
+                    if ($count > 0) {
+                        $parts = explode($delim, $string, $count + 1);
+                        array_pop($parts);
+                        return implode($delim, $parts);
+                    } else {
+                        $parts = explode($delim, $string);
+                        $count = abs($count);
+                        if ($count >= count($parts)) {
+                            return $string;
+                        }
+                        return implode($delim, array_slice($parts, -$count));
                     }
-                    return implode($delim, array_slice($parts, -$count));
-                }
-            });
+                });
+            }
         }
     }
 }
