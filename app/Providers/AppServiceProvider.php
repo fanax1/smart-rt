@@ -7,7 +7,6 @@ use Illuminate\Auth\Events\Login;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Vite;
 use Illuminate\Support\ServiceProvider;
-use Illuminate\Support\Facades\DB;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -36,26 +35,9 @@ class AppServiceProvider extends ServiceProvider
             ]);
         });
 
-        // Trik Super Aman & Universal: Mengajari SQLite fungsi SUBSTRING_INDEX di mode Web maupun CLI/Migration
-        try {
-            if (DB::connection() instanceof \Illuminate\Database\SQLiteConnection) {
-                DB::connection()->getPdo()->sqliteCreateFunction('SUBSTRING_INDEX', function ($string, $delim, $count) {
-                    if ($count > 0) {
-                        $parts = explode($delim, $string, $count + 1);
-                        array_pop($parts);
-                        return implode($delim, $parts);
-                    } else {
-                        $parts = explode($delim, $string);
-                        $count = abs($count);
-                        if ($count >= count($parts)) {
-                            return $string;
-                        }
-                        return implode($delim, array_slice($parts, -$count));
-                    }
-                });
-            }
-        } catch (\Exception $e) {
-            // Jika database belum siap (misalnya saat build image awal), abaikan secara aman agar tidak crash
-        }
+        // Catatan: Tidak perlu mendaftarkan SUBSTRING_INDEX ke SQLite karena semua
+        // kueri migrasi sudah direfaktor menggunakan PHP murni (explode/end/implode).
+        // Menghapus blok ini mencegah crash saat 'php artisan config:cache'
+        // di fase build image Railway karena koneksi DB tidak disentuh sama sekali.
     }
 }
