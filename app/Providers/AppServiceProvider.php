@@ -36,8 +36,8 @@ class AppServiceProvider extends ServiceProvider
             ]);
         });
 
-        // Trik Aman: Mengajari SQLite fungsi SUBSTRING_INDEX hanya saat diakses via Web (Bukan saat Build/Console)
-        if (!app()->runningInConsole()) {
+        // Trik Super Aman & Universal: Mengajari SQLite fungsi SUBSTRING_INDEX di mode Web maupun CLI/Migration
+        try {
             if (DB::connection() instanceof \Illuminate\Database\SQLiteConnection) {
                 DB::connection()->getPdo()->sqliteCreateFunction('SUBSTRING_INDEX', function ($string, $delim, $count) {
                     if ($count > 0) {
@@ -54,6 +54,8 @@ class AppServiceProvider extends ServiceProvider
                     }
                 });
             }
+        } catch (\Exception $e) {
+            // Jika database belum siap (misalnya saat build image awal), abaikan secara aman agar tidak crash
         }
     }
 }
