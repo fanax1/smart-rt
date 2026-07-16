@@ -1,0 +1,64 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    html {
+        scroll-behavior: smooth;
+        width: 100%;
+        max-width: 100%;
+        overflow-x: hidden;
+    }
+    body {
+        width: 100%;
+        max-width: 100%;
+        overflow-x: hidden;
+    }
+    img,
+    video,
+    canvas,
+    svg {
+        max-width: 100%;
+        height: auto;
+    }
+    button,
+    a,
+    input,
+    select,
+    textarea {
+        -webkit-tap-highlight-color: transparent;
+    }
+}
+
+@layer utilities {
+    .glass-nav {
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+    }
+
+    .hero-gradient {
+        background:
+            radial-gradient(circle at top right, rgba(16, 185, 129, 0.10), transparent 50%),
+            radial-gradient(circle at bottom left, rgba(11, 19, 38, 1), transparent 50%);
+    }
+
+    .active-dot::after {
+        content: '';
+        position: absolute;
+        bottom: -8px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 4px;
+        height: 4px;
+        background-color: #4edea3;
+        border-radius: 50%;
+    }
+
+    .no-scrollbar::-webkit-scrollbar {
+        display: none;
+    }
+    .no-scrollbar {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+    }
+}
