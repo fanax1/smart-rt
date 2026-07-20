@@ -625,7 +625,7 @@ export default function SmartRtChatbot({
     };
 
     return (
-        <div className="fixed bottom-20 lg:bottom-6 right-4 lg:right-6 z-[80] flex flex-col items-end gap-3">
+        <div className="fixed bottom-20 lg:bottom-6 right-3 sm:right-4 lg:right-6 z-[80] flex flex-col items-end gap-3">
             {!isOpen && (
                 <div className="relative hidden rounded-2xl border border-emerald-100 bg-white px-4 py-2 text-sm font-bold text-emerald-700 shadow-xl shadow-emerald-900/10 sm:block">
                     Butuh bantuan?
@@ -634,33 +634,33 @@ export default function SmartRtChatbot({
             )}
 
             {isOpen && (
-                <div className="flex h-[calc(100vh-2rem)] w-[calc(100vw-1.5rem)] max-w-[430px] flex-col overflow-hidden rounded-[2rem] border border-white/60 bg-white/90 shadow-2xl shadow-slate-950/20 backdrop-blur-xl sm:h-[640px] sm:w-[430px]">
-                    <header className="bg-gradient-to-r from-emerald-800 via-emerald-700 to-teal-600 px-5 py-4 text-white shadow-lg">
-                        <div className="flex items-center justify-between gap-3">
-                            <div className="flex items-center gap-3">
+                <div className="flex w-[calc(100vw-1.5rem)] max-w-[430px] flex-col overflow-hidden rounded-[2rem] border border-white/60 bg-white/90 shadow-2xl shadow-slate-950/20 backdrop-blur-xl sm:w-[430px]" style={{ height: 'min(calc(100vh - 6rem), 640px)', maxHeight: '640px' }}>
+                    <header className="bg-gradient-to-r from-emerald-800 via-emerald-700 to-teal-600 px-4 py-3 text-white shadow-lg shrink-0">
+                        <div className="flex items-center justify-between gap-2">
+                            <div className="flex items-center gap-2 min-w-0 flex-1">
                                 {chatView !== 'ai_chat' && (
                                     <button
                                         type="button"
                                         onClick={() => setChatView('ai_chat')}
-                                        className="mr-1 flex h-8 w-8 items-center justify-center rounded-full text-white hover:bg-white/10"
+                                        className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full text-white hover:bg-white/10"
                                         aria-label="Kembali"
                                     >
                                         <ArrowLeft size={16} />
                                     </button>
                                 )}
-                                <div className="relative flex h-11 w-11 items-center justify-center rounded-2xl bg-white/15 backdrop-blur">
-                                    <Bot size={24} />
-                                    <span className="absolute -bottom-0.5 -right-0.5 h-3.5 w-3.5 rounded-full border-2 border-emerald-700 bg-emerald-300" />
+                                <div className="relative flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl bg-white/15 backdrop-blur">
+                                    <Bot size={22} />
+                                    <span className="absolute -bottom-0.5 -right-0.5 h-3 w-3 rounded-full border-2 border-emerald-700 bg-emerald-300" />
                                 </div>
 
-                                <div>
-                                    <h2 className="text-sm font-black leading-tight truncate max-w-[180px]">
+                                <div className="min-w-0 flex-1">
+                                    <h2 className="text-sm font-black leading-tight truncate">
                                         {chatView === 'ai_chat' && 'SMART-RT Assistant'}
                                         {chatView === 'ticket_form' && 'Form Tiket Bantuan'}
                                         {chatView === 'ticket_status' && 'Status Tiket Anda'}
-                                        {chatView === 'ticket_live_chat' && `Live Chat: ${activeTicket?.nomor_tiket}`}
+                                        {chatView === 'ticket_live_chat' && `Live Chat: ${activeTicket?.nomor_tiket ?? ''}`}
                                     </h2>
-                                    <p className="text-[10px] font-semibold text-emerald-100">
+                                    <p className="text-[10px] font-semibold text-emerald-100 truncate">
                                         {chatView === 'ai_chat' && `Online • ${chatbotMode === 'warga' ? 'mode warga' : 'mode publik'}`}
                                         {chatView === 'ticket_form' && 'Hubungi Sekretariat'}
                                         {chatView === 'ticket_status' && activeTicket?.status}
@@ -708,7 +708,7 @@ export default function SmartRtChatbot({
                     {chatView === 'ai_chat' && (
                         <div
                             ref={chatBodyRef}
-                            className="flex-1 space-y-4 overflow-y-auto bg-gradient-to-b from-slate-50 to-white px-4 py-5"
+                            className="flex-1 min-h-0 space-y-4 overflow-y-auto bg-gradient-to-b from-slate-50 to-white px-3 py-4 sm:px-4 sm:py-5"
                         >
                             <div className="rounded-3xl border border-emerald-100 bg-emerald-50 p-4">
                                 <div className="mb-3 flex items-center gap-2 text-sm font-black text-emerald-800">
@@ -716,7 +716,7 @@ export default function SmartRtChatbot({
                                     {chatbotMode === 'warga' ? 'Layanan warga' : 'Layanan publik'}
                                 </div>
 
-                                <div className="grid gap-2 sm:grid-cols-2">
+                                <div className="grid grid-cols-2 gap-2">
                                     {activeInfoCards.map((card) => {
                                         const Icon = card.icon;
 
@@ -745,7 +745,7 @@ export default function SmartRtChatbot({
                                 >
                                     <div
                                         className={[
-                                            'max-w-[86%] rounded-3xl px-4 py-3 text-sm leading-6 shadow-sm',
+                                            'max-w-[85%] rounded-3xl px-3 py-2.5 text-sm leading-6 shadow-sm break-words',
                                             message.role === 'user'
                                                 ? 'rounded-br-md bg-gradient-to-br from-emerald-700 to-teal-600 text-white'
                                                 : 'rounded-bl-md border border-slate-200 bg-white text-slate-700',
@@ -776,7 +776,7 @@ export default function SmartRtChatbot({
 
                     {/* TICKET FORM VIEW */}
                     {chatView === 'ticket_form' && (
-                        <div className="flex-1 overflow-y-auto bg-white p-5 font-sans">
+                        <div className="flex-1 min-h-0 overflow-y-auto bg-white px-4 py-4 sm:p-5 font-sans">
                             {isWarga ? (
                                 /* FORM A - WARGA USER LOGIN */
                                 <form onSubmit={handleTicketSubmit} className="space-y-4">
@@ -1014,7 +1014,7 @@ export default function SmartRtChatbot({
 
                     {/* TICKET STATUS / WAITING VIEW */}
                     {chatView === 'ticket_status' && (
-                        <div className="flex-1 flex flex-col items-center justify-center p-6 bg-white text-center font-sans">
+                        <div className="flex-1 min-h-0 overflow-y-auto flex flex-col items-center justify-center p-4 sm:p-6 bg-white text-center font-sans">
                             <div className="h-16 w-16 bg-emerald-50 rounded-full flex items-center justify-center text-emerald-600 border border-emerald-100 mb-5 animate-pulse">
                                 <Clock size={32} />
                             </div>
@@ -1027,18 +1027,18 @@ export default function SmartRtChatbot({
                                 Status: <span className="text-emerald-600 font-bold">{activeTicket?.status}</span>
                             </p>
 
-                            <div className="mt-8 p-4 rounded-2xl bg-slate-50 border text-left text-xs space-y-2 text-slate-600 w-full max-w-sm">
-                                <div className="flex justify-between border-b pb-1.5 font-bold">
-                                    <span>Nama</span>
-                                    <span className="text-slate-800 font-normal">{activeTicket?.nama_lengkap}</span>
+                            <div className="mt-6 p-4 rounded-2xl bg-slate-50 border text-left text-xs space-y-2 text-slate-600 w-full">
+                                <div className="flex justify-between gap-2 border-b pb-1.5 font-bold">
+                                    <span className="shrink-0">Nama</span>
+                                    <span className="text-slate-800 font-normal text-right truncate">{activeTicket?.nama_lengkap}</span>
                                 </div>
-                                <div className="flex justify-between border-b pb-1.5 font-bold">
-                                    <span>Kategori</span>
-                                    <span className="text-slate-800 font-normal">{activeTicket?.kategori}</span>
+                                <div className="flex justify-between gap-2 border-b pb-1.5 font-bold">
+                                    <span className="shrink-0">Kategori</span>
+                                    <span className="text-slate-800 font-normal text-right truncate">{activeTicket?.kategori}</span>
                                 </div>
-                                <div className="flex justify-between pb-1.5 font-bold">
-                                    <span>Subjek</span>
-                                    <span className="text-slate-800 font-normal truncate max-w-[150px]">{activeTicket?.judul}</span>
+                                <div className="flex justify-between gap-2 pb-1.5 font-bold">
+                                    <span className="shrink-0">Subjek</span>
+                                    <span className="text-slate-800 font-normal text-right truncate">{activeTicket?.judul}</span>
                                 </div>
                             </div>
 
@@ -1123,7 +1123,7 @@ export default function SmartRtChatbot({
                             ) : (
                                 <form
                                     onSubmit={handleSendChatMessage}
-                                    className="border-t border-slate-200 bg-white p-3 flex items-center gap-2"
+                                    className="border-t border-slate-200 bg-white p-2 sm:p-3 flex items-center gap-2 shrink-0"
                                 >
                                     <div className="flex-1 relative">
                                         <input
@@ -1131,7 +1131,7 @@ export default function SmartRtChatbot({
                                             value={chatInput}
                                             onChange={handleChatInputChange}
                                             placeholder="Tulis pesan Anda..."
-                                            className="w-full rounded-full border border-slate-200 bg-slate-50 px-4 py-2.5 pr-10 text-xs text-slate-800 placeholder-slate-400 focus:outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 transition"
+                                            className="w-full rounded-full border border-slate-200 bg-slate-50 px-4 py-2 pr-10 text-xs text-slate-800 placeholder-slate-400 focus:outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 transition"
                                         />
                                     </div>
                                     <button
@@ -1148,14 +1148,14 @@ export default function SmartRtChatbot({
 
                     {/* Chatbot footer bottom brand for AI Chat view */}
                     {chatView === 'ai_chat' && (
-                        <div className="border-t border-slate-200 bg-white px-4 py-3 shrink-0">
-                            <div className="mb-3 flex gap-2 overflow-x-auto pb-1">
+                        <div className="border-t border-slate-200 bg-white px-3 pt-2.5 pb-2 sm:px-4 sm:pt-3 sm:pb-3 shrink-0">
+                            <div className="mb-2.5 flex gap-1.5 overflow-x-auto pb-1" style={{ scrollbarWidth: 'none' }}>
                                 {activeQuickActions.map((action) => (
                                     <button
                                         key={action}
                                         type="button"
                                         onClick={() => void sendMessage(action)}
-                                        className="shrink-0 rounded-full border border-emerald-200 bg-white px-3 py-1.5 text-xs font-bold text-emerald-700 transition hover:bg-emerald-50"
+                                        className="shrink-0 rounded-full border border-emerald-200 bg-white px-2.5 py-1 text-[11px] font-bold text-emerald-700 transition hover:bg-emerald-50 whitespace-nowrap"
                                     >
                                         {action}
                                     </button>
@@ -1164,14 +1164,14 @@ export default function SmartRtChatbot({
 
                             <form
                                 onSubmit={submit}
-                                className="rounded-full border border-slate-200 bg-slate-50 p-1.5 transition focus-within:border-emerald-500 focus-within:ring-4 focus-within:ring-emerald-100"
+                                className="rounded-full border border-slate-200 bg-slate-50 p-1 sm:p-1.5 transition focus-within:border-emerald-500 focus-within:ring-4 focus-within:ring-emerald-100"
                             >
-                                <div className="flex items-center gap-2">
+                                <div className="flex items-center gap-1 sm:gap-2">
                                     <button
                                         type="button"
-                                        className="flex h-9 w-9 items-center justify-center rounded-full text-slate-400 transition hover:bg-white hover:text-emerald-700"
+                                        className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full text-slate-400 transition hover:bg-white hover:text-emerald-700"
                                     >
-                                        <Paperclip size={18} />
+                                        <Paperclip size={16} />
                                     </button>
 
                                     <input
@@ -1179,30 +1179,23 @@ export default function SmartRtChatbot({
                                         onChange={(event) => setInput(event.target.value)}
                                         placeholder={
                                             isLoggedIn
-                                                ? 'Tulis pertanyaan layanan warga...'
-                                                : 'Tulis pertanyaan layanan publik...'
+                                                ? 'Tanya layanan warga...'
+                                                : 'Tanya layanan publik...'
                                         }
-                                        className="min-w-0 flex-1 border-none bg-transparent px-1 text-sm text-slate-800 placeholder:text-slate-400 focus:ring-0 focus:outline-none"
+                                        className="min-w-0 flex-1 border-none bg-transparent px-1 text-xs sm:text-sm text-slate-800 placeholder:text-slate-400 focus:ring-0 focus:outline-none"
                                     />
-
-                                    <button
-                                        type="button"
-                                        className="hidden h-9 w-9 items-center justify-center rounded-full text-slate-400 transition hover:bg-white hover:text-emerald-700 sm:flex"
-                                    >
-                                        <Mic size={18} />
-                                    </button>
 
                                     <button
                                         type="submit"
                                         disabled={!input.trim() || isTyping}
-                                        className="flex h-10 w-10 items-center justify-center rounded-full bg-emerald-700 text-white shadow-lg shadow-emerald-700/20 transition hover:bg-emerald-800 active:scale-95 disabled:cursor-not-allowed disabled:opacity-50"
+                                        className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-emerald-700 text-white shadow-lg shadow-emerald-700/20 transition hover:bg-emerald-800 active:scale-95 disabled:cursor-not-allowed disabled:opacity-50"
                                     >
-                                        <Send size={18} />
+                                        <Send size={16} />
                                     </button>
                                 </div>
                             </form>
 
-                            <p className="mt-2 text-center text-[10px] font-semibold uppercase tracking-[0.18em] text-slate-400">
+                            <p className="mt-1.5 text-center text-[9px] font-semibold uppercase tracking-[0.12em] text-slate-400">
                                 Secured by SMART-RT Digital Systems
                             </p>
                         </div>
