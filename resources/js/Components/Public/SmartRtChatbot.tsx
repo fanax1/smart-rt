@@ -234,6 +234,13 @@ export default function SmartRtChatbot({
     const [input, setInput] = useState('');
     const [isTyping, setIsTyping] = useState(false);
     const [messages, setMessages] = useState<ChatMessage[]>([createMessage('assistant', initialMessage)]);
+    // Detect mobile to compute panel height (avoid overlap with bottom nav)
+    const [isMobile, setIsMobile] = useState(() => typeof window !== 'undefined' && window.innerWidth < 1024);
+    useEffect(() => {
+        const onResize = () => setIsMobile(window.innerWidth < 1024);
+        window.addEventListener('resize', onResize);
+        return () => window.removeEventListener('resize', onResize);
+    }, []);
 
     // Helpdesk ticket state
     const [chatView, setChatView] = useState<'ai_chat' | 'ticket_form' | 'ticket_status' | 'ticket_live_chat'>('ai_chat');
@@ -634,7 +641,14 @@ export default function SmartRtChatbot({
             )}
 
             {isOpen && (
-                <div className="flex w-[calc(100vw-1.5rem)] max-w-[430px] flex-col overflow-hidden rounded-[2rem] border border-white/60 bg-white/90 shadow-2xl shadow-slate-950/20 backdrop-blur-xl sm:w-[430px]" style={{ height: 'min(calc(100vh - 6rem), 640px)', maxHeight: '640px' }}>
+                <div
+                    className="flex w-[calc(100vw-1.5rem)] max-w-[430px] flex-col overflow-hidden rounded-[2rem] border border-white/60 bg-white/90 shadow-2xl shadow-slate-950/20 backdrop-blur-xl sm:w-[430px]"
+                    style={isMobile
+                        // Mobile: 100svh dikurangi bottom-nav(64px) + FAB(80px) + gap(16px) = 160px
+                        ? { height: 'min(calc(100svh - 160px), 560px)', maxHeight: 'calc(100svh - 160px)' }
+                        : { height: '640px', maxHeight: '640px' }
+                    }
+                >
                     <header className="bg-gradient-to-r from-emerald-800 via-emerald-700 to-teal-600 px-4 py-3 text-white shadow-lg shrink-0">
                         <div className="flex items-center justify-between gap-2">
                             <div className="flex items-center gap-2 min-w-0 flex-1">
