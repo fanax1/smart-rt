@@ -71,6 +71,7 @@ const defaultPastEvents: EventItem[] = [
         title: 'Penyuluhan Kesehatan Lansia',
         date: '2026-05-15',
         category: 'KESEHATAN',
+        status: 'Selesai',
         location: 'Posyandu RT',
         description: 'Kegiatan pemeriksaan kesehatan rutin dan edukasi pola hidup sehat bagi warga lanjut usia.',
         image: 'https://images.unsplash.com/photo-1505751172876-fa1923c5c528?auto=format&fit=crop&w=600&q=80',
@@ -81,6 +82,7 @@ const defaultPastEvents: EventItem[] = [
         title: 'Penghijauan Fasilitas Umum',
         date: '2026-04-30',
         category: 'LINGKUNGAN',
+        status: 'Selesai',
         location: 'Taman Warga RT',
         description: 'Penanaman 50 bibit pohon pelindung dan tanaman hias di sepanjang jalan utama RT.',
         image: 'https://images.unsplash.com/photo-1457369804613-52c61a468e7d?auto=format&fit=crop&w=600&q=80',
@@ -91,6 +93,7 @@ const defaultPastEvents: EventItem[] = [
         title: 'Halal bi Halal Warga',
         date: '2026-04-12',
         category: 'SOSIAL',
+        status: 'Selesai',
         location: 'Balai Pertemuan RT',
         description: 'Silaturahmi akbar pasca Idul Fitri untuk mempererat tali persaudaraan antar tetangga.',
         image: 'https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?auto=format&fit=crop&w=600&q=80',
@@ -168,11 +171,14 @@ export default function Kegiatan({ profile = fallbackProfile, events = [], pastE
         setSearch(text);
     };
 
-    const openEventModal = (event: EventItem) => {
+    const openEventModal = (event: EventItem, initialTab?: 'info' | 'dokumentasi') => {
         setSelectedEvent(event);
-        // Default tab: 'dokumentasi' untuk kegiatan selesai, 'info' untuk yang lain
-        const isSelesai = event.status?.toLowerCase() === 'selesai';
-        setModalTab(isSelesai ? 'dokumentasi' : 'info');
+        if (initialTab) {
+            setModalTab(initialTab);
+        } else {
+            const isSelesai = (event.status || '').toLowerCase() === 'selesai';
+            setModalTab(isSelesai ? 'dokumentasi' : 'info');
+        }
     };
 
     const joinEvent = (event: EventItem) => {
@@ -549,7 +555,7 @@ export default function Kegiatan({ profile = fallbackProfile, events = [], pastE
                                             {/* Tombol Lihat Detail */}
                                             <button 
                                                 type="button"
-                                                onClick={() => openEventModal(evt)}
+                                                onClick={() => openEventModal(evt, 'info')}
                                                 className="text-[9px] font-black text-slate-400 hover:text-slate-200 transition flex items-center gap-1 border border-slate-800 rounded-lg px-2 py-1"
                                             >
                                                 <span>Detail</span>
@@ -557,7 +563,7 @@ export default function Kegiatan({ profile = fallbackProfile, events = [], pastE
                                             {/* Tombol Lihat Dokumentasi */}
                                             <button 
                                                 type="button"
-                                                onClick={() => openEventModal(evt)}
+                                                onClick={() => openEventModal(evt, 'dokumentasi')}
                                                 className="text-[9px] font-black text-emerald-400 hover:text-emerald-300 transition flex items-center gap-1.5"
                                             >
                                                 <span>Dokumentasi</span>

@@ -700,41 +700,38 @@ export default function Events({ events = [], flash }: EventsProps) {
                                     <textarea rows={3} value={form.data.catatan} onChange={e => form.setData('catatan', e.target.value)} className={inputCls} placeholder="Tuliskan hasil, catatan, atau rangkuman kegiatan di sini..." />
                                 </div>
 
-                                {/* Upload Foto Dokumentasi — hanya muncul saat status Selesai atau Berlangsung */}
-                                {(form.data.status_kegiatan === 'Selesai' || form.data.status_kegiatan === 'Berlangsung') && (
-                                    <div className="md:col-span-2 space-y-3 rounded-2xl border border-emerald-500/20 bg-emerald-500/5 p-4">
-                                        <div className="flex items-center gap-2">
-                                            <Image size={14} className="text-emerald-400" />
-                                            <h4 className="text-xs font-bold text-emerald-400 uppercase tracking-wider">Foto Dokumentasi Kegiatan</h4>
-                                            <span className="text-[10px] text-slate-500">(maks. 10 foto, JPG/PNG/WEBP)</span>
-                                        </div>
-                                        <input
-                                            type="file"
-                                            accept=".jpg,.jpeg,.png,.webp"
-                                            multiple
-                                            onChange={e => form.setData('foto_dokumentasi', Array.from(e.target.files || []))}
-                                            className={inputCls}
-                                        />
-                                        {/* Preview foto yang sudah ada (saat edit) */}
-                                        {formMode === 'edit' && (() => {
-                                            const editingEvent = events.find(e => e.id === editingId);
-                                            const existingFotos = editingEvent?.fotoDokumentasiUrls ?? [];
-                                            return existingFotos.length > 0 ? (
-                                                <div className="space-y-2">
-                                                    <p className="text-[10px] text-slate-500 font-bold">Foto tersimpan ({existingFotos.length}):</p>
-                                                    <div className="grid grid-cols-4 gap-2">
-                                                        {existingFotos.map((url, idx) => (
-                                                            <div key={idx} className="relative rounded-lg overflow-hidden border border-slate-700 aspect-video bg-[#0B132B]">
-                                                                <img src={url} alt={`Foto ${idx+1}`} className="w-full h-full object-cover" />
-                                                            </div>
-                                                        ))}
-                                                    </div>
-                                                    <p className="text-[10px] text-amber-400">Upload baru akan ditambahkan ke foto yang ada.</p>
-                                                </div>
-                                            ) : null;
-                                        })()}
+                                <div className="md:col-span-2 space-y-3 rounded-2xl border border-emerald-500/20 bg-emerald-500/5 p-4">
+                                    <div className="flex items-center gap-2">
+                                        <Image size={14} className="text-emerald-400" />
+                                        <h4 className="text-xs font-bold text-emerald-400 uppercase tracking-wider">Foto Dokumentasi Kegiatan</h4>
+                                        <span className="text-[10px] text-slate-500">(maks. 10 foto, JPG/PNG/WEBP)</span>
                                     </div>
-                                )}
+                                    <input
+                                        type="file"
+                                        accept=".jpg,.jpeg,.png,.webp"
+                                        multiple
+                                        onChange={e => form.setData('foto_dokumentasi', Array.from(e.target.files || []))}
+                                        className={inputCls}
+                                    />
+                                    {/* Preview foto yang sudah ada (saat edit) */}
+                                    {formMode === 'edit' && (() => {
+                                        const editingEvent = events.find(e => e.id === editingId);
+                                        const existingFotos = editingEvent?.fotoDokumentasiUrls ?? [];
+                                        return existingFotos.length > 0 ? (
+                                            <div className="space-y-2">
+                                                <p className="text-[10px] text-slate-500 font-bold">Foto tersimpan ({existingFotos.length}):</p>
+                                                <div className="grid grid-cols-4 gap-2">
+                                                    {existingFotos.map((url, idx) => (
+                                                        <div key={idx} className="relative rounded-lg overflow-hidden border border-slate-700 aspect-video bg-[#0B132B]">
+                                                            <img src={url} alt={`Foto ${idx+1}`} className="w-full h-full object-cover" />
+                                                        </div>
+                                                    ))}
+                                                </div>
+                                                <p className="text-[10px] text-amber-400">Upload baru akan ditambahkan ke foto yang ada.</p>
+                                            </div>
+                                        ) : null;
+                                    })()}
+                                </div>
                             </div>
 
                             {form.data.memerlukan_dana && (
@@ -901,6 +898,30 @@ export default function Events({ events = [], flash }: EventsProps) {
                                 <div>
                                     <h3 className="mb-2 text-xs font-bold uppercase tracking-wider text-slate-500">Deskripsi Kegiatan</h3>
                                     <p className="rounded-xl bg-[#111A2E]/60 border border-[#1C2541]/40 p-4 text-sm text-slate-300 leading-relaxed">{showDetailModal.description || '-'}</p>
+                                </div>
+                                <div>
+                                    <h3 className="mb-2 text-xs font-bold uppercase tracking-wider text-slate-500">Hasil Kegiatan / Catatan</h3>
+                                    <p className="rounded-xl bg-[#111A2E]/60 border border-[#1C2541]/40 p-4 text-sm text-slate-300 leading-relaxed whitespace-pre-line">
+                                        {showDetailModal.hasilKegiatan || showDetailModal.notes || 'Belum ada hasil kegiatan yang dicatat.'}
+                                    </p>
+                                </div>
+                                <div>
+                                    <h3 className="mb-2 text-xs font-bold uppercase tracking-wider text-slate-500">
+                                        Foto Dokumentasi ({showDetailModal.fotoDokumentasiUrls?.length || 0})
+                                    </h3>
+                                    {(showDetailModal.fotoDokumentasiUrls?.length ?? 0) > 0 ? (
+                                        <div className="grid grid-cols-3 gap-3">
+                                            {showDetailModal.fotoDokumentasiUrls!.map((url, idx) => (
+                                                <a key={idx} href={url} target="_blank" rel="noreferrer" className="group relative rounded-xl overflow-hidden border border-slate-700 aspect-video bg-[#0B132B] hover:border-emerald-500/50 transition">
+                                                    <img src={url} alt={`Dokumentasi ${idx + 1}`} className="w-full h-full object-cover group-hover:scale-105 transition duration-300" />
+                                                </a>
+                                            ))}
+                                        </div>
+                                    ) : (
+                                        <div className="rounded-xl bg-[#111A2E]/40 border border-dashed border-[#1C2541]/40 p-4 text-center text-xs text-slate-500">
+                                            Belum ada foto dokumentasi yang di-upload.
+                                        </div>
+                                    )}
                                 </div>
                             </div>
                         )}
