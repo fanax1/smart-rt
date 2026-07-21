@@ -42,7 +42,8 @@ type EventItem = {
     participantsCount?: number;
     isJoined?: boolean;
     participants?: Participant[];
-    image?: string;
+    image?: string;      // untuk fallback/dummy data
+    imageUrl?: string | null;  // dari backend Storage::url(poster)
 };
 
 type Props = {
@@ -401,61 +402,74 @@ export default function Kegiatan({ profile = fallbackProfile, events = [], pastE
                                     {filteredEvents.slice(0, 3).map((event) => (
                                         <div 
                                             key={event.id}
-                                            className="p-3.5 border border-slate-850 bg-[#131b2e]/30 rounded-2xl space-y-3 hover:border-slate-700/60 transition group"
+                                            className="rounded-2xl border border-slate-850 bg-[#131b2e]/30 overflow-hidden hover:border-slate-700/60 transition group"
                                         >
-                                            <div className="flex items-center justify-between">
-                                                <span className={`rounded px-1.5 py-0.5 text-[8px] font-black uppercase tracking-wide inline-block ${getEventBadgeColor(event.category)}`}>
-                                                    {event.category || 'Umum'}
-                                                </span>
-                                                <span className="text-[10px] text-slate-500 font-bold font-mono">
-                                                    {event.time}
-                                                </span>
-                                            </div>
+                                            {/* Thumbnail kecil jika ada */}
+                                            {(event.imageUrl || event.image) && (
+                                                <div className="h-24 w-full overflow-hidden relative">
+                                                    <img
+                                                        src={event.imageUrl || event.image}
+                                                        alt={event.title}
+                                                        className="w-full h-full object-cover group-hover:scale-105 transition duration-300"
+                                                    />
+                                                    <div className="absolute inset-0 bg-gradient-to-t from-[#131b2e] via-transparent to-transparent opacity-70" />
+                                                </div>
+                                            )}
+                                            <div className="p-3.5 space-y-3">
+                                                <div className="flex items-center justify-between">
+                                                    <span className={`rounded px-1.5 py-0.5 text-[8px] font-black uppercase tracking-wide inline-block ${getEventBadgeColor(event.category)}`}>
+                                                        {event.category || 'Umum'}
+                                                    </span>
+                                                    <span className="text-[10px] text-slate-500 font-bold font-mono">
+                                                        {event.time}
+                                                    </span>
+                                                </div>
 
-                                            <h4 className="text-xs font-black text-slate-200 leading-snug tracking-tight group-hover:text-emerald-400 transition-colors">
-                                                {event.title}
-                                            </h4>
+                                                <h4 className="text-xs font-black text-slate-200 leading-snug tracking-tight group-hover:text-emerald-400 transition-colors">
+                                                    {event.title}
+                                                </h4>
 
-                                            <div className="space-y-1.5 text-[10px] text-slate-400 font-medium">
-                                                <p className="flex items-center gap-1.5">
-                                                    <CalendarIcon size={12} className="text-emerald-400/80 shrink-0" />
-                                                    <span>{formatDate(event.date)}</span>
-                                                </p>
-                                                {event.location && (
+                                                <div className="space-y-1.5 text-[10px] text-slate-400 font-medium">
                                                     <p className="flex items-center gap-1.5">
-                                                        <MapPinIcon size={12} className="text-emerald-400/80 shrink-0" />
-                                                        <span className="truncate">{event.location}</span>
+                                                        <CalendarIcon size={12} className="text-emerald-400/80 shrink-0" />
+                                                        <span>{formatDate(event.date)}</span>
                                                     </p>
-                                                )}
-                                            </div>
+                                                    {event.location && (
+                                                        <p className="flex items-center gap-1.5">
+                                                            <MapPinIcon size={12} className="text-emerald-400/80 shrink-0" />
+                                                            <span className="truncate">{event.location}</span>
+                                                        </p>
+                                                    )}
+                                                </div>
 
-                                            <div className="pt-3 border-t border-slate-850/60 flex gap-2">
-                                                <button
-                                                    type="button"
-                                                    onClick={() => setSelectedEvent(event)}
-                                                    className={['py-2 rounded-xl border border-slate-800 bg-[#0b1220] hover:bg-[#1a243d] text-[10px] font-bold text-slate-350 text-center transition', event.status?.toLowerCase() === 'dijadwalkan' ? 'flex-1' : 'w-full'].join(' ')}
-                                                >
-                                                    Detail
-                                                </button>
-                                                {event.status?.toLowerCase() === 'dijadwalkan' && (
-                                                    event.isJoined ? (
-                                                        <button
-                                                            type="button"
-                                                            onClick={() => cancelJoinEvent(event)}
-                                                            className="flex-1 py-2 rounded-xl bg-red-500/10 border border-red-500/20 hover:bg-red-500/20 text-[10px] font-black text-red-400 text-center transition active:scale-97"
-                                                        >
-                                                            Batal Ikut
-                                                        </button>
-                                                    ) : (
-                                                        <button
-                                                            type="button"
-                                                            onClick={() => joinEvent(event)}
-                                                            className="flex-1 py-2 rounded-xl bg-emerald-400 hover:bg-emerald-300 text-slate-950 text-[10px] font-black text-center transition active:scale-97"
-                                                        >
-                                                            Daftar
-                                                        </button>
-                                                    )
-                                                )}
+                                                <div className="pt-3 border-t border-slate-850/60 flex gap-2">
+                                                    <button
+                                                        type="button"
+                                                        onClick={() => setSelectedEvent(event)}
+                                                        className={['py-2 rounded-xl border border-slate-800 bg-[#0b1220] hover:bg-[#1a243d] text-[10px] font-bold text-slate-350 text-center transition', event.status?.toLowerCase() === 'dijadwalkan' ? 'flex-1' : 'w-full'].join(' ')}
+                                                    >
+                                                        Detail
+                                                    </button>
+                                                    {event.status?.toLowerCase() === 'dijadwalkan' && (
+                                                        event.isJoined ? (
+                                                            <button
+                                                                type="button"
+                                                                onClick={() => cancelJoinEvent(event)}
+                                                                className="flex-1 py-2 rounded-xl bg-red-500/10 border border-red-500/20 hover:bg-red-500/20 text-[10px] font-black text-red-400 text-center transition active:scale-97"
+                                                            >
+                                                                Batal Ikut
+                                                            </button>
+                                                        ) : (
+                                                            <button
+                                                                type="button"
+                                                                onClick={() => joinEvent(event)}
+                                                                className="flex-1 py-2 rounded-xl bg-emerald-400 hover:bg-emerald-300 text-slate-950 text-[10px] font-black text-center transition active:scale-97"
+                                                            >
+                                                                Daftar
+                                                            </button>
+                                                        )
+                                                    )}
+                                                </div>
                                             </div>
                                         </div>
                                     ))}
@@ -473,55 +487,70 @@ export default function Kegiatan({ profile = fallbackProfile, events = [], pastE
                     </h3>
 
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                        {activePastEvents.map((evt) => (
-                            <div 
-                                key={evt.id}
-                                className="rounded-2xl border border-slate-850 bg-[#131b2e]/10 overflow-hidden shadow hover:border-slate-700/60 transition group flex flex-col justify-between"
-                            >
-                                <div>
-                                    {evt.image ? (
-                                        <div className="h-40 w-full overflow-hidden relative">
-                                            <img src={evt.image} alt={evt.title} className="w-full h-full object-cover group-hover:scale-102 transition duration-300" />
-                                            <div className="absolute inset-0 bg-gradient-to-t from-[#0b1220] via-transparent to-transparent opacity-80" />
+                        {activePastEvents.map((evt) => {
+                            // Gunakan imageUrl dari backend, fallback ke image dummy
+                            const thumbnail = evt.imageUrl || evt.image || null;
+                            return (
+                                <div 
+                                    key={evt.id}
+                                    className="rounded-2xl border border-slate-850 bg-[#131b2e]/10 overflow-hidden shadow hover:border-slate-700/60 transition group flex flex-col justify-between"
+                                >
+                                    <div>
+                                        {thumbnail ? (
+                                            <div className="h-40 w-full overflow-hidden relative">
+                                                <img src={thumbnail} alt={evt.title} className="w-full h-full object-cover group-hover:scale-102 transition duration-300" />
+                                                <div className="absolute inset-0 bg-gradient-to-t from-[#0b1220] via-transparent to-transparent opacity-80" />
+                                            </div>
+                                        ) : (
+                                            <div className="h-40 w-full bg-[#131b2e] flex items-center justify-center border-b border-slate-850">
+                                                <CalendarIcon size={24} className="text-slate-650" />
+                                            </div>
+                                        )}
+                                        <div className="p-4 space-y-2">
+                                            <div className="flex items-center justify-between">
+                                                <span className="text-[8px] font-black text-slate-500 tracking-wider font-mono">
+                                                    {formatDate(evt.date)}
+                                                </span>
+                                                <span className="text-[8px] font-extrabold text-emerald-400 bg-emerald-500/10 border border-emerald-500/20 px-1.5 py-0.5 rounded uppercase tracking-wider">
+                                                    {evt.category || 'Selesai'}
+                                                </span>
+                                            </div>
+                                            <h4 className="text-xs font-black text-slate-200 group-hover:text-emerald-400 transition-colors leading-tight">
+                                                {evt.title}
+                                            </h4>
+                                            <p className="text-[10px] text-slate-450 leading-relaxed font-medium line-clamp-2">
+                                                {evt.description || 'Kegiatan warga RT telah selesai dilaksanakan dengan baik.'}
+                                            </p>
                                         </div>
-                                    ) : (
-                                        <div className="h-40 w-full bg-[#131b2e] flex items-center justify-center border-b border-slate-850">
-                                            <CalendarIcon size={24} className="text-slate-650" />
+                                    </div>
+                                    <div className="p-4 pt-0 border-t border-slate-850/40 mt-3 flex items-center justify-between gap-2">
+                                        <span className="text-[9px] font-bold text-slate-550 flex items-center gap-1 shrink-0">
+                                            <Users size={11} className="text-emerald-400" />
+                                            <span>Selesai • {evt.participantsCount || 0} Hadir</span>
+                                        </span>
+                                        <div className="flex items-center gap-2">
+                                            {/* Tombol Lihat Detail */}
+                                            <button 
+                                                type="button"
+                                                onClick={() => setSelectedEvent(evt)}
+                                                className="text-[9px] font-black text-slate-400 hover:text-slate-200 transition flex items-center gap-1 border border-slate-800 rounded-lg px-2 py-1"
+                                            >
+                                                <span>Detail</span>
+                                            </button>
+                                            {/* Tombol Lihat Dokumentasi */}
+                                            <button 
+                                                type="button"
+                                                onClick={() => setSelectedEvent(evt)}
+                                                className="text-[9px] font-black text-emerald-400 hover:text-emerald-300 transition flex items-center gap-1.5"
+                                            >
+                                                <span>Dokumentasi</span>
+                                                <ArrowLeft size={10} className="rotate-180 mt-0.5 stroke-[2.5]" />
+                                            </button>
                                         </div>
-                                    )}
-                                    <div className="p-4 space-y-2">
-                                        <div className="flex items-center justify-between">
-                                            <span className="text-[8px] font-black text-slate-500 tracking-wider font-mono">
-                                                {formatDate(evt.date)}
-                                            </span>
-                                            <span className="text-[8px] font-extrabold text-emerald-400 bg-emerald-500/10 border border-emerald-500/20 px-1.5 py-0.5 rounded uppercase tracking-wider">
-                                                {evt.category || 'Selesai'}
-                                            </span>
-                                        </div>
-                                        <h4 className="text-xs font-black text-slate-200 group-hover:text-emerald-400 transition-colors leading-tight">
-                                            {evt.title}
-                                        </h4>
-                                        <p className="text-[10px] text-slate-450 leading-relaxed font-medium line-clamp-2">
-                                            {evt.description || 'Kegiatan warga RT telah selesai dilaksanakan dengan baik.'}
-                                        </p>
                                     </div>
                                 </div>
-                                <div className="p-4 pt-0 border-t border-slate-850/40 mt-3 flex items-center justify-between">
-                                    <span className="text-[9px] font-bold text-slate-550 flex items-center gap-1">
-                                        <Users size={11} className="text-emerald-400" />
-                                        <span>Selesai • {evt.participantsCount || 0} Hadir</span>
-                                    </span>
-                                    <button 
-                                        type="button"
-                                        onClick={() => alert('Dokumentasi foto dan rekapitulasi pengeluaran kegiatan sedang disiapkan.')}
-                                        className="text-[9px] font-black text-emerald-400 hover:text-emerald-300 transition flex items-center gap-1.5"
-                                    >
-                                        <span>Dokumentasi</span>
-                                        <ArrowLeft size={10} className="rotate-180 mt-0.5 stroke-[2.5]" />
-                                    </button>
-                                </div>
-                            </div>
-                        ))}
+                            );
+                        })}
                     </div>
                 </div>
             </div>
@@ -550,6 +579,17 @@ export default function Kegiatan({ profile = fallbackProfile, events = [], pastE
 
                         {/* Modal Content */}
                         <div className="p-5 overflow-y-auto space-y-4 flex-1 scrollbar-thin">
+                            {/* Foto/Poster kegiatan jika ada */}
+                            {(selectedEvent.imageUrl || selectedEvent.image) && (
+                                <div className="rounded-2xl overflow-hidden border border-slate-800">
+                                    <img
+                                        src={selectedEvent.imageUrl || selectedEvent.image}
+                                        alt={selectedEvent.title}
+                                        className="w-full max-h-48 object-cover"
+                                    />
+                                </div>
+                            )}
+
                             {/* Description block */}
                             <div className="rounded-2xl bg-[#131b2e]/30 border border-slate-850 p-4 space-y-2">
                                 <p className="text-[9px] font-bold text-slate-500 uppercase tracking-wider">Keterangan Kegiatan</p>

@@ -372,7 +372,7 @@ class WargaController extends Controller
             ->limit(6)
             ->get()
             ->map(fn (Kegiatan $kegiatan) => [
-                'id' => $kegiatan->id,
+                'id' => (int) $kegiatan->id,
                 'title' => $kegiatan->judul,
                 'date' => $kegiatan->tanggal?->format('Y-m-d'),
                 'time' => trim(($kegiatan->jam_mulai ?: '-') . ' - ' . ($kegiatan->jam_selesai ?: '-')),
@@ -381,6 +381,7 @@ class WargaController extends Controller
                 'status' => $kegiatan->status_kegiatan,
                 'description' => $kegiatan->deskripsi,
                 'participantsCount' => $kegiatan->partisipasis()->where('status', 'ikut')->count(),
+                'imageUrl' => $kegiatan->poster ? Storage::url($kegiatan->poster) : null,
             ])->values();
 
         return Inertia::render('Warga/Kegiatan', [
@@ -805,6 +806,7 @@ class WargaController extends Controller
                     'mandatory' => (bool) $kegiatan->wajib_hadir,
                     'participantsCount' => $partisipasis->count(),
                     'isJoined' => $wargaId ? $partisipasis->contains('warga_id', $wargaId) : false,
+                    'imageUrl' => $kegiatan->poster ? Storage::url($kegiatan->poster) : null,
                     'participants' => $partisipasis
                         ->map(fn (KegiatanPartisipasi $partisipasi) => [
                             'id' => $partisipasi->id,

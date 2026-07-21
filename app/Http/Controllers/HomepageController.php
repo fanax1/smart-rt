@@ -615,6 +615,8 @@ class HomepageController extends Controller
                 'type' => $this->valueFromRow($item, ['kategori', 'jenis', 'type']) ?: 'Kegiatan',
                 'description' => $this->valueFromRow($item, ['deskripsi', 'keterangan', 'description']) ?: null,
                 'status' => $statusColumn ? ($item->{$statusColumn} ?? null) : null,
+                // imageUrl tersedia untuk modal detail, tapi TIDAK ditampilkan di card homepage
+                'imageUrl' => !empty($item->poster) ? Storage::url($item->poster) : null,
 
                 'participantsCount' => $participants->count(),
                 'participants' => $participants,
