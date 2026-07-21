@@ -58,7 +58,14 @@ class AdminEventController extends Controller
                 'catatan_anggaran' => $memerlukanDana ? ($validated['catatan_anggaran'] ?? null) : null,
                 'poster' => $posterPath,
                 'catatan' => $validated['catatan'] ?? null,
+                'foto_dokumentasi' => $this->uploadFotoDokumentasi($request, $kegiatan->id ?? 0),
             ]);
+
+            // Upload foto dokumentasi setelah kegiatan dibuat (butuh ID)
+            if ($request->hasFile('foto_dokumentasi')) {
+                $fotoPaths = $this->uploadFotoDokumentasi($request, $kegiatan->id);
+                $kegiatan->update(['foto_dokumentasi' => $fotoPaths]);
+            }
 
             $totalAnggaran = $this->syncAnggaranItems(
                 $kegiatan,
@@ -95,6 +102,29 @@ class AdminEventController extends Controller
             $memerlukanDana = $request->boolean('memerlukan_dana');
             $wajibHadir = $request->boolean('wajib_hadir');
 
+            // Handle foto dokumentasi upload (append to existing)
+            $fotoDokumentasi = $kegiatan->foto_dokumentasi ?? [];
+            if ($request->hasFile('foto_dokumentasi')) {
+                $newFotos = $this->uploadFotoDokumentasi($request, $kegiatan->id);
+                $fotoDokumentasi = array_merge($fotoDokumentasi, $newFotos);
+                // Keep max 10 photos (keep latest)
+                if (count($fotoDokumentasi) > 10) {
+                    $fotoDokumentasi = array_slice($fotoDokumentasi, -10);
+                }
+            }
+
+            // Handle foto dokumentasi deletion (by index)
+            if ($request->has('hapus_foto_dokumentasi')) {
+                $hapusIndexes = (array) $request->input('hapus_foto_dokumentasi');
+                foreach ($hapusIndexes as $index) {
+                    if (isset($fotoDokumentasi[$index])) {
+                        Storage::disk('public')->delete($fotoDokumentasi[$index]);
+                        unset($fotoDokumentasi[$index]);
+                    }
+                }
+                $fotoDokumentasi = array_values($fotoDokumentasi);
+            }
+
             $kegiatan->update([
                 'judul' => $validated['judul'],
                 'tanggal' => $validated['tanggal'],
@@ -114,6 +144,7 @@ class AdminEventController extends Controller
                 'catatan_anggaran' => $memerlukanDana ? ($validated['catatan_anggaran'] ?? null) : null,
                 'poster' => $posterPath,
                 'catatan' => $validated['catatan'] ?? null,
+                'foto_dokumentasi' => !empty($fotoDokumentasi) ? $fotoDokumentasi : null,
             ]);
 
             $totalAnggaran = $this->syncAnggaranItems(
@@ -202,12 +233,30 @@ class AdminEventController extends Controller
             'catatan_anggaran' => ['nullable', 'string'],
             'poster' => ['nullable', 'file', 'image', 'mimes:jpg,jpeg,png,webp', 'max:2048'],
             'catatan' => ['nullable', 'string'],
+            'foto_dokumentasi' => ['nullable', 'array', 'max:10'],
+            'foto_dokumentasi.*' => ['nullable', 'file', 'image', 'mimes:jpg,jpeg,png,webp', 'max:2048'],
             'budget_items' => ['nullable', 'array'],
             'budget_items.*.name' => ['nullable', 'string', 'max:150'],
             'budget_items.*.quantity' => ['nullable', 'integer', 'min:1'],
             'budget_items.*.unit_price' => ['nullable', 'numeric', 'min:0'],
             'budget_items.*.notes' => ['nullable', 'string'],
         ]);
+    }
+
+    /**
+     * Upload multiple foto dokumentasi dan return array of storage paths
+     */
+    private function uploadFotoDokumentasi(Request $request, int $kegiatanId): array
+    {
+        $paths = [];
+        if ($request->hasFile('foto_dokumentasi')) {
+            foreach ($request->file('foto_dokumentasi') as $file) {
+                if ($file->isValid()) {
+                    $paths[] = $file->store("kegiatan/dokumentasi/{$kegiatanId}", 'public');
+                }
+            }
+        }
+        return $paths;
     }
 
     private function syncAnggaranItems(Kegiatan $kegiatan, array $items): float
@@ -259,6 +308,13 @@ class AdminEventController extends Controller
     {
         $actualCost = (float) $kegiatan->pengeluarans->sum('nominal');
 
+        // Build foto dokumentasi URL array
+        $fotoDokumentasiUrls = collect($kegiatan->foto_dokumentasi ?? [])
+            ->filter()
+            ->map(fn (string $path) => Storage::disk('public')->url($path))
+            ->values()
+            ->all();
+
         return [
             'id' => $kegiatan->id,
             'title' => $kegiatan->judul,
@@ -280,6 +336,9 @@ class AdminEventController extends Controller
             'budgetNotes' => $kegiatan->catatan_anggaran,
             'posterUrl' => $kegiatan->poster ? Storage::disk('public')->url($kegiatan->poster) : null,
             'notes' => $kegiatan->catatan,
+            // Hasil kegiatan & dokumentasi
+            'hasilKegiatan' => $kegiatan->catatan,
+            'fotoDokumentasiUrls' => $fotoDokumentasiUrls,
             'budgetItems' => $kegiatan->anggaranItems->map(fn ($item) => [
                 'id' => $item->id,
                 'name' => $item->nama_kebutuhan,

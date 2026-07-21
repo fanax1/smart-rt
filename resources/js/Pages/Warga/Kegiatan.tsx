@@ -16,7 +16,11 @@ import {
     ChevronRight,
     MapPin as MapPinIcon,
     Sparkles,
-    CalendarDays
+    CalendarDays,
+    FileText,
+    Images,
+    ExternalLink,
+    ZoomIn,
 } from 'lucide-react';
 import { useMemo, useState } from 'react';
 
@@ -42,8 +46,10 @@ type EventItem = {
     participantsCount?: number;
     isJoined?: boolean;
     participants?: Participant[];
-    image?: string;      // untuk fallback/dummy data
-    imageUrl?: string | null;  // dari backend Storage::url(poster)
+    image?: string;             // untuk fallback/dummy data
+    imageUrl?: string | null;   // dari backend Storage::url(poster)
+    hasilKegiatan?: string | null;   // teks hasil/catatan kegiatan
+    fotoDokumentasi?: string[];      // array URL foto dokumentasi
 };
 
 type Props = {
@@ -153,9 +159,20 @@ export default function Kegiatan({ profile = fallbackProfile, events = [], pastE
     const [search, setSearch] = useState('');
     const [selectedEvent, setSelectedEvent] = useState<EventItem | null>(null);
     const [currentDate, setCurrentDate] = useState(new Date());
+    // Tab modal: 'info' | 'dokumentasi'
+    const [modalTab, setModalTab] = useState<'info' | 'dokumentasi'>('info');
+    // Lightbox: URL foto yang sedang dibuka fullscreen
+    const [lightboxUrl, setLightboxUrl] = useState<string | null>(null);
 
     const handleSearch = (text: string) => {
         setSearch(text);
+    };
+
+    const openEventModal = (event: EventItem) => {
+        setSelectedEvent(event);
+        // Default tab: 'dokumentasi' untuk kegiatan selesai, 'info' untuk yang lain
+        const isSelesai = event.status?.toLowerCase() === 'selesai';
+        setModalTab(isSelesai ? 'dokumentasi' : 'info');
     };
 
     const joinEvent = (event: EventItem) => {
@@ -351,7 +368,7 @@ export default function Kegiatan({ profile = fallbackProfile, events = [], pastE
                                                     <button
                                                         key={evt.id}
                                                         type="button"
-                                                        onClick={() => setSelectedEvent(evt)}
+                                                        onClick={() => openEventModal(evt)}
                                                         className={`w-full text-[8px] font-bold text-left px-1.5 py-0.5 rounded truncate block transition active:scale-97 border ${getEventColorClass(evt.category)}`}
                                                         title={evt.title}
                                                     >
@@ -445,7 +462,7 @@ export default function Kegiatan({ profile = fallbackProfile, events = [], pastE
                                                 <div className="pt-3 border-t border-slate-850/60 flex gap-2">
                                                     <button
                                                         type="button"
-                                                        onClick={() => setSelectedEvent(event)}
+                                                        onClick={() => openEventModal(event)}
                                                         className={['py-2 rounded-xl border border-slate-800 bg-[#0b1220] hover:bg-[#1a243d] text-[10px] font-bold text-slate-350 text-center transition', event.status?.toLowerCase() === 'dijadwalkan' ? 'flex-1' : 'w-full'].join(' ')}
                                                     >
                                                         Detail
@@ -532,7 +549,7 @@ export default function Kegiatan({ profile = fallbackProfile, events = [], pastE
                                             {/* Tombol Lihat Detail */}
                                             <button 
                                                 type="button"
-                                                onClick={() => setSelectedEvent(evt)}
+                                                onClick={() => openEventModal(evt)}
                                                 className="text-[9px] font-black text-slate-400 hover:text-slate-200 transition flex items-center gap-1 border border-slate-800 rounded-lg px-2 py-1"
                                             >
                                                 <span>Detail</span>
@@ -540,7 +557,7 @@ export default function Kegiatan({ profile = fallbackProfile, events = [], pastE
                                             {/* Tombol Lihat Dokumentasi */}
                                             <button 
                                                 type="button"
-                                                onClick={() => setSelectedEvent(evt)}
+                                                onClick={() => openEventModal(evt)}
                                                 className="text-[9px] font-black text-emerald-400 hover:text-emerald-300 transition flex items-center gap-1.5"
                                             >
                                                 <span>Dokumentasi</span>
@@ -558,105 +575,217 @@ export default function Kegiatan({ profile = fallbackProfile, events = [], pastE
             {/* Modal: View Event/Participants Details */}
             {selectedEvent && (
                 <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/60 p-4 backdrop-blur-sm">
-                    <div className="w-full max-w-md max-h-[88vh] flex flex-col rounded-3xl bg-[#0b1220] border border-slate-800 shadow-2xl overflow-hidden animate-in fade-in zoom-in-95 duration-200">
+                    <div className="w-full max-w-lg max-h-[90vh] flex flex-col rounded-3xl bg-[#0b1220] border border-slate-800 shadow-2xl overflow-hidden">
                         {/* Modal Header */}
-                        <div className="flex items-start justify-between gap-4 border-b border-slate-800/80 p-5 bg-[#131b2e]/30">
-                            <div>
+                        <div className="flex items-start justify-between gap-4 border-b border-slate-800/80 p-5 bg-[#131b2e]/30 shrink-0">
+                            <div className="min-w-0 flex-1">
                                 <span className={`rounded px-1.5 py-0.5 text-[8px] font-black uppercase tracking-wide inline-block ${getEventBadgeColor(selectedEvent.category)}`}>
                                     {selectedEvent.category || 'Umum'}
                                 </span>
-                                <h3 className="mt-2 text-base font-black text-slate-100 leading-tight">{selectedEvent.title}</h3>
+                                <h3 className="mt-2 text-base font-black text-slate-100 leading-tight line-clamp-2">{selectedEvent.title}</h3>
                                 <p className="mt-1 text-[10px] text-slate-500 font-bold">{formatDateFull(selectedEvent.date)}</p>
                             </div>
                             <button
                                 type="button"
-                                onClick={() => setSelectedEvent(null)}
-                                className="rounded-xl p-1.5 text-slate-400 hover:bg-[#131b2e] hover:text-slate-200 transition"
+                                onClick={() => { setSelectedEvent(null); setModalTab('info'); }}
+                                className="rounded-xl p-1.5 text-slate-400 hover:bg-[#131b2e] hover:text-slate-200 transition shrink-0"
                             >
                                 <X size={18} />
                             </button>
                         </div>
 
-                        {/* Modal Content */}
-                        <div className="p-5 overflow-y-auto space-y-4 flex-1 scrollbar-thin">
-                            {/* Foto/Poster kegiatan jika ada */}
-                            {(selectedEvent.imageUrl || selectedEvent.image) && (
-                                <div className="rounded-2xl overflow-hidden border border-slate-800">
-                                    <img
-                                        src={selectedEvent.imageUrl || selectedEvent.image}
-                                        alt={selectedEvent.title}
-                                        className="w-full max-h-48 object-cover"
-                                    />
-                                </div>
-                            )}
+                        {/* Tab Switcher */}
+                        <div className="flex shrink-0 border-b border-slate-800/60 bg-[#0b1220]">
+                            <button
+                                type="button"
+                                onClick={() => setModalTab('info')}
+                                className={`flex-1 flex items-center justify-center gap-1.5 py-3 text-[11px] font-black uppercase tracking-wider transition ${
+                                    modalTab === 'info'
+                                        ? 'text-slate-100 border-b-2 border-emerald-400'
+                                        : 'text-slate-500 hover:text-slate-300'
+                                }`}
+                            >
+                                <FileText size={12} />
+                                Informasi
+                            </button>
+                            <button
+                                type="button"
+                                onClick={() => setModalTab('dokumentasi')}
+                                className={`flex-1 flex items-center justify-center gap-1.5 py-3 text-[11px] font-black uppercase tracking-wider transition ${
+                                    modalTab === 'dokumentasi'
+                                        ? 'text-slate-100 border-b-2 border-emerald-400'
+                                        : 'text-slate-500 hover:text-slate-300'
+                                }`}
+                            >
+                                <Images size={12} />
+                                Dokumentasi
+                                {(selectedEvent.fotoDokumentasi?.length ?? 0) > 0 && (
+                                    <span className="ml-1 rounded-full bg-emerald-500/20 text-emerald-400 text-[9px] font-black px-1.5 py-0.5">
+                                        {selectedEvent.fotoDokumentasi!.length}
+                                    </span>
+                                )}
+                            </button>
+                        </div>
 
-                            {/* Description block */}
-                            <div className="rounded-2xl bg-[#131b2e]/30 border border-slate-850 p-4 space-y-2">
-                                <p className="text-[9px] font-bold text-slate-500 uppercase tracking-wider">Keterangan Kegiatan</p>
-                                <p className="text-xs text-slate-350 leading-relaxed font-medium whitespace-pre-line">
-                                    {selectedEvent.description || 'Tidak ada deskripsi tambahan.'}
-                                </p>
-                            </div>
+                        {/* Modal Content — Tab: Info */}
+                        {modalTab === 'info' && (
+                            <div className="p-5 overflow-y-auto space-y-4 flex-1 scrollbar-thin">
+                                {/* Foto/Poster kegiatan jika ada */}
+                                {(selectedEvent.imageUrl || selectedEvent.image) && (
+                                    <div className="rounded-2xl overflow-hidden border border-slate-800">
+                                        <img
+                                            src={selectedEvent.imageUrl || selectedEvent.image}
+                                            alt={selectedEvent.title}
+                                            className="w-full max-h-44 object-cover"
+                                        />
+                                    </div>
+                                )}
 
-                            {/* Details meta grid */}
-                            <div className="grid grid-cols-2 gap-3 text-xs text-slate-400 font-medium">
-                                <div className="bg-[#131b2e]/20 border border-slate-850 rounded-2xl p-3">
-                                    <p className="text-[8px] uppercase font-bold text-slate-500 tracking-wider">Jam Mulai</p>
-                                    <p className="text-xs font-black text-slate-300 mt-1 flex items-center gap-1.5">
-                                        <Clock size={12} className="text-emerald-400" />
-                                        <span>{selectedEvent.time || '-'}</span>
+                                {/* Description block */}
+                                <div className="rounded-2xl bg-[#131b2e]/30 border border-slate-850 p-4 space-y-2">
+                                    <p className="text-[9px] font-bold text-slate-500 uppercase tracking-wider">Deskripsi Kegiatan</p>
+                                    <p className="text-xs text-slate-350 leading-relaxed font-medium whitespace-pre-line">
+                                        {selectedEvent.description || 'Tidak ada deskripsi tambahan.'}
                                     </p>
                                 </div>
-                                <div className="bg-[#131b2e]/20 border border-slate-850 rounded-2xl p-3">
-                                    <p className="text-[8px] uppercase font-bold text-slate-500 tracking-wider">Lokasi</p>
-                                    <p className="text-xs font-black text-slate-300 mt-1 flex items-center gap-1.5">
-                                        <MapPin size={12} className="text-emerald-400" />
-                                        <span className="truncate">{selectedEvent.location || '-'}</span>
-                                    </p>
-                                </div>
-                            </div>
 
-                            {/* Participants List */}
-                            <div className="space-y-2.5">
-                                <h4 className="text-[10px] font-black text-slate-400 uppercase tracking-wider flex items-center justify-between">
-                                    <span>Partisipasi Warga</span>
-                                    <span className="text-emerald-400">{selectedEvent.participantsCount || 0} Terdaftar</span>
-                                </h4>
-                                <div className="space-y-2 max-h-48 overflow-y-auto scrollbar-thin">
-                                    {(selectedEvent.participants || []).length > 0 ? (
-                                        (selectedEvent.participants || []).map((participant) => (
-                                            <div
-                                                key={participant.id}
-                                                className="flex items-center gap-3 rounded-2xl border border-slate-850 bg-[#131b2e]/20 p-3"
-                                            >
-                                                <div className="flex h-8 w-8 items-center justify-center rounded-full bg-emerald-500/10 text-xs font-black text-emerald-400 border border-emerald-500/20">
-                                                    {participant.initials}
+                                {/* Details meta grid */}
+                                <div className="grid grid-cols-2 gap-3 text-xs text-slate-400 font-medium">
+                                    <div className="bg-[#131b2e]/20 border border-slate-850 rounded-2xl p-3">
+                                        <p className="text-[8px] uppercase font-bold text-slate-500 tracking-wider">Jam Mulai</p>
+                                        <p className="text-xs font-black text-slate-300 mt-1 flex items-center gap-1.5">
+                                            <Clock size={12} className="text-emerald-400" />
+                                            <span>{selectedEvent.time || '-'}</span>
+                                        </p>
+                                    </div>
+                                    <div className="bg-[#131b2e]/20 border border-slate-850 rounded-2xl p-3">
+                                        <p className="text-[8px] uppercase font-bold text-slate-500 tracking-wider">Lokasi</p>
+                                        <p className="text-xs font-black text-slate-300 mt-1 flex items-center gap-1.5">
+                                            <MapPin size={12} className="text-emerald-400" />
+                                            <span className="truncate">{selectedEvent.location || '-'}</span>
+                                        </p>
+                                    </div>
+                                </div>
+
+                                {/* Participants List */}
+                                <div className="space-y-2.5">
+                                    <h4 className="text-[10px] font-black text-slate-400 uppercase tracking-wider flex items-center justify-between">
+                                        <span>Partisipasi Warga</span>
+                                        <span className="text-emerald-400">{selectedEvent.participantsCount || 0} Terdaftar</span>
+                                    </h4>
+                                    <div className="space-y-2 max-h-48 overflow-y-auto scrollbar-thin">
+                                        {(selectedEvent.participants || []).length > 0 ? (
+                                            (selectedEvent.participants || []).map((participant) => (
+                                                <div
+                                                    key={participant.id}
+                                                    className="flex items-center gap-3 rounded-2xl border border-slate-850 bg-[#131b2e]/20 p-3"
+                                                >
+                                                    <div className="flex h-8 w-8 items-center justify-center rounded-full bg-emerald-500/10 text-xs font-black text-emerald-400 border border-emerald-500/20">
+                                                        {participant.initials}
+                                                    </div>
+                                                    <div className="min-w-0 flex-1">
+                                                        <p className="truncate font-bold text-slate-200 text-xs">{participant.name}</p>
+                                                        <p className="text-[10px] text-slate-500 font-bold">
+                                                            Rumah No. {participant.houseNumber || '-'}
+                                                        </p>
+                                                    </div>
                                                 </div>
-                                                <div className="min-w-0 flex-1">
-                                                    <p className="truncate font-bold text-slate-200 text-xs">{participant.name}</p>
-                                                    <p className="text-[10px] text-slate-500 font-bold">
-                                                        Rumah No. {participant.houseNumber || '-'}
-                                                    </p>
-                                                </div>
+                                            ))
+                                        ) : (
+                                            <div className="rounded-2xl border border-dashed border-slate-850 bg-[#131b2e]/10 p-6 text-center text-[11px] text-slate-500">
+                                                Belum ada warga terdaftar. Klik "Daftar" untuk berpartisipasi.
                                             </div>
-                                        ))
+                                        )}
+                                    </div>
+                                </div>
+                            </div>
+                        )}
+
+                        {/* Modal Content — Tab: Dokumentasi */}
+                        {modalTab === 'dokumentasi' && (
+                            <div className="p-5 overflow-y-auto space-y-5 flex-1 scrollbar-thin">
+                                {/* Hasil Kegiatan (teks) */}
+                                <div className="space-y-2">
+                                    <p className="text-[9px] font-black text-slate-500 uppercase tracking-widest flex items-center gap-1.5">
+                                        <FileText size={11} className="text-emerald-400" />
+                                        Hasil Kegiatan
+                                    </p>
+                                    {selectedEvent.hasilKegiatan ? (
+                                        <div className="rounded-2xl bg-[#131b2e]/40 border border-slate-800 p-4">
+                                            <p className="text-xs text-slate-300 leading-relaxed font-medium whitespace-pre-line">
+                                                {selectedEvent.hasilKegiatan}
+                                            </p>
+                                        </div>
                                     ) : (
-                                        <div className="rounded-2xl border border-dashed border-slate-850 bg-[#131b2e]/10 p-6 text-center text-[11px] text-slate-500">
-                                            Belum ada warga terdaftar. Klik "Daftar" untuk berpartisipasi.
+                                        <div className="rounded-2xl border border-dashed border-slate-800 bg-[#131b2e]/10 p-6 text-center">
+                                            <p className="text-[11px] text-slate-500">Hasil kegiatan belum tersedia.</p>
                                         </div>
                                     )}
                                 </div>
+
+                                {/* Foto Dokumentasi */}
+                                <div className="space-y-3">
+                                    <p className="text-[9px] font-black text-slate-500 uppercase tracking-widest flex items-center gap-1.5">
+                                        <Images size={11} className="text-emerald-400" />
+                                        Foto Dokumentasi
+                                        {(selectedEvent.fotoDokumentasi?.length ?? 0) > 0 && (
+                                            <span className="text-emerald-400 font-black">({selectedEvent.fotoDokumentasi!.length} foto)</span>
+                                        )}
+                                    </p>
+                                    {(selectedEvent.fotoDokumentasi?.length ?? 0) > 0 ? (
+                                        <div className="grid grid-cols-2 gap-2">
+                                            {selectedEvent.fotoDokumentasi!.map((url, idx) => (
+                                                <button
+                                                    key={idx}
+                                                    type="button"
+                                                    onClick={() => setLightboxUrl(url)}
+                                                    className="group relative rounded-xl overflow-hidden border border-slate-800 aspect-video bg-[#131b2e] hover:border-emerald-500/40 transition"
+                                                >
+                                                    <img
+                                                        src={url}
+                                                        alt={`Dokumentasi ${idx + 1}`}
+                                                        className="w-full h-full object-cover group-hover:scale-105 transition duration-300"
+                                                    />
+                                                    <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition flex items-center justify-center">
+                                                        <ZoomIn size={20} className="text-white opacity-0 group-hover:opacity-100 transition" />
+                                                    </div>
+                                                </button>
+                                            ))}
+                                        </div>
+                                    ) : (
+                                        <div className="rounded-2xl border border-dashed border-slate-800 bg-[#131b2e]/10 p-6 text-center">
+                                            <p className="text-[11px] text-slate-500">Belum ada foto dokumentasi.</p>
+                                        </div>
+                                    )}
+                                </div>
+
+                                {/* Tombol Lihat Dokumen Arsip */}
+                                <div className="rounded-2xl border border-emerald-500/20 bg-emerald-500/5 p-4 flex items-center justify-between gap-3">
+                                    <div className="min-w-0">
+                                        <p className="text-xs font-black text-emerald-400">Arsip Dokumen RT</p>
+                                        <p className="text-[10px] text-slate-500 mt-0.5">Unduh laporan dan dokumen resmi terkait kegiatan.</p>
+                                    </div>
+                                    <a
+                                        href="/#dokumen"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="shrink-0 inline-flex items-center gap-1.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-[10px] font-black text-slate-950 px-3 py-2 transition active:scale-95"
+                                    >
+                                        <ExternalLink size={12} />
+                                        Lihat Arsip
+                                    </a>
+                                </div>
                             </div>
-                        </div>
+                        )}
 
                         {/* Modal Footer */}
-                        <div className="border-t border-slate-800/80 p-5 bg-[#131b2e]/10 flex gap-3">
+                        <div className="border-t border-slate-800/80 p-4 bg-[#131b2e]/10 flex gap-3 shrink-0">
                             <button 
                                 type="button" 
-                                onClick={() => setSelectedEvent(null)}
+                                onClick={() => { setSelectedEvent(null); setModalTab('info'); }}
                                 className={['rounded-xl bg-[#131b2e] hover:bg-[#1a243d] border border-slate-800 px-4 py-2.5 text-xs font-bold text-slate-300 transition', selectedEvent.status?.toLowerCase() === 'dijadwalkan' ? 'flex-1' : 'w-full'].join(' ')}
                             >
-                                Tutup Detail
+                                Tutup
                             </button>
                             {selectedEvent.status?.toLowerCase() === 'dijadwalkan' && (
                                 selectedEvent.isJoined ? (
@@ -685,6 +814,28 @@ export default function Kegiatan({ profile = fallbackProfile, events = [], pastE
                             )}
                         </div>
                     </div>
+                </div>
+            )}
+
+            {/* Lightbox: Fullscreen foto dokumentasi */}
+            {lightboxUrl && (
+                <div
+                    className="fixed inset-0 z-[60] flex items-center justify-center bg-black/90 p-4 cursor-zoom-out"
+                    onClick={() => setLightboxUrl(null)}
+                >
+                    <button
+                        type="button"
+                        onClick={() => setLightboxUrl(null)}
+                        className="absolute top-4 right-4 rounded-xl bg-slate-800/80 p-2 text-slate-300 hover:text-white transition z-10"
+                    >
+                        <X size={20} />
+                    </button>
+                    <img
+                        src={lightboxUrl}
+                        alt="Foto Dokumentasi"
+                        className="max-w-full max-h-[85vh] rounded-2xl object-contain shadow-2xl"
+                        onClick={(e) => e.stopPropagation()}
+                    />
                 </div>
             )}
         </WargaLayout>

@@ -617,6 +617,15 @@ class HomepageController extends Controller
                 'status' => $statusColumn ? ($item->{$statusColumn} ?? null) : null,
                 // imageUrl tersedia untuk modal detail, tapi TIDAK ditampilkan di card homepage
                 'imageUrl' => !empty($item->poster) ? Storage::url($item->poster) : null,
+                // Hasil kegiatan & foto dokumentasi (untuk modal detail)
+                'hasilKegiatan' => $item->catatan ?? null,
+                'fotoDokumentasi' => !empty($item->foto_dokumentasi)
+                    ? collect(json_decode($item->foto_dokumentasi, true) ?? [])
+                        ->filter()
+                        ->map(fn (string $path) => Storage::url($path))
+                        ->values()
+                        ->all()
+                    : [],
 
                 'participantsCount' => $participants->count(),
                 'participants' => $participants,

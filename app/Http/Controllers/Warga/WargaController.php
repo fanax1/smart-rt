@@ -382,6 +382,12 @@ class WargaController extends Controller
                 'description' => $kegiatan->deskripsi,
                 'participantsCount' => $kegiatan->partisipasis()->where('status', 'ikut')->count(),
                 'imageUrl' => $kegiatan->poster ? Storage::url($kegiatan->poster) : null,
+                'hasilKegiatan' => $kegiatan->catatan,
+                'fotoDokumentasi' => collect($kegiatan->foto_dokumentasi ?? [])
+                    ->filter()
+                    ->map(fn (string $path) => Storage::url($path))
+                    ->values()
+                    ->all(),
             ])->values();
 
         return Inertia::render('Warga/Kegiatan', [
@@ -807,6 +813,12 @@ class WargaController extends Controller
                     'participantsCount' => $partisipasis->count(),
                     'isJoined' => $wargaId ? $partisipasis->contains('warga_id', $wargaId) : false,
                     'imageUrl' => $kegiatan->poster ? Storage::url($kegiatan->poster) : null,
+                    'hasilKegiatan' => $kegiatan->catatan,
+                    'fotoDokumentasi' => collect($kegiatan->foto_dokumentasi ?? [])
+                        ->filter()
+                        ->map(fn (string $path) => Storage::url($path))
+                        ->values()
+                        ->all(),
                     'participants' => $partisipasis
                         ->map(fn (KegiatanPartisipasi $partisipasi) => [
                             'id' => $partisipasi->id,

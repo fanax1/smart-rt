@@ -26,6 +26,7 @@ class Kegiatan extends Model
         'catatan_anggaran',
         'poster',
         'catatan',
+        'foto_dokumentasi',
     ];
 
     protected $casts = [
@@ -33,6 +34,7 @@ class Kegiatan extends Model
         'memerlukan_dana' => 'boolean',
         'wajib_hadir' => 'boolean',
         'estimasi_biaya' => 'decimal:2',
+        'foto_dokumentasi' => 'array',
     ];
 
     public function anggaranItems(): HasMany
