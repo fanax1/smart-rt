@@ -109,7 +109,7 @@ type EventFormData = {
     catatan_anggaran: string;
     poster: File | null;
     catatan: string;
-    foto_dokumentasi: FileList | null;
+    foto_dokumentasi: File[] | null;
     budget_items: BudgetFormItem[];
 };
 
@@ -292,7 +292,7 @@ export default function Events({ events = [], flash }: EventsProps) {
             target_peserta: event.targetParticipants ? String(event.targetParticipants) : '',
             wajib_hadir: event.mandatory || false, sumber_dana: event.budgetSource || '',
             penanggung_jawab_dana: event.financeResponsible || '', catatan_anggaran: event.budgetNotes || '',
-            poster: null, catatan: event.notes || '',
+            poster: null, catatan: event.notes || '', foto_dokumentasi: null,
             budget_items: event.budgetItems && event.budgetItems.length > 0
                 ? event.budgetItems.map(i => ({ name: i.name || '', quantity: String(i.quantity || 1), unit_price: String(i.unitPrice || 0), notes: i.notes || '' }))
                 : [emptyBudgetItem()],
@@ -712,7 +712,7 @@ export default function Events({ events = [], flash }: EventsProps) {
                                             type="file"
                                             accept=".jpg,.jpeg,.png,.webp"
                                             multiple
-                                            onChange={e => form.setData('foto_dokumentasi' as keyof EventFormData, e.target.files ?? null)}
+                                            onChange={e => form.setData('foto_dokumentasi', Array.from(e.target.files || []))}
                                             className={inputCls}
                                         />
                                         {/* Preview foto yang sudah ada (saat edit) */}
