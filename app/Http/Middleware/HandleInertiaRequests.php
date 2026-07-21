@@ -3,6 +3,7 @@
 namespace App\Http\Middleware;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\Storage;
 use Inertia\Middleware;
 
@@ -17,9 +18,16 @@ class HandleInertiaRequests extends Middleware
 
     /**
      * Determine the current asset version.
+     * Memaksa browser mengunduh komponen React terbaru jika file manifest build berubah.
      */
     public function version(Request $request): ?string
     {
+        $manifestPath = public_path('build/manifest.json');
+        
+        if (file_exists($manifestPath)) {
+            return md5_file($manifestPath);
+        }
+
         return parent::version($request);
     }
 
@@ -29,7 +37,7 @@ class HandleInertiaRequests extends Middleware
 
         $profilePhotoUrl = null;
         if ($user?->profile_photo_path) {
-            $profilePhotoUrl = asset('storage/' . ltrim($user->profile_photo_path, '/'));
+            $profilePhotoUrl = Storage::url($user->profile_photo_path);
         } elseif ($user) {
             $profilePhotoUrl = 'https://ui-avatars.com/api/?name=' . urlencode($user->warga?->nama_lengkap ?: $user->name) . '&background=10B981&color=fff&bold=true';
         }
@@ -43,10 +51,10 @@ class HandleInertiaRequests extends Middleware
         }
 
         $rtSettings = [];
-        if (\Illuminate\Support\Facades\Schema::hasTable('rt_settings')) {
+        if (Schema::hasTable('rt_settings')) {
             $settings = \App\Models\RtSetting::pluck('value', 'key')->toArray();
             $rtSettings = [
-                'logoUrl' => ($settings['logo_path'] ?? null) ? \Illuminate\Support\Facades\Storage::url($settings['logo_path']) : null,
+                'logoUrl' => ($settings['logo_path'] ?? null) ? Storage::url($settings['logo_path']) : null,
                 'rtName' => $settings['rt_name'] ?? 'RT 004',
                 'kelurahan' => $settings['kelurahan'] ?? 'Kelurahan Bahagia',
                 'kecamatan' => $settings['kecamatan'] ?? 'Babelan',
