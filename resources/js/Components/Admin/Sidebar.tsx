@@ -98,8 +98,8 @@ export function Sidebar({ activeMenu, isOpen, onClose }: SidebarProps) {
                 <Link
                     href="/dashboard"
                     className={`flex w-full items-center gap-3 rounded-xl px-4 py-3 text-sm font-semibold transition-all duration-200 border-l-4 ${activeMenu === 'dashboard'
-                            ? 'bg-[#10B981]/10 text-emerald-400 border-emerald-500 shadow-[inset_1px_0_0_rgba(16,185,129,0.2)]'
-                            : 'text-slate-400 hover:bg-[#111A2E] hover:text-white border-transparent'
+                        ? 'bg-[#10B981]/10 text-emerald-400 border-emerald-500 shadow-[inset_1px_0_0_rgba(16,185,129,0.2)]'
+                        : 'text-slate-400 hover:bg-[#111A2E] hover:text-white border-transparent'
                         }`}
                 >
                     <Home size={18} className={activeMenu === 'dashboard' ? 'text-emerald-400' : 'text-slate-400'} />
@@ -112,8 +112,8 @@ export function Sidebar({ activeMenu, isOpen, onClose }: SidebarProps) {
                         type="button"
                         onClick={() => setOpenDataWarga((current) => !current)}
                         className={`flex w-full items-center gap-3 rounded-xl px-4 py-3 text-sm font-semibold transition-all duration-200 border-l-4 ${isDataWargaActive
-                                ? 'bg-[#10B981]/10 text-emerald-400 border-emerald-500'
-                                : 'text-slate-400 hover:bg-[#111A2E] hover:text-white border-transparent'
+                            ? 'bg-[#10B981]/10 text-emerald-400 border-emerald-500'
+                            : 'text-slate-400 hover:bg-[#111A2E] hover:text-white border-transparent'
                             }`}
                     >
                         <Users size={18} className={isDataWargaActive ? 'text-emerald-400' : 'text-slate-400'} />
@@ -135,8 +135,8 @@ export function Sidebar({ activeMenu, isOpen, onClose }: SidebarProps) {
                                         key={item.id}
                                         href={item.href}
                                         className={`flex items-center gap-3 rounded-xl px-4 py-2.5 text-xs font-semibold transition-all duration-200 border-l-4 ${isActive
-                                                ? 'bg-[#10B981]/5 text-emerald-400 border-emerald-500'
-                                                : 'text-slate-500 hover:bg-[#111A2E] hover:text-white border-transparent'
+                                            ? 'bg-[#10B981]/5 text-emerald-400 border-emerald-500'
+                                            : 'text-slate-500 hover:bg-[#111A2E] hover:text-white border-transparent'
                                             }`}
                                     >
                                         <Icon size={15} />
@@ -162,8 +162,8 @@ export function Sidebar({ activeMenu, isOpen, onClose }: SidebarProps) {
                                 key={item.id}
                                 href={item.href}
                                 className={`flex w-full items-center gap-3 rounded-xl px-4 py-3 text-sm font-semibold transition-all duration-200 border-l-4 ${isActive
-                                        ? 'bg-[#10B981]/10 text-emerald-400 border-emerald-500 shadow-[inset_1px_0_0_rgba(16,185,129,0.2)]'
-                                        : 'text-slate-400 hover:bg-[#111A2E] hover:text-white border-transparent'
+                                    ? 'bg-[#10B981]/10 text-emerald-400 border-emerald-500 shadow-[inset_1px_0_0_rgba(16,185,129,0.2)]'
+                                    : 'text-slate-400 hover:bg-[#111A2E] hover:text-white border-transparent'
                                     }`}
                             >
                                 <Icon size={18} className={isActive ? 'text-emerald-400' : 'text-slate-400'} />
