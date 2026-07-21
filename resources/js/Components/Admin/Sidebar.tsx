@@ -200,13 +200,6 @@ export function Sidebar({ activeMenu, isOpen, onClose }: SidebarProps) {
 
                 {/* Help and Logout Links */}
                 <div className="space-y-1">
-                    <a
-                        href="#bantuan"
-                        className="flex items-center gap-3 rounded-xl px-4 py-2.5 text-sm font-semibold text-slate-400 hover:bg-[#111A2E] hover:text-white transition-all duration-200"
-                    >
-                        <HelpCircle size={18} />
-                        <span>Bantuan</span>
-                    </a>
                     <button
                         type="button"
                         onClick={handleLogout}
