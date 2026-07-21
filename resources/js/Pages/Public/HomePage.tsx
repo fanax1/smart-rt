@@ -1077,8 +1077,7 @@ export default function HomePage({
                                     Lihat Semua <span className="text-[10px]">&gt;</span>
                                 </button>
                             </div>
-                            
-                            <div className="flex gap-2.5 overflow-x-auto pb-1 no-scrollbar whitespace-nowrap scroll-smooth">
+                            <div className="flex gap-2.5 justify-start md:justify-center overflow-x-auto pb-1 no-scrollbar whitespace-nowrap scroll-smooth">
                                 {calendarDays.map((day, idx) => {
                                     const isSelected = selectedCalendarDate === day.matchStr;
                                     const hasEvent = events.some(e => e.date === day.matchStr);
@@ -1095,7 +1094,7 @@ export default function HomePage({
                                                 }
                                             }}
                                             className={[
-                                                'flex flex-col items-center justify-center rounded-2xl py-3.5 px-4 min-w-[60px] transition relative',
+                                                'flex flex-col items-center justify-center rounded-2xl py-3.5 px-4 min-w-[64px] md:w-28 transition relative',
                                                 isSelected
                                                     ? 'bg-emerald-400 text-slate-950 font-extrabold shadow-md shadow-emerald-500/10'
                                                     : 'border border-slate-800 bg-slate-900/60 text-slate-400 hover:border-slate-700 hover:text-slate-200'
