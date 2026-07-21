@@ -613,9 +613,6 @@ export default function Residents({
                     <p className="mt-1 text-sm text-slate-400 font-medium">Manajemen unit perumahan, status okupansi, dan data keluarga.</p>
                 </div>
                 <div className="flex items-center gap-3">
-                    <button type="button" className="inline-flex items-center gap-2 rounded-xl border border-[#1C2541] bg-[#111A2E] px-4 py-2.5 text-xs font-bold text-slate-300 hover:bg-[#1C2541]/70 transition duration-200">
-                        <span>Export Data</span>
-                    </button>
                     <button type="button" onClick={openCreate} className="inline-flex items-center gap-2 rounded-xl bg-emerald-500 px-4 py-2.5 text-xs font-black text-[#0B132B] hover:bg-emerald-400 transition duration-200 shadow-lg shadow-emerald-500/10">
                         <Plus size={14} />
                         <span>Tambah Unit</span>

@@ -1,7 +1,7 @@
 import AdminLayout from '@/Layouts/AdminLayout';
 import { Head, Link, router } from '@inertiajs/react';
 import { useMemo, useState } from 'react';
-import { Search, Plus, Download, Mail, ShieldAlert, CheckCircle, ShieldX, Key } from 'lucide-react';
+import { Search, Plus, ShieldAlert, CheckCircle, ShieldX, Key } from 'lucide-react';
 
 interface ResidentUser {
     id: number;
@@ -105,16 +105,6 @@ export default function ResidentUsers({
                 <div>
                     <h2 className="text-3xl font-black text-white">User Warga</h2>
                     <p className="mt-1 text-sm text-slate-400 font-medium">Kelola akun warga, status akses, dan riwayat login.</p>
-                </div>
-                <div className="flex items-center gap-3">
-                    <button type="button" className="inline-flex items-center gap-2 rounded-xl border border-[#1C2541] bg-[#111A2E] px-4 py-2.5 text-xs font-bold text-slate-300 hover:bg-[#1C2541]/70 transition duration-200">
-                        <Download size={14} className="text-slate-400" />
-                        <span>Ekspor Data</span>
-                    </button>
-                    <button type="button" className="inline-flex items-center gap-2 rounded-xl bg-emerald-500 px-4 py-2.5 text-xs font-black text-[#0B132B] hover:bg-emerald-400 transition duration-200 shadow-lg shadow-emerald-500/10">
-                        <Mail size={14} />
-                        <span>Undang Warga</span>
-                    </button>
                 </div>
             </div>
 
