@@ -524,8 +524,8 @@ export default function Events({ events = [], flash }: EventsProps) {
                         </div>
 
                         {/* Table */}
-                        <div className="overflow-x-auto">
-                            <table className="w-full min-w-[800px]">
+                        <div className="overflow-x-auto scrollbar-thin">
+                            <table className="w-full min-w-[920px]">
                                 <thead>
                                     <tr className="border-b border-[#1C2541]/40">
                                         <th className="px-4 py-3 text-left text-[10px] font-bold uppercase tracking-widest text-slate-500">Kegiatan</th>
@@ -533,7 +533,7 @@ export default function Events({ events = [], flash }: EventsProps) {
                                         <th className="px-4 py-3 text-left text-[10px] font-bold uppercase tracking-widest text-slate-500">Kategori</th>
                                         <th className="px-4 py-3 text-left text-[10px] font-bold uppercase tracking-widest text-slate-500">Anggaran</th>
                                         <th className="px-4 py-3 text-left text-[10px] font-bold uppercase tracking-widest text-slate-500">Status</th>
-                                        <th className="w-12 px-4 py-3" />
+                                        <th className="w-20 px-4 py-3 text-center text-[10px] font-bold uppercase tracking-widest text-slate-500">Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -573,7 +573,7 @@ export default function Events({ events = [], flash }: EventsProps) {
                                                         <span className={`w-1.5 h-1.5 rounded-full ${statusConf.dot}`} />{event.status}
                                                     </span>
                                                 </td>
-                                                <td className="px-4 py-4">
+                                                <td className="px-4 py-4 text-center whitespace-nowrap">
                                                     <DropdownMenu.Root>
                                                         <DropdownMenu.Trigger asChild>
                                                             <button type="button" className="rounded-lg p-2 text-slate-500 hover:text-emerald-400 hover:bg-emerald-400/10 transition">

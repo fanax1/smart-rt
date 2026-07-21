@@ -1,6 +1,6 @@
 import AdminLayout from '@/Layouts/AdminLayout';
 import { Head, router } from '@inertiajs/react';
-import { Archive, Bell, CheckCircle, Download, Edit, Eye, FileText, Plus, Search, X } from 'lucide-react';
+import { Archive, Bell, CheckCircle, Download, Edit, Eye, FileText, Plus, Search, Trash2, X } from 'lucide-react';
 import { FormEvent, ReactNode, useEffect, useState } from 'react';
 
 type AnnouncementFile = {
@@ -196,7 +196,12 @@ export default function Announcements({
     };
 
     const archiveAnnouncement = (announcement: Announcement) => {
-        if (!window.confirm('Arsipkan pengumuman ini?')) return;
+        if (!window.confirm(`Arsipkan pengumuman "${announcement.judul}"?`)) return;
+        router.patch(`/admin/announcements/${announcement.id}/archive`, {}, { preserveScroll: true });
+    };
+
+    const deleteAnnouncement = (announcement: Announcement) => {
+        if (!window.confirm(`Hapus pengumuman "${announcement.judul}" secara permanen? Data yang dihapus tidak dapat dikembalikan.`)) return;
         router.delete(`/admin/announcements/${announcement.id}`, { preserveScroll: true });
     };
 
@@ -402,40 +407,58 @@ export default function Announcements({
 
                                 <div className="mt-5 flex flex-wrap items-center gap-2">
                                     <button
+                                        type="button"
                                         onClick={() => setSelectedAnnouncement(announcement)}
-                                        className="rounded-xl border border-[#1C2541] px-4 py-2 text-xs font-bold text-slate-300 hover:bg-[#1C2541]/50 transition duration-200"
+                                        className="inline-flex items-center gap-1.5 rounded-xl bg-[#1C2541] border border-[#2a365c] px-3.5 py-2 text-xs font-bold text-slate-200 hover:bg-[#253256] hover:text-white transition duration-200"
                                     >
-                                        Lihat Detail
+                                        <Eye size={13} className="text-slate-400" />
+                                        <span>Detail</span>
                                     </button>
                                     <button
+                                        type="button"
                                         onClick={() => openEdit(announcement)}
-                                        className="rounded-xl border border-blue-500/30 px-4 py-2 text-xs font-bold text-blue-400 hover:bg-blue-950/20 transition duration-200"
+                                        className="inline-flex items-center gap-1.5 rounded-xl bg-blue-500/10 border border-blue-500/30 px-3.5 py-2 text-xs font-bold text-blue-400 hover:bg-blue-500/20 transition duration-200"
                                     >
-                                        Edit
+                                        <Edit size={13} />
+                                        <span>Edit</span>
                                     </button>
                                     {isPublished ? (
                                         <button
+                                            type="button"
                                             onClick={() => unpublishAnnouncement(announcement)}
-                                            className="rounded-xl border border-amber-500/30 px-4 py-2 text-xs font-bold text-amber-400 hover:bg-amber-950/20 transition duration-200"
+                                            className="inline-flex items-center gap-1.5 rounded-xl bg-amber-500/10 border border-amber-500/30 px-3.5 py-2 text-xs font-bold text-amber-400 hover:bg-amber-500/20 transition duration-200"
                                         >
-                                            Unpublish
+                                            <X size={13} />
+                                            <span>Unpublish</span>
                                         </button>
                                     ) : (
                                         <button
+                                            type="button"
                                             onClick={() => publishAnnouncement(announcement)}
-                                            className="rounded-xl bg-emerald-500 px-4 py-2 text-xs font-black text-[#0B132B] hover:bg-emerald-400 transition duration-200"
+                                            className="inline-flex items-center gap-1.5 rounded-xl bg-emerald-500 px-3.5 py-2 text-xs font-black text-[#0B132B] hover:bg-emerald-400 transition duration-200 shadow-md shadow-emerald-500/20"
                                         >
-                                            Publish
+                                            <CheckCircle size={13} />
+                                            <span>Publish</span>
                                         </button>
                                     )}
                                     {!isArchived && (
                                         <button
+                                            type="button"
                                             onClick={() => archiveAnnouncement(announcement)}
-                                            className="rounded-xl border border-red-500/30 px-4 py-2 text-xs font-bold text-red-400 hover:bg-red-950/20 transition duration-200"
+                                            className="inline-flex items-center gap-1.5 rounded-xl bg-purple-500/10 border border-purple-500/30 px-3.5 py-2 text-xs font-bold text-purple-300 hover:bg-purple-500/20 transition duration-200"
                                         >
-                                            Arsipkan
+                                            <Archive size={13} />
+                                            <span>Arsipkan</span>
                                         </button>
                                     )}
+                                    <button
+                                        type="button"
+                                        onClick={() => deleteAnnouncement(announcement)}
+                                        className="inline-flex items-center gap-1.5 rounded-xl bg-rose-500/10 border border-rose-500/30 px-3.5 py-2 text-xs font-bold text-rose-400 hover:bg-rose-500/20 transition duration-200"
+                                    >
+                                        <Trash2 size={13} />
+                                        <span>Hapus</span>
+                                    </button>
                                 </div>
                             </div>
                         </div>

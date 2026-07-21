@@ -148,7 +148,7 @@ class AdminPengumumanController extends Controller
         return back()->with('success', 'Pengumuman dikembalikan ke draft.');
     }
 
-    public function destroy(Request $request, Pengumuman $pengumuman): RedirectResponse
+    public function archive(Request $request, Pengumuman $pengumuman): RedirectResponse
     {
         $pengumuman->update([
             'status' => 'archived',
@@ -156,6 +156,18 @@ class AdminPengumumanController extends Controller
         ]);
 
         return back()->with('success', 'Pengumuman berhasil diarsipkan.');
+    }
+
+    public function destroy(Request $request, Pengumuman $pengumuman): RedirectResponse
+    {
+        foreach ($pengumuman->files as $file) {
+            Storage::disk('public')->delete($file->path);
+            $file->delete();
+        }
+
+        $pengumuman->delete();
+
+        return back()->with('success', 'Pengumuman berhasil dihapus.');
     }
 
     public function destroyFile(PengumumanFile $file): RedirectResponse

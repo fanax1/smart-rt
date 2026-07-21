@@ -142,6 +142,9 @@ Route::middleware(['auth', 'verified', 'role:admin'])
         Route::patch('/announcements/{pengumuman}/unpublish', [AdminPengumumanController::class, 'unpublish'])
             ->name('announcements.unpublish');
 
+        Route::patch('/announcements/{pengumuman}/archive', [AdminPengumumanController::class, 'archive'])
+            ->name('announcements.archive');
+
         Route::delete('/announcements/{pengumuman}', [AdminPengumumanController::class, 'destroy'])
             ->name('announcements.destroy');
 
