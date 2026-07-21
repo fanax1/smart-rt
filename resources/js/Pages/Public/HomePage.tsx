@@ -50,7 +50,7 @@ function YoutubeIcon({ size = 17 }: { size?: number }) {
 function WhatsappIcon({ size = 17 }: { size?: number }) {
     return (
         <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
-            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L0 24l6.335-1.662c1.746.953 3.71 1.456 5.709 1.457h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413" fill="currentColor"/>
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L0 24l6.335-1.662c1.746.953 3.71 1.456 5.709 1.457h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413" fill="currentColor" />
         </svg>
     );
 }
@@ -223,46 +223,46 @@ type SharedPageProps = {
 };
 
 const navLinks = [
-    { id: 'beranda',  label: 'Beranda' },
+    { id: 'beranda', label: 'Beranda' },
     { id: 'struktur', label: 'Struktur RT' },
-    { id: 'layanan',  label: 'Layanan' },
-    { id: 'berita',   label: 'Berita' },
+    { id: 'layanan', label: 'Layanan' },
+    { id: 'berita', label: 'Berita' },
     { id: 'kegiatan', label: 'Kegiatan' },
-    { id: 'galeri',   label: 'Galeri' },
-    { id: 'dokumen',  label: 'Dokumen' },
-    { id: 'kontak',   label: 'Kontak' },
+    { id: 'galeri', label: 'Galeri' },
+    { id: 'dokumen', label: 'Dokumen' },
+    { id: 'kontak', label: 'Kontak' },
 ];
 
 // ─── Status / priority helpers ───────────────────────────────────────────────
 const statusConfig: Record<string, { label: string; icon: string; cls: string }> = {
-    diajukan: { label: 'Menunggu', icon: 'schedule',      cls: 'bg-surface-container-highest text-on-surface' },
-    diproses: { label: 'Diproses', icon: 'sync',          cls: 'bg-secondary-container/20 text-secondary' },
-    selesai:  { label: 'Selesai',  icon: 'check_circle',  cls: 'bg-primary-container/20 text-primary' },
-    ditolak:  { label: 'Ditolak',  icon: 'cancel',        cls: 'bg-error-container/20 text-error' },
+    diajukan: { label: 'Menunggu', icon: 'schedule', cls: 'bg-surface-container-highest text-on-surface' },
+    diproses: { label: 'Diproses', icon: 'sync', cls: 'bg-secondary-container/20 text-secondary' },
+    selesai: { label: 'Selesai', icon: 'check_circle', cls: 'bg-primary-container/20 text-primary' },
+    ditolak: { label: 'Ditolak', icon: 'cancel', cls: 'bg-error-container/20 text-error' },
 };
 const priorityConfig: Record<string, { label: string; icon: string; cls: string }> = {
     darurat: { label: 'Darurat', icon: 'priority_high', cls: 'text-error' },
-    tinggi:  { label: 'Urgent',  icon: 'priority_high', cls: 'text-error' },
-    sedang:  { label: 'Sedang',  icon: 'eco',           cls: 'text-primary' },
-    rendah:  { label: 'Info',    icon: 'info',          cls: 'text-secondary' },
+    tinggi: { label: 'Urgent', icon: 'priority_high', cls: 'text-error' },
+    sedang: { label: 'Sedang', icon: 'eco', cls: 'text-primary' },
+    rendah: { label: 'Info', icon: 'info', cls: 'text-secondary' },
 };
 const kategoriConfig: Record<string, { label: string; icon: string; cls: string }> = {
-    lingkungan:    { label: 'Lingkungan', icon: 'eco',          cls: 'text-primary' },
-    keamanan:      { label: 'Keamanan',  icon: 'minor_crash',   cls: 'text-tertiary' },
-    fasilitas:     { label: 'Fasilitas', icon: 'construction',  cls: 'text-secondary' },
-    sosial:        { label: 'Sosial',    icon: 'groups',        cls: 'text-primary' },
-    administrasi:  { label: 'Administrasi', icon: 'description', cls: 'text-secondary' },
-    lainnya:       { label: 'Lainnya',   icon: 'help',          cls: 'text-on-surface-variant' },
+    lingkungan: { label: 'Lingkungan', icon: 'eco', cls: 'text-primary' },
+    keamanan: { label: 'Keamanan', icon: 'minor_crash', cls: 'text-tertiary' },
+    fasilitas: { label: 'Fasilitas', icon: 'construction', cls: 'text-secondary' },
+    sosial: { label: 'Sosial', icon: 'groups', cls: 'text-primary' },
+    administrasi: { label: 'Administrasi', icon: 'description', cls: 'text-secondary' },
+    lainnya: { label: 'Lainnya', icon: 'help', cls: 'text-on-surface-variant' },
 };
 
 // ─── Announcement category ────────────────────────────────────────────────────
 const announcementBadge: Record<string, string> = {
-    umum:      'bg-secondary-container text-on-secondary-container',
-    penting:   'bg-error-container text-on-error-container',
-    kegiatan:  'bg-primary-container/30 text-primary',
-    iuran:     'bg-primary-container/30 text-primary',
-    sosial:    'bg-primary-container/20 text-primary',
-    keamanan:  'bg-tertiary-container text-on-tertiary-container',
+    umum: 'bg-secondary-container text-on-secondary-container',
+    penting: 'bg-error-container text-on-error-container',
+    kegiatan: 'bg-primary-container/30 text-primary',
+    iuran: 'bg-primary-container/30 text-primary',
+    sosial: 'bg-primary-container/20 text-primary',
+    keamanan: 'bg-tertiary-container text-on-tertiary-container',
 };
 function annBadgeClass(cat?: string | null) {
     const key = (cat || 'umum').toLowerCase();
@@ -302,18 +302,18 @@ function parseIndonesianDate(dateStr: string): Date | null {
     if (!dateStr) return null;
     const parts = dateStr.split(' ');
     if (parts.length < 3) return null;
-    
+
     const dayNum = parseInt(parts[0], 10);
     const monthStr = parts[1].toLowerCase();
     const yearNum = parseInt(parts[2], 10);
-    
+
     const months = [
         'januari', 'februari', 'maret', 'april', 'mei', 'juni',
         'juli', 'agustus', 'september', 'oktober', 'november', 'desember'
     ];
     const monthIndex = months.indexOf(monthStr);
     if (monthIndex === -1) return null;
-    
+
     return new Date(yearNum, monthIndex, dayNum);
 }
 
@@ -321,11 +321,11 @@ function getEventStatus(eventDateStr?: string | null): 'selesai' | 'sedang berla
     if (!eventDateStr) return 'coming soon';
     const date = parseIndonesianDate(eventDateStr);
     if (!date) return 'coming soon';
-    
+
     const today = new Date();
     today.setHours(0, 0, 0, 0);
     date.setHours(0, 0, 0, 0);
-    
+
     if (date.getTime() < today.getTime()) {
         return 'selesai';
     } else if (date.getTime() === today.getTime()) {
@@ -337,10 +337,10 @@ function getEventStatus(eventDateStr?: string | null): 'selesai' | 'sedang berla
 
 // ─── Default stats ─────────────────────────────────────────────────────────────
 const defaultStats: StatItem[] = [
-    { label: 'Total Warga',        value: '0', unit: 'jiwa'  },
-    { label: 'Kartu Keluarga',     value: '0', unit: 'KK'    },
+    { label: 'Total Warga', value: '0', unit: 'jiwa' },
+    { label: 'Kartu Keluarga', value: '0', unit: 'KK' },
     { label: 'Kegiatan Tahun Ini', value: '0', unit: 'agenda' },
-    { label: 'Tingkat Iuran',      value: '0', unit: '%'     },
+    { label: 'Tingkat Iuran', value: '0', unit: '%' },
 ];
 
 // ─── Main Component ───────────────────────────────────────────────────────────
@@ -396,10 +396,10 @@ export default function HomePage({
         const today = new Date();
         const year = today.getFullYear();
         const month = today.getMonth();
-        
+
         const firstDayIndex = new Date(year, month, 1).getDay();
         const totalDays = new Date(year, month + 1, 0).getDate();
-        
+
         const days = [];
         for (let i = 0; i < firstDayIndex; i++) {
             days.push(null);
@@ -453,22 +453,22 @@ export default function HomePage({
     }, []);
 
     const safeSite: SiteProfile = site ?? {
-        rtName:   'RT 004',
-        title:    'SMART-RT',
+        rtName: 'RT 004',
+        title: 'SMART-RT',
         subtitle: 'Portal resmi informasi warga dan layanan administrasi RT.',
         emergencyContacts: [],
     };
 
     const { auth, flash } = usePage().props as any;
-    const authUser       = auth?.user ?? null;
-    const isLoggedIn     = Boolean(authUser);
-    const isAdmin        = authUser?.role === 'admin';
+    const authUser = auth?.user ?? null;
+    const isLoggedIn = Boolean(authUser);
+    const isAdmin = authUser?.role === 'admin';
     const isWargaLoggedIn = Boolean(authUser && !isAdmin && (authUser.role === 'warga' || authUser.warga_id));
-    const dashboardUrl   = isAdmin ? '/admin/dashboard' : '/warga/dashboard';
+    const dashboardUrl = isAdmin ? '/admin/dashboard' : '/warga/dashboard';
     const dashboardLabel = isAdmin ? 'Dashboard Admin' : 'Dashboard Warga';
-    const roleLabel      = isAdmin ? 'Admin' : 'Warga';
-    const firstName      = authUser?.name?.split(' ')[0] ?? 'Warga';
-    const userInitials   = (authUser?.name ?? 'U')
+    const roleLabel = isAdmin ? 'Admin' : 'Warga';
+    const firstName = authUser?.name?.split(' ')[0] ?? 'Warga';
+    const userInitials = (authUser?.name ?? 'U')
         .split(' ').filter(Boolean).slice(0, 2)
         .map((p: any) => p[0]).join('').toUpperCase();
 
@@ -543,14 +543,14 @@ export default function HomePage({
     const filteredAnnouncements = useMemo(() => {
         const keyword = newsSearch.trim().toLowerCase();
         return announcements.filter(item => {
-            const matchesSearch = !keyword || 
+            const matchesSearch = !keyword ||
                 item.title?.toLowerCase().includes(keyword) ||
                 item.content?.toLowerCase().includes(keyword) ||
                 item.excerpt?.toLowerCase().includes(keyword);
-                
-            const matchesCategory = newsCategory === 'semua' || 
+
+            const matchesCategory = newsCategory === 'semua' ||
                 (item.category || '').toLowerCase() === newsCategory.toLowerCase();
-                
+
             return matchesSearch && matchesCategory;
         });
     }, [announcements, newsSearch, newsCategory]);
@@ -558,20 +558,20 @@ export default function HomePage({
     const filteredDocuments = useMemo(() => {
         const keyword = docSearch.trim().toLowerCase();
         return documents.filter(item => {
-            const matchesSearch = !keyword || 
+            const matchesSearch = !keyword ||
                 item.title?.toLowerCase().includes(keyword) ||
                 item.description?.toLowerCase().includes(keyword);
-                
-            const matchesCategory = docCategory === 'semua' || 
+
+            const matchesCategory = docCategory === 'semua' ||
                 (item.category || '').toLowerCase() === docCategory.toLowerCase();
-                
+
             return matchesSearch && matchesCategory;
         });
     }, [documents, docSearch, docCategory]);
 
     const filteredGallery = useMemo(() => {
         return gallery.filter(item => {
-            return galleryCategory === 'semua' || 
+            return galleryCategory === 'semua' ||
                 (item.category || '').toLowerCase() === galleryCategory.toLowerCase();
         });
     }, [gallery, galleryCategory]);
@@ -729,12 +729,12 @@ export default function HomePage({
     };
 
     const serviceCards = [
-        { label: 'Iuran Bulanan',    icon: 'payments',            href: isLoggedIn ? '/warga/iuran' : '/login' },
-        { label: 'Pengajuan Surat',  icon: 'description',         href: isLoggedIn ? '/warga/ajukan-surat' : '/login' },
-        { label: 'Pengaduan Warga',  icon: 'campaign',            href: isLoggedIn ? '/warga/pengaduan' : '/login' },
-        { label: 'Pengumuman RT',    icon: 'notifications_active', href: '#berita' },
-        { label: 'Kegiatan RT',      icon: 'event_available',     href: '#kegiatan' },
-        { label: 'Dokumen Warga',    icon: 'folder_shared',       href: '#dokumen' },
+        { label: 'Iuran Bulanan', icon: 'payments', href: isLoggedIn ? '/warga/iuran' : '/login' },
+        { label: 'Pengajuan Surat', icon: 'description', href: isLoggedIn ? '/warga/ajukan-surat' : '/login' },
+        { label: 'Pengaduan Warga', icon: 'campaign', href: isLoggedIn ? '/warga/pengaduan' : '/login' },
+        { label: 'Pengumuman RT', icon: 'notifications_active', href: '#berita' },
+        { label: 'Kegiatan RT', icon: 'event_available', href: '#kegiatan' },
+        { label: 'Dokumen Warga', icon: 'folder_shared', href: '#dokumen' },
     ];
 
     return (
@@ -1002,7 +1002,7 @@ export default function HomePage({
                                     className="w-full rounded-xl border border-slate-800 bg-slate-900/60 px-4 py-2.5 pl-10 text-xs text-slate-100 placeholder-slate-500 focus:border-emerald-400 focus:outline-none focus:ring-1 focus:ring-emerald-400/30 transition"
                                 />
                                 <span className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-500 text-sm">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5"><path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5"><path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
                                 </span>
                             </div>
 
@@ -1033,7 +1033,7 @@ export default function HomePage({
                                         <ArticleCard key={item.id} item={item} onRead={() => setSelectedAnnouncement(item)} />
                                     ))}
                                 </div>
-                                
+
                                 {filteredAnnouncements.length > 3 && (
                                     <div className="mt-8 flex justify-center">
                                         <button
@@ -1047,10 +1047,10 @@ export default function HomePage({
                                 )}
                             </>
                         ) : (
-                            <EmptySection 
-                                icon={<Bell size={28} />} 
-                                title="Belum ada berita" 
-                                description="Tidak ada berita yang cocok dengan kata kunci atau filter kategori Anda." 
+                            <EmptySection
+                                icon={<Bell size={28} />}
+                                title="Belum ada berita"
+                                description="Tidak ada berita yang cocok dengan kata kunci atau filter kategori Anda."
                             />
                         )}
                     </div>
@@ -1069,8 +1069,8 @@ export default function HomePage({
                         <div className="mb-8 rounded-3xl border border-slate-800 bg-slate-900/40 p-5">
                             <div className="mb-4 flex items-center justify-between">
                                 <h3 className="text-sm font-bold text-slate-200">Jadwal {currentMonthLabel}</h3>
-                                <button 
-                                    type="button" 
+                                <button
+                                    type="button"
                                     onClick={() => setShowCalendarModal(true)}
                                     className="text-xs font-bold text-emerald-400 hover:text-emerald-300 flex items-center gap-1"
                                 >
@@ -1102,12 +1102,12 @@ export default function HomePage({
                                         >
                                             <span className="text-[8px] font-bold uppercase tracking-wider">{day.dayName}</span>
                                             <span className="text-sm font-extrabold mt-1">{day.dayNum}</span>
-                                            
+
                                             {/* Indicator dot for selected day */}
                                             {isSelected && (
                                                 <span className="absolute bottom-1.5 h-1 w-1 rounded-full bg-slate-950" />
                                             )}
-                                            
+
                                             {/* Event present indicator dot */}
                                             {!isSelected && hasEvent && (
                                                 <span className="absolute bottom-1.5 h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse" />
@@ -1127,7 +1127,7 @@ export default function HomePage({
                                         return (
                                             <article key={event.id} className="group rounded-3xl border border-slate-800 bg-slate-900/60 p-5 shadow-sm transition hover:border-emerald-500/30 hover:shadow-xl md:p-8">
                                                 <div className="flex flex-col">
-                                                    
+
                                                     {/* Badge and Details grouped in flex-row */}
                                                     <div className="flex flex-row items-start gap-4 flex-1 min-w-0">
                                                         {/* Date badge */}
@@ -1145,9 +1145,9 @@ export default function HomePage({
                                                                 {event.status && (
                                                                     <span className="rounded-full bg-emerald-500/10 px-2.5 py-0.5 text-[10px] md:text-xs font-bold text-emerald-400">{event.status}</span>
                                                                 )}
-                                                                <button 
-                                                                    type="button" 
-                                                                    onClick={() => setSelectedParticipantsEvent(event)} 
+                                                                <button
+                                                                    type="button"
+                                                                    onClick={() => setSelectedParticipantsEvent(event)}
                                                                     className="rounded-full bg-slate-800/80 hover:bg-slate-700/80 px-2.5 py-0.5 text-[10px] md:text-xs font-bold text-emerald-400 border border-slate-700/50 flex items-center gap-1 transition"
                                                                 >
                                                                     <span className="material-symbols-outlined text-[12px] md:text-[14px]" style={{ fontVariationSettings: "'FILL' 1" }}>groups</span>
@@ -1171,9 +1171,9 @@ export default function HomePage({
 
                                                     {/* Bottom Action Area (RSVP & Share & Detail) */}
                                                     <div className="mt-4 pt-4 border-t border-slate-800/60 flex items-center gap-3 w-full">
-                                                        <button 
-                                                            type="button" 
-                                                            onClick={() => openEventDetailModal(event)} 
+                                                        <button
+                                                            type="button"
+                                                            onClick={() => openEventDetailModal(event)}
                                                             className="flex-1 inline-flex items-center justify-center gap-1.5 rounded-xl border border-slate-700/80 bg-slate-800/60 px-4 py-2.5 text-xs font-bold text-slate-200 hover:bg-slate-700 hover:text-white transition active:scale-95"
                                                         >
                                                             <FileText size={14} className="text-emerald-400" />
@@ -1187,36 +1187,36 @@ export default function HomePage({
                                                                         <span className="flex-1 flex items-center justify-center rounded-xl bg-emerald-500/10 py-2.5 text-xs font-bold text-emerald-400">
                                                                             Sudah Ikut
                                                                         </span>
-                                                                        <button 
-                                                                            type="button" 
-                                                                            onClick={() => cancelJoinEvent(event)} 
+                                                                        <button
+                                                                            type="button"
+                                                                            onClick={() => cancelJoinEvent(event)}
                                                                             className="rounded-xl border border-error/30 bg-slate-900 px-3 py-2.5 text-xs font-bold text-error transition hover:bg-slate-800"
                                                                         >
                                                                             Batal
                                                                         </button>
                                                                     </div>
                                                                 ) : (
-                                                                    <button 
-                                                                        type="button" 
-                                                                        onClick={() => joinEvent(event)} 
+                                                                    <button
+                                                                        type="button"
+                                                                        onClick={() => joinEvent(event)}
                                                                         className="flex-1 rounded-xl bg-emerald-500 py-2.5 text-xs font-bold text-slate-950 hover:bg-emerald-400 transition active:scale-95"
                                                                     >
                                                                         RSVP
                                                                     </button>
                                                                 )
                                                             ) : (
-                                                                <Link 
-                                                                    href="/login" 
+                                                                <Link
+                                                                    href="/login"
                                                                     className="flex-1 flex items-center justify-center rounded-xl bg-slate-800 py-2.5 text-xs font-bold text-slate-200 hover:bg-slate-700 transition"
                                                                 >
                                                                     Masuk untuk RSVP
                                                                 </Link>
                                                             )
                                                         )}
-                                                        
+
                                                         {/* Share button */}
-                                                        <button 
-                                                            type="button" 
+                                                        <button
+                                                            type="button"
                                                             onClick={() => handleShare(event.title || 'Agenda RT', window.location.href)}
                                                             className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-slate-800 bg-slate-900 text-slate-400 hover:text-emerald-400 hover:border-emerald-500/30 transition"
                                                             title="Bagikan Kegiatan"
@@ -1261,9 +1261,9 @@ export default function HomePage({
                             <>
                                 <div className="grid gap-gutter md:grid-cols-2 lg:grid-cols-3">
                                     {complaints.map((c) => {
-                                        const st  = statusConfig[c.status  ?? ''] ?? statusConfig.diajukan;
+                                        const st = statusConfig[c.status ?? ''] ?? statusConfig.diajukan;
                                         const pri = priorityConfig[c.prioritas ?? ''] ?? priorityConfig.sedang;
-                                        const kat = kategoriConfig[c.kategori  ?? ''] ?? kategoriConfig.lainnya;
+                                        const kat = kategoriConfig[c.kategori ?? ''] ?? kategoriConfig.lainnya;
                                         return (
                                             <div key={c.id} className="group flex flex-col gap-4 rounded-[2rem] border border-outline-variant/30 bg-surface-container-low p-6 shadow-sm transition hover:-translate-y-1 hover:border-primary hover:shadow-2xl">
                                                 {/* Header */}
@@ -1370,19 +1370,19 @@ export default function HomePage({
                                 <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6">
                                     {displayedGallery.map((item, index) => (
                                         <div key={item.id} className="group relative overflow-hidden rounded-xl border border-slate-800 bg-slate-900/40 p-2 transition hover:border-emerald-500/30 hover:shadow-xl">
-                                            <button 
-                                                type="button" 
-                                                onClick={() => openGalleryDetail(item, index)} 
+                                            <button
+                                                type="button"
+                                                onClick={() => openGalleryDetail(item, index)}
                                                 className="relative aspect-[4/5] w-full overflow-hidden rounded-lg block text-left"
                                             >
-                                                <img 
-                                                    src={item.imageUrl} 
-                                                    alt={item.title} 
-                                                    className="h-full w-full object-cover transition duration-500 group-hover:scale-105" 
+                                                <img
+                                                    src={item.imageUrl}
+                                                    alt={item.title}
+                                                    className="h-full w-full object-cover transition duration-500 group-hover:scale-105"
                                                 />
                                                 <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent opacity-60" />
                                             </button>
-                                            
+
                                             <div className="mt-3 px-1">
                                                 <div className="flex items-center justify-between gap-2">
                                                     <span className="rounded bg-emerald-500/10 px-2 py-0.5 text-[9px] font-bold uppercase text-emerald-400">
@@ -1411,10 +1411,10 @@ export default function HomePage({
                                 )}
                             </div>
                         ) : (
-                            <EmptySection 
-                                icon={<Camera size={28} />} 
-                                title="Belum ada foto" 
-                                description="Tidak ada foto galeri kegiatan yang cocok dengan filter kategori Anda." 
+                            <EmptySection
+                                icon={<Camera size={28} />}
+                                title="Belum ada foto"
+                                description="Tidak ada foto galeri kegiatan yang cocok dengan filter kategori Anda."
                             />
                         )}
                     </div>
@@ -1441,7 +1441,7 @@ export default function HomePage({
                                     className="w-full rounded-xl border border-slate-800 bg-slate-900/60 px-4 py-2.5 pl-10 text-xs text-slate-100 placeholder-slate-500 focus:border-emerald-400 focus:outline-none focus:ring-1 focus:ring-emerald-400/30 transition"
                                 />
                                 <span className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-500 text-sm">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5"><path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5"><path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
                                 </span>
                             </div>
 
@@ -1492,7 +1492,7 @@ export default function HomePage({
                                                         </div>
                                                         <h4 className="text-base font-black text-on-surface leading-snug">{doc.title}</h4>
                                                         {doc.description && <p className="mt-1 line-clamp-2 text-sm text-on-surface-variant leading-relaxed">{doc.description}</p>}
-                                                        
+
                                                         {/* File download area */}
                                                         <div className="mt-4 border-t border-outline-variant/20 pt-4 flex flex-col gap-2.5">
                                                             {/* 1. Unduh File Utama */}
@@ -1536,7 +1536,7 @@ export default function HomePage({
                                         );
                                     })}
                                 </div>
-                                
+
                                 {filteredDocuments.length > 3 && (
                                     <div className="mt-8 flex justify-center">
                                         <button
@@ -1550,10 +1550,10 @@ export default function HomePage({
                                 )}
                             </>
                         ) : (
-                            <EmptySection 
-                                icon={<FileText size={28} />} 
-                                title="Belum ada dokumen" 
-                                description="Tidak ada dokumen digital yang cocok dengan kata kunci atau filter kategori Anda." 
+                            <EmptySection
+                                icon={<FileText size={28} />}
+                                title="Belum ada dokumen"
+                                description="Tidak ada dokumen digital yang cocok dengan kata kunci atau filter kategori Anda."
                             />
                         )}
                     </div>
@@ -1612,7 +1612,7 @@ export default function HomePage({
                                     <ContactCard icon={<Phone size={20} />} title="Telepon / WhatsApp" value={safeSite.phone} href={`tel:${safeSite.phone}`} />
                                 )}
                                 <ContactCard icon={<LayoutDashboard size={20} />} title="Portal Warga" value="Masuk ke Portal" href="/login" />
-                                
+
                                 {safeSite.emergencyContacts && safeSite.emergencyContacts.length > 0 && (
                                     <div className="col-span-1 sm:col-span-2 mt-6">
                                         <h4 className="mb-4 text-sm font-semibold text-rose-400 flex items-center gap-2">
@@ -1621,7 +1621,7 @@ export default function HomePage({
                                         </h4>
                                         <div className="grid gap-3 sm:grid-cols-2">
                                             {safeSite.emergencyContacts.map((contact, idx) => (
-                                                <a 
+                                                <a
                                                     key={idx}
                                                     href={`tel:${contact.phone}`}
                                                     className="flex items-center justify-between rounded-2xl border border-rose-900/30 bg-rose-950/20 p-4 hover:bg-rose-950/30 transition hover:border-rose-500/30 group hover:no-underline"
@@ -1767,14 +1767,14 @@ export default function HomePage({
 
                         {selectedAnnouncement.imageUrl && (
                             <div className="relative w-full overflow-hidden bg-black/40 border-b border-outline-variant/20 flex items-center justify-center">
-                                <div 
-                                    className="absolute inset-0 bg-cover bg-center blur-md opacity-25 scale-105 pointer-events-none" 
+                                <div
+                                    className="absolute inset-0 bg-cover bg-center blur-md opacity-25 scale-105 pointer-events-none"
                                     style={{ backgroundImage: `url(${selectedAnnouncement.imageUrl})` }}
                                 />
-                                <img 
-                                    src={selectedAnnouncement.imageUrl} 
-                                    alt={selectedAnnouncement.title} 
-                                    className="relative max-h-[380px] md:max-h-[420px] w-auto max-w-full object-contain mx-auto transition-all" 
+                                <img
+                                    src={selectedAnnouncement.imageUrl}
+                                    alt={selectedAnnouncement.title}
+                                    className="relative max-h-[380px] md:max-h-[420px] w-auto max-w-full object-contain mx-auto transition-all"
                                 />
                             </div>
                         )}
@@ -1883,7 +1883,7 @@ export default function HomePage({
             {showCalendarModal && (
                 <div onClick={() => setShowCalendarModal(false)} className="fixed inset-0 z-[999] flex items-center justify-center bg-slate-950/80 p-4 backdrop-blur-sm cursor-pointer">
                     <div onClick={(e) => e.stopPropagation()} className="max-h-[92vh] w-full max-w-4xl overflow-hidden rounded-3xl bg-slate-900 border border-slate-800 shadow-2xl cursor-default flex flex-col animate-in fade-in zoom-in-95 duration-200">
-                        
+
                         {/* Modal Header */}
                         <div className="sticky top-0 z-10 flex items-center justify-between border-b border-slate-800 bg-slate-900/90 px-6 py-4">
                             <div>
@@ -1894,11 +1894,11 @@ export default function HomePage({
                                 <X size={22} />
                             </button>
                         </div>
-                        
+
                         {/* Modal Content */}
                         <div className="overflow-y-auto p-6 flex-1 space-y-6">
                             <div className="grid gap-6 md:grid-cols-12">
-                                
+
                                 {/* Monthly Calendar Grid */}
                                 <div className="md:col-span-5 space-y-4">
                                     <div className="rounded-2xl border border-slate-800 bg-slate-950/40 p-4">
@@ -1906,7 +1906,7 @@ export default function HomePage({
                                             <span className="font-extrabold text-sm uppercase tracking-wider">{currentMonthLabel} {new Date().getFullYear()}</span>
                                             <span className="text-[10px] text-slate-500 font-bold uppercase">Pilih Tanggal</span>
                                         </div>
-                                        
+
                                         <div className="grid grid-cols-7 gap-1 text-center text-[10px] font-bold text-slate-500 mb-2">
                                             <span>MIN</span>
                                             <span>SEN</span>
@@ -1916,15 +1916,15 @@ export default function HomePage({
                                             <span>JUM</span>
                                             <span>SAB</span>
                                         </div>
-                                        
+
                                         <div className="grid grid-cols-7 gap-1">
                                             {getMonthDaysHelper.map((day, idx) => {
                                                 if (!day) return <div key={idx} className="h-9" />;
-                                                
+
                                                 const hasEvent = events.some(e => e.date === day.matchStr);
                                                 const isSelected = selectedCalendarModalDate === day.matchStr;
                                                 const isToday = day.dateObj.toDateString() === new Date().toDateString();
-                                                
+
                                                 return (
                                                     <button
                                                         key={idx}
@@ -1938,7 +1938,7 @@ export default function HomePage({
                                                         }}
                                                         className={[
                                                             'h-9 rounded-lg flex flex-col items-center justify-center text-xs font-bold transition relative',
-                                                            isSelected 
+                                                            isSelected
                                                                 ? 'bg-emerald-400 text-slate-950 font-black shadow-md shadow-emerald-500/10'
                                                                 : isToday
                                                                     ? 'border border-emerald-500/40 bg-emerald-500/5 text-emerald-400'
@@ -1957,14 +1957,14 @@ export default function HomePage({
                                             })}
                                         </div>
                                     </div>
-                                    
+
                                     <div className="flex flex-wrap gap-3 text-[10px] text-slate-400 font-bold px-1">
                                         <span className="flex items-center gap-1.5"><span className="h-2 w-2 rounded bg-emerald-400" /> Coming Soon</span>
                                         <span className="flex items-center gap-1.5"><span className="h-2 w-2 rounded bg-amber-400 animate-pulse" /> Hari Ini</span>
                                         <span className="flex items-center gap-1.5"><span className="h-2 w-2 rounded bg-slate-600" /> Selesai</span>
                                     </div>
                                 </div>
-                                
+
                                 {/* Filtered Agendas List */}
                                 <div className="md:col-span-7 space-y-4">
                                     <div className="flex gap-1.5 border-b border-slate-800 pb-3 overflow-x-auto no-scrollbar">
@@ -1987,14 +1987,14 @@ export default function HomePage({
                                             </button>
                                         ))}
                                     </div>
-                                    
+
                                     <div className="space-y-3 max-h-[50vh] overflow-y-auto pr-1">
                                         {modalFilteredEvents.length > 0 ? (
                                             modalFilteredEvents.map((event) => {
                                                 const status = getEventStatus(event.date);
                                                 const statusLabel = status === 'selesai' ? 'Selesai' : status === 'sedang berlangsung' ? 'Hari Ini' : 'Mendatang';
                                                 const statusCls = status === 'selesai' ? 'bg-slate-800 text-slate-400' : status === 'sedang berlangsung' ? 'bg-amber-400/10 text-amber-400 border border-amber-400/20' : 'bg-emerald-400/10 text-emerald-400 border border-emerald-400/20';
-                                                
+
                                                 return (
                                                     <div key={event.id} className="rounded-2xl border border-slate-800 bg-slate-950/20 p-4 space-y-3 transition hover:border-slate-700">
                                                         <div className="flex items-start justify-between gap-3">
@@ -2165,11 +2165,10 @@ export default function HomePage({
                             <button
                                 type="button"
                                 onClick={() => setDetailModalTab('info')}
-                                className={`flex-1 flex items-center justify-center gap-1.5 py-3 text-xs font-bold uppercase tracking-wider transition ${
-                                    detailModalTab === 'info'
+                                className={`flex-1 flex items-center justify-center gap-1.5 py-3 text-xs font-bold uppercase tracking-wider transition ${detailModalTab === 'info'
                                         ? 'text-emerald-400 border-b-2 border-emerald-400 font-black'
                                         : 'text-slate-400 hover:text-slate-200'
-                                }`}
+                                    }`}
                             >
                                 <FileText size={14} />
                                 Informasi
@@ -2177,11 +2176,10 @@ export default function HomePage({
                             <button
                                 type="button"
                                 onClick={() => setDetailModalTab('dokumentasi')}
-                                className={`flex-1 flex items-center justify-center gap-1.5 py-3 text-xs font-bold uppercase tracking-wider transition ${
-                                    detailModalTab === 'dokumentasi'
+                                className={`flex-1 flex items-center justify-center gap-1.5 py-3 text-xs font-bold uppercase tracking-wider transition ${detailModalTab === 'dokumentasi'
                                         ? 'text-emerald-400 border-b-2 border-emerald-400 font-black'
                                         : 'text-slate-400 hover:text-slate-200'
-                                }`}
+                                    }`}
                             >
                                 <Camera size={14} />
                                 Dokumentasi
@@ -2445,7 +2443,7 @@ function ServiceCard({ icon, label, href }: { icon: string; label: string; href:
 
 function StatCard({ stat, index }: { stat: StatItem; index: number }) {
     const icons = ['groups', 'home', 'event', 'trending_up'];
-    const icon  = icons[index % icons.length];
+    const icon = icons[index % icons.length];
     return (
         <div className="rounded-2xl p-2 sm:p-4 text-center">
             <div className="mx-auto mb-3 flex h-11 w-11 items-center justify-center rounded-2xl bg-emerald-500/10 text-emerald-400">
@@ -2464,14 +2462,14 @@ function ArticleCard({ item, onRead }: { item: Announcement; onRead: () => void 
             <div className="relative aspect-[4/3] w-full shrink-0 overflow-hidden bg-black/40 flex items-center justify-center">
                 {item.imageUrl ? (
                     <>
-                        <div 
-                            className="absolute inset-0 bg-cover bg-center blur-md opacity-25 scale-105 pointer-events-none" 
+                        <div
+                            className="absolute inset-0 bg-cover bg-center blur-md opacity-25 scale-105 pointer-events-none"
                             style={{ backgroundImage: `url(${item.imageUrl})` }}
                         />
-                        <img 
-                            src={item.imageUrl} 
-                            alt={item.title} 
-                            className="relative w-full h-full object-cover transition duration-500 group-hover:scale-[1.03]" 
+                        <img
+                            src={item.imageUrl}
+                            alt={item.title}
+                            className="relative w-full h-full object-cover transition duration-500 group-hover:scale-[1.03]"
                         />
                     </>
                 ) : (
@@ -2504,14 +2502,14 @@ function ArticleCard({ item, onRead }: { item: Announcement; onRead: () => void 
                         {item.excerpt}
                     </p>
                 </div>
-                
+
                 <div className="mt-3">
-                    <button 
-                        type="button" 
+                    <button
+                        type="button"
                         onClick={(e) => {
                             e.stopPropagation();
                             onRead();
-                        }} 
+                        }}
                         className="inline-flex items-center gap-1 text-[10px] md:text-xs font-bold text-emerald-400 hover:text-emerald-300 transition-transform group-hover:translate-x-0.5"
                     >
                         Baca Selengkapnya <ArrowRight size={12} />
