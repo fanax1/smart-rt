@@ -173,7 +173,7 @@ export default function Dashboard({
                             <MessageSquare size={16} />
                         </div>
                     </div>
-                    
+
                     <div className="grid grid-cols-5 gap-4 items-center">
                         <div className="col-span-2 flex flex-col justify-center border-r border-[#1C2541]/40 pr-4">
                             <div className="flex items-center gap-1.5">
@@ -201,7 +201,7 @@ export default function Dashboard({
                             </div>
                         </div>
                     </div>
-                    
+
                     <div className="absolute bottom-0 left-6 right-6">
                         <div className="h-[3px] w-1/3 rounded-t-full bg-emerald-500"></div>
                     </div>
@@ -215,7 +215,7 @@ export default function Dashboard({
                             <AlertTriangle size={16} />
                         </div>
                     </div>
-                    
+
                     <div className="grid grid-cols-5 gap-4 items-center">
                         <div className="col-span-2 flex flex-col justify-center border-r border-[#1C2541]/40 pr-4">
                             <div className="flex items-center gap-1.5">
@@ -243,7 +243,7 @@ export default function Dashboard({
                             </div>
                         </div>
                     </div>
-                    
+
                     <div className="absolute bottom-0 left-6 right-6">
                         <div className="h-[3px] w-1/3 rounded-t-full bg-amber-500"></div>
                     </div>
@@ -257,7 +257,7 @@ export default function Dashboard({
                             <Calendar size={16} />
                         </div>
                     </div>
-                    
+
                     <div className="grid grid-cols-5 gap-4 items-center">
                         <div className="col-span-2 flex flex-col justify-center border-r border-[#1C2541]/40 pr-4">
                             <div className="flex items-center gap-1.5">
@@ -285,7 +285,7 @@ export default function Dashboard({
                             </div>
                         </div>
                     </div>
-                    
+
                     <div className="absolute bottom-0 left-6 right-6">
                         <div className="h-[3px] w-1/3 rounded-t-full bg-purple-500"></div>
                     </div>
@@ -392,11 +392,10 @@ export default function Dashboard({
                 <div className="rounded-2xl border border-[#1C2541]/50 bg-[#111A2E]/50 p-6 shadow-md flex flex-col h-[480px]">
                     <div className="mb-4 flex items-center justify-between">
                         <h3 className="text-base font-black text-white">Warga Sedang Online</h3>
-                        <span className={`rounded-full px-2.5 py-0.5 text-[9px] font-black shadow-sm shrink-0 ${
-                            onlineCitizens.length === 0
+                        <span className={`rounded-full px-2.5 py-0.5 text-[9px] font-black shadow-sm shrink-0 ${onlineCitizens.length === 0
                                 ? 'bg-slate-500/10 border border-slate-500/20 text-slate-400'
                                 : 'bg-emerald-500/10 border border-emerald-500/20 text-emerald-400'
-                        }`}>
+                            }`}>
                             {onlineCitizens.length} ONLINE
                         </span>
                     </div>
@@ -479,13 +478,12 @@ export default function Dashboard({
                                         className="flex items-start justify-between gap-4 rounded-2xl border border-[#1C2541]/40 bg-[#111A2E]/30 p-3.5 transition hover:bg-[#111A2E]/50"
                                     >
                                         <div className="flex items-start gap-3 min-w-0">
-                                            <div className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-xl border ${
-                                                isTicket
+                                            <div className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-xl border ${isTicket
                                                     ? 'text-emerald-400 bg-emerald-500/10 border-emerald-500/20'
                                                     : isComplaint
-                                                    ? 'text-amber-400 bg-amber-500/10 border-amber-500/20'
-                                                    : 'text-purple-400 bg-purple-500/10 border-purple-500/20'
-                                            }`}>
+                                                        ? 'text-amber-400 bg-amber-500/10 border-amber-500/20'
+                                                        : 'text-purple-400 bg-purple-500/10 border-purple-500/20'
+                                                }`}>
                                                 {isTicket && <MessageSquare size={16} />}
                                                 {isComplaint && <AlertTriangle size={16} />}
                                                 {isLetter && <FileText size={16} />}
@@ -493,13 +491,12 @@ export default function Dashboard({
 
                                             <div className="min-w-0 leading-tight">
                                                 <div className="flex items-center gap-2 flex-wrap">
-                                                    <span className={`rounded px-1.5 py-0.5 text-[8px] font-black uppercase tracking-wider ${
-                                                        isTicket
+                                                    <span className={`rounded px-1.5 py-0.5 text-[8px] font-black uppercase tracking-wider ${isTicket
                                                             ? 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/20'
                                                             : isComplaint
-                                                            ? 'bg-amber-500/10 text-amber-400 border border-amber-500/20'
-                                                            : 'bg-purple-500/10 text-purple-400 border border-purple-500/20'
-                                                    }`}>
+                                                                ? 'bg-amber-500/10 text-amber-400 border border-amber-500/20'
+                                                                : 'bg-purple-500/10 text-purple-400 border border-purple-500/20'
+                                                        }`}>
                                                         {isTicket ? 'Helpdesk Ticket' : isComplaint ? 'Pengaduan Warga' : 'Pengajuan Surat'}
                                                     </span>
                                                     <span className="text-[9px] font-semibold text-slate-500 select-all">{item.ref_no}</span>
