@@ -65,41 +65,7 @@ const fallbackProfile: WargaProfile = {
     hasLinkedWarga: false,
 };
 
-const defaultPastEvents: EventItem[] = [
-    {
-        id: 991,
-        title: 'Penyuluhan Kesehatan Lansia',
-        date: '2026-05-15',
-        category: 'KESEHATAN',
-        status: 'Selesai',
-        location: 'Posyandu RT',
-        description: 'Kegiatan pemeriksaan kesehatan rutin dan edukasi pola hidup sehat bagi warga lanjut usia.',
-        image: 'https://images.unsplash.com/photo-1505751172876-fa1923c5c528?auto=format&fit=crop&w=600&q=80',
-        participantsCount: 32,
-    },
-    {
-        id: 992,
-        title: 'Penghijauan Fasilitas Umum',
-        date: '2026-04-30',
-        category: 'LINGKUNGAN',
-        status: 'Selesai',
-        location: 'Taman Warga RT',
-        description: 'Penanaman 50 bibit pohon pelindung dan tanaman hias di sepanjang jalan utama RT.',
-        image: 'https://images.unsplash.com/photo-1457369804613-52c61a468e7d?auto=format&fit=crop&w=600&q=80',
-        participantsCount: 20,
-    },
-    {
-        id: 993,
-        title: 'Halal bi Halal Warga',
-        date: '2026-04-12',
-        category: 'SOSIAL',
-        status: 'Selesai',
-        location: 'Balai Pertemuan RT',
-        description: 'Silaturahmi akbar pasca Idul Fitri untuk mempererat tali persaudaraan antar tetangga.',
-        image: 'https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?auto=format&fit=crop&w=600&q=80',
-        participantsCount: 85,
-    }
-];
+const defaultPastEvents: EventItem[] = [];
 
 function formatDate(value?: string | null) {
     if (!value) return '-';
@@ -157,7 +123,7 @@ export default function Kegiatan({ profile = fallbackProfile, events = [], pastE
     const safeProfile = profile ?? fallbackProfile;
     const safeEvents = Array.isArray(events) ? events : [];
     const dbPastEvents = Array.isArray(pastEvents) ? pastEvents : [];
-    const activePastEvents = dbPastEvents.length > 0 ? dbPastEvents : defaultPastEvents;
+    const activePastEvents = dbPastEvents;
 
     const [search, setSearch] = useState('');
     const [selectedEvent, setSelectedEvent] = useState<EventItem | null>(null);
@@ -509,72 +475,78 @@ export default function Kegiatan({ profile = fallbackProfile, events = [], pastE
                         <span>Kegiatan Terlaksana</span>
                     </h3>
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                        {activePastEvents.map((evt) => {
-                            // Gunakan imageUrl dari backend, fallback ke image dummy
-                            const thumbnail = evt.imageUrl || evt.image || null;
-                            return (
-                                <div 
-                                    key={evt.id}
-                                    className="rounded-2xl border border-slate-850 bg-[#131b2e]/10 overflow-hidden shadow hover:border-slate-700/60 transition group flex flex-col justify-between"
-                                >
-                                    <div>
-                                        {thumbnail ? (
-                                            <div className="h-40 w-full overflow-hidden relative">
-                                                <img src={thumbnail} alt={evt.title} className="w-full h-full object-cover group-hover:scale-102 transition duration-300" />
-                                                <div className="absolute inset-0 bg-gradient-to-t from-[#0b1220] via-transparent to-transparent opacity-80" />
+                    {activePastEvents.length > 0 ? (
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                            {activePastEvents.map((evt) => {
+                                // Gunakan imageUrl dari backend, fallback ke image dummy
+                                const thumbnail = evt.imageUrl || evt.image || null;
+                                return (
+                                    <div 
+                                        key={evt.id}
+                                        className="rounded-2xl border border-slate-850 bg-[#131b2e]/10 overflow-hidden shadow hover:border-slate-700/60 transition group flex flex-col justify-between"
+                                    >
+                                        <div>
+                                            {thumbnail ? (
+                                                <div className="h-40 w-full overflow-hidden relative">
+                                                    <img src={thumbnail} alt={evt.title} className="w-full h-full object-cover group-hover:scale-102 transition duration-300" />
+                                                    <div className="absolute inset-0 bg-gradient-to-t from-[#0b1220] via-transparent to-transparent opacity-80" />
+                                                </div>
+                                            ) : (
+                                                <div className="h-40 w-full bg-[#131b2e] flex items-center justify-center border-b border-slate-850">
+                                                    <CalendarIcon size={24} className="text-slate-650" />
+                                                </div>
+                                            )}
+                                            <div className="p-4 space-y-2">
+                                                <div className="flex items-center justify-between">
+                                                    <span className="text-[8px] font-black text-slate-500 tracking-wider font-mono">
+                                                        {formatDate(evt.date)}
+                                                    </span>
+                                                    <span className="text-[8px] font-extrabold text-emerald-400 bg-emerald-500/10 border border-emerald-500/20 px-1.5 py-0.5 rounded uppercase tracking-wider">
+                                                        {evt.category || 'Selesai'}
+                                                    </span>
+                                                </div>
+                                                <h4 className="text-xs font-black text-slate-200 group-hover:text-emerald-400 transition-colors leading-tight">
+                                                    {evt.title}
+                                                </h4>
+                                                <p className="text-[10px] text-slate-450 leading-relaxed font-medium line-clamp-2">
+                                                    {evt.description || 'Kegiatan warga RT telah selesai dilaksanakan dengan baik.'}
+                                                </p>
                                             </div>
-                                        ) : (
-                                            <div className="h-40 w-full bg-[#131b2e] flex items-center justify-center border-b border-slate-850">
-                                                <CalendarIcon size={24} className="text-slate-650" />
+                                        </div>
+                                        <div className="p-4 pt-0 border-t border-slate-850/40 mt-3 flex items-center justify-between gap-2">
+                                            <span className="text-[9px] font-bold text-slate-550 flex items-center gap-1 shrink-0">
+                                                <Users size={11} className="text-emerald-400" />
+                                                <span>Selesai • {evt.participantsCount || 0} Hadir</span>
+                                            </span>
+                                            <div className="flex items-center gap-2">
+                                                {/* Tombol Lihat Detail */}
+                                                <button 
+                                                    type="button"
+                                                    onClick={() => openEventModal(evt, 'info')}
+                                                    className="text-[9px] font-black text-slate-400 hover:text-slate-200 transition flex items-center gap-1 border border-slate-800 rounded-lg px-2 py-1"
+                                                >
+                                                    <span>Detail</span>
+                                                </button>
+                                                {/* Tombol Lihat Dokumentasi */}
+                                                <button 
+                                                    type="button"
+                                                    onClick={() => openEventModal(evt, 'dokumentasi')}
+                                                    className="text-[9px] font-black text-emerald-400 hover:text-emerald-300 transition flex items-center gap-1.5"
+                                                >
+                                                    <span>Dokumentasi</span>
+                                                    <ArrowLeft size={10} className="rotate-180 mt-0.5 stroke-[2.5]" />
+                                                </button>
                                             </div>
-                                        )}
-                                        <div className="p-4 space-y-2">
-                                            <div className="flex items-center justify-between">
-                                                <span className="text-[8px] font-black text-slate-500 tracking-wider font-mono">
-                                                    {formatDate(evt.date)}
-                                                </span>
-                                                <span className="text-[8px] font-extrabold text-emerald-400 bg-emerald-500/10 border border-emerald-500/20 px-1.5 py-0.5 rounded uppercase tracking-wider">
-                                                    {evt.category || 'Selesai'}
-                                                </span>
-                                            </div>
-                                            <h4 className="text-xs font-black text-slate-200 group-hover:text-emerald-400 transition-colors leading-tight">
-                                                {evt.title}
-                                            </h4>
-                                            <p className="text-[10px] text-slate-450 leading-relaxed font-medium line-clamp-2">
-                                                {evt.description || 'Kegiatan warga RT telah selesai dilaksanakan dengan baik.'}
-                                            </p>
                                         </div>
                                     </div>
-                                    <div className="p-4 pt-0 border-t border-slate-850/40 mt-3 flex items-center justify-between gap-2">
-                                        <span className="text-[9px] font-bold text-slate-550 flex items-center gap-1 shrink-0">
-                                            <Users size={11} className="text-emerald-400" />
-                                            <span>Selesai • {evt.participantsCount || 0} Hadir</span>
-                                        </span>
-                                        <div className="flex items-center gap-2">
-                                            {/* Tombol Lihat Detail */}
-                                            <button 
-                                                type="button"
-                                                onClick={() => openEventModal(evt, 'info')}
-                                                className="text-[9px] font-black text-slate-400 hover:text-slate-200 transition flex items-center gap-1 border border-slate-800 rounded-lg px-2 py-1"
-                                            >
-                                                <span>Detail</span>
-                                            </button>
-                                            {/* Tombol Lihat Dokumentasi */}
-                                            <button 
-                                                type="button"
-                                                onClick={() => openEventModal(evt, 'dokumentasi')}
-                                                className="text-[9px] font-black text-emerald-400 hover:text-emerald-300 transition flex items-center gap-1.5"
-                                            >
-                                                <span>Dokumentasi</span>
-                                                <ArrowLeft size={10} className="rotate-180 mt-0.5 stroke-[2.5]" />
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                            );
-                        })}
-                    </div>
+                                );
+                            })}
+                        </div>
+                    ) : (
+                        <div className="rounded-2xl border border-dashed border-slate-800/80 bg-[#131b2e]/10 p-8 text-center text-xs text-slate-500">
+                            Belum ada kegiatan yang telah terlaksana.
+                        </div>
+                    )}
                 </div>
             </div>
 
