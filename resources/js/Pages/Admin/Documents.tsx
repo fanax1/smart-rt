@@ -377,6 +377,20 @@ export default function Documents({
         });
     };
 
+    const deleteAllFiles = (documentId: number, category?: string) => {
+        const confirmMsg = category
+            ? `Yakin ingin menghapus semua file dalam kategori ini?`
+            : `Yakin ingin menghapus SELURUH file yang tersimpan di dokumen ini?`;
+
+        if (!window.confirm(confirmMsg)) return;
+
+        const url = category
+            ? `/admin/documents/${documentId}/files?category=${category}`
+            : `/admin/documents/${documentId}/files`;
+
+        router.delete(url, { preserveScroll: true });
+    };
+
     const closeForm = () => {
         setShowForm(false);
         setEditingDocument(null);
@@ -498,7 +512,7 @@ export default function Documents({
                                 <th className="px-5 py-4 text-center font-bold">Status</th>
                                 <th className="px-5 py-4 font-bold">Tanggal Publish</th>
                                 <th className="px-5 py-4 text-center font-bold">File</th>
-                                <th className="px-5 py-4 text-right font-bold">Aksi</th>
+                                <th className="px-5 py-4 text-right font-bold min-w-[200px]">Aksi</th>
                             </tr>
                         </thead>
                         <tbody className="divide-y divide-slate-100">
@@ -539,15 +553,15 @@ export default function Documents({
                                         </td>
                                         <td className="px-5 py-4">
                                             <div className="flex items-center justify-end gap-1.5">
-                                                <IconButton label="Detail" onClick={() => setSelectedDocument(document)} icon={<Eye size={17} />} />
+                                                <IconButton label="Detail Dokumen" onClick={() => setSelectedDocument(document)} icon={<Eye size={17} strokeWidth={2.2} />} variant="blue" />
                                                 {document.status === 'published' ? (
-                                                    <IconButton label="Unpublish" onClick={() => unpublishDocument(document)} icon={<RefreshCcw size={17} />} />
+                                                    <IconButton label="Unpublish Dokumen" onClick={() => unpublishDocument(document)} icon={<RefreshCcw size={17} strokeWidth={2.2} />} variant="amber" />
                                                 ) : (
-                                                    <IconButton label="Publish" onClick={() => publishDocument(document)} icon={<Globe2 size={17} />} />
+                                                    <IconButton label="Publish Dokumen" onClick={() => publishDocument(document)} icon={<Globe2 size={17} strokeWidth={2.2} />} variant="emerald" />
                                                 )}
-                                                <IconButton label="Edit" onClick={() => openEditForm(document)} icon={<Edit3 size={17} />} />
-                                                <IconButton label="Arsipkan" onClick={() => archiveDocument(document)} icon={<Archive size={17} />} />
-                                                <IconButton label="Hapus" onClick={() => deleteDocument(document)} icon={<Trash2 size={17} />} danger />
+                                                <IconButton label="Edit Dokumen" onClick={() => openEditForm(document)} icon={<Edit3 size={17} strokeWidth={2.2} />} variant="indigo" />
+                                                <IconButton label="Arsipkan Dokumen" onClick={() => archiveDocument(document)} icon={<Archive size={17} strokeWidth={2.2} />} variant="purple" />
+                                                <IconButton label="Hapus Dokumen" onClick={() => deleteDocument(document)} icon={<Trash2 size={17} strokeWidth={2.2} />} variant="red" />
                                             </div>
                                         </td>
                                     </tr>
@@ -673,7 +687,21 @@ export default function Documents({
 
                             {editingDocument && editingDocument.files.length > 0 && (
                                 <div className="rounded-2xl border border-slate-200 bg-slate-50 p-5 space-y-6">
-                                    <p className="text-sm font-black uppercase tracking-wider text-slate-800 border-b border-slate-200 pb-2">File yang sudah tersimpan</p>
+                                    <div className="flex items-center justify-between border-b border-slate-200 pb-3">
+                                        <p className="text-sm font-black uppercase tracking-wider text-slate-800">
+                                            File yang sudah tersimpan ({editingDocument.files.length})
+                                        </p>
+                                        <button
+                                            type="button"
+                                            onClick={() => deleteAllFiles(editingDocument.id)}
+                                            className="flex items-center gap-1.5 rounded-xl border border-red-200 bg-red-50 px-3 py-1.5 text-xs font-bold text-red-600 hover:bg-red-600 hover:text-white transition shadow-sm"
+                                            title="Hapus seluruh file yang tersimpan di dokumen ini"
+                                            aria-label="Hapus seluruh file yang tersimpan"
+                                        >
+                                            <Trash2 size={14} />
+                                            Hapus Semua File ({editingDocument.files.length})
+                                        </button>
+                                    </div>
                                     
                                     {['main', 'cover', 'attachment', 'gallery'].map((cat) => {
                                         const groupedFiles = editingDocument.files.filter((f) => {
@@ -692,9 +720,20 @@ export default function Documents({
 
                                         return (
                                             <div key={cat} className="space-y-2.5">
-                                                <h5 className="text-xs font-bold text-emerald-700 uppercase tracking-wider">
-                                                     {categoryTitles[cat]}
-                                                </h5>
+                                                <div className="flex items-center justify-between">
+                                                    <h5 className="text-xs font-bold text-emerald-700 uppercase tracking-wider">
+                                                        {categoryTitles[cat]} ({groupedFiles.length})
+                                                    </h5>
+                                                    <button
+                                                        type="button"
+                                                        onClick={() => deleteAllFiles(editingDocument.id, cat)}
+                                                        className="flex items-center gap-1 text-[11px] font-bold text-red-600 hover:text-red-700 hover:underline"
+                                                        title={`Hapus semua file dalam kategori ${categoryTitles[cat]}`}
+                                                    >
+                                                        <Trash2 size={12} />
+                                                        Hapus Semua ({groupedFiles.length})
+                                                    </button>
+                                                </div>
                                                 <div className="grid grid-cols-1 gap-3.5 md:grid-cols-2">
                                                     {groupedFiles.map((file) => (
                                                         <StoredFileRow key={file.id} file={file} onDelete={() => deleteFile(editingDocument.id, file)} isDeleting={isDeletingFileId === file.id} />
@@ -1099,17 +1138,34 @@ function MultiFileInput({
     );
 }
 
-function IconButton({ label, onClick, icon, danger = false }: { label: string; onClick: () => void; icon: ReactNode; danger?: boolean }) {
+function IconButton({
+    label,
+    onClick,
+    icon,
+    variant = 'neutral',
+}: {
+    label: string;
+    onClick: () => void;
+    icon: ReactNode;
+    variant?: 'blue' | 'emerald' | 'amber' | 'indigo' | 'purple' | 'red' | 'neutral';
+}) {
+    const variantClasses = {
+        blue: 'text-blue-600 bg-blue-50 border-blue-200 hover:bg-blue-600 hover:text-white shadow-blue-500/10',
+        emerald: 'text-emerald-600 bg-emerald-50 border-emerald-200 hover:bg-emerald-600 hover:text-white shadow-emerald-500/10',
+        amber: 'text-amber-600 bg-amber-50 border-amber-200 hover:bg-amber-600 hover:text-white shadow-amber-500/10',
+        indigo: 'text-indigo-600 bg-indigo-50 border-indigo-200 hover:bg-indigo-600 hover:text-white shadow-indigo-500/10',
+        purple: 'text-purple-600 bg-purple-50 border-purple-200 hover:bg-purple-600 hover:text-white shadow-purple-500/10',
+        red: 'text-red-600 bg-red-50 border-red-200 hover:bg-red-600 hover:text-white shadow-red-500/10',
+        neutral: 'text-slate-600 bg-white border-slate-200 hover:bg-slate-100 hover:text-slate-900',
+    };
+
     return (
-        <button 
-            type="button" 
-            title={label} 
-            onClick={onClick} 
-            className={`rounded-xl p-2 transition duration-200 border ${
-                danger 
-                    ? 'text-red-700 border-red-200 bg-red-50 hover:bg-red-100 hover:text-red-800' 
-                    : 'text-slate-600 border-slate-200 bg-white hover:bg-slate-100 hover:text-slate-900'
-            }`}
+        <button
+            type="button"
+            title={label}
+            aria-label={label}
+            onClick={onClick}
+            className={`h-9 w-9 inline-flex items-center justify-center shrink-0 rounded-xl border shadow-sm transition-all duration-150 transform hover:scale-105 ${variantClasses[variant]}`}
         >
             {icon}
         </button>
@@ -1179,8 +1235,8 @@ function StoredFileRow({ file, onDelete, isDeleting = false }: { file: DokumenFi
                 </div>
             </div>
 
-            {/* 5 Icon Action Buttons with size={18}, p-2 padding, title tooltips & high-contrast colors */}
-            <div className="flex shrink-0 items-center gap-1">
+            {/* Action Buttons: Preview & Hapus */}
+            <div className="flex shrink-0 items-center gap-1.5">
                 {/* 1. View/Preview */}
                 <a
                     href={file.previewUrl || file.url}
@@ -1193,39 +1249,7 @@ function StoredFileRow({ file, onDelete, isDeleting = false }: { file: DokumenFi
                     <Eye size={18} />
                 </a>
 
-                {/* 2. Download */}
-                <a
-                    href={file.downloadUrl || file.url}
-                    className="rounded-xl p-2 text-slate-600 hover:bg-slate-100 border border-transparent hover:border-slate-200 transition"
-                    title="Download File"
-                    aria-label="Download File"
-                >
-                    <Download size={18} />
-                </a>
-
-                {/* 3. Share / Copy Link */}
-                <button
-                    type="button"
-                    onClick={copyLink}
-                    className="rounded-xl p-2 text-purple-600 hover:bg-purple-50 border border-transparent hover:border-purple-200 transition"
-                    title={copied ? 'Link Disalin!' : 'Salin Link File'}
-                    aria-label="Salin Link File"
-                >
-                    {copied ? <Check size={18} className="text-purple-700" /> : <Share2 size={18} />}
-                </button>
-
-                {/* 4. Edit / Info */}
-                <button
-                    type="button"
-                    onClick={() => alert(`Nama: ${file.originalName}\nKategori: ${file.category || 'File'}\nUkuran: ${formatBytes(file.size)}\nType: ${file.mimeType || file.extension}`)}
-                    className="rounded-xl p-2 text-amber-600 hover:bg-amber-50 border border-transparent hover:border-amber-200 transition"
-                    title="Informasi Detail File"
-                    aria-label="Informasi Detail File"
-                >
-                    <Edit3 size={18} />
-                </button>
-
-                {/* 5. Delete/Hapus */}
+                {/* 2. Delete/Hapus */}
                 <button
                     type="button"
                     onClick={onDelete}

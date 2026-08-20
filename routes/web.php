@@ -236,6 +236,9 @@ Route::middleware(['auth', 'verified', 'role:admin'])
         Route::delete('/documents/{dokumen}/files/{file}', [AdminDokumenController::class, 'destroyFile'])
             ->name('documents.files.destroy');
 
+        Route::delete('/documents/{dokumen}/files', [AdminDokumenController::class, 'destroyAllFiles'])
+            ->name('documents.files.destroy-all');
+
         Route::get('/settings', [CommitteeSettingController::class, 'index'])
             ->name('settings.index');
 

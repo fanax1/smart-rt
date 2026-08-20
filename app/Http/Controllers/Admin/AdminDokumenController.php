@@ -364,6 +364,47 @@ class AdminDokumenController extends Controller
     }
 
     // ================================================================
+    // DESTROY ALL FILES (semua file atau per kategori)
+    // ================================================================
+
+    public function destroyAllFiles(Request $request, Dokumen $dokumen): RedirectResponse
+    {
+        $category = (string) $request->query('category', '');
+
+        $query = $dokumen->files();
+
+        if ($category !== '') {
+            $query->where(function ($q) use ($category) {
+                $q->where('category', $category)
+                  ->orWhere('file_type', match ($category) {
+                      'main'       => 'main_file',
+                      'cover'      => 'cover_image',
+                      'gallery'    => 'gallery_image',
+                      default      => $category,
+                  });
+            });
+        }
+
+        $files = $query->get();
+
+        foreach ($files as $file) {
+            $path = $file->getEffectivePath();
+            $file->delete();
+
+            if ($path) {
+                Storage::disk(self::DISK)->delete($path);
+                Storage::disk('public')->delete($path);
+            }
+        }
+
+        $message = $category !== ''
+            ? 'Semua file dalam kategori tersebut berhasil dihapus.'
+            : 'Seluruh file tersimpan berhasil dihapus.';
+
+        return back()->with('success', $message);
+    }
+
+    // ================================================================
     // PREVIEW FILE (admin)
     // ================================================================
 
