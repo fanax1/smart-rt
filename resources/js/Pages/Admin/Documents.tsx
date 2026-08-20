@@ -5,6 +5,8 @@ import {
     BarChart3,
     Calendar,
     Camera,
+    Check,
+    Copy,
     Download,
     Edit3,
     Eye,
@@ -17,6 +19,7 @@ import {
     Plus,
     RefreshCcw,
     Search,
+    Share2,
     ShieldAlert,
     Trash2,
     Upload,
@@ -35,6 +38,7 @@ type DokumenFile = {
     url: string;
     previewUrl?: string | null;
     mimeType?: string | null;
+    extension?: string | null;
     size: number;
     fileType: 'main_file' | 'cover_image' | 'attachment' | 'gallery_image' | string;
     isImage: boolean;
@@ -364,10 +368,10 @@ export default function Documents({
         router.delete(`/admin/documents/${document.id}`, { preserveScroll: true });
     };
 
-    const deleteFile = (file: DokumenFile) => {
-        if (!window.confirm('Hapus file ini dari dokumen?')) return;
+    const deleteFile = (documentId: number, file: DokumenFile) => {
+        if (!window.confirm(`Yakin ingin menghapus file "${file.originalName}" dari dokumen ini?`)) return;
         setIsDeletingFileId(file.id);
-        router.delete(`/admin/documents/files/${file.id}`, {
+        router.delete(`/admin/documents/${documentId}/files/${file.id}`, {
             preserveScroll: true,
             onFinish: () => setIsDeletingFileId(null),
         });
@@ -693,7 +697,7 @@ export default function Documents({
                                                 </h5>
                                                 <div className="grid grid-cols-1 gap-3.5 md:grid-cols-2">
                                                     {groupedFiles.map((file) => (
-                                                        <StoredFileRow key={file.id} file={file} onDelete={() => deleteFile(file)} isDeleting={isDeletingFileId === file.id} />
+                                                        <StoredFileRow key={file.id} file={file} onDelete={() => deleteFile(editingDocument.id, file)} isDeleting={isDeletingFileId === file.id} />
                                                     ))}
                                                 </div>
                                             </div>
@@ -829,6 +833,7 @@ function FormSelect({ label, value, onChange, options, error }: { label: string;
 }
 
 function FileInput({ label, accept, onChange, error, helper }: { label: string; accept: string; onChange: (file: File | null) => void; error?: string; helper?: string }) {
+    const fileInputRef = useRef<HTMLInputElement | null>(null);
     const [selectedFile, setSelectedFile] = useState<File | null>(null);
     const [previewUrl, setPreviewUrl] = useState<string | null>(null);
 
@@ -853,15 +858,68 @@ function FileInput({ label, accept, onChange, error, helper }: { label: string; 
         onChange(file);
     };
 
+    const clearFile = () => {
+        setSelectedFile(null);
+        setPreviewUrl(null);
+        onChange(null);
+        if (fileInputRef.current) {
+            fileInputRef.current.value = '';
+        }
+    };
+
     return (
         <div className="rounded-2xl border border-slate-200 bg-slate-50 p-5">
-            <label className={labelCls}>{label}</label>
-            <input type="file" accept={accept} onChange={handleFileChange} className="w-full rounded-xl border border-slate-200 bg-white px-3 py-2 text-sm text-slate-700 focus:outline-none focus:border-emerald-500 file:mr-4 file:py-1.5 file:px-3 file:rounded-lg file:border-0 file:text-xs file:font-bold file:bg-emerald-50 file:text-emerald-700 hover:file:bg-emerald-100" />
-            {previewUrl && (
-                <div className="mt-3 relative w-32 h-20 rounded-lg overflow-hidden border border-slate-200 bg-slate-100">
-                    <img src={previewUrl} alt="Preview" className="w-full h-full object-cover" />
+            <div className="flex items-center justify-between mb-1.5">
+                <label className={labelCls}>{label}</label>
+                {selectedFile && (
+                    <button
+                        type="button"
+                        onClick={clearFile}
+                        className="flex items-center gap-1.5 rounded-lg border border-red-200 bg-red-50 px-2.5 py-1 text-xs font-bold text-red-600 hover:bg-red-100 hover:text-red-700 transition shadow-sm"
+                        title="Hapus file yang dipilih"
+                        aria-label="Hapus file yang dipilih"
+                    >
+                        <Trash2 size={13} />
+                        Hapus File
+                    </button>
+                )}
+            </div>
+
+            <input
+                ref={fileInputRef}
+                type="file"
+                accept={accept}
+                onChange={handleFileChange}
+                className="w-full rounded-xl border border-slate-200 bg-white px-3 py-2 text-sm text-slate-700 focus:outline-none focus:border-emerald-500 file:mr-4 file:py-1.5 file:px-3 file:rounded-lg file:border-0 file:text-xs file:font-bold file:bg-emerald-50 file:text-emerald-700 hover:file:bg-emerald-100"
+            />
+
+            {selectedFile && (
+                <div className="mt-3 flex items-center justify-between gap-3 rounded-xl border border-slate-200 bg-white p-3 shadow-sm">
+                    <div className="flex items-center gap-2.5 min-w-0">
+                        {previewUrl ? (
+                            <img src={previewUrl} alt="Preview" className="h-10 w-10 rounded-lg object-cover border border-slate-200 shrink-0" />
+                        ) : (
+                            <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-emerald-50 text-emerald-700 font-bold border border-emerald-200 text-xs">
+                                {selectedFile.name.split('.').pop()?.toUpperCase() || 'FILE'}
+                            </div>
+                        )}
+                        <div className="min-w-0 flex-1">
+                            <p className="truncate text-xs font-bold text-slate-900" title={selectedFile.name}>{selectedFile.name}</p>
+                            <p className="text-[10px] text-slate-500 font-medium">{formatBytes(selectedFile.size)}</p>
+                        </div>
+                    </div>
+                    <button
+                        type="button"
+                        onClick={clearFile}
+                        className="rounded-lg p-1.5 text-slate-400 hover:bg-red-50 hover:text-red-600 transition"
+                        title="Hapus file ini"
+                        aria-label="Hapus file ini"
+                    >
+                        <X size={15} />
+                    </button>
                 </div>
             )}
+
             {helper && <p className="mt-2 text-xs text-slate-500">{helper}</p>}
             {error && <p className="mt-1.5 text-xs text-red-600">{error}</p>}
         </div>
@@ -930,7 +988,21 @@ function MultiFileInput({
 
     return (
         <div className="rounded-2xl border border-slate-200 bg-slate-50 p-5">
-            <label className={labelCls}>{label}</label>
+            <div className="flex items-center justify-between mb-1.5">
+                <label className={labelCls}>{label}</label>
+                {files.length > 0 && (
+                    <button
+                        type="button"
+                        onClick={clearFiles}
+                        className="flex items-center gap-1.5 rounded-lg border border-red-200 bg-red-50 px-2.5 py-1 text-xs font-bold text-red-600 hover:bg-red-100 hover:text-red-700 transition shadow-sm"
+                        title="Hapus semua file yang dipilih"
+                        aria-label="Hapus semua file yang dipilih"
+                    >
+                        <Trash2 size={13} />
+                        Hapus Semua ({files.length})
+                    </button>
+                )}
+            </div>
 
             <div className="flex flex-col gap-3 sm:flex-row">
                 <input
@@ -967,24 +1039,31 @@ function MultiFileInput({
 
             <div className="mt-3 flex flex-wrap items-center justify-between gap-2">
                 <p className="text-xs text-slate-500">{helper || 'Bisa pilih lebih dari satu file.'}</p>
-                {files.length > 0 && (
-                    <button type="button" onClick={clearFiles} className="text-xs font-bold text-red-600 hover:underline">
-                        Bersihkan pilihan
-                    </button>
-                )}
             </div>
 
             {files.length > 0 && (
                 <div className="mt-4 rounded-xl bg-white border border-slate-200 p-4">
-                    <p className="mb-2 text-xs font-bold text-slate-600">{files.length} file dipilih</p>
+                    <div className="flex items-center justify-between mb-2">
+                        <p className="text-xs font-bold text-slate-700">{files.length} file dipilih</p>
+                        <button
+                            type="button"
+                            onClick={clearFiles}
+                            className="text-xs font-bold text-red-600 hover:text-red-700 hover:underline flex items-center gap-1"
+                            title="Hapus semua pilihan"
+                            aria-label="Hapus semua pilihan"
+                        >
+                            <Trash2 size={12} />
+                            Hapus Semua
+                        </button>
+                    </div>
                     <div className="max-h-48 space-y-2 overflow-y-auto pr-1">
                         {files.map((file, index) => {
                             const key = `${file.name}-${file.size}-${file.lastModified}`;
                             const previewUrl = previews[key];
 
                             return (
-                                <div key={`${key}-${index}`} className="flex items-center justify-between gap-3 text-xs text-slate-800 bg-slate-50 p-2 rounded-lg border border-slate-200">
-                                    <div className="flex items-center gap-2 min-w-0">
+                                <div key={`${key}-${index}`} className="flex items-center justify-between gap-3 text-xs text-slate-800 bg-slate-50 p-2.5 rounded-lg border border-slate-200">
+                                    <div className="flex items-center gap-2.5 min-w-0">
                                         {previewUrl ? (
                                             <img src={previewUrl} alt="preview" className="w-8 h-8 rounded object-cover shrink-0 border border-slate-200" />
                                         ) : (
@@ -992,19 +1071,20 @@ function MultiFileInput({
                                                 {file.name.split('.').pop() || 'file'}
                                             </div>
                                         )}
-                                        <span className="min-w-0 truncate font-semibold" title={file.webkitRelativePath || file.name}>
+                                        <span className="min-w-0 truncate font-semibold text-slate-900" title={file.webkitRelativePath || file.name}>
                                             {file.webkitRelativePath || file.name}
                                         </span>
                                     </div>
                                     <div className="flex items-center gap-2 shrink-0">
-                                        <span className="text-slate-500 text-[10px]">{formatBytes(file.size)}</span>
+                                        <span className="text-slate-500 text-[10px] font-medium">{formatBytes(file.size)}</span>
                                         <button
                                             type="button"
                                             onClick={() => removeFile(index)}
-                                            className="text-slate-400 hover:text-red-600 p-1"
-                                            title="Hapus dari daftar"
+                                            className="rounded-lg p-1.5 text-slate-400 hover:bg-red-50 hover:text-red-600 transition"
+                                            title={`Hapus "${file.name}" dari pilihan`}
+                                            aria-label={`Hapus ${file.name}`}
                                         >
-                                            <X size={14} />
+                                            <X size={15} />
                                         </button>
                                     </div>
                                 </div>
@@ -1037,6 +1117,8 @@ function IconButton({ label, onClick, icon, danger = false }: { label: string; o
 }
 
 function StoredFileRow({ file, onDelete, isDeleting = false }: { file: DokumenFile; onDelete: () => void; isDeleting?: boolean }) {
+    const [copied, setCopied] = useState(false);
+
     const categoryLabels: Record<string, string> = {
         main: 'File Utama',
         cover: 'Cover',
@@ -1044,11 +1126,21 @@ function StoredFileRow({ file, onDelete, isDeleting = false }: { file: DokumenFi
         gallery: 'Foto Galeri Kegiatan',
     };
 
+    const fileUrl = file.directUrl || file.previewUrl || file.url;
+
+    const copyLink = () => {
+        if (!fileUrl) return;
+        const absoluteUrl = fileUrl.startsWith('http') ? fileUrl : `${window.location.origin}${fileUrl}`;
+        navigator.clipboard.writeText(absoluteUrl);
+        setCopied(true);
+        setTimeout(() => setCopied(false), 2000);
+    };
+
     const getIcon = () => {
         if (file.isImage) {
             return (
                 <div className="relative h-10 w-10 shrink-0 rounded-xl overflow-hidden border border-slate-200 bg-slate-100">
-                    <img src={file.directUrl || file.previewUrl || file.url} alt={file.originalName} className="h-full w-full object-cover" />
+                    <img src={fileUrl} alt={file.originalName} className="h-full w-full object-cover" />
                 </div>
             );
         }
@@ -1060,21 +1152,21 @@ function StoredFileRow({ file, onDelete, isDeleting = false }: { file: DokumenFi
     };
 
     return (
-        <div className="flex items-center justify-between gap-3 rounded-xl border border-slate-200 bg-white p-4 w-full">
+        <div className="flex items-center justify-between gap-3 rounded-xl border border-slate-200 bg-white p-4 w-full shadow-sm">
             <div className="flex min-w-0 items-center gap-3 flex-1">
                 {getIcon()}
                 <div className="min-w-0 flex-1">
-                    <p className="truncate text-sm font-bold text-slate-900 max-w-[200px] md:max-w-[300px]" title={file.originalName}>
+                    <p className="truncate text-sm font-bold text-slate-900 max-w-[180px] sm:max-w-[220px] md:max-w-[280px]" title={file.originalName}>
                         {file.originalName}
                     </p>
                     <div className="flex flex-wrap items-center gap-x-2 gap-y-1 mt-1 text-[10px] font-semibold">
-                        <span className="rounded bg-emerald-50 text-emerald-700 px-1 py-0.5 border border-emerald-200 uppercase tracking-wider">
+                        <span className="rounded bg-emerald-50 text-emerald-700 px-1.5 py-0.5 border border-emerald-200 uppercase tracking-wider">
                             {file.category ? (categoryLabels[file.category] || file.category) : 'File'}
                         </span>
                         <span className="text-slate-500">{formatBytes(file.size)}</span>
                         {file.createdAt && <span className="text-slate-400">· {formatDate(file.createdAt)}</span>}
                         {file.exists !== undefined && (
-                            <span className={`inline-flex items-center gap-1 px-1 py-0.5 rounded text-[9px] ${
+                            <span className={`inline-flex items-center gap-1 px-1.5 py-0.5 rounded text-[9px] ${
                                 file.exists 
                                     ? 'bg-emerald-50 text-emerald-700 border border-emerald-200' 
                                     : 'bg-red-50 text-red-700 border border-red-200'
@@ -1086,22 +1178,66 @@ function StoredFileRow({ file, onDelete, isDeleting = false }: { file: DokumenFi
                     </div>
                 </div>
             </div>
-            <div className="flex shrink-0 items-center gap-1.5">
-                {(file.isImage || file.isPdf) && (
-                    <a href={file.previewUrl || file.url} target="_blank" rel="noopener noreferrer" className="rounded-lg p-2 text-slate-500 hover:bg-slate-100 hover:text-slate-900 transition" title="Lihat/Preview">
-                        <Eye size={16} />
-                    </a>
-                )}
-                {file.downloadUrl && (
-                    <a href={file.downloadUrl} className="rounded-lg p-2 text-slate-500 hover:bg-slate-100 hover:text-slate-900 transition" title="Download">
-                        <Download size={16} />
-                    </a>
-                )}
-                <button type="button" onClick={onDelete} disabled={isDeleting} className="rounded-lg p-2 text-slate-400 hover:bg-red-50 hover:text-red-600 transition" title="Hapus file">
+
+            {/* 5 Icon Action Buttons with size={18}, p-2 padding, title tooltips & high-contrast colors */}
+            <div className="flex shrink-0 items-center gap-1">
+                {/* 1. View/Preview */}
+                <a
+                    href={file.previewUrl || file.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="rounded-xl p-2 text-blue-600 hover:bg-blue-50 border border-transparent hover:border-blue-200 transition"
+                    title="Preview / Lihat File"
+                    aria-label="Preview / Lihat File"
+                >
+                    <Eye size={18} />
+                </a>
+
+                {/* 2. Download */}
+                <a
+                    href={file.downloadUrl || file.url}
+                    className="rounded-xl p-2 text-slate-600 hover:bg-slate-100 border border-transparent hover:border-slate-200 transition"
+                    title="Download File"
+                    aria-label="Download File"
+                >
+                    <Download size={18} />
+                </a>
+
+                {/* 3. Share / Copy Link */}
+                <button
+                    type="button"
+                    onClick={copyLink}
+                    className="rounded-xl p-2 text-purple-600 hover:bg-purple-50 border border-transparent hover:border-purple-200 transition"
+                    title={copied ? 'Link Disalin!' : 'Salin Link File'}
+                    aria-label="Salin Link File"
+                >
+                    {copied ? <Check size={18} className="text-purple-700" /> : <Share2 size={18} />}
+                </button>
+
+                {/* 4. Edit / Info */}
+                <button
+                    type="button"
+                    onClick={() => alert(`Nama: ${file.originalName}\nKategori: ${file.category || 'File'}\nUkuran: ${formatBytes(file.size)}\nType: ${file.mimeType || file.extension}`)}
+                    className="rounded-xl p-2 text-amber-600 hover:bg-amber-50 border border-transparent hover:border-amber-200 transition"
+                    title="Informasi Detail File"
+                    aria-label="Informasi Detail File"
+                >
+                    <Edit3 size={18} />
+                </button>
+
+                {/* 5. Delete/Hapus */}
+                <button
+                    type="button"
+                    onClick={onDelete}
+                    disabled={isDeleting}
+                    className="rounded-xl p-2 text-red-600 hover:bg-red-50 hover:text-red-700 border border-transparent hover:border-red-200 transition disabled:opacity-50"
+                    title="Hapus File Permanen"
+                    aria-label="Hapus File Permanen"
+                >
                     {isDeleting ? (
                         <div className="h-4 w-4 animate-spin rounded-full border-2 border-red-600 border-t-transparent" />
                     ) : (
-                        <Trash2 size={16} />
+                        <Trash2 size={18} />
                     )}
                 </button>
             </div>
