@@ -89,6 +89,8 @@ class AdminFinanceController extends Controller
 
         $totalMonthlyFee = (float) $components->sum('nominal');
 
+        // Ambil semua KK yang memiliki hunian, dengan data pembayaran periode ini
+        // Sinkronkan juga dengan pembayaran yang diupload warga (status 'menunggu_verifikasi')
         $families = KartuKeluarga::query()
             ->with(['hunian', 'iuranPembayarans' => function ($query) use ($periodDate) {
                 $query->whereDate('periode', $periodDate->toDateString())
@@ -105,10 +107,18 @@ class AdminFinanceController extends Controller
 
         $payments = $families->map(function (KartuKeluarga $kk) use ($selectedMonth, $totalMonthlyFee) {
             $history = $kk->iuranPembayarans;
+
+            // Pembayaran terverifikasi
             $verifiedPayments = $history->where('status_verifikasi', 'verified');
-            $pendingPayment = $history->firstWhere('status_verifikasi', 'pending');
+
+            // Sinkronkan: admin input = 'pending', warga upload = 'menunggu_verifikasi'
+            $pendingPayment = $history->first(function ($p) {
+                return in_array($p->status_verifikasi, ['pending', 'menunggu_verifikasi'], true);
+            });
+
             $latestPayment = $history->first();
             $paidAmount = (float) $verifiedPayments->sum('jumlah_dibayar');
+            $remainingAmount = max($totalMonthlyFee - $paidAmount, 0);
             $status = $this->paymentStatus($paidAmount, $totalMonthlyFee, $pendingPayment !== null);
 
             return [
@@ -126,6 +136,7 @@ class AdminFinanceController extends Controller
                 'hasProof' => $latestPayment?->bukti_pembayaran ? true : false,
                 'proofUrl' => $latestPayment?->bukti_pembayaran ? Storage::url($latestPayment->bukti_pembayaran) : null,
                 'paidAmount' => $paidAmount,
+                'remainingAmount' => $remainingAmount,
                 'verificationNotes' => $latestPayment?->catatan_verifikasi,
                 'paymentHistory' => $history->map(fn (IuranPembayaran $payment) => [
                     'id' => $payment->id,
@@ -434,10 +445,11 @@ class AdminFinanceController extends Controller
 
     private function historyStatus(string $verificationStatus): string
     {
+        // Sinkronkan status warga ('menunggu_verifikasi') dengan status admin ('pending')
         return match ($verificationStatus) {
-            'pending' => 'Menunggu Verifikasi',
-            'verified' => 'Sudah Bayar',
-            'rejected' => 'Ditolak',
+            'pending', 'menunggu_verifikasi' => 'Menunggu Verifikasi',
+            'verified', 'terverifikasi', 'lunas', 'sudah_bayar' => 'Sudah Bayar',
+            'rejected', 'ditolak' => 'Ditolak',
             default => 'Belum Bayar',
         };
     }

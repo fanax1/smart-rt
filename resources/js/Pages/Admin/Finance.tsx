@@ -65,6 +65,7 @@ interface Payment {
   hasProof: boolean;
   proofUrl?: NullableString;
   paidAmount: number;
+  remainingAmount: number;
   verificationNotes?: NullableString;
   paymentHistory: PaymentHistory[];
 }
@@ -681,9 +682,32 @@ export default function Finance({
                         <td className="px-5 py-4 font-bold text-slate-900">{payment.headOfFamily}</td>
                         <td className="px-5 py-4 font-bold text-slate-700">{formatCurrency(payment.totalBill)}</td>
                         <td className="px-5 py-4">
-                          <span className={`rounded-full px-2.5 py-0.5 text-[9px] font-bold uppercase ${getStatusBadge(payment.status)}`}>
-                            {payment.status}
-                          </span>
+                          <div className="flex flex-col gap-1">
+                            <span className={`self-start rounded-full px-2.5 py-0.5 text-[9px] font-bold uppercase ${getStatusBadge(payment.status)}`}>
+                              {payment.status}
+                            </span>
+                            {/* Nominal detail per status */}
+                            {payment.status === 'Sudah Bayar' && (
+                              <span className="text-[10px] font-semibold text-emerald-700">
+                                Lunas {formatCurrency(payment.paidAmount)}
+                              </span>
+                            )}
+                            {payment.status === 'Kurang Bayar' && (
+                              <span className="text-[10px] font-semibold text-orange-600">
+                                Dibayar {formatCurrency(payment.paidAmount)} · Sisa {formatCurrency(payment.remainingAmount ?? (payment.totalBill - payment.paidAmount))}
+                              </span>
+                            )}
+                            {payment.status === 'Menunggu Verifikasi' && (
+                              <span className="text-[10px] font-semibold text-yellow-600">
+                                Menunggu konfirmasi admin
+                              </span>
+                            )}
+                            {payment.status === 'Belum Bayar' && (
+                              <span className="text-[10px] font-semibold text-red-500">
+                                Belum ada pembayaran
+                              </span>
+                            )}
+                          </div>
                         </td>
                         <td className="px-5 py-4 text-slate-600">{formatDate(payment.paymentDate)}</td>
                         <td className="px-5 py-4 text-slate-600">{payment.paymentMethod || "-"}</td>
