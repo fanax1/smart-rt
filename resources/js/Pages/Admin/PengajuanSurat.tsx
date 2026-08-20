@@ -95,8 +95,8 @@ function formatDate(value?: string | null) {
     return new Date(value).toLocaleDateString('id-ID', { day: '2-digit', month: 'short', year: 'numeric' });
 }
 
-const inputCls = 'w-full rounded-xl border border-[#1C2541]/60 bg-[#0B132B]/80 px-3 py-2.5 text-slate-200 placeholder-slate-500 focus:outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 transition text-sm';
-const labelCls = 'mb-1.5 block text-xs font-semibold uppercase tracking-wider text-slate-400';
+const inputCls = 'w-full rounded-xl border border-slate-200 bg-slate-50 px-3 py-2.5 text-slate-900 placeholder-slate-400 focus:outline-none focus:bg-white focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 transition text-sm';
+const labelCls = 'mb-1.5 block text-xs font-bold uppercase tracking-wider text-slate-700';
 
 export default function PengajuanSurat({ filters, pengajuans = [], summary, statuses = [] }: Props) {
     const [searchTerm, setSearchTerm] = useState(filters?.search || '');
@@ -161,12 +161,12 @@ export default function PengajuanSurat({ filters, pengajuans = [], summary, stat
             {/* ── Page Header ── */}
             <div className="mb-6 flex items-center justify-between">
                 <div>
-                    <p className="text-xs font-semibold uppercase tracking-widest text-emerald-400 mb-1">Administrasi Warga</p>
-                    <h2 className="text-2xl font-black text-white">Pengajuan Surat</h2>
-                    <p className="text-slate-400 text-sm mt-1">Validasi, proses, dan arsipkan pengajuan administrasi warga RT.</p>
+                    <p className="text-xs font-bold uppercase tracking-widest text-emerald-700 mb-1">Administrasi Warga</p>
+                    <h2 className="text-2xl font-black text-slate-900">Pengajuan Surat</h2>
+                    <p className="text-slate-600 text-sm mt-1">Validasi, proses, dan arsipkan pengajuan administrasi warga RT.</p>
                 </div>
                 <div className="flex items-center gap-2">
-                    <button className="flex items-center gap-2 rounded-xl border border-[#1C2541]/60 bg-[#0B132B]/60 px-4 py-2.5 text-sm text-slate-300 hover:text-white hover:border-emerald-500/40 transition">
+                    <button className="flex items-center gap-2 rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-sm font-bold text-slate-700 hover:bg-slate-100 transition shadow-sm">
                         <Filter size={16} /> Filter
                     </button>
                 </div>
@@ -177,13 +177,13 @@ export default function PengajuanSurat({ filters, pengajuans = [], summary, stat
                 {/* Stats */}
                 <div className="grid grid-cols-2 gap-4 lg:col-span-1">
                     {[
-                        { icon: FileText, label: 'Total', value: summary?.total || 0, color: 'text-blue-400', bg: 'bg-blue-400/10 border-blue-400/20' },
-                        { icon: Clock, label: 'Menunggu', value: summary?.diajukan || 0, color: 'text-orange-400', bg: 'bg-orange-400/10 border-orange-400/20' },
-                        { icon: AlertCircle, label: 'Diproses', value: summary?.diproses || 0, color: 'text-purple-400', bg: 'bg-purple-400/10 border-purple-400/20' },
-                        { icon: CheckCircle, label: 'Selesai', value: summary?.selesai || 0, color: 'text-emerald-400', bg: 'bg-emerald-400/10 border-emerald-400/20' },
-                        { icon: XCircle, label: 'Ditolak', value: summary?.ditolak || 0, color: 'text-red-400', bg: 'bg-red-400/10 border-red-400/20' },
+                        { icon: FileText, label: 'Total', value: summary?.total || 0, color: 'text-blue-700', bg: 'bg-blue-50 border-blue-200' },
+                        { icon: Clock, label: 'Menunggu', value: summary?.diajukan || 0, color: 'text-amber-700', bg: 'bg-amber-50 border-amber-200' },
+                        { icon: AlertCircle, label: 'Diproses', value: summary?.diproses || 0, color: 'text-purple-700', bg: 'bg-purple-50 border-purple-200' },
+                        { icon: CheckCircle, label: 'Selesai', value: summary?.selesai || 0, color: 'text-emerald-700', bg: 'bg-emerald-50 border-emerald-200' },
+                        { icon: XCircle, label: 'Ditolak', value: summary?.ditolak || 0, color: 'text-red-700', bg: 'bg-red-50 border-red-200' },
                     ].map(({ icon: Icon, label, value, color, bg }) => (
-                        <div key={label} className="rounded-2xl border border-[#1C2541]/60 bg-[#0B132B]/60 p-4 backdrop-blur-sm">
+                        <div key={label} className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
                             <div className="flex items-center justify-between mb-2">
                                 <p className="text-[10px] font-bold uppercase tracking-wider text-slate-500">{label}</p>
                                 <div className={`rounded-lg border p-1.5 ${bg}`}><Icon size={14} className={color} /></div>
@@ -192,35 +192,35 @@ export default function PengajuanSurat({ filters, pengajuans = [], summary, stat
                         </div>
                     ))}
                     {/* Processing rate */}
-                    <div className="col-span-2 rounded-2xl border border-[#1C2541]/60 bg-[#0B132B]/60 p-4">
+                    <div className="col-span-2 rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
                         <div className="flex items-center justify-between mb-2">
-                            <p className="text-xs font-bold text-white">Tingkat Penyelesaian</p>
-                            <TrendingUp size={14} className="text-emerald-400" />
+                            <p className="text-xs font-bold text-slate-900">Tingkat Penyelesaian</p>
+                            <TrendingUp size={14} className="text-emerald-700" />
                         </div>
                         <div className="flex items-center gap-3">
-                            <div className="flex-1 h-2 bg-[#1C2541]/60 rounded-full overflow-hidden">
+                            <div className="flex-1 h-2 bg-slate-100 rounded-full overflow-hidden">
                                 <div
-                                    className="h-full bg-gradient-to-r from-emerald-500 to-emerald-400 rounded-full transition-all"
+                                    className="h-full bg-gradient-to-r from-emerald-600 to-emerald-500 rounded-full transition-all"
                                     style={{ width: `${summary?.total ? Math.round((summary.selesai / summary.total) * 100) : 0}%` }}
                                 />
                             </div>
-                            <span className="text-sm font-black text-emerald-400">
+                            <span className="text-sm font-black text-emerald-700">
                                 {summary?.total ? Math.round((summary.selesai / summary.total) * 100) : 0}%
                             </span>
                         </div>
-                        <p className="text-[10px] text-slate-500 mt-1">{summary?.selesai || 0} dari {summary?.total || 0} pengajuan selesai</p>
+                        <p className="text-[10px] text-slate-500 mt-1 font-medium">{summary?.selesai || 0} dari {summary?.total || 0} pengajuan selesai</p>
                     </div>
                 </div>
 
                 {/* Bar Chart */}
-                <div className="lg:col-span-2 rounded-2xl border border-[#1C2541]/60 bg-[#0B132B]/60 p-5 backdrop-blur-sm">
+                <div className="lg:col-span-2 rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
                     <div className="flex items-center justify-between mb-4">
                         <div>
-                            <h3 className="text-sm font-bold text-white">Tren Pengajuan Surat</h3>
+                            <h3 className="text-sm font-bold text-slate-900">Tren Pengajuan Surat</h3>
                             <p className="text-xs text-slate-500">7 bulan terakhir</p>
                         </div>
-                        <div className="flex items-center gap-3 text-[10px] text-slate-500">
-                            <span className="flex items-center gap-1"><span className="w-2 h-2 rounded-sm bg-emerald-500 inline-block" /> Pengajuan</span>
+                        <div className="flex items-center gap-3 text-[10px] text-slate-500 font-bold">
+                            <span className="flex items-center gap-1"><span className="w-2 h-2 rounded-sm bg-emerald-600 inline-block" /> Pengajuan</span>
                         </div>
                     </div>
                     <div className="flex items-end gap-3 h-32">
@@ -234,40 +234,39 @@ export default function PengajuanSurat({ filters, pengajuans = [], summary, stat
                                             style={{
                                                 height: `${heightPct}%`,
                                                 background: i === chartBars.length - 1
-                                                    ? 'linear-gradient(to top, #10B981, #34D399)'
-                                                    : 'rgba(16, 185, 129, 0.25)',
-                                                boxShadow: i === chartBars.length - 1 ? '0 0 12px rgba(16,185,129,0.4)' : 'none',
+                                                    ? '#10B981'
+                                                    : '#CBD5E1',
                                             }}
                                         />
                                     </div>
-                                    <span className="text-[10px] text-slate-500">{bar.label}</span>
+                                    <span className="text-[10px] text-slate-500 font-bold">{bar.label}</span>
                                 </div>
                             );
                         })}
                     </div>
 
                     {/* Insights Panel */}
-                    <div className="mt-4 pt-4 border-t border-[#1C2541]/40 grid grid-cols-1 gap-4 sm:grid-cols-2">
-                        <div className="rounded-xl bg-[#111A2E]/60 p-3">
+                    <div className="mt-4 pt-4 border-t border-slate-200 grid grid-cols-1 gap-4 sm:grid-cols-2">
+                        <div className="rounded-xl bg-slate-50 border border-slate-200 p-3">
                             <div className="flex items-center gap-2 mb-1">
-                                <Zap size={12} className="text-yellow-400" />
-                                <p className="text-[10px] font-bold uppercase tracking-wider text-slate-400">Smart Insights</p>
+                                <Zap size={12} className="text-amber-700" />
+                                <p className="text-[10px] font-bold uppercase tracking-wider text-slate-700">Smart Insights</p>
                             </div>
-                            <p className="text-xs text-slate-300 leading-relaxed">
+                            <p className="text-xs text-slate-700 leading-relaxed font-medium">
                                 {summary?.diajukan > 0
                                     ? `Ada ${summary.diajukan} pengajuan menunggu verifikasi. Segera proses untuk meningkatkan kepuasan warga.`
                                     : 'Semua pengajuan telah diproses. Tidak ada antrian saat ini.'}
                             </p>
                         </div>
-                        <div className="rounded-xl bg-[#111A2E]/60 p-3">
+                        <div className="rounded-xl bg-slate-50 border border-slate-200 p-3">
                             <div className="flex items-center gap-2 mb-1">
-                                <ShieldCheck size={12} className="text-emerald-400" />
-                                <p className="text-[10px] font-bold uppercase tracking-wider text-slate-400">Panduan Verifikasi</p>
+                                <ShieldCheck size={12} className="text-emerald-700" />
+                                <p className="text-[10px] font-bold uppercase tracking-wider text-slate-700">Panduan Verifikasi</p>
                             </div>
-                            <ul className="text-[10px] text-slate-400 space-y-0.5">
-                                <li className="flex items-center gap-1"><CheckCircle size={9} className="text-emerald-400" /> Periksa kelengkapan data KK</li>
-                                <li className="flex items-center gap-1"><CheckCircle size={9} className="text-emerald-400" /> Validasi tujuan pengajuan</li>
-                                <li className="flex items-center gap-1"><CheckCircle size={9} className="text-emerald-400" /> Konfirmasi via WhatsApp jika perlu</li>
+                            <ul className="text-[10px] text-slate-600 space-y-0.5 font-medium">
+                                <li className="flex items-center gap-1"><CheckCircle size={9} className="text-emerald-600" /> Periksa kelengkapan data KK</li>
+                                <li className="flex items-center gap-1"><CheckCircle size={9} className="text-emerald-600" /> Validasi tujuan pengajuan</li>
+                                <li className="flex items-center gap-1"><CheckCircle size={9} className="text-emerald-600" /> Konfirmasi via WhatsApp jika perlu</li>
                             </ul>
                         </div>
                     </div>
@@ -275,15 +274,15 @@ export default function PengajuanSurat({ filters, pengajuans = [], summary, stat
             </div>
 
             {/* ── Filter & Search ── */}
-            <div className="mb-4 rounded-2xl border border-[#1C2541]/60 bg-[#0B132B]/60 p-4">
+            <div className="mb-4 rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
                 <div className="flex flex-col gap-3 sm:flex-row">
                     <div className="relative flex-1">
-                        <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-500" size={15} />
+                        <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" size={15} />
                         <input
                             value={searchTerm}
                             onChange={e => setSearchTerm(e.target.value)}
                             placeholder="Cari nomor, pemohon, jenis surat, atau keperluan..."
-                            className="w-full rounded-xl border border-[#1C2541]/60 bg-[#111A2E]/60 py-2.5 pl-9 pr-4 text-xs text-slate-200 placeholder-slate-500 focus:outline-none focus:border-emerald-500 transition"
+                            className="w-full rounded-xl border border-slate-200 bg-slate-50 py-2.5 pl-9 pr-4 text-xs text-slate-900 placeholder-slate-400 focus:outline-none focus:bg-white focus:border-emerald-500 transition"
                         />
                     </div>
                     <div className="flex gap-2">
@@ -292,8 +291,8 @@ export default function PengajuanSurat({ filters, pengajuans = [], summary, stat
                                 key={opt.value}
                                 onClick={() => setStatusFilter(opt.value)}
                                 className={`rounded-xl px-4 py-2.5 text-xs font-bold transition ${statusFilter === opt.value
-                                    ? 'bg-emerald-500 text-[#0B132B] shadow-lg shadow-emerald-500/20'
-                                    : 'border border-[#1C2541]/60 text-slate-400 hover:text-white hover:border-emerald-500/30'
+                                    ? 'bg-emerald-600 text-white shadow-sm'
+                                    : 'border border-slate-200 text-slate-700 bg-white hover:bg-slate-100'
                                 }`}
                             >
                                 {opt.label}
@@ -304,17 +303,17 @@ export default function PengajuanSurat({ filters, pengajuans = [], summary, stat
             </div>
 
             {/* ── Table ── */}
-            <div className="rounded-2xl border border-[#1C2541]/60 bg-[#0B132B]/60 backdrop-blur-sm overflow-hidden">
-                <div className="border-b border-[#1C2541]/40 px-5 py-4 flex items-center justify-between">
-                    <h3 className="text-sm font-bold text-white">Daftar Pengajuan Warga</h3>
-                    <span className="text-xs text-slate-500">{pengajuans.length} pengajuan</span>
+            <div className="rounded-2xl border border-slate-200 bg-white shadow-sm overflow-hidden">
+                <div className="border-b border-slate-200 px-5 py-4 flex items-center justify-between bg-slate-50">
+                    <h3 className="text-sm font-bold text-slate-900">Daftar Pengajuan Warga</h3>
+                    <span className="text-xs text-slate-500 font-medium">{pengajuans.length} pengajuan</span>
                 </div>
                 <div className="overflow-x-auto">
                     <table className="w-full min-w-[800px]">
                         <thead>
-                            <tr className="border-b border-[#1C2541]/40">
+                            <tr className="border-b border-slate-200 bg-slate-50">
                                 {['Nomor', 'Warga', 'No Rumah', 'Jenis Surat', 'Tanggal', 'Status', 'Aksi'].map(h => (
-                                    <th key={h} className="px-4 py-3 text-left text-[10px] font-bold uppercase tracking-widest text-slate-500">{h}</th>
+                                    <th key={h} className="px-4 py-3 text-left text-[10px] font-bold uppercase tracking-widest text-slate-700">{h}</th>
                                 ))}
                             </tr>
                         </thead>
@@ -322,22 +321,22 @@ export default function PengajuanSurat({ filters, pengajuans = [], summary, stat
                             {pengajuans.map(item => {
                                 const statusConf = getStatusConfig(item.status);
                                 return (
-                                    <tr key={item.id} className="border-b border-[#1C2541]/30 hover:bg-[#111A2E]/50 transition group">
-                                        <td className="px-4 py-4 font-mono text-xs text-slate-400">{item.nomorPengajuan}</td>
+                                    <tr key={item.id} className="border-b border-slate-100 hover:bg-slate-50 transition group">
+                                        <td className="px-4 py-4 font-mono text-xs text-slate-500 font-bold">{item.nomorPengajuan}</td>
                                         <td className="px-4 py-4">
-                                            <p className="text-sm font-bold text-white">{item.pemohon}</p>
-                                            <p className="text-xs text-slate-500">KK: {item.kepalaKeluarga}</p>
+                                            <p className="text-sm font-bold text-slate-900">{item.pemohon}</p>
+                                            <p className="text-xs text-slate-500 font-medium">KK: {item.kepalaKeluarga}</p>
                                         </td>
                                         <td className="px-4 py-4">
-                                            <span className="rounded-lg bg-emerald-500/15 border border-emerald-500/30 px-2.5 py-1 text-xs font-bold text-emerald-300">{item.noRumah}</span>
+                                            <span className="rounded-lg bg-emerald-50 border border-emerald-200 px-2.5 py-1 text-xs font-bold text-emerald-700">{item.noRumah}</span>
                                         </td>
                                         <td className="px-4 py-4">
                                             <div className="flex items-center gap-1.5">
-                                                <FileCheck size={14} className="text-blue-400 shrink-0" />
-                                                <span className="text-xs text-slate-300">{item.jenisSurat}</span>
+                                                <FileCheck size={14} className="text-blue-600 shrink-0" />
+                                                <span className="text-xs font-bold text-slate-900">{item.jenisSurat}</span>
                                             </div>
                                         </td>
-                                        <td className="px-4 py-4 text-xs text-slate-400">{formatDate(item.tanggalPengajuan)}</td>
+                                        <td className="px-4 py-4 text-xs text-slate-600 font-medium">{formatDate(item.tanggalPengajuan)}</td>
                                         <td className="px-4 py-4">
                                             <span className={`inline-flex items-center gap-1.5 rounded-lg px-2.5 py-1 text-[10px] font-bold ${statusConf.cls}`}>
                                                 <span className={`w-1.5 h-1.5 rounded-full ${statusConf.dot}`} />{item.statusLabel}
@@ -345,10 +344,10 @@ export default function PengajuanSurat({ filters, pengajuans = [], summary, stat
                                         </td>
                                         <td className="px-4 py-4">
                                             <div className="flex gap-2">
-                                                <button onClick={() => setSelectedDetail(item)} className="flex items-center gap-1.5 rounded-xl border border-[#1C2541]/60 px-3 py-1.5 text-xs font-semibold text-slate-300 hover:text-emerald-300 hover:border-emerald-500/30 transition">
+                                                <button onClick={() => setSelectedDetail(item)} className="flex items-center gap-1.5 rounded-xl border border-slate-200 bg-white px-3 py-1.5 text-xs font-bold text-slate-700 hover:bg-slate-100 transition shadow-sm">
                                                     <Eye size={13} /> Detail
                                                 </button>
-                                                <button onClick={() => openStatusModal(item)} className="rounded-xl bg-[#111A2E] border border-[#1C2541]/60 px-3 py-1.5 text-xs font-bold text-slate-300 hover:bg-emerald-500/10 hover:text-emerald-300 hover:border-emerald-500/30 transition">
+                                                <button onClick={() => openStatusModal(item)} className="rounded-xl bg-emerald-600 px-3 py-1.5 text-xs font-bold text-white hover:bg-emerald-700 transition shadow-sm">
                                                     Proses
                                                 </button>
                                             </div>
@@ -361,8 +360,8 @@ export default function PengajuanSurat({ filters, pengajuans = [], summary, stat
                 </div>
                 {pengajuans.length === 0 && (
                     <div className="py-16 text-center">
-                        <FileText size={40} className="text-slate-600 mx-auto mb-3" />
-                        <p className="text-slate-500 text-sm">Belum ada pengajuan surat.</p>
+                        <FileText size={40} className="text-slate-400 mx-auto mb-3" />
+                        <p className="text-slate-500 text-sm font-medium">Belum ada pengajuan surat.</p>
                     </div>
                 )}
             </div>
@@ -370,22 +369,22 @@ export default function PengajuanSurat({ filters, pengajuans = [], summary, stat
             {/* ── Detail Modal ── */}
             <Dialog.Root open={selectedDetail !== null} onOpenChange={open => !open && setSelectedDetail(null)}>
                 <Dialog.Portal>
-                    <Dialog.Overlay className="fixed inset-0 z-50 bg-black/70 backdrop-blur-sm" />
-                    <Dialog.Content className="fixed right-0 top-0 z-50 h-full w-full max-w-2xl overflow-y-auto border-l border-[#1C2541]/60 bg-[#090E1A] shadow-2xl">
-                        <div className="sticky top-0 flex items-center justify-between border-b border-[#1C2541]/40 bg-[#090E1A]/95 px-6 py-4 z-10">
-                            <Dialog.Title className="text-lg font-black text-white">Detail Pengajuan</Dialog.Title>
+                    <Dialog.Overlay className="fixed inset-0 z-50 bg-slate-900/40 backdrop-blur-sm" />
+                    <Dialog.Content className="fixed right-0 top-0 z-50 h-full w-full max-w-2xl overflow-y-auto border-l border-slate-200 bg-white shadow-2xl">
+                        <div className="sticky top-0 flex items-center justify-between border-b border-slate-200 bg-slate-50 px-6 py-4 z-10">
+                            <Dialog.Title className="text-lg font-black text-slate-900">Detail Pengajuan</Dialog.Title>
                             <Dialog.Close asChild>
-                                <button className="rounded-xl p-2 text-slate-400 hover:text-white hover:bg-[#1C2541]/60 transition"><X size={20} /></button>
+                                <button className="rounded-xl p-2 text-slate-400 hover:text-slate-800 hover:bg-slate-200 transition"><X size={20} /></button>
                             </Dialog.Close>
                         </div>
                         <Dialog.Description className="sr-only">Detail pengajuan surat warga</Dialog.Description>
                         {selectedDetail && (
                             <div className="space-y-5 p-6">
-                                <div className="rounded-xl border border-[#1C2541]/60 bg-[#0B132B]/60 p-5">
+                                <div className="rounded-xl border border-slate-200 bg-slate-50 p-5">
                                     <div className="mb-4 flex items-start justify-between gap-3">
                                         <div>
-                                            <p className="font-mono text-xs text-slate-500">{selectedDetail.nomorPengajuan}</p>
-                                            <h3 className="text-base font-black text-white mt-1">{selectedDetail.jenisSurat}</h3>
+                                            <p className="font-mono text-xs font-bold text-slate-500">{selectedDetail.nomorPengajuan}</p>
+                                            <h3 className="text-base font-black text-slate-900 mt-1">{selectedDetail.jenisSurat}</h3>
                                         </div>
                                         <span className={`shrink-0 inline-flex items-center gap-1.5 rounded-lg px-3 py-1 text-xs font-bold ${getStatusConfig(selectedDetail.status).cls}`}>
                                             <span className={`w-1.5 h-1.5 rounded-full ${getStatusConfig(selectedDetail.status).dot}`} />{selectedDetail.statusLabel}
@@ -401,60 +400,60 @@ export default function PengajuanSurat({ filters, pengajuans = [], summary, stat
                                             ['Tanggal Pengajuan', formatDate(selectedDetail.tanggalPengajuan)],
                                         ].map(([label, value]) => (
                                             <div key={label}>
-                                                <p className="text-xs text-slate-500">{label}</p>
-                                                <p className="font-semibold text-white mt-0.5">{value}</p>
+                                                <p className="text-xs text-slate-500 font-bold">{label}</p>
+                                                <p className="font-bold text-slate-900 mt-0.5">{value}</p>
                                             </div>
                                         ))}
                                     </div>
                                 </div>
 
                                 <div>
-                                    <h3 className="mb-3 text-xs font-bold uppercase tracking-wider text-slate-500">Data Pengajuan</h3>
-                                    <div className="space-y-2 rounded-xl border border-[#1C2541]/60 bg-[#0B132B]/40 p-4">
+                                    <h3 className="mb-3 text-xs font-bold uppercase tracking-wider text-slate-700">Data Pengajuan</h3>
+                                    <div className="space-y-2 rounded-xl border border-slate-200 bg-slate-50 p-4">
                                         {selectedDetail.ringkasanKeperluan && (
-                                            <div className="flex justify-between gap-4 py-1 text-sm border-b border-[#1C2541]/40 pb-2 mb-2">
-                                                <span className="text-slate-500">Ringkasan Keperluan</span>
-                                                <span className="text-right font-semibold text-white">{selectedDetail.ringkasanKeperluan}</span>
+                                            <div className="flex justify-between gap-4 py-1 text-sm border-b border-slate-200 pb-2 mb-2">
+                                                <span className="text-slate-500 font-medium">Ringkasan Keperluan</span>
+                                                <span className="text-right font-bold text-slate-900">{selectedDetail.ringkasanKeperluan}</span>
                                             </div>
                                         )}
                                         {Object.entries(selectedDetail.dataPengajuan || {}).map(([key, value]) => (
                                             <div key={key} className="flex justify-between gap-4 py-1 text-sm">
-                                                <span className="capitalize text-slate-500">{key.replace(/_/g, ' ')}</span>
-                                                <span className="text-right font-semibold text-white">{String(value || '-')}</span>
+                                                <span className="capitalize text-slate-500 font-medium">{key.replace(/_/g, ' ')}</span>
+                                                <span className="text-right font-bold text-slate-900">{String(value || '-')}</span>
                                             </div>
                                         ))}
                                     </div>
                                 </div>
 
                                 {selectedDetail.catatanWarga && (
-                                    <div className="rounded-xl border border-blue-500/20 bg-blue-500/5 p-4">
-                                        <h3 className="mb-2 text-xs font-bold uppercase tracking-wider text-blue-400">Catatan Warga</h3>
-                                        <p className="text-sm text-slate-300">{selectedDetail.catatanWarga}</p>
+                                    <div className="rounded-xl border border-blue-200 bg-blue-50 p-4">
+                                        <h3 className="mb-2 text-xs font-bold uppercase tracking-wider text-blue-800">Catatan Warga</h3>
+                                        <p className="text-sm text-slate-800 font-medium">{selectedDetail.catatanWarga}</p>
                                     </div>
                                 )}
 
                                 <div>
-                                    <h3 className="mb-3 text-xs font-bold uppercase tracking-wider text-slate-500">Dokumen Lampiran</h3>
+                                    <h3 className="mb-3 text-xs font-bold uppercase tracking-wider text-slate-700">Dokumen Lampiran</h3>
                                     <div className="space-y-3">
                                         {selectedDetail.files.length > 0 ? selectedDetail.files.map(file => (
-                                            <div key={file.id} className="flex items-center justify-between rounded-xl border border-[#1C2541]/60 bg-[#0B132B]/40 p-3">
+                                            <div key={file.id} className="flex items-center justify-between rounded-xl border border-slate-200 bg-slate-50 p-3">
                                                 <div>
-                                                    <p className="text-sm font-semibold text-white">{file.label || 'Dokumen'}</p>
-                                                    <p className="text-xs text-slate-500">{file.originalName}</p>
+                                                    <p className="text-sm font-bold text-slate-900">{file.label || 'Dokumen'}</p>
+                                                    <p className="text-xs text-slate-500 font-medium">{file.originalName}</p>
                                                 </div>
-                                                <a href={file.url} target="_blank" className="flex items-center gap-1.5 rounded-xl bg-blue-500/20 border border-blue-500/30 px-3 py-1.5 text-xs font-bold text-blue-300 hover:bg-blue-500/30 transition">
+                                                <a href={file.url} target="_blank" className="flex items-center gap-1.5 rounded-xl bg-blue-50 border border-blue-200 px-3 py-1.5 text-xs font-bold text-blue-700 hover:bg-blue-100 transition">
                                                     <Download size={13} /> Buka
                                                 </a>
                                             </div>
                                         )) : (
-                                            <div className="rounded-xl border border-dashed border-[#1C2541]/60 p-6 text-center text-sm text-slate-500">Belum ada dokumen.</div>
+                                            <div className="rounded-xl border border-dashed border-slate-200 p-6 text-center text-sm text-slate-500 font-medium">Belum ada dokumen.</div>
                                         )}
                                     </div>
-                                    <div className="flex flex-col sm:flex-row flex-wrap gap-2 border-t border-[#1C2541]/40 pt-4">
-                                        <button onClick={() => openStatusModal(selectedDetail, 'diverifikasi_rt')} className="w-full sm:w-auto text-center justify-center rounded-xl bg-blue-500/20 border border-blue-500/30 px-4 py-2 text-sm font-bold text-blue-300 hover:bg-blue-500/30 transition">Verifikasi</button>
-                                        <button onClick={() => openStatusModal(selectedDetail, 'revisi')} className="w-full sm:w-auto text-center justify-center rounded-xl bg-orange-500/20 border border-orange-500/30 px-4 py-2 text-sm font-bold text-orange-300 hover:bg-orange-500/30 transition">Minta Revisi</button>
-                                        <button onClick={() => openStatusModal(selectedDetail, 'disetujui')} className="w-full sm:w-auto text-center justify-center rounded-xl bg-emerald-500/20 border border-emerald-500/30 px-4 py-2 text-sm font-bold text-emerald-300 hover:bg-emerald-500/30 transition">Setujui</button>
-                                        <button onClick={() => openStatusModal(selectedDetail, 'ditolak')} className="w-full sm:w-auto text-center justify-center rounded-xl bg-red-500/20 border border-red-500/30 px-4 py-2 text-sm font-bold text-red-300 hover:bg-red-500/30 transition">Tolak</button>
+                                    <div className="flex flex-col sm:flex-row flex-wrap gap-2 border-t border-slate-200 pt-4 mt-6">
+                                        <button onClick={() => openStatusModal(selectedDetail, 'diverifikasi_rt')} className="w-full sm:w-auto text-center justify-center rounded-xl bg-blue-50 border border-blue-200 px-4 py-2 text-sm font-bold text-blue-700 hover:bg-blue-100 transition">Verifikasi</button>
+                                        <button onClick={() => openStatusModal(selectedDetail, 'revisi')} className="w-full sm:w-auto text-center justify-center rounded-xl bg-amber-50 border border-amber-200 px-4 py-2 text-sm font-bold text-amber-700 hover:bg-amber-100 transition">Minta Revisi</button>
+                                        <button onClick={() => openStatusModal(selectedDetail, 'disetujui')} className="w-full sm:w-auto text-center justify-center rounded-xl bg-emerald-600 text-white px-4 py-2 text-sm font-bold hover:bg-emerald-700 transition shadow-sm">Setujui</button>
+                                        <button onClick={() => openStatusModal(selectedDetail, 'ditolak')} className="w-full sm:w-auto text-center justify-center rounded-xl bg-red-50 border border-red-200 px-4 py-2 text-sm font-bold text-red-700 hover:bg-red-100 transition">Tolak</button>
                                     </div>
                                 </div>
                             </div>
@@ -466,21 +465,21 @@ export default function PengajuanSurat({ filters, pengajuans = [], summary, stat
             {/* ── Status Modal ── */}
             <Dialog.Root open={statusModal !== null} onOpenChange={open => !open && setStatusModal(null)}>
                 <Dialog.Portal>
-                    <Dialog.Overlay className="fixed inset-0 z-50 bg-black/70 backdrop-blur-sm" />
-                    <Dialog.Content className="fixed left-1/2 top-1/2 z-50 max-h-[90vh] w-full max-w-xl -translate-x-1/2 -translate-y-1/2 overflow-y-auto rounded-2xl border border-[#1C2541]/60 bg-[#090E1A] shadow-2xl">
-                        <div className="sticky top-0 flex items-center justify-between border-b border-[#1C2541]/40 bg-[#090E1A]/95 px-6 py-4 z-10">
-                            <Dialog.Title className="text-lg font-black text-white">Ubah Status Pengajuan</Dialog.Title>
+                    <Dialog.Overlay className="fixed inset-0 z-50 bg-slate-900/40 backdrop-blur-sm" />
+                    <Dialog.Content className="fixed left-1/2 top-1/2 z-50 max-h-[90vh] w-full max-w-xl -translate-x-1/2 -translate-y-1/2 overflow-y-auto rounded-2xl border border-slate-200 bg-white shadow-2xl">
+                        <div className="sticky top-0 flex items-center justify-between border-b border-slate-200 bg-slate-50 px-6 py-4 z-10">
+                            <Dialog.Title className="text-lg font-black text-slate-900">Ubah Status Pengajuan</Dialog.Title>
                             <Dialog.Close asChild>
-                                <button className="rounded-xl p-2 text-slate-400 hover:text-white hover:bg-[#1C2541]/60 transition"><X size={20} /></button>
+                                <button className="rounded-xl p-2 text-slate-400 hover:text-slate-800 hover:bg-slate-200 transition"><X size={20} /></button>
                             </Dialog.Close>
                         </div>
                         <Dialog.Description className="sr-only">Form update status pengajuan surat warga</Dialog.Description>
                         {statusModal && (
                             <form onSubmit={submitStatus} className="space-y-4 p-6">
-                                <div className="rounded-xl border border-[#1C2541]/60 bg-[#0B132B]/60 p-4">
-                                    <p className="font-mono text-xs text-slate-500">{statusModal.nomorPengajuan}</p>
-                                    <p className="font-bold text-white mt-1">{statusModal.jenisSurat}</p>
-                                    <p className="text-sm text-slate-400">{statusModal.pemohon}</p>
+                                <div className="rounded-xl border border-slate-200 bg-slate-50 p-4">
+                                    <p className="font-mono text-xs font-bold text-slate-500">{statusModal.nomorPengajuan}</p>
+                                    <p className="font-bold text-slate-900 mt-1">{statusModal.jenisSurat}</p>
+                                    <p className="text-sm text-slate-600 font-medium">{statusModal.pemohon}</p>
                                 </div>
                                 <div>
                                     <label className={labelCls}>Status</label>
@@ -499,11 +498,11 @@ export default function PengajuanSurat({ filters, pengajuans = [], summary, stat
                                 <div>
                                     <label className={labelCls}>Upload File Surat Selesai</label>
                                     <input type="file" accept=".pdf,.jpg,.jpeg,.png,image/jpeg,image/png,application/pdf" onChange={e => setFileSurat(e.target.files?.[0] || null)} className={inputCls} />
-                                    <p className="mt-1 text-[10px] text-slate-500">Format PDF/JPG/PNG, maks 4 MB.</p>
+                                    <p className="mt-1 text-[10px] text-slate-500 font-medium">Format PDF/JPG/PNG, maks 4 MB.</p>
                                 </div>
-                                <div className="flex flex-col-reverse sm:flex-row justify-end gap-3 border-t border-[#1C2541]/40 pt-4">
-                                    <button type="button" onClick={() => setStatusModal(null)} className="w-full sm:w-auto rounded-xl border border-[#1C2541]/60 px-4 py-2.5 text-sm text-slate-400 hover:text-white transition">Batal</button>
-                                    <button type="submit" disabled={isSubmitting} className="w-full sm:w-auto rounded-xl bg-emerald-500 px-4 py-2.5 text-sm font-bold text-[#0B132B] hover:bg-emerald-400 transition disabled:opacity-60">
+                                <div className="flex flex-col-reverse sm:flex-row justify-end gap-3 border-t border-slate-200 pt-4">
+                                    <button type="button" onClick={() => setStatusModal(null)} className="w-full sm:w-auto rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-sm font-bold text-slate-700 hover:bg-slate-100 transition shadow-sm">Batal</button>
+                                    <button type="submit" disabled={isSubmitting} className="w-full sm:w-auto rounded-xl bg-emerald-600 px-4 py-2.5 text-sm font-bold text-white hover:bg-emerald-700 transition disabled:opacity-60 shadow-sm">
                                         {isSubmitting ? 'Menyimpan...' : 'Simpan Status'}
                                     </button>
                                 </div>

@@ -316,23 +316,23 @@ export default function Finance({
     ? `${pathPengeluaran} L ${pointsPengeluaran[pointsPengeluaran.length - 1].x} 150 L ${pointsPengeluaran[0].x} 150 Z`
     : '';
 
-  return (
+    return (
     <AdminLayout activeMenu="finance">
       <Head title="Keuangan & Kas - SMART-RT" />
 
       <div className="mb-8 flex flex-col justify-between gap-4 sm:flex-row sm:items-center">
         <div>
-          <h2 className="text-3xl font-black text-white">Detail Keuangan & Kas</h2>
-          <p className="mt-1 text-sm text-slate-400 font-medium">Laporan keuangan warga, Oktober 2023</p>
+          <h2 className="text-3xl font-black text-slate-900">Detail Keuangan & Kas</h2>
+          <p className="mt-1 text-sm text-slate-600 font-medium">Laporan keuangan warga, Oktober 2023</p>
         </div>
         <div className="flex items-center gap-3">
-          <button type="button" className="inline-flex items-center gap-2 rounded-xl border border-[#1C2541] bg-[#111A2E] px-4 py-2.5 text-xs font-bold text-slate-300 hover:bg-[#1C2541]/70 transition duration-200">
+          <button type="button" className="inline-flex items-center gap-2 rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-xs font-bold text-slate-700 hover:bg-slate-100 transition duration-200 shadow-sm">
             <span>Ekspor PDF</span>
           </button>
           <button
             type="button"
             onClick={() => setShowAddTransaction(true)}
-            className="inline-flex items-center gap-2 rounded-xl bg-emerald-500 px-4 py-2.5 text-xs font-black text-[#0B132B] hover:bg-emerald-400 transition duration-200 shadow-lg shadow-emerald-500/10"
+            className="inline-flex items-center gap-2 rounded-xl bg-emerald-600 px-4 py-2.5 text-xs font-bold text-white hover:bg-emerald-700 transition duration-200 shadow-sm"
           >
             <Plus size={14} />
             <span>Tambah Baru</span>
@@ -341,47 +341,47 @@ export default function Finance({
       </div>
 
       <div className="mb-8 grid grid-cols-1 gap-6 md:grid-cols-3">
-        <div className="rounded-2xl border border-[#1C2541]/50 bg-[#111A2E]/60 p-6 relative overflow-hidden">
+        <div className="rounded-2xl border border-slate-200 bg-white p-6 relative overflow-hidden shadow-sm">
           <div className="flex items-center justify-between">
-            <span className="text-[10px] font-black tracking-widest text-slate-400">TOTAL SALDO KAS</span>
-            <div className="h-6 w-6 rounded-full bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400">
+            <span className="text-[10px] font-black tracking-widest text-slate-500 uppercase">TOTAL SALDO KAS</span>
+            <div className="h-6 w-6 rounded-full bg-emerald-50 border border-emerald-200 flex items-center justify-center text-emerald-700">
               <Wallet size={14} />
             </div>
           </div>
           <div className="mt-4">
-            <h3 className="text-2xl font-black text-white">{formatCurrency(financeStats.totalKasBalance)}</h3>
-            <p className="text-[10px] text-emerald-400 font-semibold mt-1">Kenaikan 12% dari bulan lalu</p>
+            <h3 className="text-2xl font-black text-slate-900">{formatCurrency(financeStats.totalKasBalance)}</h3>
+            <p className="text-[10px] text-emerald-700 font-bold mt-1">Kenaikan 12% dari bulan lalu</p>
           </div>
         </div>
 
-        <div className="rounded-2xl border border-[#1C2541]/50 bg-[#111A2E]/60 p-6 relative overflow-hidden">
+        <div className="rounded-2xl border border-slate-200 bg-white p-6 relative overflow-hidden shadow-sm">
           <div className="flex items-center justify-between">
-            <span className="text-[10px] font-black tracking-widest text-slate-400">PENGELUARAN BULAN INI</span>
-            <div className="h-6 w-6 rounded-full bg-red-500/10 border border-red-500/20 flex items-center justify-center text-red-400">
+            <span className="text-[10px] font-black tracking-widest text-slate-500 uppercase">PENGELUARAN BULAN INI</span>
+            <div className="h-6 w-6 rounded-full bg-red-50 border border-red-200 flex items-center justify-center text-red-700">
               <AlertCircle size={14} />
             </div>
           </div>
           <div className="mt-4">
-            <h3 className="text-2xl font-black text-white">{formatCurrency(financeStats.pengeluaranBulanIni)}</h3>
-            <p className="text-[10px] text-slate-500 font-semibold mt-1">Semua pengeluaran terdata</p>
+            <h3 className="text-2xl font-black text-slate-900">{formatCurrency(financeStats.pengeluaranBulanIni)}</h3>
+            <p className="text-[10px] text-slate-500 font-medium mt-1">Semua pengeluaran terdata</p>
           </div>
         </div>
 
-        <div className="rounded-2xl border border-[#1C2541]/50 bg-[#111A2E]/60 p-6 relative overflow-hidden">
+        <div className="rounded-2xl border border-slate-200 bg-white p-6 relative overflow-hidden shadow-sm">
           <div className="flex items-center justify-between">
-            <span className="text-[10px] font-black tracking-widest text-slate-400">PEMASUKAN BULAN INI</span>
-            <div className="h-6 w-6 rounded-full bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-blue-400">
+            <span className="text-[10px] font-black tracking-widest text-slate-500 uppercase">PEMASUKAN BULAN INI</span>
+            <div className="h-6 w-6 rounded-full bg-blue-50 border border-blue-200 flex items-center justify-center text-blue-700">
               <CheckCircle size={14} />
             </div>
           </div>
           <div className="mt-4">
-            <h3 className="text-2xl font-black text-white">{formatCurrency(financeStats.pemasukanBulanIni)}</h3>
-            <p className="text-[10px] text-slate-500 font-semibold mt-1">Termasuk iuran & donasi</p>
+            <h3 className="text-2xl font-black text-slate-900">{formatCurrency(financeStats.pemasukanBulanIni)}</h3>
+            <p className="text-[10px] text-slate-500 font-medium mt-1">Termasuk iuran & donasi</p>
           </div>
         </div>
       </div>
 
-      <div className="mb-6 flex border-b border-[#1C2541]/40">
+      <div className="mb-6 flex border-b border-slate-200">
         {[
           { id: 'ringkasan', label: 'Ringkasan & Kas' },
           { id: 'iuran', label: 'Verifikasi Iuran' },
@@ -393,8 +393,8 @@ export default function Finance({
             onClick={() => setActiveTab(tab.id as any)}
             className={`border-b-2 px-6 py-3 text-xs font-bold transition duration-200 -mb-px ${
               activeTab === tab.id
-                ? 'border-emerald-500 text-emerald-400'
-                : 'border-transparent text-slate-400 hover:text-white'
+                ? 'border-emerald-600 text-emerald-700'
+                : 'border-transparent text-slate-600 hover:text-slate-900'
             }`}
           >
             {tab.label}
@@ -405,17 +405,17 @@ export default function Finance({
       {activeTab === 'ringkasan' && (
         <div className="space-y-6">
           <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
-            <div className="lg:col-span-2 rounded-2xl border border-[#1C2541]/50 bg-[#111A2E]/50 p-6 shadow-md">
+            <div className="lg:col-span-2 rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
               <div className="mb-4 flex items-center justify-between">
-                <h3 className="text-sm font-black text-white">Arus Kas Bulanan (2026)</h3>
+                <h3 className="text-sm font-black text-slate-900">Arus Kas Bulanan (2026)</h3>
                 <div className="flex items-center gap-4 text-[10px] font-bold">
                   <div className="flex items-center gap-1.5">
-                    <span className="h-2 w-2 rounded bg-emerald-500"></span>
-                    <span className="text-slate-400">Pemasukan</span>
+                    <span className="h-2 w-2 rounded bg-emerald-600"></span>
+                    <span className="text-slate-600">Pemasukan</span>
                   </div>
                   <div className="flex items-center gap-1.5">
                     <span className="h-2 w-2 rounded bg-amber-500"></span>
-                    <span className="text-slate-400">Pengeluaran</span>
+                    <span className="text-slate-600">Pengeluaran</span>
                   </div>
                 </div>
               </div>
@@ -433,9 +433,9 @@ export default function Finance({
                     </linearGradient>
                   </defs>
                   
-                  <line x1="40" y1="30" x2="460" y2="30" stroke="#1C2541" strokeOpacity="0.2" strokeDasharray="4 4" />
-                  <line x1="40" y1="90" x2="460" y2="90" stroke="#1C2541" strokeOpacity="0.2" strokeDasharray="4 4" />
-                  <line x1="40" y1="150" x2="460" y2="150" stroke="#1C2541" strokeOpacity="0.4" />
+                  <line x1="40" y1="30" x2="460" y2="30" stroke="#E2E8F0" strokeOpacity="0.8" strokeDasharray="4 4" />
+                  <line x1="40" y1="90" x2="460" y2="90" stroke="#E2E8F0" strokeOpacity="0.8" strokeDasharray="4 4" />
+                  <line x1="40" y1="150" x2="460" y2="150" stroke="#CBD5E1" strokeOpacity="1" />
 
                   {fillPemasukan && <path d={fillPemasukan} fill="url(#gradPemasukan)" />}
                   {fillPengeluaran && <path d={fillPengeluaran} fill="url(#gradPengeluaran)" />}
@@ -452,68 +452,68 @@ export default function Finance({
               </div>
             </div>
 
-            <div className="rounded-2xl border border-[#1C2541]/50 bg-[#111A2E]/50 p-6 shadow-md flex flex-col justify-between">
+            <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm flex flex-col justify-between">
               <div>
-                <h3 className="text-sm font-black text-white mb-5">Sumber Pemasukan</h3>
+                <h3 className="text-sm font-black text-slate-900 mb-5">Sumber Pemasukan</h3>
                 <div className="space-y-4">
                   <div>
                     <div className="flex justify-between text-[11px] font-bold mb-1.5">
-                      <span className="text-slate-400">Iuran Warga</span>
-                      <span className="text-emerald-400">{financeStats.sumberPemasukan.Iuran}%</span>
+                      <span className="text-slate-600">Iuran Warga</span>
+                      <span className="text-emerald-700">{financeStats.sumberPemasukan.Iuran}%</span>
                     </div>
-                    <div className="h-1.5 w-full bg-[#0B132B] rounded-full overflow-hidden">
-                      <div className="h-full bg-emerald-500 rounded-full" style={{ width: `${financeStats.sumberPemasukan.Iuran}%` }}></div>
+                    <div className="h-1.5 w-full bg-slate-100 rounded-full overflow-hidden">
+                      <div className="h-full bg-emerald-600 rounded-full" style={{ width: `${financeStats.sumberPemasukan.Iuran}%` }}></div>
                     </div>
                   </div>
 
                   <div>
                     <div className="flex justify-between text-[11px] font-bold mb-1.5">
-                      <span className="text-slate-400">Donasi</span>
-                      <span className="text-amber-400">{financeStats.sumberPemasukan.Donasi}%</span>
+                      <span className="text-slate-600">Donasi</span>
+                      <span className="text-amber-700">{financeStats.sumberPemasukan.Donasi}%</span>
                     </div>
-                    <div className="h-1.5 w-full bg-[#0B132B] rounded-full overflow-hidden">
+                    <div className="h-1.5 w-full bg-slate-100 rounded-full overflow-hidden">
                       <div className="h-full bg-amber-500 rounded-full" style={{ width: `${financeStats.sumberPemasukan.Donasi}%` }}></div>
                     </div>
                   </div>
 
                   <div>
                     <div className="flex justify-between text-[11px] font-bold mb-1.5">
-                      <span className="text-slate-400">Sponsorship</span>
-                      <span className="text-blue-400">{financeStats.sumberPemasukan.Sponsorship}%</span>
+                      <span className="text-slate-600">Sponsorship</span>
+                      <span className="text-blue-700">{financeStats.sumberPemasukan.Sponsorship}%</span>
                     </div>
-                    <div className="h-1.5 w-full bg-[#0B132B] rounded-full overflow-hidden">
+                    <div className="h-1.5 w-full bg-slate-100 rounded-full overflow-hidden">
                       <div className="h-full bg-blue-500 rounded-full" style={{ width: `${financeStats.sumberPemasukan.Sponsorship}%` }}></div>
                     </div>
                   </div>
 
                   <div>
                     <div className="flex justify-between text-[11px] font-bold mb-1.5">
-                      <span className="text-slate-400">Lain-lain</span>
-                      <span className="text-purple-400">{financeStats.sumberPemasukan['Lain-lain']}%</span>
+                      <span className="text-slate-600">Lain-lain</span>
+                      <span className="text-purple-700">{financeStats.sumberPemasukan['Lain-lain']}%</span>
                     </div>
-                    <div className="h-1.5 w-full bg-[#0B132B] rounded-full overflow-hidden">
+                    <div className="h-1.5 w-full bg-slate-100 rounded-full overflow-hidden">
                       <div className="h-full bg-purple-500 rounded-full" style={{ width: `${financeStats.sumberPemasukan['Lain-lain']}%` }}></div>
                     </div>
                   </div>
                 </div>
               </div>
 
-              <div className="mt-6 border-t border-[#1C2541]/40 pt-4 text-[10px] text-slate-400 font-semibold leading-relaxed">
+              <div className="mt-6 border-t border-slate-200 pt-4 text-[10px] text-slate-500 font-semibold leading-relaxed">
                 Pengulangan transaksi terkendali. Total pengeluaran bulan ini lebih kecil dari rata-rata saldo kas bulanan.
               </div>
             </div>
           </div>
 
-          <div className="rounded-2xl border border-[#1C2541]/50 bg-[#111A2E]/50 shadow-md">
-            <div className="border-b border-[#1C2541]/40 p-5 flex items-center justify-between">
+          <div className="rounded-2xl border border-slate-200 bg-white shadow-sm overflow-hidden">
+            <div className="border-b border-slate-200 p-5 flex items-center justify-between bg-slate-50">
               <div>
-                <h3 className="text-sm font-black text-white uppercase tracking-wider">Transaksi Terbaru</h3>
-                <p className="mt-1 text-xs text-slate-500 font-medium">Buku kas umum pencatatan operasional, iuran, donasi, dan pengeluaran.</p>
+                <h3 className="text-sm font-black text-slate-900 uppercase tracking-wider">Transaksi Terbaru</h3>
+                <p className="mt-1 text-xs text-slate-600 font-medium">Buku kas umum pencatatan operasional, iuran, donasi, dan pengeluaran.</p>
               </div>
               <button
                 type="button"
                 onClick={() => setShowAddTransaction(true)}
-                className="inline-flex items-center gap-1.5 rounded-xl border border-emerald-500/20 bg-emerald-500/10 px-3.5 py-2 text-xs font-bold text-emerald-400 hover:bg-emerald-500 hover:text-[#0B132B] transition duration-200"
+                className="inline-flex items-center gap-1.5 rounded-xl border border-emerald-200 bg-emerald-50 px-3.5 py-2 text-xs font-bold text-emerald-700 hover:bg-emerald-600 hover:text-white transition duration-200"
               >
                 <Plus size={12} />
                 <span>Transaksi Baru</span>
@@ -523,7 +523,7 @@ export default function Finance({
             <div className="overflow-x-auto">
               <table className="w-full text-left text-xs min-w-[800px]">
                 <thead>
-                  <tr className="border-b border-[#1C2541]/50 bg-[#111A2E]/20 text-[10px] font-black uppercase tracking-wider text-slate-400">
+                  <tr className="border-b border-slate-200 bg-slate-50 text-[10px] font-bold uppercase tracking-wider text-slate-700">
                     <th className="px-5 py-3.5">TANGGAL</th>
                     <th className="px-5 py-3.5">DESKRIPSI</th>
                     <th className="px-5 py-3.5">KATEGORI</th>
@@ -535,7 +535,7 @@ export default function Finance({
                 <tbody>
                   {financeStats.transactions.length === 0 ? (
                     <tr>
-                      <td colSpan={6} className="px-5 py-12 text-center text-slate-500">
+                      <td colSpan={6} className="px-5 py-12 text-center text-slate-500 font-medium">
                         Belum ada data transaksi kas tercatat.
                       </td>
                     </tr>
@@ -543,29 +543,29 @@ export default function Finance({
                     financeStats.transactions.map((t) => {
                       const isIncome = t.tipe === 'pemasukan';
                       return (
-                        <tr key={t.id} className="border-b border-[#1C2541]/40 transition hover:bg-[#111A2E]/30 text-slate-300">
-                          <td className="px-5 py-4 font-semibold text-slate-400">{formatDate(t.tanggal)}</td>
-                          <td className="px-5 py-4 font-bold text-slate-200">{t.deskripsi}</td>
+                        <tr key={t.id} className="border-b border-slate-100 transition hover:bg-slate-50 text-slate-700">
+                          <td className="px-5 py-4 font-semibold text-slate-600">{formatDate(t.tanggal)}</td>
+                          <td className="px-5 py-4 font-bold text-slate-900">{t.deskripsi}</td>
                           <td className="px-5 py-4">
-                            <span className={`rounded-full px-2.5 py-0.5 text-[9px] font-black uppercase ${
-                              isIncome ? 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/20' : 'bg-amber-500/10 text-amber-400 border border-amber-500/20'
+                            <span className={`rounded-full px-2.5 py-0.5 text-[9px] font-bold uppercase ${
+                              isIncome ? 'bg-emerald-50 text-emerald-700 border border-emerald-200' : 'bg-amber-50 text-amber-700 border border-amber-200'
                             }`}>
                               {t.kategori}
                             </span>
                           </td>
                           <td className="px-5 py-4">
-                            <span className="text-emerald-400 font-bold flex items-center gap-1">
+                            <span className="text-emerald-700 font-bold flex items-center gap-1">
                               ● Berhasil
                             </span>
                           </td>
-                          <td className={`px-5 py-4 font-black ${isIncome ? 'text-emerald-400' : 'text-red-400'}`}>
+                          <td className={`px-5 py-4 font-black ${isIncome ? 'text-emerald-700' : 'text-red-700'}`}>
                             {isIncome ? '+ ' : '- '}{formatCurrency(t.jumlah)}
                           </td>
                           <td className="px-5 py-4 text-right">
                             <button
                               type="button"
                               onClick={() => deleteTransaction(t.id)}
-                              className="rounded-lg p-1.5 text-red-400 hover:bg-red-950/20 transition"
+                              className="rounded-lg p-1.5 text-red-700 hover:bg-red-50 transition"
                               title="Hapus"
                             >
                               <X size={14} />
@@ -584,16 +584,16 @@ export default function Finance({
 
       {activeTab === 'iuran' && (
         <div className="space-y-6">
-          <div className="rounded-2xl border border-[#1C2541]/50 bg-[#111A2E]/50 p-4 shadow-md">
+          <div className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
             <div className="flex flex-col gap-3 lg:flex-row">
               <div className="relative flex-1">
-                <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-500" size={16} />
+                <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" size={16} />
                 <input
                   type="text"
                   placeholder="Cari kepala keluarga, nomor rumah, atau nomor KK..."
                   value={searchTerm}
                   onChange={(event) => setSearchTerm(event.target.value)}
-                  className="w-full rounded-full bg-[#111A2E] border border-[#1C2541]/70 py-2 pl-10 pr-4 text-xs text-slate-200 placeholder-slate-500 focus:outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 transition"
+                  className="w-full rounded-full bg-slate-50 border border-slate-200 py-2 pl-10 pr-4 text-xs text-slate-900 placeholder-slate-400 focus:outline-none focus:bg-white focus:border-emerald-500 transition"
                 />
               </div>
 
@@ -602,13 +602,13 @@ export default function Finance({
                   type="month"
                   value={selectedMonth}
                   onChange={(event) => changeMonth(event.target.value)}
-                  className="rounded-xl border border-[#1C2541] bg-[#111A2E] px-3 py-2 text-xs text-slate-300 focus:outline-none focus:border-emerald-500"
+                  className="rounded-xl border border-slate-200 bg-slate-50 px-3 py-2 text-xs text-slate-900 focus:outline-none focus:border-emerald-500"
                 />
 
                 <select
                   value={selectedStatus}
                   onChange={(event) => setSelectedStatus(event.target.value)}
-                  className="rounded-xl border border-[#1C2541] bg-[#111A2E] px-3 py-2 text-xs text-slate-300 focus:outline-none focus:border-emerald-500"
+                  className="rounded-xl border border-slate-200 bg-slate-50 px-3 py-2 text-xs text-slate-900 focus:outline-none focus:border-emerald-500"
                 >
                   <option value="all">Semua Status</option>
                   <option value="Belum Bayar">Belum Bayar</option>
@@ -619,7 +619,7 @@ export default function Finance({
 
                 <button
                   onClick={() => setShowAddPayment(true)}
-                  className="flex items-center gap-2 rounded-xl bg-emerald-500 px-4 py-2.5 text-xs font-black text-[#0B132B] hover:bg-emerald-400 transition duration-200 shadow-lg shadow-emerald-500/10"
+                  className="flex items-center gap-2 rounded-xl bg-emerald-600 px-4 py-2.5 text-xs font-bold text-white hover:bg-emerald-700 transition duration-200 shadow-sm"
                 >
                   <Plus size={14} />
                   Input Pembayaran Manual
@@ -629,34 +629,34 @@ export default function Finance({
           </div>
 
           <div className="grid grid-cols-1 gap-4 md:grid-cols-4">
-            <div className="rounded-xl border border-[#1C2541]/40 bg-[#111A2E]/40 p-4">
+            <div className="rounded-xl border border-slate-200 bg-white p-4 shadow-sm">
               <span className="text-[10px] font-black text-slate-500 tracking-wider">TOTAL KK</span>
-              <p className="text-2xl font-black text-white mt-1">{totalKK}</p>
+              <p className="text-2xl font-black text-slate-900 mt-1">{totalKK}</p>
             </div>
-            <div className="rounded-xl border border-[#1C2541]/40 bg-[#111A2E]/40 p-4">
-              <span className="text-[10px] font-black text-emerald-400 tracking-wider">SUDAH BAYAR</span>
-              <p className="text-2xl font-black text-emerald-400 mt-1">{sudahBayar}</p>
+            <div className="rounded-xl border border-slate-200 bg-white p-4 shadow-sm">
+              <span className="text-[10px] font-black text-emerald-700 tracking-wider">SUDAH BAYAR</span>
+              <p className="text-2xl font-black text-emerald-700 mt-1">{sudahBayar}</p>
             </div>
-            <div className="rounded-xl border border-[#1C2541]/40 bg-[#111A2E]/40 p-4">
-              <span className="text-[10px] font-black text-red-400 tracking-wider">BELUM BAYAR</span>
-              <p className="text-2xl font-black text-red-400 mt-1">{belumBayar}</p>
+            <div className="rounded-xl border border-slate-200 bg-white p-4 shadow-sm">
+              <span className="text-[10px] font-black text-red-700 tracking-wider">BELUM BAYAR</span>
+              <p className="text-2xl font-black text-red-700 mt-1">{belumBayar}</p>
             </div>
-            <div className="rounded-xl border border-[#1C2541]/40 bg-[#111A2E]/40 p-4">
-              <span className="text-[10px] font-black text-amber-400 tracking-wider">TOTAL TUNGGAKAN</span>
-              <p className="text-2xl font-black text-amber-400 mt-1">{formatCurrency(totalTunggakan)}</p>
+            <div className="rounded-xl border border-slate-200 bg-white p-4 shadow-sm">
+              <span className="text-[10px] font-black text-amber-700 tracking-wider">TOTAL TUNGGAKAN</span>
+              <p className="text-2xl font-black text-amber-700 mt-1">{formatCurrency(totalTunggakan)}</p>
             </div>
           </div>
 
-          <div className="rounded-2xl border border-[#1C2541]/50 bg-[#111A2E]/50 shadow-md">
-            <div className="border-b border-[#1C2541]/40 p-5">
-              <h3 className="text-sm font-black text-white uppercase tracking-wider">Data Pembayaran Iuran Warga</h3>
-              <p className="mt-1 text-xs text-slate-500 font-medium">Verifikasi pembayaran transfer bank / bukti iuran bulanan dari dashboard warga.</p>
+          <div className="rounded-2xl border border-slate-200 bg-white shadow-sm overflow-hidden">
+            <div className="border-b border-slate-200 p-5 bg-slate-50">
+              <h3 className="text-sm font-black text-slate-900 uppercase tracking-wider">Data Pembayaran Iuran Warga</h3>
+              <p className="mt-1 text-xs text-slate-600 font-medium">Verifikasi pembayaran transfer bank / bukti iuran bulanan dari dashboard warga.</p>
             </div>
 
             <div className="overflow-x-auto">
               <table className="w-full text-left text-xs min-w-[800px]">
                 <thead>
-                  <tr className="border-b border-[#1C2541]/50 bg-[#111A2E]/20 text-[10px] font-black uppercase tracking-wider text-slate-400">
+                  <tr className="border-b border-slate-200 bg-slate-50 text-[10px] font-bold uppercase tracking-wider text-slate-700">
                     <th className="px-5 py-3.5">NO. RUMAH</th>
                     <th className="px-5 py-3.5">KEPALA KELUARGA</th>
                     <th className="px-5 py-3.5">TOTAL TAGIHAN</th>
@@ -670,23 +670,23 @@ export default function Finance({
                 <tbody>
                   {filteredPayments.length === 0 ? (
                     <tr>
-                      <td colSpan={8} className="px-5 py-12 text-center text-slate-500">
+                      <td colSpan={8} className="px-5 py-12 text-center text-slate-500 font-medium">
                         Tidak ada data pembayaran yang ditemukan.
                       </td>
                     </tr>
                   ) : (
                     filteredPayments.map((payment) => (
-                      <tr key={payment.id} className="border-b border-[#1C2541]/40 transition hover:bg-[#111A2E]/30 text-slate-300">
-                        <td className="px-5 py-4 font-bold text-white">{payment.houseNumber}</td>
-                        <td className="px-5 py-4 font-semibold text-slate-200">{payment.headOfFamily}</td>
-                        <td className="px-5 py-4 font-semibold text-slate-300">{formatCurrency(payment.totalBill)}</td>
+                      <tr key={payment.id} className="border-b border-slate-100 transition hover:bg-slate-50 text-slate-700">
+                        <td className="px-5 py-4 font-bold text-slate-900">{payment.houseNumber}</td>
+                        <td className="px-5 py-4 font-bold text-slate-900">{payment.headOfFamily}</td>
+                        <td className="px-5 py-4 font-bold text-slate-700">{formatCurrency(payment.totalBill)}</td>
                         <td className="px-5 py-4">
-                          <span className={`rounded-full px-2.5 py-0.5 text-[9px] font-black uppercase ${getStatusBadge(payment.status)}`}>
+                          <span className={`rounded-full px-2.5 py-0.5 text-[9px] font-bold uppercase ${getStatusBadge(payment.status)}`}>
                             {payment.status}
                           </span>
                         </td>
-                        <td className="px-5 py-4 text-slate-400">{formatDate(payment.paymentDate)}</td>
-                        <td className="px-5 py-4 text-slate-400">{payment.paymentMethod || "-"}</td>
+                        <td className="px-5 py-4 text-slate-600">{formatDate(payment.paymentDate)}</td>
+                        <td className="px-5 py-4 text-slate-600">{payment.paymentMethod || "-"}</td>
                         <td className="px-5 py-4">
                           {payment.hasProof && payment.proofUrl ? (
                             <button
@@ -694,7 +694,7 @@ export default function Finance({
                                 setCurrentProof(payment.proofUrl || "");
                                 setShowProofModal(true);
                               }}
-                              className="text-blue-400 hover:text-blue-300 hover:underline font-bold transition"
+                              className="text-blue-700 hover:text-blue-900 hover:underline font-bold transition"
                             >
                               Lihat Bukti
                             </button>
@@ -705,7 +705,7 @@ export default function Finance({
                         <td className="px-5 py-4 text-right">
                           <button
                             onClick={() => setSelectedPayment(payment)}
-                            className="inline-flex items-center gap-1 rounded-xl border border-emerald-500/20 bg-emerald-500/10 px-3 py-1.5 text-[10px] font-bold text-emerald-400 hover:bg-emerald-500 hover:text-[#0B132B] transition"
+                            className="inline-flex items-center gap-1 rounded-xl border border-emerald-200 bg-emerald-50 px-3 py-1.5 text-[10px] font-bold text-emerald-700 hover:bg-emerald-600 hover:text-white transition"
                           >
                             <Eye size={12} />
                             Detail
@@ -723,55 +723,55 @@ export default function Finance({
 
       {activeTab === 'komponen' && (
         <div className="space-y-6">
-          <div className="rounded-2xl border border-[#1C2541]/50 bg-[#111A2E]/50 p-6 shadow-md">
+          <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
             <div className="mb-4 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
               <div>
-                <h3 className="text-sm font-black text-white flex items-center gap-2">Rincian Iuran Bulanan per Kepala Keluarga</h3>
+                <h3 className="text-sm font-black text-slate-900 flex items-center gap-2">Rincian Iuran Bulanan per Kepala Keluarga</h3>
               </div>
               <button
                 onClick={openCreateComponent}
-                className="inline-flex items-center justify-center gap-2 rounded-xl border border-emerald-500/20 bg-emerald-500/10 px-4 py-2 text-xs font-bold text-emerald-400 hover:bg-emerald-500 hover:text-[#0B132B] transition"
+                className="inline-flex items-center justify-center gap-2 rounded-xl border border-emerald-200 bg-emerald-50 px-4 py-2 text-xs font-bold text-emerald-700 hover:bg-emerald-600 hover:text-white transition"
               >
                 <Plus size={14} />
                 <span>Tambah Komponen</span>
               </button>
             </div>
 
-            <div className="mb-6 rounded-2xl border border-[#1C2541]/40 bg-[#0B132B]/80 p-5">
-              <p className="text-xs text-slate-500 font-bold uppercase tracking-wider">Total Iuran Bulanan Aktif</p>
-              <p className="text-3xl font-black text-emerald-400 mt-2">{formatCurrency(totalMonthlyFee)}</p>
+            <div className="mb-6 rounded-2xl border border-slate-200 bg-slate-50 p-5">
+              <p className="text-xs text-slate-600 font-bold uppercase tracking-wider">Total Iuran Bulanan Aktif</p>
+              <p className="text-3xl font-black text-emerald-700 mt-2">{formatCurrency(totalMonthlyFee)}</p>
             </div>
 
             {monthlyFees.length > 0 ? (
               <div className="space-y-4">
-                <p className="text-xs font-bold text-slate-400 tracking-wider">KOMPONEN TERAKTIFKAN:</p>
+                <p className="text-xs font-bold text-slate-500 tracking-wider">KOMPONEN TERAKTIFKAN:</p>
                 {monthlyFees.map((fee) => (
-                  <div key={fee.id} className="flex items-start justify-between border-b border-[#1C2541]/30 pb-3 last:border-0 last:pb-0">
+                  <div key={fee.id} className="flex items-start justify-between border-b border-slate-100 pb-3 last:border-0 last:pb-0">
                     <div className="flex-1 pr-4">
-                      <p className="text-xs font-bold text-slate-200">{fee.name}</p>
+                      <p className="text-xs font-bold text-slate-900">{fee.name}</p>
                       {fee.note && <p className="mt-1 text-[11px] text-slate-500 leading-normal">{fee.note}</p>}
                     </div>
-                    <p className="text-xs font-black text-slate-200">{formatCurrency(fee.amount)}</p>
+                    <p className="text-xs font-black text-slate-900">{formatCurrency(fee.amount)}</p>
                   </div>
                 ))}
               </div>
             ) : (
-              <div className="rounded-2xl border border-dashed border-[#1C2541]/40 p-6 text-center text-xs text-slate-500">
+              <div className="rounded-2xl border border-dashed border-slate-200 p-6 text-center text-xs text-slate-500 font-medium">
                 Belum ada komponen iuran aktif.
               </div>
             )}
           </div>
 
-          <div className="rounded-2xl border border-[#1C2541]/50 bg-[#111A2E]/50 shadow-md">
-            <div className="p-5 border-b border-[#1C2541]/40">
-              <h3 className="text-sm font-black text-white uppercase tracking-wider">Kelola Komponen Iuran</h3>
-              <p className="mt-1 text-xs text-slate-500 font-medium">Komponen aktif akan otomatis terakumulasi sebagai total tagihan KK setiap bulannya.</p>
+          <div className="rounded-2xl border border-slate-200 bg-white shadow-sm overflow-hidden">
+            <div className="p-5 border-b border-slate-200 bg-slate-50">
+              <h3 className="text-sm font-black text-slate-900 uppercase tracking-wider">Kelola Komponen Iuran</h3>
+              <p className="mt-1 text-xs text-slate-600 font-medium">Komponen aktif akan otomatis terakumulasi sebagai total tagihan KK setiap bulannya.</p>
             </div>
 
             <div className="overflow-x-auto">
               <table className="w-full text-left text-xs min-w-[800px]">
                 <thead>
-                  <tr className="border-b border-[#1C2541]/50 bg-[#111A2E]/20 text-[10px] font-black uppercase tracking-wider text-slate-400">
+                  <tr className="border-b border-slate-200 bg-slate-50 text-[10px] font-bold uppercase tracking-wider text-slate-700">
                     <th className="px-5 py-3.5">URUTAN</th>
                     <th className="px-5 py-3.5">NAMA KOMPONEN</th>
                     <th className="px-5 py-3.5">NOMINAL</th>
@@ -782,14 +782,14 @@ export default function Finance({
                 </thead>
                 <tbody>
                   {feeComponents.map((component) => (
-                    <tr key={component.id} className="border-b border-[#1C2541]/40 transition hover:bg-[#111A2E]/30 text-slate-300">
-                      <td className="px-5 py-4 font-bold text-slate-400">{component.order}</td>
-                      <td className="px-5 py-4 font-bold text-slate-200">{component.name}</td>
-                      <td className="px-5 py-4 font-black text-slate-300">{formatCurrency(component.amount)}</td>
-                      <td className="px-5 py-4 text-slate-400">{component.note || "-"}</td>
+                    <tr key={component.id} className="border-b border-slate-100 transition hover:bg-slate-50 text-slate-700">
+                      <td className="px-5 py-4 font-bold text-slate-500">{component.order}</td>
+                      <td className="px-5 py-4 font-bold text-slate-900">{component.name}</td>
+                      <td className="px-5 py-4 font-black text-slate-900">{formatCurrency(component.amount)}</td>
+                      <td className="px-5 py-4 text-slate-600">{component.note || "-"}</td>
                       <td className="px-5 py-4">
-                        <span className={`rounded-full px-2.5 py-0.5 text-[9px] font-black uppercase ${
-                          component.isActive ? 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/20' : 'bg-slate-500/10 text-slate-400 border border-slate-500/20'
+                        <span className={`rounded-full px-2.5 py-0.5 text-[9px] font-bold uppercase ${
+                          component.isActive ? 'bg-emerald-50 text-emerald-700 border border-emerald-200' : 'bg-slate-100 text-slate-600 border border-slate-200'
                         }`}>
                           {component.isActive ? 'Aktif' : 'Nonaktif'}
                         </span>
@@ -798,14 +798,14 @@ export default function Finance({
                         <div className="flex justify-end gap-2">
                           <button
                             onClick={() => openEditComponent(component)}
-                            className="rounded-xl border border-[#1C2541] px-3 py-1.5 text-[10px] font-bold text-slate-300 hover:bg-[#1C2541]/60 transition"
+                            className="rounded-xl border border-slate-200 bg-white px-3 py-1.5 text-[10px] font-bold text-slate-700 hover:bg-slate-100 transition shadow-sm"
                           >
                             Edit
                           </button>
                           <button
                             onClick={() => toggleComponent(component)}
-                            className={`rounded-xl px-3 py-1.5 text-[10px] font-black text-[#0B132B] transition ${
-                              component.isActive ? 'bg-red-500 hover:bg-red-400' : 'bg-emerald-500 hover:bg-emerald-400'
+                            className={`rounded-xl px-3 py-1.5 text-[10px] font-bold text-white transition shadow-sm ${
+                              component.isActive ? 'bg-red-600 hover:bg-red-700' : 'bg-emerald-600 hover:bg-emerald-700'
                             }`}
                           >
                             {component.isActive ? 'Nonaktifkan' : 'Aktifkan'}
@@ -821,18 +821,19 @@ export default function Finance({
         </div>
       )}
 
+      {/* Modals */}
       <Dialog.Root open={showAddTransaction} onOpenChange={setShowAddTransaction}>
         <Dialog.Portal>
-          <Dialog.Overlay className="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm" />
-          <Dialog.Content className="fixed left-1/2 top-1/2 z-50 w-[96vw] max-w-md -translate-x-1/2 -translate-y-1/2 rounded-3xl border border-[#1C2541] bg-[#0B132B] p-6 text-slate-200 shadow-2xl">
-            <Dialog.Title className="text-lg font-black text-white mb-4">Input Transaksi Kas Baru</Dialog.Title>
+          <Dialog.Overlay className="fixed inset-0 z-50 bg-slate-900/40 backdrop-blur-sm" />
+          <Dialog.Content className="fixed left-1/2 top-1/2 z-50 w-[96vw] max-w-md -translate-x-1/2 -translate-y-1/2 rounded-3xl border border-slate-200 bg-white p-6 text-slate-900 shadow-2xl">
+            <Dialog.Title className="text-lg font-black text-slate-900 mb-4">Input Transaksi Kas Baru</Dialog.Title>
             <form onSubmit={submitTransaction} className="space-y-4">
               <div>
-                <label className="mb-1.5 block text-xs font-bold text-slate-300">Tipe Transaksi</label>
+                <label className="mb-1.5 block text-xs font-bold text-slate-700">Tipe Transaksi</label>
                 <select
                   value={transactionForm.data.tipe}
                   onChange={(e) => transactionForm.setData('tipe', e.target.value)}
-                  className="w-full rounded-xl bg-[#111A2E] border border-[#1C2541] px-4 py-2.5 text-xs text-slate-200 focus:outline-none focus:border-emerald-500"
+                  className="w-full rounded-xl bg-slate-50 border border-slate-200 px-4 py-2.5 text-xs text-slate-900 focus:outline-none focus:border-emerald-500"
                 >
                   <option value="pemasukan">Pemasukan (Cash In)</option>
                   <option value="pengeluaran">Pengeluaran (Cash Out)</option>
@@ -840,11 +841,11 @@ export default function Finance({
               </div>
 
               <div>
-                <label className="mb-1.5 block text-xs font-bold text-slate-300">Kategori</label>
+                <label className="mb-1.5 block text-xs font-bold text-slate-700">Kategori</label>
                 <select
                   value={transactionForm.data.kategori}
                   onChange={(e) => transactionForm.setData('kategori', e.target.value)}
-                  className="w-full rounded-xl bg-[#111A2E] border border-[#1C2541] px-4 py-2.5 text-xs text-slate-200 focus:outline-none focus:border-emerald-500"
+                  className="w-full rounded-xl bg-slate-50 border border-slate-200 px-4 py-2.5 text-xs text-slate-900 focus:outline-none focus:border-emerald-500"
                 >
                   <option value="Iuran">Iuran Warga</option>
                   <option value="Donasi">Donasi</option>
@@ -856,52 +857,52 @@ export default function Finance({
               </div>
 
               <div>
-                <label className="mb-1.5 block text-xs font-bold text-slate-300">Jumlah Uang (Rp)</label>
+                <label className="mb-1.5 block text-xs font-bold text-slate-700">Jumlah Uang (Rp)</label>
                 <input
                   type="number"
                   required
                   value={transactionForm.data.jumlah}
                   onChange={(e) => transactionForm.setData('jumlah', e.target.value)}
                   placeholder="Contoh: 250000"
-                  className="w-full rounded-xl bg-[#111A2E] border border-[#1C2541] px-4 py-2.5 text-xs text-slate-200 focus:outline-none focus:border-emerald-500"
+                  className="w-full rounded-xl bg-slate-50 border border-slate-200 px-4 py-2.5 text-xs text-slate-900 focus:outline-none focus:border-emerald-500"
                 />
               </div>
 
               <div>
-                <label className="mb-1.5 block text-xs font-bold text-slate-300">Tanggal Transaksi</label>
+                <label className="mb-1.5 block text-xs font-bold text-slate-700">Tanggal Transaksi</label>
                 <input
                   type="date"
                   required
                   value={transactionForm.data.tanggal}
                   onChange={(e) => transactionForm.setData('tanggal', e.target.value)}
-                  className="w-full rounded-xl bg-[#111A2E] border border-[#1C2541] px-4 py-2.5 text-xs text-slate-200 focus:outline-none focus:border-emerald-500"
+                  className="w-full rounded-xl bg-slate-50 border border-slate-200 px-4 py-2.5 text-xs text-slate-900 focus:outline-none focus:border-emerald-500"
                 />
               </div>
 
               <div>
-                <label className="mb-1.5 block text-xs font-bold text-slate-300">Deskripsi / Catatan</label>
+                <label className="mb-1.5 block text-xs font-bold text-slate-700">Deskripsi / Catatan</label>
                 <textarea
                   required
                   rows={2}
                   value={transactionForm.data.deskripsi}
                   onChange={(e) => transactionForm.setData('deskripsi', e.target.value)}
                   placeholder="Keterangan transaksi secara jelas..."
-                  className="w-full rounded-xl bg-[#111A2E] border border-[#1C2541] px-4 py-2.5 text-xs text-slate-200 focus:outline-none focus:border-emerald-500"
+                  className="w-full rounded-xl bg-slate-50 border border-slate-200 px-4 py-2.5 text-xs text-slate-900 focus:outline-none focus:border-emerald-500"
                 />
               </div>
 
-              <div className="flex flex-col-reverse sm:flex-row justify-end gap-2.5 pt-4 border-t border-[#1C2541]/40">
+              <div className="flex flex-col-reverse sm:flex-row justify-end gap-2.5 pt-4 border-t border-slate-200">
                 <button
                   type="button"
                   onClick={() => setShowAddTransaction(false)}
-                  className="w-full sm:w-auto rounded-xl border border-[#1C2541] px-4 py-2 text-xs font-bold text-slate-400 hover:text-white transition"
+                  className="w-full sm:w-auto rounded-xl border border-slate-200 bg-white px-4 py-2 text-xs font-bold text-slate-700 hover:bg-slate-100 transition shadow-sm"
                 >
                   Batal
                 </button>
                 <button
                   type="submit"
                   disabled={transactionForm.processing}
-                  className="w-full sm:w-auto rounded-xl bg-emerald-500 px-4 py-2 text-xs font-black text-[#0B132B] hover:bg-emerald-400 transition"
+                  className="w-full sm:w-auto rounded-xl bg-emerald-600 px-4 py-2 text-xs font-bold text-white hover:bg-emerald-700 transition shadow-sm"
                 >
                   Simpan Transaksi
                 </button>
@@ -913,17 +914,17 @@ export default function Finance({
 
       <Dialog.Root open={showAddPayment} onOpenChange={setShowAddPayment}>
         <Dialog.Portal>
-          <Dialog.Overlay className="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm" />
-          <Dialog.Content className="fixed left-1/2 top-1/2 z-50 w-[96vw] max-w-lg -translate-x-1/2 -translate-y-1/2 rounded-3xl border border-[#1C2541] bg-[#0B132B] p-6 text-slate-200 shadow-2xl">
-            <Dialog.Title className="text-lg font-black text-white mb-4">Input Pembayaran Manual</Dialog.Title>
+          <Dialog.Overlay className="fixed inset-0 z-50 bg-slate-900/40 backdrop-blur-sm" />
+          <Dialog.Content className="fixed left-1/2 top-1/2 z-50 w-[96vw] max-w-lg -translate-x-1/2 -translate-y-1/2 rounded-3xl border border-slate-200 bg-white p-6 text-slate-900 shadow-2xl">
+            <Dialog.Title className="text-lg font-black text-slate-900 mb-4">Input Pembayaran Manual</Dialog.Title>
             <form onSubmit={submitPayment} className="space-y-4">
               <div>
-                <label className="mb-1.5 block text-xs font-bold text-slate-300">Pilih Rumah / Keluarga</label>
+                <label className="mb-1.5 block text-xs font-bold text-slate-700">Pilih Rumah / Keluarga</label>
                 <select
                   required
                   value={paymentForm.data.kartu_keluarga_id}
                   onChange={(e) => paymentForm.setData('kartu_keluarga_id', e.target.value)}
-                  className="w-full rounded-xl bg-[#111A2E] border border-[#1C2541] px-4 py-2.5 text-xs text-slate-200 focus:outline-none focus:border-emerald-500"
+                  className="w-full rounded-xl bg-slate-50 border border-slate-200 px-4 py-2.5 text-xs text-slate-900 focus:outline-none focus:border-emerald-500"
                 >
                   <option value="">-- Pilih KK / Rumah --</option>
                   {familyOptions.map((opt) => (
@@ -936,44 +937,44 @@ export default function Finance({
 
               <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                 <div>
-                  <label className="mb-1.5 block text-xs font-bold text-slate-300">Periode Bulan</label>
+                  <label className="mb-1.5 block text-xs font-bold text-slate-700">Periode Bulan</label>
                   <input
                     type="month"
                     required
                     value={paymentForm.data.periode}
                     onChange={(e) => paymentForm.setData('periode', e.target.value)}
-                    className="w-full rounded-xl bg-[#111A2E] border border-[#1C2541] px-4 py-2.5 text-xs text-slate-200 focus:outline-none focus:border-emerald-500"
+                    className="w-full rounded-xl bg-slate-50 border border-slate-200 px-4 py-2.5 text-xs text-slate-900 focus:outline-none focus:border-emerald-500"
                   />
                 </div>
                 <div>
-                  <label className="mb-1.5 block text-xs font-bold text-slate-300">Tanggal Bayar</label>
+                  <label className="mb-1.5 block text-xs font-bold text-slate-700">Tanggal Bayar</label>
                   <input
                     type="date"
                     required
                     value={paymentForm.data.tanggal_bayar}
                     onChange={(e) => paymentForm.setData('tanggal_bayar', e.target.value)}
-                    className="w-full rounded-xl bg-[#111A2E] border border-[#1C2541] px-4 py-2.5 text-xs text-slate-200 focus:outline-none focus:border-emerald-500"
+                    className="w-full rounded-xl bg-slate-50 border border-slate-200 px-4 py-2.5 text-xs text-slate-900 focus:outline-none focus:border-emerald-500"
                   />
                 </div>
               </div>
 
               <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                 <div>
-                  <label className="mb-1.5 block text-xs font-bold text-slate-300">Jumlah Dibayar (Rp)</label>
+                  <label className="mb-1.5 block text-xs font-bold text-slate-700">Jumlah Dibayar (Rp)</label>
                   <input
                     type="number"
                     required
                     value={paymentForm.data.jumlah_dibayar}
                     onChange={(e) => paymentForm.setData('jumlah_dibayar', e.target.value)}
-                    className="w-full rounded-xl bg-[#111A2E] border border-[#1C2541] px-4 py-2.5 text-xs text-slate-200 focus:outline-none focus:border-emerald-500"
+                    className="w-full rounded-xl bg-slate-50 border border-slate-200 px-4 py-2.5 text-xs text-slate-900 focus:outline-none focus:border-emerald-500"
                   />
                 </div>
                 <div>
-                  <label className="mb-1.5 block text-xs font-bold text-slate-300">Metode Pembayaran</label>
+                  <label className="mb-1.5 block text-xs font-bold text-slate-700">Metode Pembayaran</label>
                   <select
                     value={paymentForm.data.metode_pembayaran}
                     onChange={(e) => paymentForm.setData('metode_pembayaran', e.target.value)}
-                    className="w-full rounded-xl bg-[#111A2E] border border-[#1C2541] px-4 py-2.5 text-xs text-slate-200 focus:outline-none focus:border-emerald-500"
+                    className="w-full rounded-xl bg-slate-50 border border-slate-200 px-4 py-2.5 text-xs text-slate-900 focus:outline-none focus:border-emerald-500"
                   >
                     <option value="Tunai">Tunai</option>
                     <option value="Transfer Bank">Transfer Bank</option>
@@ -983,11 +984,11 @@ export default function Finance({
               </div>
 
               <div>
-                <label className="mb-1.5 block text-xs font-bold text-slate-300">Status Verifikasi</label>
+                <label className="mb-1.5 block text-xs font-bold text-slate-700">Status Verifikasi</label>
                 <select
                   value={paymentForm.data.status_verifikasi}
                   onChange={(e) => paymentForm.setData('status_verifikasi', e.target.value)}
-                  className="w-full rounded-xl bg-[#111A2E] border border-[#1C2541] px-4 py-2.5 text-xs text-slate-200 focus:outline-none focus:border-emerald-500"
+                  className="w-full rounded-xl bg-slate-50 border border-slate-200 px-4 py-2.5 text-xs text-slate-900 focus:outline-none focus:border-emerald-500"
                 >
                   <option value="verified">Langsung Verifikasi (verified)</option>
                   <option value="pending">Menunggu Verifikasi (pending)</option>
@@ -995,26 +996,26 @@ export default function Finance({
               </div>
 
               <div>
-                <label className="mb-1.5 block text-xs font-bold text-slate-300">Bukti Pembayaran (Opsional)</label>
+                <label className="mb-1.5 block text-xs font-bold text-slate-700">Bukti Pembayaran (Opsional)</label>
                 <input
                   type="file"
                   onChange={(e) => paymentForm.setData('bukti_pembayaran', e.target.files?.[0] || null)}
-                  className="w-full rounded-xl bg-[#111A2E] border border-[#1C2541] px-4 py-2 text-xs text-slate-200 focus:outline-none"
+                  className="w-full rounded-xl bg-slate-50 border border-slate-200 px-4 py-2 text-xs text-slate-900 focus:outline-none"
                 />
               </div>
 
-              <div className="flex flex-col-reverse sm:flex-row justify-end gap-2.5 pt-4 border-t border-[#1C2541]/40">
+              <div className="flex flex-col-reverse sm:flex-row justify-end gap-2.5 pt-4 border-t border-slate-200">
                 <button
                   type="button"
                   onClick={() => setShowAddPayment(false)}
-                  className="w-full sm:w-auto rounded-xl border border-[#1C2541] px-4 py-2 text-xs font-bold text-slate-400 hover:text-white transition"
+                  className="w-full sm:w-auto rounded-xl border border-slate-200 bg-white px-4 py-2 text-xs font-bold text-slate-700 hover:bg-slate-100 transition shadow-sm"
                 >
                   Batal
                 </button>
                 <button
                   type="submit"
                   disabled={paymentForm.processing}
-                  className="w-full sm:w-auto rounded-xl bg-emerald-500 px-4 py-2 text-xs font-black text-[#0B132B] hover:bg-emerald-400 transition"
+                  className="w-full sm:w-auto rounded-xl bg-emerald-600 px-4 py-2 text-xs font-bold text-white hover:bg-emerald-700 transition shadow-sm"
                 >
                   Simpan Pembayaran
                 </button>
@@ -1026,32 +1027,32 @@ export default function Finance({
 
       <Dialog.Root open={selectedPayment !== null} onOpenChange={(open) => !open && setSelectedPayment(null)}>
         <Dialog.Portal>
-          <Dialog.Overlay className="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm" />
-          <Dialog.Content className="fixed left-1/2 top-1/2 z-50 w-[96vw] max-w-lg -translate-x-1/2 -translate-y-1/2 rounded-3xl border border-[#1C2541] bg-[#0B132B] p-6 text-slate-200 shadow-2xl">
-            <Dialog.Title className="text-lg font-black text-white mb-4">Verifikasi Pembayaran Iuran</Dialog.Title>
+          <Dialog.Overlay className="fixed inset-0 z-50 bg-slate-900/40 backdrop-blur-sm" />
+          <Dialog.Content className="fixed left-1/2 top-1/2 z-50 w-[96vw] max-w-lg -translate-x-1/2 -translate-y-1/2 rounded-3xl border border-slate-200 bg-white p-6 text-slate-900 shadow-2xl">
+            <Dialog.Title className="text-lg font-black text-slate-900 mb-4">Verifikasi Pembayaran Iuran</Dialog.Title>
             {selectedPayment && (
               <div className="space-y-4 text-xs">
-                <div className="rounded-xl bg-[#111A2E]/50 border border-[#1C2541]/50 p-4 space-y-2">
-                  <div className="flex justify-between"><span className="text-slate-500 font-bold uppercase">No. Rumah</span><span className="font-bold text-white">{selectedPayment.houseNumber}</span></div>
-                  <div className="flex justify-between"><span className="text-slate-500 font-bold uppercase">Kepala Keluarga</span><span className="font-bold text-slate-200">{selectedPayment.headOfFamily}</span></div>
-                  <div className="flex justify-between"><span className="text-slate-500 font-bold uppercase">Jumlah Iuran</span><span className="font-bold text-emerald-400">{formatCurrency(selectedPayment.totalBill)}</span></div>
-                  <div className="flex justify-between"><span className="text-slate-500 font-bold uppercase">Sudah Dibayar</span><span className="font-bold text-emerald-400">{formatCurrency(selectedPayment.paidAmount)}</span></div>
+                <div className="rounded-xl bg-slate-50 border border-slate-200 p-4 space-y-2">
+                  <div className="flex justify-between"><span className="text-slate-500 font-bold uppercase">No. Rumah</span><span className="font-bold text-slate-900">{selectedPayment.houseNumber}</span></div>
+                  <div className="flex justify-between"><span className="text-slate-500 font-bold uppercase">Kepala Keluarga</span><span className="font-bold text-slate-900">{selectedPayment.headOfFamily}</span></div>
+                  <div className="flex justify-between"><span className="text-slate-500 font-bold uppercase">Jumlah Iuran</span><span className="font-bold text-emerald-700">{formatCurrency(selectedPayment.totalBill)}</span></div>
+                  <div className="flex justify-between"><span className="text-slate-500 font-bold uppercase">Sudah Dibayar</span><span className="font-bold text-emerald-700">{formatCurrency(selectedPayment.paidAmount)}</span></div>
                 </div>
 
                 {selectedPayment.paymentHistory.map((history) => (
-                  <div key={history.id} className="rounded-xl bg-[#111A2E]/50 border border-[#1C2541]/40 p-4 space-y-3">
+                  <div key={history.id} className="rounded-xl bg-slate-50 border border-slate-200 p-4 space-y-3">
                     <div className="flex items-center justify-between">
-                      <span className="font-bold text-slate-400">{formatDate(history.date)}</span>
-                      <span className={`rounded-full px-2.5 py-0.5 text-[9px] font-black uppercase ${getStatusBadge(history.status)}`}>{history.status}</span>
+                      <span className="font-bold text-slate-700">{formatDate(history.date)}</span>
+                      <span className={`rounded-full px-2.5 py-0.5 text-[9px] font-bold uppercase ${getStatusBadge(history.status)}`}>{history.status}</span>
                     </div>
-                    <div className="flex justify-between"><span className="text-slate-500">Jumlah Setor:</span><span className="font-bold text-white">{formatCurrency(history.amount)}</span></div>
-                    <div className="flex justify-between"><span className="text-slate-500">Metode:</span><span className="font-semibold text-slate-300">{history.method}</span></div>
+                    <div className="flex justify-between"><span className="text-slate-600">Jumlah Setor:</span><span className="font-bold text-slate-900">{formatCurrency(history.amount)}</span></div>
+                    <div className="flex justify-between"><span className="text-slate-600">Metode:</span><span className="font-bold text-slate-900">{history.method}</span></div>
                     
-                    {history.notes && <div className="text-slate-500 bg-[#0B132B] p-2.5 rounded-lg border border-[#1C2541]/30">{history.notes}</div>}
+                    {history.notes && <div className="text-slate-700 bg-white p-2.5 rounded-lg border border-slate-200">{history.notes}</div>}
                     
                     {history.proofUrl && (
                       <div className="pt-2">
-                        <a href={history.proofUrl} target="_blank" rel="noreferrer" className="text-blue-400 font-bold hover:underline">
+                        <a href={history.proofUrl} target="_blank" rel="noreferrer" className="text-blue-700 font-bold hover:underline">
                           Lihat Bukti Lampiran File
                         </a>
                       </div>
@@ -1065,7 +1066,7 @@ export default function Finance({
                             verifyPayment(history.id);
                             setSelectedPayment(null);
                           }}
-                          className="flex-1 rounded-lg bg-emerald-500 py-2 text-center text-xs font-black text-[#0B132B] hover:bg-emerald-400 transition"
+                          className="flex-1 rounded-lg bg-emerald-600 py-2 text-center text-xs font-bold text-white hover:bg-emerald-700 transition shadow-sm"
                         >
                           Verifikasi / Setujui
                         </button>
@@ -1075,7 +1076,7 @@ export default function Finance({
                             rejectPayment(history.id);
                             setSelectedPayment(null);
                           }}
-                          className="flex-1 rounded-lg bg-red-500 py-2 text-center text-xs font-black text-white hover:bg-red-400 transition"
+                          className="flex-1 rounded-lg bg-red-600 py-2 text-center text-xs font-bold text-white hover:bg-red-700 transition shadow-sm"
                         >
                           Tolak
                         </button>
@@ -1091,66 +1092,66 @@ export default function Finance({
 
       <Dialog.Root open={showComponentModal} onOpenChange={setShowComponentModal}>
         <Dialog.Portal>
-          <Dialog.Overlay className="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm" />
-          <Dialog.Content className="fixed left-1/2 top-1/2 z-50 w-[96vw] max-w-md -translate-x-1/2 -translate-y-1/2 rounded-3xl border border-[#1C2541] bg-[#0B132B] p-6 text-slate-200 shadow-2xl">
-            <Dialog.Title className="text-lg font-black text-white mb-4">
+          <Dialog.Overlay className="fixed inset-0 z-50 bg-slate-900/40 backdrop-blur-sm" />
+          <Dialog.Content className="fixed left-1/2 top-1/2 z-50 w-[96vw] max-w-md -translate-x-1/2 -translate-y-1/2 rounded-3xl border border-slate-200 bg-white p-6 text-slate-900 shadow-2xl">
+            <Dialog.Title className="text-lg font-black text-slate-900 mb-4">
               {editingComponent ? 'Edit Komponen Iuran' : 'Tambah Komponen Iuran'}
             </Dialog.Title>
             <form onSubmit={submitComponent} className="space-y-4">
               <div>
-                <label className="mb-1.5 block text-xs font-bold text-slate-300">Nama Komponen</label>
+                <label className="mb-1.5 block text-xs font-bold text-slate-700">Nama Komponen</label>
                 <input
                   type="text"
                   required
                   value={componentForm.data.nama}
                   onChange={(e) => componentForm.setData('nama', e.target.value)}
-                  className="w-full rounded-xl bg-[#111A2E] border border-[#1C2541] px-4 py-2.5 text-xs text-slate-200 focus:outline-none focus:border-emerald-500"
+                  className="w-full rounded-xl bg-slate-50 border border-slate-200 px-4 py-2.5 text-xs text-slate-900 focus:outline-none focus:border-emerald-500"
                 />
               </div>
 
               <div>
-                <label className="mb-1.5 block text-xs font-bold text-slate-300">Nominal Bulanan (Rp)</label>
+                <label className="mb-1.5 block text-xs font-bold text-slate-700">Nominal Bulanan (Rp)</label>
                 <input
                   type="number"
                   required
                   value={componentForm.data.nominal}
                   onChange={(e) => componentForm.setData('nominal', e.target.value)}
-                  className="w-full rounded-xl bg-[#111A2E] border border-[#1C2541] px-4 py-2.5 text-xs text-slate-200 focus:outline-none focus:border-emerald-500"
+                  className="w-full rounded-xl bg-slate-50 border border-slate-200 px-4 py-2.5 text-xs text-slate-900 focus:outline-none focus:border-emerald-500"
                 />
               </div>
 
               <div>
-                <label className="mb-1.5 block text-xs font-bold text-slate-300">Urutan Tampil</label>
+                <label className="mb-1.5 block text-xs font-bold text-slate-700">Urutan Tampil</label>
                 <input
                   type="number"
                   value={componentForm.data.urutan}
                   onChange={(e) => componentForm.setData('urutan', e.target.value)}
-                  className="w-full rounded-xl bg-[#111A2E] border border-[#1C2541] px-4 py-2.5 text-xs text-slate-200 focus:outline-none focus:border-emerald-500"
+                  className="w-full rounded-xl bg-slate-50 border border-slate-200 px-4 py-2.5 text-xs text-slate-900 focus:outline-none focus:border-emerald-500"
                 />
               </div>
 
               <div>
-                <label className="mb-1.5 block text-xs font-bold text-slate-300">Keterangan / Deskripsi</label>
+                <label className="mb-1.5 block text-xs font-bold text-slate-700">Keterangan / Deskripsi</label>
                 <textarea
                   rows={2}
                   value={componentForm.data.keterangan}
                   onChange={(e) => componentForm.setData('keterangan', e.target.value)}
-                  className="w-full rounded-xl bg-[#111A2E] border border-[#1C2541] px-4 py-2.5 text-xs text-slate-200 focus:outline-none focus:border-emerald-500"
+                  className="w-full rounded-xl bg-slate-50 border border-slate-200 px-4 py-2.5 text-xs text-slate-900 focus:outline-none focus:border-emerald-500"
                 />
               </div>
 
-              <div className="flex justify-end gap-2.5 pt-4 border-t border-[#1C2541]/40">
+              <div className="flex justify-end gap-2.5 pt-4 border-t border-slate-200">
                 <button
                   type="button"
                   onClick={() => setShowComponentModal(false)}
-                  className="rounded-xl border border-[#1C2541] px-4 py-2 text-xs font-bold text-slate-400 hover:text-white transition"
+                  className="rounded-xl border border-slate-200 bg-white px-4 py-2 text-xs font-bold text-slate-700 hover:bg-slate-100 transition shadow-sm"
                 >
                   Batal
                 </button>
                 <button
                   type="submit"
                   disabled={componentForm.processing}
-                  className="rounded-xl bg-emerald-500 px-4 py-2 text-xs font-black text-[#0B132B] hover:bg-emerald-400 transition"
+                  className="rounded-xl bg-emerald-600 px-4 py-2 text-xs font-bold text-white hover:bg-emerald-700 transition shadow-sm"
                 >
                   Simpan Komponen
                 </button>
@@ -1162,12 +1163,12 @@ export default function Finance({
 
       <Dialog.Root open={showProofModal} onOpenChange={setShowProofModal}>
         <Dialog.Portal>
-          <Dialog.Overlay className="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm" />
-          <Dialog.Content className="fixed left-1/2 top-1/2 z-50 w-[96vw] max-w-lg -translate-x-1/2 -translate-y-1/2 rounded-3xl border border-[#1C2541] bg-[#0B132B] p-6 text-slate-200 shadow-2xl">
-            <div className="flex items-center justify-between border-b border-[#1C2541]/40 pb-4 mb-4">
-              <Dialog.Title className="text-lg font-black text-white">Bukti Pembayaran</Dialog.Title>
+          <Dialog.Overlay className="fixed inset-0 z-50 bg-slate-900/40 backdrop-blur-sm" />
+          <Dialog.Content className="fixed left-1/2 top-1/2 z-50 w-[96vw] max-w-lg -translate-x-1/2 -translate-y-1/2 rounded-3xl border border-slate-200 bg-white p-6 text-slate-900 shadow-2xl">
+            <div className="flex items-center justify-between border-b border-slate-200 pb-4 mb-4">
+              <Dialog.Title className="text-lg font-black text-slate-900">Bukti Pembayaran</Dialog.Title>
               <Dialog.Close asChild>
-                <button className="rounded-xl p-2 transition hover:bg-[#111A2E] text-slate-400 hover:text-white border border-[#1C2541]/40">
+                <button className="rounded-xl p-2 transition hover:bg-slate-100 text-slate-400 hover:text-slate-800 border border-slate-200">
                   <X size={18} />
                 </button>
               </Dialog.Close>
@@ -1175,13 +1176,13 @@ export default function Finance({
             <Dialog.Description className="sr-only">
               Bukti pembayaran transfer atau tunai
             </Dialog.Description>
-            <div className="flex justify-center items-center p-2 rounded-2xl bg-[#111A2E]/50 border border-[#1C2541]/30 overflow-hidden">
+            <div className="flex justify-center items-center p-2 rounded-2xl bg-slate-50 border border-slate-200 overflow-hidden">
               {currentProof && currentProof.toLowerCase().endsWith(".pdf") ? (
                 <a
                   href={currentProof}
                   target="_blank"
                   rel="noreferrer"
-                  className="text-emerald-400 font-bold hover:underline flex items-center gap-2 py-4"
+                  className="text-blue-700 font-bold hover:underline flex items-center gap-2 py-4"
                 >
                   <FileText size={20} /> Buka File Bukti Pembayaran (PDF)
                 </a>

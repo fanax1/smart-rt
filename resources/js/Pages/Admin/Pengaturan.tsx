@@ -448,26 +448,26 @@ export default function Pengaturan({
                     {/* Logo upload panel */}
                     <div className="rounded-2xl border border-slate-200 bg-white overflow-hidden shadow-sm">
                         <div className="border-b border-slate-200 px-5 py-4 bg-slate-50">
-                            <h3 className="text-sm font-bold text-white">Logo Unit RT</h3>
-                            <p className="text-xs text-slate-500 mt-0.5">Visuel branding di seluruh halaman</p>
+                            <h3 className="text-sm font-bold text-slate-900">Logo Unit RT</h3>
+                            <p className="text-xs text-slate-500 mt-0.5">Visual branding di seluruh halaman</p>
                         </div>
                         <div className="p-5 flex flex-col items-center gap-4">
                             {/* Current logo */}
-                            <div className="flex h-28 w-28 items-center justify-center rounded-2xl border-2 border-dashed border-[#1C2541]/60 bg-[#111A2E]/60 overflow-hidden">
+                            <div className="flex h-28 w-28 items-center justify-center rounded-2xl border-2 border-dashed border-slate-200 bg-slate-50 overflow-hidden">
                                 {logoUrl ? (
                                     <img src={logoUrl} alt="Logo RT" className="h-full w-full object-contain p-2" />
                                 ) : (
                                     <div className="text-center">
-                                        <Upload size={24} className="text-slate-600 mx-auto mb-1" />
-                                        <p className="text-[10px] text-slate-600">Belum ada logo</p>
+                                        <Upload size={24} className="text-slate-400 mx-auto mb-1" />
+                                        <p className="text-[10px] text-slate-500 font-medium">Belum ada logo</p>
                                     </div>
                                 )}
                             </div>
                             <input ref={logoInputRef} type="file" accept="image/*" className="hidden" onChange={e => { const f = e.target.files?.[0]; if (f) uploadLogo(f); }} />
-                            <button onClick={() => logoInputRef.current?.click()} className="flex items-center gap-2 rounded-xl border border-[#1C2541]/60 px-4 py-2.5 text-sm font-bold text-slate-300 hover:text-white hover:border-emerald-500/30 transition">
+                            <button onClick={() => logoInputRef.current?.click()} className="flex items-center gap-2 rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-sm font-bold text-slate-700 hover:bg-slate-100 transition shadow-sm">
                                 <Upload size={14} /> {logoUrl ? 'Ganti Logo' : 'Upload Logo'}
                             </button>
-                            <p className="text-[10px] text-slate-600 text-center">Format JPG/PNG/WebP/SVG, maks. 2 MB</p>
+                            <p className="text-[10px] text-slate-500 font-medium text-center">Format JPG/PNG/WebP/SVG, maks. 2 MB</p>
                         </div>
                     </div>
                 </div>
@@ -477,39 +477,39 @@ export default function Pengaturan({
             {activeTab === 'Kontak Darurat' && (
                 <div className="space-y-4">
                     {emergencyContacts.length === 0 ? (
-                        <div className="rounded-2xl border border-dashed border-[#1C2541]/60 bg-[#0B132B]/40 py-14 text-center">
-                            <PhoneCall size={36} className="text-slate-600 mx-auto mb-3" />
-                            <p className="text-slate-500 font-semibold">Belum ada kontak darurat.</p>
-                            <p className="text-sm text-slate-600 mt-1">Tambahkan kontak Ketua RT, Keamanan, Puskesmas, dll.</p>
-                            <button onClick={openCreateContact} className="mt-5 rounded-xl bg-emerald-500 px-5 py-2.5 text-sm font-bold text-[#0B132B] hover:bg-emerald-400 transition">+ Tambah Kontak</button>
+                        <div className="rounded-2xl border border-dashed border-slate-200 bg-white p-14 text-center shadow-sm">
+                            <PhoneCall size={36} className="text-slate-400 mx-auto mb-3" />
+                            <p className="text-slate-700 font-bold">Belum ada kontak darurat.</p>
+                            <p className="text-sm text-slate-500 mt-1 font-medium">Tambahkan kontak Ketua RT, Keamanan, Puskesmas, dll.</p>
+                            <button onClick={openCreateContact} className="mt-5 rounded-xl bg-emerald-600 px-5 py-2.5 text-sm font-bold text-white hover:bg-emerald-700 transition shadow-sm">+ Tambah Kontak</button>
                         </div>
                     ) : (
-                        <div className="rounded-2xl border border-[#1C2541]/60 bg-[#0B132B]/60 overflow-hidden">
-                            <div className="border-b border-[#1C2541]/40 px-5 py-4 flex items-center justify-between">
+                        <div className="rounded-2xl border border-slate-200 bg-white overflow-hidden shadow-sm">
+                            <div className="border-b border-slate-200 px-5 py-4 flex items-center justify-between bg-slate-50">
                                 <div className="flex items-center gap-2">
-                                    <PhoneCall size={16} className="text-emerald-400" />
-                                    <h3 className="text-sm font-bold text-white">Daftar Kontak Darurat</h3>
+                                    <PhoneCall size={16} className="text-emerald-700" />
+                                    <h3 className="text-sm font-bold text-slate-900">Daftar Kontak Darurat</h3>
                                 </div>
-                                <span className="text-xs text-slate-500">{emergencyContacts.length} kontak</span>
+                                <span className="text-xs text-slate-500 font-medium">{emergencyContacts.length} kontak</span>
                             </div>
-                            <div className="divide-y divide-[#1C2541]/30">
+                            <div className="divide-y divide-slate-100">
                                 {emergencyContacts.map(contact => (
-                                    <div key={contact.id} className="flex items-center gap-4 px-5 py-4 hover:bg-[#111A2E]/50 transition group">
-                                        <div className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border ${contact.is_active ? 'bg-emerald-500/15 border-emerald-500/20' : 'bg-slate-500/15 border-slate-500/20'}`}>
-                                            <Phone size={16} className={contact.is_active ? 'text-emerald-400' : 'text-slate-500'} />
+                                    <div key={contact.id} className="flex items-center gap-4 px-5 py-4 hover:bg-slate-50 transition group">
+                                        <div className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border ${contact.is_active ? 'bg-emerald-50 border-emerald-200' : 'bg-slate-100 border-slate-200'}`}>
+                                            <Phone size={16} className={contact.is_active ? 'text-emerald-700' : 'text-slate-500'} />
                                         </div>
                                         <div className="flex-1 min-w-0">
                                             <div className="flex items-center gap-2">
-                                                <p className="text-sm font-bold text-white">{contact.name}</p>
-                                                {contact.role && <span className="text-[10px] font-bold border border-blue-500/30 bg-blue-500/10 text-blue-300 px-2 py-0.5 rounded-lg">{contact.role}</span>}
-                                                {!contact.is_active && <span className="text-[10px] font-bold border border-slate-500/30 bg-slate-500/10 text-slate-500 px-2 py-0.5 rounded-lg">Nonaktif</span>}
+                                                <p className="text-sm font-bold text-slate-900">{contact.name}</p>
+                                                {contact.role && <span className="text-[10px] font-bold border border-blue-200 bg-blue-50 text-blue-700 px-2 py-0.5 rounded-lg">{contact.role}</span>}
+                                                {!contact.is_active && <span className="text-[10px] font-bold border border-slate-200 bg-slate-100 text-slate-600 px-2 py-0.5 rounded-lg">Nonaktif</span>}
                                             </div>
-                                            <p className="text-xs text-emerald-400 font-semibold mt-0.5">{contact.phone}</p>
-                                            {contact.description && <p className="text-[10px] text-slate-500 mt-0.5">{contact.description}</p>}
+                                            <p className="text-xs text-emerald-700 font-bold mt-0.5">{contact.phone}</p>
+                                            {contact.description && <p className="text-[10px] text-slate-500 font-medium mt-0.5">{contact.description}</p>}
                                         </div>
                                         <div className="flex gap-2 opacity-0 group-hover:opacity-100 transition">
-                                            <button onClick={() => openEditContact(contact)} className="rounded-xl border border-[#1C2541]/60 px-3 py-1.5 text-xs font-bold text-slate-400 hover:text-white transition"><Edit size={12} /></button>
-                                            <button onClick={() => deleteContact(contact)} className="rounded-xl border border-red-500/30 px-3 py-1.5 text-xs font-bold text-red-400 hover:bg-red-500/10 transition"><Trash2 size={12} /></button>
+                                            <button onClick={() => openEditContact(contact)} className="rounded-xl border border-slate-200 bg-white px-3 py-1.5 text-xs font-bold text-slate-700 hover:bg-slate-100 transition shadow-sm"><Edit size={12} /></button>
+                                            <button onClick={() => deleteContact(contact)} className="rounded-xl border border-red-200 bg-red-50 px-3 py-1.5 text-xs font-bold text-red-700 hover:bg-red-100 transition"><Trash2 size={12} /></button>
                                         </div>
                                     </div>
                                 ))}
@@ -522,10 +522,10 @@ export default function Pengaturan({
             {/* ── TAB: Footer & Sosmed ── */}
             {activeTab === 'Footer & Sosial Media' && (
                 <form onSubmit={(e) => { e.preventDefault(); saveGroup('footer', footerValues); }} className="grid gap-6 lg:grid-cols-2">
-                    <div className="rounded-2xl border border-[#1C2541]/60 bg-[#0B132B]/60 overflow-hidden">
-                        <div className="border-b border-[#1C2541]/40 px-5 py-4 flex items-center gap-2">
-                            <Globe size={16} className="text-emerald-400" />
-                            <h3 className="text-sm font-bold text-white">Teks Footer</h3>
+                    <div className="rounded-2xl border border-slate-200 bg-white overflow-hidden shadow-sm">
+                        <div className="border-b border-slate-200 px-5 py-4 flex items-center gap-2 bg-slate-50">
+                            <Globe size={16} className="text-emerald-700" />
+                            <h3 className="text-sm font-bold text-slate-900">Teks Footer</h3>
                         </div>
                         <div className="p-5 space-y-4">
                             {(settingsByGroup['footer'] || []).filter(s => ['footer_text', 'copyright', 'email_publik'].includes(s.key)).map(setting => (
@@ -548,10 +548,10 @@ export default function Pengaturan({
                         </div>
                     </div>
 
-                    <div className="rounded-2xl border border-[#1C2541]/60 bg-[#0B132B]/60 overflow-hidden">
-                        <div className="border-b border-[#1C2541]/40 px-5 py-4 flex items-center gap-2">
-                            <Instagram size={16} className="text-pink-400" />
-                            <h3 className="text-sm font-bold text-white">Link Sosial Media</h3>
+                    <div className="rounded-2xl border border-slate-200 bg-white overflow-hidden shadow-sm">
+                        <div className="border-b border-slate-200 px-5 py-4 flex items-center gap-2 bg-slate-50">
+                            <Instagram size={16} className="text-pink-600" />
+                            <h3 className="text-sm font-bold text-slate-900">Link Sosial Media</h3>
                         </div>
                         <div className="p-5 space-y-4">
                             {[
@@ -563,7 +563,7 @@ export default function Pengaturan({
                                 <div key={key}>
                                     <label htmlFor={key} className={labelCls}>{label}</label>
                                     <div className="relative">
-                                        <Icon size={14} className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-500" />
+                                        <Icon size={14} className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" />
                                         <input
                                             type="text"
                                             id={key}
@@ -583,7 +583,7 @@ export default function Pengaturan({
                     </div>
 
                     <div className="lg:col-span-2 flex justify-end">
-                        <button type="submit" disabled={savingGroup === 'footer'} className="flex items-center gap-2 rounded-xl bg-emerald-500 px-5 py-2.5 text-sm font-bold text-[#0B132B] hover:bg-emerald-400 transition disabled:opacity-60">
+                        <button type="submit" disabled={savingGroup === 'footer'} className="flex items-center gap-2 rounded-xl bg-emerald-600 px-5 py-2.5 text-sm font-bold text-white hover:bg-emerald-700 transition disabled:opacity-60 shadow-sm">
                             <Save size={15} />{savingGroup === 'footer' ? 'Menyimpan...' : 'Simpan Footer & Sosmed'}
                         </button>
                     </div>
@@ -594,48 +594,47 @@ export default function Pengaturan({
             {activeTab === 'Struktur Kepengurusan' && (
                 <div className="space-y-6">
                     {activePeriod ? (
-                        <div className="relative overflow-hidden rounded-2xl border border-emerald-500/20 bg-gradient-to-r from-emerald-500/10 to-[#0B132B]/60 p-6">
-                            <div className="pointer-events-none absolute -right-16 -top-16 h-48 w-48 rounded-full bg-emerald-500/10 blur-3xl" />
+                        <div className="relative overflow-hidden rounded-2xl border border-emerald-200 bg-emerald-50/50 p-6 shadow-sm">
                             <div className="relative flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
                                 <div>
-                                    <div className="mb-2 inline-flex items-center gap-2 rounded-full bg-emerald-500/15 border border-emerald-500/30 px-3 py-1">
-                                        <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-                                        <span className="text-[10px] font-bold uppercase tracking-widest text-emerald-300">Periode Aktif</span>
+                                    <div className="mb-2 inline-flex items-center gap-2 rounded-full bg-emerald-100 border border-emerald-300 px-3 py-1">
+                                        <span className="w-2 h-2 rounded-full bg-emerald-600 animate-pulse" />
+                                        <span className="text-[10px] font-bold uppercase tracking-widest text-emerald-800">Periode Aktif</span>
                                     </div>
-                                    <h3 className="text-xl font-black text-white">{activePeriod.name}</h3>
-                                    <p className="text-sm text-slate-400 mt-0.5">Masa bhakti {formatPeriod(activePeriod)} · {activeMembers.length} anggota</p>
+                                    <h3 className="text-xl font-black text-slate-900">{activePeriod.name}</h3>
+                                    <p className="text-sm text-slate-600 font-medium mt-0.5">Masa bhakti {formatPeriod(activePeriod)} · {activeMembers.length} anggota</p>
                                 </div>
                                 <div className="flex items-center gap-3">
-                                    <div className="flex rounded-xl border border-[#1C2541]/60 bg-[#0B132B]/60 p-1">
-                                        <button onClick={() => setViewMode('card')} className={`rounded-lg px-3 py-1.5 text-xs font-bold transition ${viewMode === 'card' ? 'bg-emerald-500/20 text-emerald-300' : 'text-slate-500 hover:text-slate-300'}`}>Kartu</button>
-                                        <button onClick={() => setViewMode('table')} className={`rounded-lg px-3 py-1.5 text-xs font-bold transition ${viewMode === 'table' ? 'bg-emerald-500/20 text-emerald-300' : 'text-slate-500 hover:text-slate-300'}`}>Tabel</button>
+                                    <div className="flex rounded-xl border border-slate-200 bg-white p-1 shadow-sm">
+                                        <button onClick={() => setViewMode('card')} className={`rounded-lg px-3 py-1.5 text-xs font-bold transition ${viewMode === 'card' ? 'bg-emerald-600 text-white' : 'text-slate-600 hover:text-slate-900'}`}>Kartu</button>
+                                        <button onClick={() => setViewMode('table')} className={`rounded-lg px-3 py-1.5 text-xs font-bold transition ${viewMode === 'table' ? 'bg-emerald-600 text-white' : 'text-slate-600 hover:text-slate-900'}`}>Tabel</button>
                                     </div>
-                                    <button onClick={() => openEditPeriod(activePeriod)} className="flex items-center gap-1.5 rounded-xl border border-[#1C2541]/60 bg-[#0B132B]/60 px-4 py-2 text-sm font-bold text-slate-300 hover:text-white transition">
+                                    <button onClick={() => openEditPeriod(activePeriod)} className="flex items-center gap-1.5 rounded-xl border border-slate-200 bg-white px-4 py-2 text-sm font-bold text-slate-700 hover:bg-slate-100 transition shadow-sm">
                                         <Edit size={14} /> Edit
                                     </button>
                                 </div>
                             </div>
                             <div className="mt-4 grid grid-cols-3 gap-3">
                                 {[
-                                    { label: 'Pengurus Inti', value: coreMembers.length, color: 'text-emerald-400', icon: Award },
-                                    { label: 'Seksi/Divisi', value: divisionMembers.length, color: 'text-blue-400', icon: Users },
-                                    { label: 'Anggota', value: generalMembers.length, color: 'text-slate-300', icon: User },
+                                    { label: 'Pengurus Inti', value: coreMembers.length, color: 'text-emerald-700', icon: Award },
+                                    { label: 'Seksi/Divisi', value: divisionMembers.length, color: 'text-blue-700', icon: Users },
+                                    { label: 'Anggota', value: generalMembers.length, color: 'text-slate-700', icon: User },
                                 ].map(({ label, value, color, icon: Icon }) => (
-                                    <div key={label} className="rounded-xl border border-[#1C2541]/40 bg-[#0B132B]/60 p-3 flex items-center gap-3">
+                                    <div key={label} className="rounded-xl border border-slate-200 bg-white p-3 flex items-center gap-3 shadow-sm">
                                         <Icon size={18} className={color} />
                                         <div>
                                             <p className={`text-lg font-black ${color}`}>{value}</p>
-                                            <p className="text-[10px] text-slate-500">{label}</p>
+                                            <p className="text-[10px] text-slate-500 font-bold">{label}</p>
                                         </div>
                                     </div>
                                 ))}
                             </div>
                         </div>
                     ) : (
-                        <div className="rounded-2xl border border-dashed border-[#1C2541]/60 bg-[#0B132B]/40 p-10 text-center">
-                            <Calendar size={40} className="text-slate-600 mx-auto mb-3" />
-                            <p className="text-base font-bold text-slate-500">Belum ada periode kepengurusan aktif.</p>
-                            <button onClick={openCreatePeriod} className="mt-5 rounded-xl bg-emerald-500 px-5 py-2.5 text-sm font-bold text-[#0B132B] hover:bg-emerald-400 transition">+ Tambah Periode</button>
+                        <div className="rounded-2xl border border-dashed border-slate-200 bg-white p-10 text-center shadow-sm">
+                            <Calendar size={40} className="text-slate-400 mx-auto mb-3" />
+                            <p className="text-base font-bold text-slate-700">Belum ada periode kepengurusan aktif.</p>
+                            <button onClick={openCreatePeriod} className="mt-5 rounded-xl bg-emerald-600 px-5 py-2.5 text-sm font-bold text-white hover:bg-emerald-700 transition shadow-sm">+ Tambah Periode</button>
                         </div>
                     )}
 
@@ -647,13 +646,13 @@ export default function Pengaturan({
                                 {generalMembers.length > 0 && <MemberGroup title="Anggota" members={generalMembers} accentColor="slate" onEdit={openEditMember} onDelete={deleteMember} />}
                             </div>
                         ) : (
-                            <div className="rounded-2xl border border-[#1C2541]/60 bg-[#0B132B]/60 overflow-hidden">
+                            <div className="rounded-2xl border border-slate-200 bg-white shadow-sm overflow-hidden">
                                 <div className="overflow-x-auto">
                                     <table className="w-full min-w-[800px]">
                                         <thead>
-                                            <tr className="border-b border-[#1C2541]/40">
+                                            <tr className="border-b border-slate-200 bg-slate-50">
                                                 {['Anggota', 'Jabatan', 'Kategori', 'WhatsApp', 'Status', 'Aksi'].map(h => (
-                                                    <th key={h} className="px-4 py-3 text-left text-[10px] font-bold uppercase tracking-widest text-slate-500">{h}</th>
+                                                    <th key={h} className="px-4 py-3 text-left text-[10px] font-bold uppercase tracking-widest text-slate-700">{h}</th>
                                                 ))}
                                             </tr>
                                         </thead>
@@ -661,27 +660,27 @@ export default function Pengaturan({
                                             {activeMembers.map(member => {
                                                 const catConf = categoryConfig(member.category);
                                                 return (
-                                                    <tr key={member.id} className="border-b border-[#1C2541]/30 hover:bg-[#111A2E]/50 transition group">
+                                                    <tr key={member.id} className="border-b border-slate-100 hover:bg-slate-50 transition group">
                                                         <td className="px-4 py-4">
                                                             <div className="flex items-center gap-3">
                                                                 {member.photo_url ? (
-                                                                    <img src={member.photo_url} alt={member.name} className="h-9 w-9 rounded-xl object-cover border border-[#1C2541]/60" />
+                                                                    <img src={member.photo_url} alt={member.name} className="h-9 w-9 rounded-xl object-cover border border-slate-200" />
                                                                 ) : (
-                                                                    <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-emerald-500/15 border border-emerald-500/20 text-xs font-black text-emerald-300">{getInitials(member.name)}</div>
+                                                                    <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-emerald-50 border border-emerald-200 text-xs font-black text-emerald-700">{getInitials(member.name)}</div>
                                                                 )}
-                                                                <p className="text-sm font-bold text-white">{member.name}</p>
+                                                                <p className="text-sm font-bold text-slate-900">{member.name}</p>
                                                             </div>
                                                         </td>
-                                                        <td className="px-4 py-4 text-sm text-slate-300">{member.position}</td>
+                                                        <td className="px-4 py-4 text-sm font-bold text-slate-700">{member.position}</td>
                                                         <td className="px-4 py-4">
                                                             <span className={`inline-flex rounded-lg border px-2.5 py-1 text-[10px] font-bold ${catConf.cls}`}>{catConf.label}</span>
                                                         </td>
-                                                        <td className="px-4 py-4 text-xs text-slate-400">{member.phone || '-'}</td>
-                                                        <td className="px-4 py-4"><span className={`inline-block w-2 h-2 rounded-full ${member.is_active ? 'bg-emerald-400' : 'bg-slate-500'}`} /></td>
+                                                        <td className="px-4 py-4 text-xs text-slate-600 font-medium">{member.phone || '-'}</td>
+                                                        <td className="px-4 py-4"><span className={`inline-block w-2 h-2 rounded-full ${member.is_active ? 'bg-emerald-600' : 'bg-slate-400'}`} /></td>
                                                         <td className="px-4 py-4">
                                                             <div className="flex gap-2">
-                                                                <button onClick={() => openEditMember(member)} className="rounded-xl border border-[#1C2541]/60 px-3 py-1.5 text-xs text-slate-400 hover:text-white transition">Edit</button>
-                                                                <button onClick={() => deleteMember(member)} className="rounded-xl border border-red-500/30 px-3 py-1.5 text-xs text-red-400 hover:bg-red-500/10 transition">Hapus</button>
+                                                                <button onClick={() => openEditMember(member)} className="rounded-xl border border-slate-200 bg-white px-3 py-1.5 text-xs font-bold text-slate-700 hover:bg-slate-100 transition shadow-sm">Edit</button>
+                                                                <button onClick={() => deleteMember(member)} className="rounded-xl border border-red-200 bg-red-50 px-3 py-1.5 text-xs font-bold text-red-700 hover:bg-red-100 transition">Hapus</button>
                                                             </div>
                                                         </td>
                                                     </tr>
@@ -695,56 +694,56 @@ export default function Pengaturan({
                     )}
 
                     {committeePeriods.length > 0 && (
-                        <div className="rounded-2xl border border-[#1C2541]/60 bg-[#0B132B]/60 overflow-hidden">
-                            <div className="border-b border-[#1C2541]/40 px-5 py-4 flex items-center justify-between">
-                                <div className="flex items-center gap-2"><History size={16} className="text-slate-400" /><h3 className="text-sm font-bold text-white">Semua Periode</h3></div>
-                                <span className="text-xs text-slate-500">{committeePeriods.length} periode</span>
+                        <div className="rounded-2xl border border-slate-200 bg-white shadow-sm overflow-hidden">
+                            <div className="border-b border-slate-200 px-5 py-4 flex items-center justify-between bg-slate-50">
+                                <div className="flex items-center gap-2"><History size={16} className="text-slate-500" /><h3 className="text-sm font-bold text-slate-900">Semua Periode</h3></div>
+                                <span className="text-xs text-slate-500 font-medium">{committeePeriods.length} periode</span>
                             </div>
-                            <div className="divide-y divide-[#1C2541]/30">
+                            <div className="divide-y divide-slate-100">
                                 {committeePeriods.map(period => {
                                     const sc = statusConfig(period.status);
                                     const StatusIcon = sc.icon;
                                     const isExpanded = expandedPeriodId === period.id;
                                     return (
                                         <div key={period.id}>
-                                            <button type="button" onClick={() => setExpandedPeriodId(isExpanded ? null : period.id)} className="flex w-full items-center justify-between gap-4 px-5 py-4 text-left hover:bg-[#111A2E]/50 transition">
+                                            <button type="button" onClick={() => setExpandedPeriodId(isExpanded ? null : period.id)} className="flex w-full items-center justify-between gap-4 px-5 py-4 text-left hover:bg-slate-50 transition">
                                                 <div className="flex items-center gap-4">
-                                                    <div className={`flex h-9 w-9 items-center justify-center rounded-xl border ${period.is_active ? 'bg-emerald-500/15 border-emerald-500/30' : 'bg-[#111A2E] border-[#1C2541]/60'}`}>
-                                                        <StatusIcon size={16} className={period.is_active ? 'text-emerald-400' : 'text-slate-500'} />
+                                                    <div className={`flex h-9 w-9 items-center justify-center rounded-xl border ${period.is_active ? 'bg-emerald-50 border-emerald-200' : 'bg-slate-50 border-slate-200'}`}>
+                                                        <StatusIcon size={16} className={period.is_active ? 'text-emerald-700' : 'text-slate-500'} />
                                                     </div>
                                                     <div>
-                                                        <p className="text-sm font-bold text-white">{period.name}</p>
-                                                        <p className="text-xs text-slate-500">Masa bhakti {formatPeriod(period)} · {period.members.length} anggota</p>
+                                                        <p className="text-sm font-bold text-slate-900">{period.name}</p>
+                                                        <p className="text-xs text-slate-500 font-medium">Masa bhakti {formatPeriod(period)} · {period.members.length} anggota</p>
                                                     </div>
                                                 </div>
                                                 <div className="flex items-center gap-3">
                                                     <span className={`inline-flex items-center gap-1.5 rounded-lg px-2.5 py-1 text-[10px] font-bold ${sc.cls}`}><span className={`w-1.5 h-1.5 rounded-full ${sc.dot}`} />{statusLabel(period.status)}</span>
-                                                    {isExpanded ? <ChevronDown size={16} className="text-slate-500" /> : <ChevronRight size={16} className="text-slate-500" />}
+                                                    {isExpanded ? <ChevronDown size={16} className="text-slate-400" /> : <ChevronRight size={16} className="text-slate-400" />}
                                                 </div>
                                             </button>
                                             {isExpanded && (
-                                                <div className="border-t border-[#1C2541]/30 bg-[#060A14]/40 px-5 py-5">
+                                                <div className="border-t border-slate-100 bg-slate-50/50 px-5 py-5">
                                                     <div className="mb-4 flex justify-end gap-2">
-                                                        <button onClick={() => openEditPeriod(period)} className="flex items-center gap-1.5 rounded-xl border border-[#1C2541]/60 px-3 py-1.5 text-xs font-bold text-slate-400 hover:text-white transition"><Edit size={12} /> Edit</button>
-                                                        <button onClick={() => deletePeriod(period)} className="flex items-center gap-1.5 rounded-xl border border-red-500/30 px-3 py-1.5 text-xs font-bold text-red-400 hover:bg-red-500/10 transition"><Trash2 size={12} /> Hapus</button>
+                                                        <button onClick={() => openEditPeriod(period)} className="flex items-center gap-1.5 rounded-xl border border-slate-200 bg-white px-3 py-1.5 text-xs font-bold text-slate-700 hover:bg-slate-100 transition shadow-sm"><Edit size={12} /> Edit</button>
+                                                        <button onClick={() => deletePeriod(period)} className="flex items-center gap-1.5 rounded-xl border border-red-200 bg-red-50 px-3 py-1.5 text-xs font-bold text-red-700 hover:bg-red-100 transition"><Trash2 size={12} /> Hapus</button>
                                                     </div>
                                                     {period.members.length > 0 ? (
                                                         <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
                                                             {period.members.map(member => {
                                                                 const catConf = categoryConfig(member.category);
                                                                 return (
-                                                                    <div key={member.id} className="group relative flex items-center gap-3 rounded-xl border border-[#1C2541]/40 bg-[#0B132B]/60 p-3 hover:border-emerald-500/20 transition">
-                                                                        {member.photo_url ? <img src={member.photo_url} alt={member.name} className="h-8 w-8 rounded-lg object-cover" /> : <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-emerald-500/15 text-xs font-black text-emerald-300">{getInitials(member.name)}</div>}
+                                                                    <div key={member.id} className="group relative flex items-center gap-3 rounded-xl border border-slate-200 bg-white p-3 hover:border-emerald-300 transition shadow-sm">
+                                                                        {member.photo_url ? <img src={member.photo_url} alt={member.name} className="h-8 w-8 rounded-lg object-cover" /> : <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-emerald-50 text-xs font-black text-emerald-700">{getInitials(member.name)}</div>}
                                                                         <div className="flex-1 min-w-0 pr-12 group-hover:pr-20 transition-all">
-                                                                            <p className="text-xs font-bold text-white truncate">{member.name}</p>
-                                                                            <p className="text-[10px] text-slate-500 truncate">{member.position}</p>
+                                                                            <p className="text-xs font-bold text-slate-900 truncate">{member.name}</p>
+                                                                            <p className="text-[10px] text-slate-500 font-medium truncate">{member.position}</p>
                                                                         </div>
                                                                         <span className={`shrink-0 rounded-lg border px-1.5 py-0.5 text-[9px] font-bold ${catConf.cls} group-hover:hidden transition-all`}>{catConf.label.split('/')[0].trim()}</span>
                                                                         <div className="absolute right-2 top-1/2 -translate-y-1/2 flex gap-1 opacity-0 group-hover:opacity-100 transition duration-150">
-                                                                            <button type="button" onClick={() => openEditMember(member)} className="rounded bg-[#1C2541] hover:bg-emerald-500 hover:text-[#0B132B] p-1 text-[10px] font-bold text-slate-400 transition" title="Edit">
+                                                                            <button type="button" onClick={() => openEditMember(member)} className="rounded bg-white border border-slate-200 hover:bg-emerald-600 hover:text-white p-1 text-[10px] font-bold text-slate-700 transition" title="Edit">
                                                                                 <Edit size={12} />
                                                                             </button>
-                                                                            <button type="button" onClick={() => deleteMember(member)} className="rounded bg-[#1C2541] hover:bg-red-500 hover:text-white p-1 text-[10px] font-bold text-red-400 transition" title="Hapus">
+                                                                            <button type="button" onClick={() => deleteMember(member)} className="rounded bg-red-50 border border-red-200 hover:bg-red-600 hover:text-white p-1 text-[10px] font-bold text-red-700 transition" title="Hapus">
                                                                                 <Trash2 size={12} />
                                                                             </button>
                                                                         </div>
@@ -752,7 +751,7 @@ export default function Pengaturan({
                                                                 );
                                                             })}
                                                         </div>
-                                                    ) : <p className="text-sm text-slate-500 text-center py-4">Belum ada anggota.</p>}
+                                                    ) : <p className="text-sm text-slate-500 text-center py-4 font-medium">Belum ada anggota.</p>}
                                                 </div>
                                             )}
                                         </div>
@@ -766,23 +765,23 @@ export default function Pengaturan({
 
             {/* ── Period Modal ── */}
             {periodModal && (
-                <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-sm p-4">
-                    <div className="w-full max-w-2xl rounded-2xl border border-[#1C2541]/60 bg-[#090E1A] shadow-2xl">
-                        <div className="flex items-start justify-between border-b border-[#1C2541]/40 px-6 py-5">
-                            <h2 className="text-lg font-black text-white">{periodModal.mode === 'create' ? 'Tambah' : 'Edit'} Periode Kepengurusan</h2>
-                            <button onClick={() => setPeriodModal(null)} className="rounded-xl p-2 text-slate-400 hover:text-white hover:bg-[#1C2541]/60 transition"><X size={18} /></button>
+                <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/40 backdrop-blur-sm p-4">
+                    <div className="w-full max-w-2xl rounded-2xl border border-slate-200 bg-white shadow-2xl">
+                        <div className="flex items-start justify-between border-b border-slate-200 bg-slate-50 px-6 py-5">
+                            <h2 className="text-lg font-black text-slate-900">{periodModal.mode === 'create' ? 'Tambah' : 'Edit'} Periode Kepengurusan</h2>
+                            <button onClick={() => setPeriodModal(null)} className="rounded-xl p-2 text-slate-400 hover:text-slate-800 hover:bg-slate-200 transition"><X size={18} /></button>
                         </div>
                         <form onSubmit={submitPeriod} className="space-y-4 p-6">
-                            <div><label className={labelCls}>Nama Periode</label><input type="text" value={periodForm.data.name} onChange={e => periodForm.setData('name', e.target.value)} className={inputCls} placeholder="Masa Bhakti 2025 – 2028" />{periodForm.errors.name && <p className="mt-1 text-xs text-red-400">{periodForm.errors.name}</p>}</div>
+                            <div><label className={labelCls}>Nama Periode</label><input type="text" value={periodForm.data.name} onChange={e => periodForm.setData('name', e.target.value)} className={inputCls} placeholder="Masa Bhakti 2025 – 2028" />{periodForm.errors.name && <p className="mt-1 text-xs text-red-600">{periodForm.errors.name}</p>}</div>
                             <div className="grid grid-cols-3 gap-3">
                                 <div><label className={labelCls}>Tahun Mulai</label><input type="number" value={periodForm.data.start_year} onChange={e => periodForm.setData('start_year', e.target.value)} className={inputCls} placeholder="2025" /></div>
                                 <div><label className={labelCls}>Tahun Selesai</label><input type="number" value={periodForm.data.end_year} onChange={e => periodForm.setData('end_year', e.target.value)} className={inputCls} placeholder="2028" /></div>
                                 <div><label className={labelCls}>Status</label><select value={periodForm.data.status} onChange={e => periodForm.setData('status', e.target.value as PeriodStatus)} className={inputCls}>{periodStatusOptions.map(o => <option key={o.value} value={o.value}>{o.label}</option>)}</select></div>
                             </div>
                             <div><label className={labelCls}>Keterangan</label><textarea rows={3} value={periodForm.data.description} onChange={e => periodForm.setData('description', e.target.value)} className={inputCls} /></div>
-                            <div className="flex justify-end gap-3 border-t border-[#1C2541]/40 pt-4">
-                                <button type="button" onClick={() => setPeriodModal(null)} className="rounded-xl border border-[#1C2541]/60 px-4 py-2.5 text-sm text-slate-400 hover:text-white transition">Batal</button>
-                                <button type="submit" disabled={periodForm.processing} className="rounded-xl bg-emerald-500 px-5 py-2.5 text-sm font-bold text-[#0B132B] hover:bg-emerald-400 transition disabled:opacity-60">{periodForm.processing ? 'Menyimpan...' : 'Simpan'}</button>
+                            <div className="flex justify-end gap-3 border-t border-slate-200 pt-4">
+                                <button type="button" onClick={() => setPeriodModal(null)} className="rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-sm font-bold text-slate-700 hover:bg-slate-100 transition shadow-sm">Batal</button>
+                                <button type="submit" disabled={periodForm.processing} className="rounded-xl bg-emerald-600 px-5 py-2.5 text-sm font-bold text-white hover:bg-emerald-700 transition disabled:opacity-60 shadow-sm">{periodForm.processing ? 'Menyimpan...' : 'Simpan'}</button>
                             </div>
                         </form>
                     </div>
@@ -791,16 +790,16 @@ export default function Pengaturan({
 
             {/* ── Member Modal ── */}
             {memberModal && (
-                <div className="fixed inset-0 z-50 flex items-center justify-center overflow-y-auto bg-black/70 backdrop-blur-sm p-4">
-                    <div className="my-8 w-full max-w-3xl rounded-2xl border border-[#1C2541]/60 bg-[#090E1A] shadow-2xl">
-                        <div className="flex items-start justify-between border-b border-[#1C2541]/40 px-6 py-5">
-                            <h2 className="text-lg font-black text-white">{memberModal.mode === 'create' ? 'Tambah' : 'Edit'} Anggota Pengurus</h2>
-                            <button onClick={() => setMemberModal(null)} className="rounded-xl p-2 text-slate-400 hover:text-white hover:bg-[#1C2541]/60 transition"><X size={18} /></button>
+                <div className="fixed inset-0 z-50 flex items-center justify-center overflow-y-auto bg-slate-900/40 backdrop-blur-sm p-4">
+                    <div className="my-8 w-full max-w-3xl rounded-2xl border border-slate-200 bg-white shadow-2xl">
+                        <div className="flex items-start justify-between border-b border-slate-200 bg-slate-50 px-6 py-5">
+                            <h2 className="text-lg font-black text-slate-900">{memberModal.mode === 'create' ? 'Tambah' : 'Edit'} Anggota Pengurus</h2>
+                            <button onClick={() => setMemberModal(null)} className="rounded-xl p-2 text-slate-400 hover:text-slate-800 hover:bg-slate-200 transition"><X size={18} /></button>
                         </div>
                         <form onSubmit={submitMember} className="space-y-4 p-6">
                             <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-                                <div><label className={labelCls}>Periode</label><select value={memberForm.data.committee_period_id} onChange={e => memberForm.setData('committee_period_id', e.target.value)} className={inputCls}><option value="">Pilih periode</option>{committeePeriods.map(p => <option key={p.id} value={String(p.id)}>{p.name}</option>)}</select>{memberForm.errors.committee_period_id && <p className="mt-1 text-xs text-red-400">{memberForm.errors.committee_period_id}</p>}</div>
-                                <div><label className={labelCls}>Nama Pengurus</label><input type="text" value={memberForm.data.name} onChange={e => memberForm.setData('name', e.target.value)} className={inputCls} placeholder="Nama lengkap" />{memberForm.errors.name && <p className="mt-1 text-xs text-red-400">{memberForm.errors.name}</p>}</div>
+                                <div><label className={labelCls}>Periode</label><select value={memberForm.data.committee_period_id} onChange={e => memberForm.setData('committee_period_id', e.target.value)} className={inputCls}><option value="">Pilih periode</option>{committeePeriods.map(p => <option key={p.id} value={String(p.id)}>{p.name}</option>)}</select>{memberForm.errors.committee_period_id && <p className="mt-1 text-xs text-red-600">{memberForm.errors.committee_period_id}</p>}</div>
+                                <div><label className={labelCls}>Nama Pengurus</label><input type="text" value={memberForm.data.name} onChange={e => memberForm.setData('name', e.target.value)} className={inputCls} placeholder="Nama lengkap" />{memberForm.errors.name && <p className="mt-1 text-xs text-red-600">{memberForm.errors.name}</p>}</div>
                                 <div><label className={labelCls}>Jabatan</label><input type="text" value={memberForm.data.position} onChange={e => memberForm.setData('position', e.target.value)} className={inputCls} placeholder="Ketua RT / Sekretaris" /></div>
                                 <div><label className={labelCls}>Kategori</label><select value={memberForm.data.category} onChange={e => memberForm.setData('category', e.target.value as MemberCategory)} className={inputCls}>{memberCategoryOptions.map(o => <option key={o.value} value={o.value}>{o.label}</option>)}</select></div>
                                 <div><label className={labelCls}>WhatsApp</label><input type="text" value={memberForm.data.phone} onChange={e => memberForm.setData('phone', e.target.value)} className={inputCls} placeholder="+62..." /></div>
@@ -812,20 +811,20 @@ export default function Pengaturan({
                                         type="file"
                                         accept="image/*"
                                         onChange={e => memberForm.setData('photo', e.currentTarget.files?.[0] ?? null)}
-                                        className={inputCls + ' file:mr-3 file:rounded-lg file:border-0 file:bg-emerald-500/15 file:px-3 file:py-1.5 file:text-xs file:font-bold file:text-emerald-300'}
+                                        className={inputCls + ' file:mr-3 file:rounded-lg file:border-0 file:bg-emerald-50 file:px-3 file:py-1.5 file:text-xs file:font-bold file:text-emerald-700'}
                                     />
-                                    <p className="mt-1 text-[10px] text-slate-500">Format: JPG, JPEG, PNG, atau WebP. Maks. 2 MB & maks. resolusi 2000x2000px.</p>
-                                    {memberForm.errors.photo && <p className="mt-1 text-xs text-red-400">{memberForm.errors.photo}</p>}
+                                    <p className="mt-1 text-[10px] text-slate-500 font-medium">Format: JPG, JPEG, PNG, atau WebP. Maks. 2 MB & maks. resolusi 2000x2000px.</p>
+                                    {memberForm.errors.photo && <p className="mt-1 text-xs text-red-600">{memberForm.errors.photo}</p>}
                                 </div>
                             </div>
                             <div><label className={labelCls}>Deskripsi Tugas</label><textarea rows={3} value={memberForm.data.description} onChange={e => memberForm.setData('description', e.target.value)} className={inputCls} /></div>
-                            <label className="flex items-center gap-3 rounded-xl border border-[#1C2541]/60 bg-[#0B132B]/60 px-4 py-3 cursor-pointer">
-                                <input type="checkbox" checked={memberForm.data.is_active} onChange={e => memberForm.setData('is_active', e.target.checked)} className="accent-emerald-500 w-4 h-4" />
-                                <span className="text-sm font-semibold text-slate-300">Status anggota aktif</span>
+                            <label className="flex items-center gap-3 rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 cursor-pointer">
+                                <input type="checkbox" checked={memberForm.data.is_active} onChange={e => memberForm.setData('is_active', e.target.checked)} className="accent-emerald-600 w-4 h-4" />
+                                <span className="text-sm font-bold text-slate-700">Status anggota aktif</span>
                             </label>
-                            <div className="flex flex-col-reverse sm:flex-row justify-end gap-3 border-t border-[#1C2541]/40 pt-4">
-                                <button type="button" onClick={() => setMemberModal(null)} className="w-full sm:w-auto rounded-xl border border-[#1C2541]/60 px-4 py-2.5 text-sm text-slate-400 hover:text-white transition">Batal</button>
-                                <button type="submit" disabled={memberForm.processing} className="w-full sm:w-auto rounded-xl bg-emerald-500 px-5 py-2.5 text-sm font-bold text-[#0B132B] hover:bg-emerald-400 transition disabled:opacity-60">{memberForm.processing ? 'Menyimpan...' : 'Simpan'}</button>
+                            <div className="flex flex-col-reverse sm:flex-row justify-end gap-3 border-t border-slate-200 pt-4">
+                                <button type="button" onClick={() => setMemberModal(null)} className="w-full sm:w-auto rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-sm font-bold text-slate-700 hover:bg-slate-100 transition shadow-sm">Batal</button>
+                                <button type="submit" disabled={memberForm.processing} className="w-full sm:w-auto rounded-xl bg-emerald-600 px-5 py-2.5 text-sm font-bold text-white hover:bg-emerald-700 transition disabled:opacity-60 shadow-sm">{memberForm.processing ? 'Menyimpan...' : 'Simpan'}</button>
                             </div>
                         </form>
                     </div>
@@ -834,11 +833,11 @@ export default function Pengaturan({
 
             {/* ── Emergency Contact Modal ── */}
             {contactModal && (
-                <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-sm p-4">
-                    <div className="w-full max-w-lg rounded-2xl border border-[#1C2541]/60 bg-[#090E1A] shadow-2xl">
-                        <div className="flex items-start justify-between border-b border-[#1C2541]/40 px-6 py-5">
-                            <h2 className="text-lg font-black text-white">{contactModal.mode === 'create' ? 'Tambah' : 'Edit'} Kontak Darurat</h2>
-                            <button onClick={() => setContactModal(null)} className="rounded-xl p-2 text-slate-400 hover:text-white hover:bg-[#1C2541]/60 transition"><X size={18} /></button>
+                <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/40 backdrop-blur-sm p-4">
+                    <div className="w-full max-w-lg rounded-2xl border border-slate-200 bg-white shadow-2xl">
+                        <div className="flex items-start justify-between border-b border-slate-200 bg-slate-50 px-6 py-5">
+                            <h2 className="text-lg font-black text-slate-900">{contactModal.mode === 'create' ? 'Tambah' : 'Edit'} Kontak Darurat</h2>
+                            <button onClick={() => setContactModal(null)} className="rounded-xl p-2 text-slate-400 hover:text-slate-800 hover:bg-slate-200 transition"><X size={18} /></button>
                         </div>
                         <form onSubmit={submitContact} className="space-y-4 p-6">
                             <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
@@ -848,13 +847,13 @@ export default function Pengaturan({
                                 <div><label className={labelCls}>Urutan</label><input type="number" min={0} value={contactForm.sort_order} onChange={e => setContactForm(p => ({ ...p, sort_order: e.target.value }))} className={inputCls} /></div>
                             </div>
                             <div><label className={labelCls}>Keterangan</label><input type="text" value={contactForm.description} onChange={e => setContactForm(p => ({ ...p, description: e.target.value }))} className={inputCls} placeholder="Keterangan singkat..." /></div>
-                            <label className="flex items-center gap-3 rounded-xl border border-[#1C2541]/60 bg-[#0B132B]/60 px-4 py-3 cursor-pointer">
-                                <input type="checkbox" checked={contactForm.is_active} onChange={e => setContactForm(p => ({ ...p, is_active: e.target.checked }))} className="accent-emerald-500 w-4 h-4" />
-                                <span className="text-sm font-semibold text-slate-300">Kontak aktif</span>
+                            <label className="flex items-center gap-3 rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 cursor-pointer">
+                                <input type="checkbox" checked={contactForm.is_active} onChange={e => setContactForm(p => ({ ...p, is_active: e.target.checked }))} className="accent-emerald-600 w-4 h-4" />
+                                <span className="text-sm font-bold text-slate-700">Kontak aktif</span>
                             </label>
-                            <div className="flex flex-col-reverse sm:flex-row justify-end gap-3 border-t border-[#1C2541]/40 pt-4">
-                                <button type="button" onClick={() => setContactModal(null)} className="w-full sm:w-auto rounded-xl border border-[#1C2541]/60 px-4 py-2.5 text-sm text-slate-400 hover:text-white transition">Batal</button>
-                                <button type="submit" disabled={contactProcessing} className="w-full sm:w-auto rounded-xl bg-emerald-500 px-5 py-2.5 text-sm font-bold text-[#0B132B] hover:bg-emerald-400 transition disabled:opacity-60">{contactProcessing ? 'Menyimpan...' : 'Simpan'}</button>
+                            <div className="flex flex-col-reverse sm:flex-row justify-end gap-3 border-t border-slate-200 pt-4">
+                                <button type="button" onClick={() => setContactModal(null)} className="w-full sm:w-auto rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-sm font-bold text-slate-700 hover:bg-slate-100 transition shadow-sm">Batal</button>
+                                <button type="submit" disabled={contactProcessing} className="w-full sm:w-auto rounded-xl bg-emerald-600 px-5 py-2.5 text-sm font-bold text-white hover:bg-emerald-700 transition disabled:opacity-60 shadow-sm">{contactProcessing ? 'Menyimpan...' : 'Simpan'}</button>
                             </div>
                         </form>
                     </div>
@@ -872,31 +871,31 @@ function MemberGroup({ title, members, accentColor, onEdit, onDelete }: {
     onEdit: (m: CommitteeMember) => void; onDelete: (m: CommitteeMember) => void;
 }) {
     const accentMap: Record<AccentColor, { header: string; badge: string; dot: string; avatar: string }> = {
-        emerald: { header: 'border-emerald-500/20 bg-emerald-500/5', badge: 'bg-emerald-500/20 text-emerald-300 border-emerald-500/30', dot: 'bg-emerald-400', avatar: 'bg-emerald-500/15 border-emerald-500/20 text-emerald-300' },
-        blue: { header: 'border-blue-500/20 bg-blue-500/5', badge: 'bg-blue-500/20 text-blue-300 border-blue-500/30', dot: 'bg-blue-400', avatar: 'bg-blue-500/15 border-blue-500/20 text-blue-300' },
-        slate: { header: 'border-[#1C2541]/60 bg-[#0B132B]/40', badge: 'bg-slate-500/20 text-slate-400 border-slate-500/30', dot: 'bg-slate-400', avatar: 'bg-slate-500/15 border-slate-500/20 text-slate-400' },
+        emerald: { header: 'border-emerald-200 bg-emerald-50', badge: 'bg-emerald-100 text-emerald-800 border-emerald-300', dot: 'bg-emerald-600', avatar: 'bg-emerald-50 border-emerald-200 text-emerald-700' },
+        blue: { header: 'border-blue-200 bg-blue-50', badge: 'bg-blue-100 text-blue-800 border-blue-300', dot: 'bg-blue-600', avatar: 'bg-blue-50 border-blue-200 text-blue-700' },
+        slate: { header: 'border-slate-200 bg-slate-50', badge: 'bg-slate-200 text-slate-800 border-slate-300', dot: 'bg-slate-600', avatar: 'bg-slate-100 border-slate-200 text-slate-700' },
     };
     const acc = accentMap[accentColor];
     return (
-        <div className="rounded-2xl border border-[#1C2541]/60 bg-[#0B132B]/60 overflow-hidden">
-            <div className={`flex items-center justify-between border-b border-[#1C2541]/40 px-5 py-3 ${acc.header}`}>
-                <div className="flex items-center gap-2"><span className={`inline-block w-2 h-2 rounded-full ${acc.dot}`} /><span className="text-sm font-bold text-white">{title}</span></div>
+        <div className="rounded-2xl border border-slate-200 bg-white overflow-hidden shadow-sm">
+            <div className={`flex items-center justify-between border-b border-slate-200 px-5 py-3 ${acc.header}`}>
+                <div className="flex items-center gap-2"><span className={`inline-block w-2 h-2 rounded-full ${acc.dot}`} /><span className="text-sm font-bold text-slate-900">{title}</span></div>
                 <span className={`inline-flex rounded-lg border px-2.5 py-0.5 text-[10px] font-bold ${acc.badge}`}>{members.length} orang</span>
             </div>
             <div className="grid gap-4 p-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
                 {members.map(member => (
-                    <div key={member.id} className="group flex flex-col items-center rounded-xl border border-[#1C2541]/40 bg-[#111A2E]/60 p-4 text-center hover:border-emerald-500/20 transition">
+                    <div key={member.id} className="group flex flex-col items-center rounded-xl border border-slate-200 bg-slate-50 p-4 text-center hover:border-emerald-300 transition">
                         {member.photo_url ? (
-                            <img src={member.photo_url} alt={member.name} className="mb-3 h-16 w-16 rounded-2xl object-cover border-2 border-[#1C2541]/60 group-hover:border-emerald-500/30 transition" />
+                            <img src={member.photo_url} alt={member.name} className="mb-3 h-16 w-16 rounded-2xl object-cover border-2 border-slate-200 group-hover:border-emerald-300 transition" />
                         ) : (
                             <div className={`mb-3 flex h-16 w-16 items-center justify-center rounded-2xl border-2 text-xl font-black ${acc.avatar}`}>{getInitials(member.name)}</div>
                         )}
-                        <p className="text-sm font-bold text-white leading-tight">{member.name}</p>
-                        <p className="mt-0.5 text-xs text-slate-400">{member.position}</p>
-                        {member.phone && <p className="mt-1 flex items-center gap-1 text-[10px] text-slate-500"><Phone size={9} />{member.phone}</p>}
+                        <p className="text-sm font-bold text-slate-900 leading-tight">{member.name}</p>
+                        <p className="mt-0.5 text-xs text-slate-600 font-medium">{member.position}</p>
+                        {member.phone && <p className="mt-1 flex items-center gap-1 text-[10px] text-slate-500 font-medium"><Phone size={9} />{member.phone}</p>}
                         <div className="mt-3 flex gap-2 opacity-0 group-hover:opacity-100 transition">
-                            <button onClick={() => onEdit(member)} className="rounded-lg border border-[#1C2541]/60 px-3 py-1 text-[10px] font-bold text-slate-400 hover:text-white transition">Edit</button>
-                            <button onClick={() => onDelete(member)} className="rounded-lg border border-red-500/30 px-3 py-1 text-[10px] font-bold text-red-400 hover:bg-red-500/10 transition">Hapus</button>
+                            <button onClick={() => onEdit(member)} className="rounded-lg border border-slate-200 bg-white px-3 py-1 text-[10px] font-bold text-slate-700 hover:bg-slate-100 transition shadow-sm">Edit</button>
+                            <button onClick={() => onDelete(member)} className="rounded-lg border border-red-200 bg-red-50 px-3 py-1 text-[10px] font-bold text-red-700 hover:bg-red-100 transition">Hapus</button>
                         </div>
                     </div>
                 ))}

@@ -196,16 +196,16 @@ function getStatusConfig(status: string) {
 
 function getCategoryColor(category: string) {
     const map: Record<string, string> = {
-        'Kerja Bakti': 'text-green-400 bg-green-400/10',
-        'Rapat Warga': 'text-blue-400 bg-blue-400/10',
-        'Keamanan/Ronda': 'text-orange-400 bg-orange-400/10',
-        'Kesehatan': 'text-pink-400 bg-pink-400/10',
-        'Sosial': 'text-yellow-400 bg-yellow-400/10',
-        'Keagamaan': 'text-purple-400 bg-purple-400/10',
-        'Pendidikan': 'text-cyan-400 bg-cyan-400/10',
-        'Olahraga': 'text-emerald-400 bg-emerald-400/10',
+        'Kerja Bakti': 'text-emerald-700 bg-emerald-50 border border-emerald-200',
+        'Rapat Warga': 'text-blue-700 bg-blue-50 border border-blue-200',
+        'Keamanan/Ronda': 'text-amber-700 bg-amber-50 border border-amber-200',
+        'Kesehatan': 'text-pink-700 bg-pink-50 border border-pink-200',
+        'Sosial': 'text-amber-700 bg-amber-50 border border-amber-200',
+        'Keagamaan': 'text-purple-700 bg-purple-50 border border-purple-200',
+        'Pendidikan': 'text-cyan-700 bg-cyan-50 border border-cyan-200',
+        'Olahraga': 'text-emerald-700 bg-emerald-50 border border-emerald-200',
     };
-    return map[category] || 'text-slate-400 bg-slate-400/10';
+    return map[category] || 'text-slate-700 bg-slate-100 border border-slate-200';
 }
 
 function getBudgetStatus(event: EventItem) {
@@ -216,9 +216,9 @@ function getBudgetStatus(event: EventItem) {
     return 'Sisa Dana';
 }
 
-/* ── Dark Form Field ── */
-const inputCls = 'w-full rounded-xl border border-[#1C2541]/60 bg-[#0B132B]/80 px-3 py-2.5 text-slate-200 placeholder-slate-500 focus:outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 transition text-sm';
-const labelCls = 'mb-1.5 block text-xs font-semibold uppercase tracking-wider text-slate-400';
+/* ── Light Form Field ── */
+const inputCls = 'w-full rounded-xl border border-slate-200 bg-slate-50 px-3 py-2.5 text-slate-900 placeholder-slate-400 focus:outline-none focus:bg-white focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 transition text-sm';
+const labelCls = 'mb-1.5 block text-xs font-bold uppercase tracking-wider text-slate-700';
 
 export default function Events({ events = [], flash }: EventsProps) {
     const [searchTerm, setSearchTerm] = useState('');
@@ -338,37 +338,37 @@ export default function Events({ events = [], flash }: EventsProps) {
             {/* ── Page Header ── */}
             <div className="mb-6 flex items-center justify-between">
                 <div>
-                    <p className="text-xs font-semibold uppercase tracking-widest text-emerald-400 mb-1">RT Management</p>
-                    <h2 className="text-2xl font-black text-white">Manajemen Kegiatan</h2>
-                    <p className="text-slate-400 text-sm mt-1">Kelola agenda, anggaran, dan dokumentasi kegiatan warga RT.</p>
+                    <p className="text-xs font-bold uppercase tracking-widest text-emerald-700 mb-1">RT Management</p>
+                    <h2 className="text-2xl font-black text-slate-900">Manajemen Kegiatan</h2>
+                    <p className="text-slate-600 text-sm mt-1">Kelola agenda, anggaran, dan dokumentasi kegiatan warga RT.</p>
                 </div>
                 <div className="flex items-center gap-3">
                     {(filterCategory !== 'all' || filterStatus !== 'all' || filterBudget !== 'all' || searchTerm) && (
-                        <button onClick={resetFilters} className="flex items-center gap-2 rounded-xl border border-[#1C2541]/60 bg-[#0B132B]/50 px-4 py-2.5 text-sm text-slate-400 hover:text-white transition">
+                        <button onClick={resetFilters} className="flex items-center gap-2 rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-sm font-bold text-slate-700 hover:bg-slate-100 transition shadow-sm">
                             <FilterX size={16} /> Reset
                         </button>
                     )}
-                    <button onClick={openCreateModal} className="flex items-center gap-2 rounded-xl bg-emerald-500 px-5 py-2.5 text-sm font-bold text-[#0B132B] shadow-lg shadow-emerald-500/20 hover:bg-emerald-400 transition">
+                    <button onClick={openCreateModal} className="flex items-center gap-2 rounded-xl bg-emerald-600 px-5 py-2.5 text-sm font-bold text-white shadow-sm hover:bg-emerald-700 transition">
                         <Plus size={18} /> Tambah Kegiatan
                     </button>
                 </div>
             </div>
 
             {/* ── Flash Messages ── */}
-            {flash?.success && <div className="mb-4 rounded-xl border border-emerald-500/30 bg-emerald-500/10 px-4 py-3 text-sm text-emerald-300">{flash.success}</div>}
-            {flash?.error && <div className="mb-4 rounded-xl border border-red-500/30 bg-red-500/10 px-4 py-3 text-sm text-red-300">{flash.error}</div>}
+            {flash?.success && <div className="mb-4 rounded-xl border border-emerald-200 bg-emerald-50 px-4 py-3 text-sm font-bold text-emerald-800">{flash.success}</div>}
+            {flash?.error && <div className="mb-4 rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm font-bold text-red-800">{flash.error}</div>}
 
             {/* ── Stats Row ── */}
             <div className="mb-6 grid grid-cols-2 gap-4 lg:grid-cols-4">
                 {[
-                    { icon: CalendarClock, label: 'Total Kegiatan', value: summary.total, color: 'text-blue-400', bg: 'bg-blue-400/10 border-blue-400/20' },
-                    { icon: CalendarCheck, label: 'Kegiatan Aktif', value: summary.aktif, color: 'text-emerald-400', bg: 'bg-emerald-400/10 border-emerald-400/20' },
-                    { icon: CalendarX, label: 'Telah Selesai', value: summary.selesai, color: 'text-purple-400', bg: 'bg-purple-400/10 border-purple-400/20' },
-                    { icon: Wallet, label: 'Perlu Dana', value: summary.perluDana, color: 'text-amber-400', bg: 'bg-amber-400/10 border-amber-400/20' },
+                    { icon: CalendarClock, label: 'Total Kegiatan', value: summary.total, color: 'text-blue-700', bg: 'bg-blue-50 border-blue-200' },
+                    { icon: CalendarCheck, label: 'Kegiatan Aktif', value: summary.aktif, color: 'text-emerald-700', bg: 'bg-emerald-50 border-emerald-200' },
+                    { icon: CalendarX, label: 'Telah Selesai', value: summary.selesai, color: 'text-purple-700', bg: 'bg-purple-50 border-purple-200' },
+                    { icon: Wallet, label: 'Perlu Dana', value: summary.perluDana, color: 'text-amber-700', bg: 'bg-amber-50 border-amber-200' },
                 ].map(({ icon: Icon, label, value, color, bg }) => (
-                    <div key={label} className="rounded-2xl border border-[#1C2541]/60 bg-[#0B132B]/60 p-5 backdrop-blur-sm">
+                    <div key={label} className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
                         <div className="flex items-center justify-between mb-3">
-                            <p className="text-xs font-semibold uppercase tracking-wider text-slate-500">{label}</p>
+                            <p className="text-xs font-bold uppercase tracking-wider text-slate-500">{label}</p>
                             <div className={`rounded-lg border p-2 ${bg}`}>
                                 <Icon size={16} className={color} />
                             </div>
@@ -383,21 +383,21 @@ export default function Events({ events = [], flash }: EventsProps) {
                 {/* Calendar + Upcoming */}
                 <div className="lg:col-span-1 space-y-4">
                     {/* Mini Calendar */}
-                    <div className="rounded-2xl border border-[#1C2541]/60 bg-[#0B132B]/60 p-5 backdrop-blur-sm">
+                    <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
                         <div className="flex items-center justify-between mb-4">
-                            <h3 className="text-sm font-bold text-white">{monthNames[calMon]} {calYear}</h3>
+                            <h3 className="text-sm font-bold text-slate-900">{monthNames[calMon]} {calYear}</h3>
                             <div className="flex gap-1">
-                                <button onClick={() => setCalendarMonth(new Date(calYear, calMon - 1))} className="rounded-lg p-1.5 text-slate-400 hover:text-emerald-400 hover:bg-emerald-400/10 transition">
+                                <button onClick={() => setCalendarMonth(new Date(calYear, calMon - 1))} className="rounded-lg p-1.5 text-slate-500 hover:text-emerald-700 hover:bg-emerald-50 transition">
                                     <ChevronLeft size={16} />
                                 </button>
-                                <button onClick={() => setCalendarMonth(new Date(calYear, calMon + 1))} className="rounded-lg p-1.5 text-slate-400 hover:text-emerald-400 hover:bg-emerald-400/10 transition">
+                                <button onClick={() => setCalendarMonth(new Date(calYear, calMon + 1))} className="rounded-lg p-1.5 text-slate-500 hover:text-emerald-700 hover:bg-emerald-50 transition">
                                     <ChevronRight size={16} />
                                 </button>
                             </div>
                         </div>
                         <div className="grid grid-cols-7 mb-2">
                             {['Min','Sen','Sel','Rab','Kam','Jum','Sab'].map(d => (
-                                <div key={d} className="text-center text-[10px] font-bold text-slate-500 py-1">{d}</div>
+                                <div key={d} className="text-center text-[10px] font-bold text-slate-400 py-1">{d}</div>
                             ))}
                         </div>
                         <div className="grid grid-cols-7 gap-0.5">
@@ -411,24 +411,24 @@ export default function Events({ events = [], flash }: EventsProps) {
                                 const isToday = dateStr === new Date().toISOString().split('T')[0];
                                 return (
                                     <div key={day} className={`relative flex items-center justify-center rounded-lg text-xs font-medium h-8 transition cursor-default
-                                        ${isToday ? 'bg-emerald-500 text-[#0B132B] font-black' : hasEvent ? 'bg-emerald-500/15 text-emerald-400 border border-emerald-500/30' : 'text-slate-400 hover:bg-[#111A2E]'}`}>
+                                        ${isToday ? 'bg-emerald-600 text-white font-black' : hasEvent ? 'bg-emerald-50 text-emerald-700 border border-emerald-200 font-bold' : 'text-slate-700 hover:bg-slate-100'}`}>
                                         {day}
-                                        {hasEvent && !isToday && <span className="absolute bottom-0.5 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-emerald-400" />}
+                                        {hasEvent && !isToday && <span className="absolute bottom-0.5 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-emerald-600" />}
                                     </div>
                                 );
                             })}
                         </div>
-                        <div className="mt-3 pt-3 border-t border-[#1C2541]/40 flex items-center gap-3 text-[10px] text-slate-500">
-                            <span className="flex items-center gap-1"><span className="w-2 h-2 rounded-full bg-emerald-500 inline-block" /> Hari ini</span>
-                            <span className="flex items-center gap-1"><span className="w-2 h-2 rounded-full bg-emerald-400/40 border border-emerald-500/30 inline-block" /> Ada kegiatan</span>
+                        <div className="mt-3 pt-3 border-t border-slate-200 flex items-center gap-3 text-[10px] text-slate-500 font-medium">
+                            <span className="flex items-center gap-1"><span className="w-2 h-2 rounded-full bg-emerald-600 inline-block" /> Hari ini</span>
+                            <span className="flex items-center gap-1"><span className="w-2 h-2 rounded-full bg-emerald-200 border border-emerald-300 inline-block" /> Ada kegiatan</span>
                         </div>
                     </div>
 
                     {/* Agenda Mendatang */}
-                    <div className="rounded-2xl border border-[#1C2541]/60 bg-[#0B132B]/60 p-5 backdrop-blur-sm">
+                    <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
                         <div className="flex items-center justify-between mb-4">
-                            <h3 className="text-sm font-bold text-white">Agenda Mendatang</h3>
-                            <span className="text-xs font-bold text-emerald-400 bg-emerald-400/10 px-2 py-0.5 rounded-full">TOTAL: {summary.aktif}</span>
+                            <h3 className="text-sm font-bold text-slate-900">Agenda Mendatang</h3>
+                            <span className="text-xs font-bold text-emerald-700 bg-emerald-50 px-2.5 py-0.5 rounded-full border border-emerald-200">TOTAL: {summary.aktif}</span>
                         </div>
                         {upcomingEvents.length === 0 ? (
                             <p className="text-xs text-slate-500 text-center py-4">Tidak ada agenda mendatang</p>
@@ -437,15 +437,15 @@ export default function Events({ events = [], flash }: EventsProps) {
                                 {upcomingEvents.map(event => {
                                     const statusConf = getStatusConfig(event.status);
                                     return (
-                                        <div key={event.id} className="flex gap-3 p-3 rounded-xl bg-[#111A2E]/60 border border-[#1C2541]/40 hover:border-emerald-500/20 transition">
+                                        <div key={event.id} className="flex gap-3 p-3 rounded-xl bg-slate-50 border border-slate-200 hover:border-emerald-300 transition">
                                             <div className="flex-shrink-0 text-center">
-                                                <div className="text-[10px] font-bold text-emerald-400 uppercase">{new Date(event.date).toLocaleDateString('id-ID', { month: 'short' })}</div>
-                                                <div className="text-lg font-black text-white leading-none">{new Date(event.date).getDate()}</div>
+                                                <div className="text-[10px] font-bold text-emerald-700 uppercase">{new Date(event.date).toLocaleDateString('id-ID', { month: 'short' })}</div>
+                                                <div className="text-lg font-black text-slate-900 leading-none">{new Date(event.date).getDate()}</div>
                                             </div>
                                             <div className="flex-1 min-w-0">
-                                                <p className="text-xs font-bold text-white truncate">{event.title}</p>
-                                                <p className="text-[10px] text-slate-500 flex items-center gap-1 mt-0.5"><MapPin size={10} />{event.location}</p>
-                                                <span className={`mt-1 inline-flex items-center gap-1 text-[10px] font-semibold px-2 py-0.5 rounded-full ${statusConf.cls}`}>
+                                                <p className="text-xs font-bold text-slate-900 truncate">{event.title}</p>
+                                                <p className="text-[10px] text-slate-600 flex items-center gap-1 mt-0.5"><MapPin size={10} />{event.location}</p>
+                                                <span className={`mt-1 inline-flex items-center gap-1 text-[10px] font-bold px-2 py-0.5 rounded-full ${statusConf.cls}`}>
                                                     <span className={`w-1.5 h-1.5 rounded-full ${statusConf.dot}`} />{event.status}
                                                 </span>
                                             </div>
@@ -458,24 +458,24 @@ export default function Events({ events = [], flash }: EventsProps) {
 
                     {/* Budget Summary */}
                     {summary.perluDana > 0 && (
-                        <div className="rounded-2xl border border-amber-500/20 bg-amber-500/5 p-5">
+                        <div className="rounded-2xl border border-amber-200 bg-amber-50 p-5 shadow-sm">
                             <div className="flex items-center gap-2 mb-3">
-                                <TrendingUp size={16} className="text-amber-400" />
-                                <h3 className="text-sm font-bold text-white">Ringkasan Anggaran</h3>
+                                <TrendingUp size={16} className="text-amber-700" />
+                                <h3 className="text-sm font-bold text-amber-900">Ringkasan Anggaran</h3>
                             </div>
                             <div className="space-y-2">
                                 <div className="flex justify-between text-xs">
-                                    <span className="text-slate-400">Total Estimasi</span>
-                                    <span className="font-bold text-amber-300">{formatCurrency(summary.totalEstimasi)}</span>
+                                    <span className="text-slate-600">Total Estimasi</span>
+                                    <span className="font-bold text-amber-900">{formatCurrency(summary.totalEstimasi)}</span>
                                 </div>
                                 <div className="flex justify-between text-xs">
-                                    <span className="text-slate-400">Total Aktual</span>
-                                    <span className="font-bold text-white">{formatCurrency(summary.totalAktual)}</span>
+                                    <span className="text-slate-600">Total Aktual</span>
+                                    <span className="font-bold text-slate-900">{formatCurrency(summary.totalAktual)}</span>
                                 </div>
-                                <div className="h-px bg-[#1C2541]/60 my-1" />
+                                <div className="h-px bg-amber-200 my-1" />
                                 <div className="flex justify-between text-xs">
-                                    <span className="text-slate-400">Selisih</span>
-                                    <span className={`font-bold ${summary.totalAktual > summary.totalEstimasi ? 'text-red-400' : 'text-emerald-400'}`}>
+                                    <span className="text-slate-600">Selisih</span>
+                                    <span className={`font-bold ${summary.totalAktual > summary.totalEstimasi ? 'text-red-700' : 'text-emerald-700'}`}>
                                         {formatCurrency(Math.abs(summary.totalEstimasi - summary.totalAktual))}
                                     </span>
                                 </div>
@@ -486,21 +486,21 @@ export default function Events({ events = [], flash }: EventsProps) {
 
                 {/* Events Table */}
                 <div className="lg:col-span-2">
-                    <div className="rounded-2xl border border-[#1C2541]/60 bg-[#0B132B]/60 backdrop-blur-sm overflow-hidden">
+                    <div className="rounded-2xl border border-slate-200 bg-white shadow-sm overflow-hidden">
                         {/* Filters */}
-                        <div className="p-4 border-b border-[#1C2541]/40">
+                        <div className="p-4 border-b border-slate-200 bg-slate-50/50">
                             <div className="flex flex-col gap-3 sm:flex-row">
                                 <div className="relative flex-1">
-                                    <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-500" size={15} />
+                                    <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" size={15} />
                                     <input
                                         type="text"
                                         placeholder="Cari kegiatan, lokasi, PJ..."
                                         value={searchTerm}
                                         onChange={e => setSearchTerm(e.target.value)}
-                                        className="w-full rounded-xl border border-[#1C2541]/60 bg-[#111A2E]/60 py-2.5 pl-9 pr-4 text-xs text-slate-200 placeholder-slate-500 focus:outline-none focus:border-emerald-500 transition"
+                                        className="w-full rounded-xl border border-slate-200 bg-white py-2.5 pl-9 pr-4 text-xs text-slate-900 placeholder-slate-400 focus:outline-none focus:border-emerald-500 transition"
                                     />
                                 </div>
-                                <select value={filterStatus} onChange={e => setFilterStatus(e.target.value)} className="rounded-xl border border-[#1C2541]/60 bg-[#111A2E]/60 px-3 py-2.5 text-xs text-slate-300 focus:outline-none focus:border-emerald-500 transition">
+                                <select value={filterStatus} onChange={e => setFilterStatus(e.target.value)} className="rounded-xl border border-slate-200 bg-white px-3 py-2.5 text-xs text-slate-900 focus:outline-none focus:border-emerald-500 transition">
                                     <option value="all">Semua Status</option>
                                     <option value="Draft">Draft</option>
                                     <option value="Dijadwalkan">Dijadwalkan</option>
@@ -508,7 +508,7 @@ export default function Events({ events = [], flash }: EventsProps) {
                                     <option value="Selesai">Selesai</option>
                                     <option value="Dibatalkan">Dibatalkan</option>
                                 </select>
-                                <select value={filterCategory} onChange={e => setFilterCategory(e.target.value)} className="rounded-xl border border-[#1C2541]/60 bg-[#111A2E]/60 px-3 py-2.5 text-xs text-slate-300 focus:outline-none focus:border-emerald-500 transition">
+                                <select value={filterCategory} onChange={e => setFilterCategory(e.target.value)} className="rounded-xl border border-slate-200 bg-white px-3 py-2.5 text-xs text-slate-900 focus:outline-none focus:border-emerald-500 transition">
                                     <option value="all">Semua Kategori</option>
                                     <option value="Kerja Bakti">Kerja Bakti</option>
                                     <option value="Rapat Warga">Rapat Warga</option>
@@ -527,13 +527,13 @@ export default function Events({ events = [], flash }: EventsProps) {
                         <div className="overflow-x-auto scrollbar-thin">
                             <table className="w-full min-w-[920px]">
                                 <thead>
-                                    <tr className="border-b border-[#1C2541]/40">
-                                        <th className="px-4 py-3 text-left text-[10px] font-bold uppercase tracking-widest text-slate-500">Kegiatan</th>
-                                        <th className="px-4 py-3 text-left text-[10px] font-bold uppercase tracking-widest text-slate-500">Tanggal</th>
-                                        <th className="px-4 py-3 text-left text-[10px] font-bold uppercase tracking-widest text-slate-500">Kategori</th>
-                                        <th className="px-4 py-3 text-left text-[10px] font-bold uppercase tracking-widest text-slate-500">Anggaran</th>
-                                        <th className="px-4 py-3 text-left text-[10px] font-bold uppercase tracking-widest text-slate-500">Status</th>
-                                        <th className="w-20 px-4 py-3 text-center text-[10px] font-bold uppercase tracking-widest text-slate-500">Aksi</th>
+                                    <tr className="border-b border-slate-200 bg-slate-50">
+                                        <th className="px-4 py-3 text-left text-[10px] font-bold uppercase tracking-widest text-slate-700">Kegiatan</th>
+                                        <th className="px-4 py-3 text-left text-[10px] font-bold uppercase tracking-widest text-slate-700">Tanggal</th>
+                                        <th className="px-4 py-3 text-left text-[10px] font-bold uppercase tracking-widest text-slate-700">Kategori</th>
+                                        <th className="px-4 py-3 text-left text-[10px] font-bold uppercase tracking-widest text-slate-700">Anggaran</th>
+                                        <th className="px-4 py-3 text-left text-[10px] font-bold uppercase tracking-widest text-slate-700">Status</th>
+                                        <th className="w-20 px-4 py-3 text-center text-[10px] font-bold uppercase tracking-widest text-slate-700">Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -541,15 +541,15 @@ export default function Events({ events = [], flash }: EventsProps) {
                                         const statusConf = getStatusConfig(event.status);
                                         const catCls = getCategoryColor(event.category);
                                         return (
-                                            <tr key={event.id} className="border-b border-[#1C2541]/30 hover:bg-[#111A2E]/50 transition group">
+                                            <tr key={event.id} className="border-b border-slate-100 hover:bg-slate-50 transition group">
                                                 <td className="px-4 py-4">
-                                                    <p className="text-sm font-bold text-white group-hover:text-emerald-300 transition">{event.title}</p>
+                                                    <p className="text-sm font-bold text-slate-900 group-hover:text-emerald-700 transition">{event.title}</p>
                                                     <p className="text-xs text-slate-500 flex items-center gap-1 mt-0.5"><MapPin size={10} />{event.location || '-'}</p>
                                                 </td>
                                                 <td className="px-4 py-4">
                                                     <div className="flex items-center gap-1.5">
-                                                        <Calendar size={12} className="text-emerald-400" />
-                                                        <span className="text-xs text-slate-300">{formatShortDate(event.date)}</span>
+                                                        <Calendar size={12} className="text-emerald-600" />
+                                                        <span className="text-xs text-slate-700 font-medium">{formatShortDate(event.date)}</span>
                                                     </div>
                                                     {event.startTime && <p className="text-[10px] text-slate-500 mt-0.5">{event.startTime} - {event.endTime || '?'}</p>}
                                                 </td>
@@ -561,11 +561,11 @@ export default function Events({ events = [], flash }: EventsProps) {
                                                 <td className="px-4 py-4">
                                                     {event.needsBudget ? (
                                                         <div>
-                                                            <p className="text-xs font-bold text-amber-300">{formatCurrency(event.estimatedCost)}</p>
+                                                            <p className="text-xs font-bold text-amber-700">{formatCurrency(event.estimatedCost)}</p>
                                                             <p className="text-[10px] text-slate-500">estimasi</p>
                                                         </div>
                                                     ) : (
-                                                        <span className="text-[10px] text-slate-600">Tanpa Dana</span>
+                                                        <span className="text-[10px] text-slate-500">Tanpa Dana</span>
                                                     )}
                                                 </td>
                                                 <td className="px-4 py-4">
@@ -576,26 +576,26 @@ export default function Events({ events = [], flash }: EventsProps) {
                                                 <td className="px-4 py-4 text-center whitespace-nowrap">
                                                     <DropdownMenu.Root>
                                                         <DropdownMenu.Trigger asChild>
-                                                            <button type="button" className="rounded-lg p-2 text-slate-500 hover:text-emerald-400 hover:bg-emerald-400/10 transition">
+                                                            <button type="button" className="rounded-lg p-2 text-slate-400 hover:text-emerald-700 hover:bg-emerald-50 transition">
                                                                 <MoreVertical size={16} />
                                                             </button>
                                                         </DropdownMenu.Trigger>
                                                         <DropdownMenu.Portal>
-                                                            <DropdownMenu.Content className="z-50 w-48 rounded-xl border border-[#1C2541]/60 bg-[#0B132B] py-1.5 shadow-2xl" sideOffset={5}>
-                                                                <DropdownMenu.Item className="flex cursor-pointer items-center gap-2.5 px-4 py-2.5 text-xs font-semibold text-slate-300 outline-none hover:bg-emerald-500/10 hover:text-emerald-300 transition" onClick={() => setShowDetailModal(event)}>
+                                                            <DropdownMenu.Content className="z-50 w-48 rounded-xl border border-slate-200 bg-white py-1.5 shadow-xl" sideOffset={5}>
+                                                                <DropdownMenu.Item className="flex cursor-pointer items-center gap-2.5 px-4 py-2.5 text-xs font-bold text-slate-700 outline-none hover:bg-emerald-50 hover:text-emerald-700 transition" onClick={() => setShowDetailModal(event)}>
                                                                     <Eye size={14} /> Detail
                                                                 </DropdownMenu.Item>
-                                                                <DropdownMenu.Item className="flex cursor-pointer items-center gap-2.5 px-4 py-2.5 text-xs font-semibold text-slate-300 outline-none hover:bg-blue-500/10 hover:text-blue-300 transition" onClick={() => openEditModal(event)}>
+                                                                <DropdownMenu.Item className="flex cursor-pointer items-center gap-2.5 px-4 py-2.5 text-xs font-bold text-slate-700 outline-none hover:bg-blue-50 hover:text-blue-700 transition" onClick={() => openEditModal(event)}>
                                                                     <Edit size={14} /> Edit
                                                                 </DropdownMenu.Item>
-                                                                <DropdownMenu.Item className="flex cursor-pointer items-center gap-2.5 px-4 py-2.5 text-xs font-semibold text-slate-300 outline-none hover:bg-amber-500/10 hover:text-amber-300 transition" onClick={() => setShowBudgetModal(event)}>
+                                                                <DropdownMenu.Item className="flex cursor-pointer items-center gap-2.5 px-4 py-2.5 text-xs font-bold text-slate-700 outline-none hover:bg-amber-50 hover:text-amber-700 transition" onClick={() => setShowBudgetModal(event)}>
                                                                     <DollarSign size={14} /> Kelola Dana
                                                                 </DropdownMenu.Item>
-                                                                <DropdownMenu.Item className="flex cursor-pointer items-center gap-2.5 px-4 py-2.5 text-xs font-semibold text-slate-300 outline-none hover:bg-purple-500/10 hover:text-purple-300 transition" onClick={() => setShowDetailModal(event)}>
+                                                                <DropdownMenu.Item className="flex cursor-pointer items-center gap-2.5 px-4 py-2.5 text-xs font-bold text-slate-700 outline-none hover:bg-purple-50 hover:text-purple-700 transition" onClick={() => setShowDetailModal(event)}>
                                                                     <Image size={14} /> Dokumentasi
                                                                 </DropdownMenu.Item>
-                                                                <DropdownMenu.Separator className="my-1 h-px bg-[#1C2541]/60" />
-                                                                <DropdownMenu.Item className="flex cursor-pointer items-center gap-2.5 px-4 py-2.5 text-xs font-semibold text-red-400 outline-none hover:bg-red-500/10 transition" onClick={() => setShowDeleteModal(event)}>
+                                                                <DropdownMenu.Separator className="my-1 h-px bg-slate-100" />
+                                                                <DropdownMenu.Item className="flex cursor-pointer items-center gap-2.5 px-4 py-2.5 text-xs font-bold text-red-700 outline-none hover:bg-red-50 transition" onClick={() => setShowDeleteModal(event)}>
                                                                     <Trash2 size={14} /> Hapus
                                                                 </DropdownMenu.Item>
                                                             </DropdownMenu.Content>
@@ -607,49 +607,48 @@ export default function Events({ events = [], flash }: EventsProps) {
                                     })}
                                 </tbody>
                             </table>
+                            {filteredEvents.length === 0 && (
+                                <div className="p-8 text-center text-xs text-slate-500 font-medium">Tidak ada kegiatan yang ditemukan.</div>
+                            )}
                         </div>
-                        {filteredEvents.length === 0 && (
-                            <div className="py-16 text-center">
-                                <CalendarClock size={40} className="text-slate-600 mx-auto mb-3" />
-                                <p className="text-slate-500 text-sm">Belum ada kegiatan yang sesuai filter.</p>
-                            </div>
-                        )}
                     </div>
                 </div>
             </div>
 
-            {/* ── MODALS (dark theme) ── */}
-
-            {/* Create / Edit Form Modal */}
+            {/* Form Modal (Create / Edit) */}
             <Dialog.Root open={showFormModal} onOpenChange={open => !open && closeFormModal()}>
                 <Dialog.Portal>
-                    <Dialog.Overlay className="fixed inset-0 z-50 bg-black/70 backdrop-blur-sm" />
-                    <Dialog.Content className="fixed left-1/2 top-1/2 z-50 max-h-[92vh] w-full max-w-5xl -translate-x-1/2 -translate-y-1/2 overflow-y-auto rounded-2xl border border-[#1C2541]/60 bg-[#090E1A] shadow-2xl">
-                        <div className="sticky top-0 flex items-center justify-between border-b border-[#1C2541]/40 bg-[#090E1A]/95 backdrop-blur-sm px-6 py-4 z-10">
+                    <Dialog.Overlay className="fixed inset-0 z-50 bg-slate-900/40 backdrop-blur-sm" />
+                    <Dialog.Content className="fixed left-1/2 top-1/2 z-50 max-h-[90vh] w-full max-w-4xl -translate-x-1/2 -translate-y-1/2 overflow-y-auto rounded-2xl border border-slate-200 bg-white shadow-2xl">
+                        <div className="sticky top-0 z-10 flex items-center justify-between border-b border-slate-200 bg-slate-50 px-6 py-4">
                             <div>
-                                <Dialog.Title className="text-lg font-black text-white">{formMode === 'create' ? 'Tambah Kegiatan' : 'Edit Kegiatan'}</Dialog.Title>
-                                <Dialog.Description className="text-xs text-slate-400 mt-0.5">Isi data kegiatan RT di bawah ini</Dialog.Description>
+                                <Dialog.Title className="text-lg font-black text-slate-900">{formMode === 'create' ? 'Tambah Kegiatan Baru' : 'Edit Kegiatan'}</Dialog.Title>
                             </div>
                             <Dialog.Close asChild>
-                                <button type="button" className="rounded-xl p-2 text-slate-400 hover:text-white hover:bg-[#1C2541]/60 transition"><X size={20} /></button>
+                                <button type="button" className="rounded-xl p-2 text-slate-400 hover:text-slate-800 hover:bg-slate-200 transition"><X size={20} /></button>
                             </Dialog.Close>
                         </div>
                         <form onSubmit={submitForm} className="space-y-6 p-6">
                             <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
                                 <div className="md:col-span-2">
-                                    <label className={labelCls}>Judul Kegiatan</label>
-                                    <input type="text" value={form.data.judul} onChange={e => form.setData('judul', e.target.value)} className={inputCls} placeholder="Nama kegiatan RT" />
-                                    {form.errors.judul && <p className="mt-1 text-xs text-red-400">{form.errors.judul}</p>}
+                                    <label className={labelCls}>Judul Kegiatan *</label>
+                                    <input type="text" required value={form.data.judul} onChange={e => form.setData('judul', e.target.value)} className={inputCls} placeholder="Contoh: Kerja Bakti RT 004" />
                                 </div>
                                 <div>
-                                    <label className={labelCls}>Tanggal</label>
-                                    <input type="date" value={form.data.tanggal} onChange={e => form.setData('tanggal', e.target.value)} className={inputCls} />
-                                </div>
-                                <div>
-                                    <label className={labelCls}>Kategori</label>
-                                    <select value={form.data.kategori} onChange={e => form.setData('kategori', e.target.value)} className={inputCls}>
+                                    <label className={labelCls}>Kategori *</label>
+                                    <select required value={form.data.kategori} onChange={e => form.setData('kategori', e.target.value)} className={inputCls}>
                                         {['Kerja Bakti','Rapat Warga','Keamanan/Ronda','Kesehatan','Sosial','Keagamaan','Pendidikan','Olahraga','Lainnya'].map(k => <option key={k} value={k}>{k}</option>)}
                                     </select>
+                                </div>
+                                <div>
+                                    <label className={labelCls}>Status *</label>
+                                    <select required value={form.data.status_kegiatan} onChange={e => form.setData('status_kegiatan', e.target.value)} className={inputCls}>
+                                        {['Draft','Dijadwalkan','Berlangsung','Selesai','Dibatalkan'].map(s => <option key={s} value={s}>{s}</option>)}
+                                    </select>
+                                </div>
+                                <div>
+                                    <label className={labelCls}>Tanggal *</label>
+                                    <input type="date" required value={form.data.tanggal} onChange={e => form.setData('tanggal', e.target.value)} className={inputCls} />
                                 </div>
                                 <div>
                                     <label className={labelCls}>Jam Mulai</label>
@@ -660,83 +659,46 @@ export default function Events({ events = [], flash }: EventsProps) {
                                     <input type="time" value={form.data.jam_selesai} onChange={e => form.setData('jam_selesai', e.target.value)} className={inputCls} />
                                 </div>
                                 <div className="md:col-span-2">
-                                    <label className={labelCls}>Lokasi</label>
-                                    <input type="text" value={form.data.lokasi} onChange={e => form.setData('lokasi', e.target.value)} className={inputCls} placeholder="Alamat atau nama tempat" />
+                                    <label className={labelCls}>Lokasi *</label>
+                                    <input type="text" required value={form.data.lokasi} onChange={e => form.setData('lokasi', e.target.value)} className={inputCls} placeholder="Contoh: Balai Warga RT 004" />
                                 </div>
                                 <div>
                                     <label className={labelCls}>Penanggung Jawab</label>
                                     <input type="text" value={form.data.penanggung_jawab} onChange={e => form.setData('penanggung_jawab', e.target.value)} className={inputCls} />
                                 </div>
                                 <div>
-                                    <label className={labelCls}>Target Peserta</label>
+                                    <label className={labelCls}>Target Peserta (orang)</label>
                                     <input type="number" min="0" value={form.data.target_peserta} onChange={e => form.setData('target_peserta', e.target.value)} className={inputCls} />
                                 </div>
-                                <div>
-                                    <label className={labelCls}>Status Kegiatan</label>
-                                    <select value={form.data.status_kegiatan} onChange={e => form.setData('status_kegiatan', e.target.value)} className={inputCls}>
-                                        {['Draft','Dijadwalkan','Berlangsung','Selesai','Dibatalkan'].map(s => <option key={s} value={s}>{s}</option>)}
-                                    </select>
-                                </div>
-                                <div className="flex items-center gap-6 rounded-xl border border-[#1C2541]/60 bg-[#0B132B]/60 px-4 py-3">
-                                    <label className="flex items-center gap-2 text-sm text-slate-300 cursor-pointer">
-                                        <input type="checkbox" checked={form.data.wajib_hadir} onChange={e => form.setData('wajib_hadir', e.target.checked)} className="accent-emerald-500" />
-                                        Wajib Hadir
+                                <div className="flex items-center gap-6 md:col-span-2">
+                                    <label className="flex items-center gap-2 text-xs font-bold text-slate-700 cursor-pointer">
+                                        <input type="checkbox" checked={form.data.wajib_hadir} onChange={e => form.setData('wajib_hadir', e.target.checked)} className="rounded border-slate-300 text-emerald-600 focus:ring-emerald-500" />
+                                        <span>Wajib Hadir Bagi Warga</span>
                                     </label>
-                                    <label className="flex items-center gap-2 text-sm text-slate-300 cursor-pointer">
-                                        <input type="checkbox" checked={form.data.memerlukan_dana} onChange={e => form.setData('memerlukan_dana', e.target.checked)} className="accent-emerald-500" />
-                                        Memerlukan Dana
+                                    <label className="flex items-center gap-2 text-xs font-bold text-slate-700 cursor-pointer">
+                                        <input type="checkbox" checked={form.data.memerlukan_dana} onChange={e => form.setData('memerlukan_dana', e.target.checked)} className="rounded border-slate-300 text-emerald-600 focus:ring-emerald-500" />
+                                        <span>Memerlukan Anggaran</span>
                                     </label>
                                 </div>
                                 <div className="md:col-span-2">
                                     <label className={labelCls}>Deskripsi Kegiatan</label>
-                                    <textarea rows={4} value={form.data.deskripsi} onChange={e => form.setData('deskripsi', e.target.value)} className={inputCls} />
+                                    <textarea rows={3} value={form.data.deskripsi} onChange={e => form.setData('deskripsi', e.target.value)} className={inputCls} />
                                 </div>
                                 <div className="md:col-span-2">
-                                    <label className={labelCls}>Upload Poster (JPG/PNG)</label>
-                                    <input type="file" accept=".jpg,.jpeg,.png,.webp" onChange={e => form.setData('poster', e.target.files?.[0] ?? null)} className={inputCls} />
+                                    <label className={labelCls}>Hasil Kegiatan / Catatan</label>
+                                    <textarea rows={3} value={form.data.catatan} onChange={e => form.setData('catatan', e.target.value)} className={inputCls} />
                                 </div>
-                                <div className="md:col-span-2">
-                                    <label className={labelCls}>Hasil Kegiatan / Catatan <span className="text-slate-600 font-normal normal-case">(teks rangkuman hasil)</span></label>
-                                    <textarea rows={3} value={form.data.catatan} onChange={e => form.setData('catatan', e.target.value)} className={inputCls} placeholder="Tuliskan hasil, catatan, atau rangkuman kegiatan di sini..." />
-                                </div>
-
-                                <div className="md:col-span-2 space-y-3 rounded-2xl border border-emerald-500/20 bg-emerald-500/5 p-4">
+                                <div className="md:col-span-2 space-y-3 rounded-2xl border border-emerald-200 bg-emerald-50 p-4">
                                     <div className="flex items-center gap-2">
-                                        <Image size={14} className="text-emerald-400" />
-                                        <h4 className="text-xs font-bold text-emerald-400 uppercase tracking-wider">Foto Dokumentasi Kegiatan</h4>
-                                        <span className="text-[10px] text-slate-500">(maks. 10 foto, JPG/PNG/WEBP)</span>
+                                        <Image size={14} className="text-emerald-700" />
+                                        <h4 className="text-xs font-bold text-emerald-900 uppercase tracking-wider">Foto Dokumentasi Kegiatan</h4>
                                     </div>
-                                    <input
-                                        type="file"
-                                        accept=".jpg,.jpeg,.png,.webp"
-                                        multiple
-                                        onChange={e => form.setData('foto_dokumentasi', Array.from(e.target.files || []))}
-                                        className={inputCls}
-                                    />
-                                    {/* Preview foto yang sudah ada (saat edit) */}
-                                    {formMode === 'edit' && (() => {
-                                        const editingEvent = events.find(e => e.id === editingId);
-                                        const existingFotos = editingEvent?.fotoDokumentasiUrls ?? [];
-                                        return existingFotos.length > 0 ? (
-                                            <div className="space-y-2">
-                                                <p className="text-[10px] text-slate-500 font-bold">Foto tersimpan ({existingFotos.length}):</p>
-                                                <div className="grid grid-cols-4 gap-2">
-                                                    {existingFotos.map((url, idx) => (
-                                                        <div key={idx} className="relative rounded-lg overflow-hidden border border-slate-700 aspect-video bg-[#0B132B]">
-                                                            <img src={url} alt={`Foto ${idx+1}`} className="w-full h-full object-cover" />
-                                                        </div>
-                                                    ))}
-                                                </div>
-                                                <p className="text-[10px] text-amber-400">Upload baru akan ditambahkan ke foto yang ada.</p>
-                                            </div>
-                                        ) : null;
-                                    })()}
+                                    <input type="file" multiple onChange={e => form.setData('foto_dokumentasi', Array.from(e.target.files || []))} className={inputCls} />
                                 </div>
                             </div>
-
                             {form.data.memerlukan_dana && (
-                                <div className="space-y-4 rounded-2xl border border-amber-500/20 bg-amber-500/5 p-5">
-                                    <h3 className="text-sm font-bold text-amber-300 flex items-center gap-2"><Wallet size={16} /> Informasi Anggaran</h3>
+                                <div className="space-y-4 rounded-2xl border border-amber-200 bg-amber-50 p-5">
+                                    <h3 className="text-sm font-bold text-amber-900 flex items-center gap-2"><Wallet size={16} /> Informasi Anggaran</h3>
                                     <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
                                         <div>
                                             <label className={labelCls}>Sumber Dana</label>
@@ -752,67 +714,19 @@ export default function Events({ events = [], flash }: EventsProps) {
                                         <div>
                                             <label className={labelCls}>Estimasi Total Biaya</label>
                                             <input type="number" min="0" value={form.data.estimasi_biaya} onChange={e => form.setData('estimasi_biaya', e.target.value)} className={inputCls} />
-                                            <p className="mt-1 text-xs text-amber-400">Preview: {formatCurrency(budgetPreviewTotal)}</p>
+                                            <p className="mt-1 text-xs font-bold text-amber-800">Preview: {formatCurrency(budgetPreviewTotal)}</p>
                                         </div>
                                         <div>
                                             <label className={labelCls}>Catatan Anggaran</label>
                                             <textarea rows={2} value={form.data.catatan_anggaran} onChange={e => form.setData('catatan_anggaran', e.target.value)} className={inputCls} />
                                         </div>
                                     </div>
-                                    <div>
-                                        <div className="mb-3 flex items-center justify-between">
-                                            <h4 className="text-xs font-bold uppercase tracking-wider text-slate-400">Rincian Kebutuhan Dana</h4>
-                                            <button type="button" onClick={addBudgetItem} className="flex items-center gap-1 rounded-xl bg-emerald-500 px-3 py-1.5 text-xs font-bold text-[#0B132B] hover:bg-emerald-400 transition">
-                                                <Plus size={14} /> Tambah Item
-                                            </button>
-                                        </div>
-                                        <div className="space-y-3">
-                                            {form.data.budget_items.map((item, index) => {
-                                                const subtotal = Number(item.quantity || 0) * Number(item.unit_price || 0);
-                                                return (
-                                                    <div key={index} className="rounded-xl border border-[#1C2541]/60 bg-[#0B132B]/60 p-4">
-                                                        <div className="grid grid-cols-12 gap-3">
-                                                            <div className="col-span-4">
-                                                                <label className={labelCls}>Nama</label>
-                                                                <input type="text" value={item.name} onChange={e => updateBudgetItem(index, 'name', e.target.value)} className={inputCls} />
-                                                            </div>
-                                                            <div className="col-span-2">
-                                                                <label className={labelCls}>Qty</label>
-                                                                <input type="number" min="1" value={item.quantity} onChange={e => updateBudgetItem(index, 'quantity', e.target.value)} className={inputCls} />
-                                                            </div>
-                                                            <div className="col-span-3">
-                                                                <label className={labelCls}>Harga Satuan</label>
-                                                                <input type="number" min="0" value={item.unit_price} onChange={e => updateBudgetItem(index, 'unit_price', e.target.value)} className={inputCls} />
-                                                            </div>
-                                                            <div className="col-span-2">
-                                                                <label className={labelCls}>Subtotal</label>
-                                                                <div className="rounded-xl border border-[#1C2541]/60 bg-[#111A2E] px-3 py-2.5 text-xs font-bold text-amber-300">{formatCurrency(subtotal)}</div>
-                                                            </div>
-                                                            <div className="col-span-1 flex items-end">
-                                                                <button type="button" onClick={() => removeBudgetItem(index)} className="w-full rounded-xl border border-red-500/30 py-2.5 text-xs text-red-400 hover:bg-red-500/10 transition">×</button>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                );
-                                            })}
-                                        </div>
-                                    </div>
                                 </div>
                             )}
-
-                            {Object.keys(form.errors).length > 0 && (
-                                <div className="rounded-xl border border-red-500/30 bg-red-500/10 p-4 text-sm text-red-300">
-                                    <div className="font-bold mb-2">Periksa kesalahan berikut:</div>
-                                    <ul className="list-disc pl-4 space-y-1 text-xs">
-                                        {Object.entries(form.errors).map(([field, message]) => <li key={field}>{message}</li>)}
-                                    </ul>
-                                </div>
-                            )}
-
-                            <div className="flex justify-end gap-3 border-t border-[#1C2541]/40 pt-4">
-                                <button type="button" onClick={closeFormModal} className="rounded-xl border border-[#1C2541]/60 px-5 py-2.5 text-sm text-slate-400 hover:text-white hover:border-[#1C2541] transition">Batal</button>
-                                <button type="submit" disabled={form.processing} className="rounded-xl bg-emerald-500 px-5 py-2.5 text-sm font-bold text-[#0B132B] shadow-lg shadow-emerald-500/20 hover:bg-emerald-400 transition disabled:opacity-60">
-                                    {form.processing ? 'Menyimpan...' : formMode === 'create' ? 'Simpan Kegiatan' : 'Update Kegiatan'}
+                            <div className="flex justify-end gap-3 border-t border-slate-200 pt-4">
+                                <button type="button" onClick={closeFormModal} className="rounded-xl border border-slate-200 bg-white px-5 py-2.5 text-sm font-bold text-slate-700 hover:bg-slate-100 transition shadow-sm">Batal</button>
+                                <button type="submit" disabled={form.processing} className="rounded-xl bg-emerald-600 px-5 py-2.5 text-sm font-bold text-white shadow-sm hover:bg-emerald-700 transition">
+                                    {form.processing ? 'Menyimpan...' : 'Simpan Kegiatan'}
                                 </button>
                             </div>
                         </form>
@@ -823,32 +737,23 @@ export default function Events({ events = [], flash }: EventsProps) {
             {/* Expense Modal */}
             <Dialog.Root open={showExpenseModal} onOpenChange={open => !open && closeExpenseModal()}>
                 <Dialog.Portal>
-                    <Dialog.Overlay className="fixed inset-0 z-50 bg-black/70 backdrop-blur-sm" />
-                    <Dialog.Content className="fixed left-1/2 top-1/2 z-50 w-full max-w-2xl -translate-x-1/2 -translate-y-1/2 rounded-2xl border border-[#1C2541]/60 bg-[#090E1A] shadow-2xl">
-                        <div className="flex items-center justify-between border-b border-[#1C2541]/40 px-6 py-4">
-                            <div>
-                                <Dialog.Title className="text-lg font-black text-white">Tambah Pengeluaran</Dialog.Title>
-                                <Dialog.Description className="sr-only">Form tambah pengeluaran aktual kegiatan.</Dialog.Description>
-                            </div>
+                    <Dialog.Overlay className="fixed inset-0 z-50 bg-slate-900/40 backdrop-blur-sm" />
+                    <Dialog.Content className="fixed left-1/2 top-1/2 z-50 w-full max-w-2xl -translate-x-1/2 -translate-y-1/2 rounded-2xl border border-slate-200 bg-white shadow-2xl">
+                        <div className="flex items-center justify-between border-b border-slate-200 bg-slate-50 px-6 py-4">
+                            <Dialog.Title className="text-lg font-black text-slate-900">Tambah Pengeluaran</Dialog.Title>
                             <Dialog.Close asChild>
-                                <button type="button" className="rounded-xl p-2 text-slate-400 hover:text-white hover:bg-[#1C2541]/60 transition"><X size={20} /></button>
+                                <button type="button" className="rounded-xl p-2 text-slate-400 hover:text-slate-800 hover:bg-slate-200 transition"><X size={20} /></button>
                             </Dialog.Close>
                         </div>
                         <form onSubmit={submitExpense} className="space-y-4 p-6">
                             <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
                                 <div><label className={labelCls}>Tanggal</label><input type="date" value={expenseForm.data.tanggal_pengeluaran} onChange={e => expenseForm.setData('tanggal_pengeluaran', e.target.value)} className={inputCls} /></div>
-                                <div><label className={labelCls}>Nama Pengeluaran</label><input type="text" value={expenseForm.data.nama_pengeluaran} onChange={e => expenseForm.setData('nama_pengeluaran', e.target.value)} className={inputCls} /></div>
-                                <div><label className={labelCls}>Kategori</label><select value={expenseForm.data.kategori_pengeluaran} onChange={e => expenseForm.setData('kategori_pengeluaran', e.target.value)} className={inputCls}>{['Konsumsi','Peralatan','Transportasi','Dekorasi','Dokumentasi','Honor/Jasa','Lainnya'].map(k => <option key={k} value={k}>{k}</option>)}</select></div>
+                                <div><label className={labelCls}>Nama</label><input type="text" value={expenseForm.data.nama_pengeluaran} onChange={e => expenseForm.setData('nama_pengeluaran', e.target.value)} className={inputCls} /></div>
                                 <div><label className={labelCls}>Nominal</label><input type="number" min="0" value={expenseForm.data.nominal} onChange={e => expenseForm.setData('nominal', e.target.value)} className={inputCls} /></div>
-                                <div><label className={labelCls}>Metode Pembayaran</label><select value={expenseForm.data.metode_pembayaran} onChange={e => expenseForm.setData('metode_pembayaran', e.target.value)} className={inputCls}>{['Tunai','Transfer','QRIS','Lainnya'].map(m => <option key={m} value={m}>{m}</option>)}</select></div>
-                                <div><label className={labelCls}>Bukti Pembayaran</label><input type="file" accept=".jpg,.jpeg,.png,.pdf,.webp" onChange={e => expenseForm.setData('bukti_pembayaran', e.target.files?.[0] ?? null)} className={inputCls} /></div>
-                                <div className="md:col-span-2"><label className={labelCls}>Keterangan</label><textarea rows={3} value={expenseForm.data.keterangan} onChange={e => expenseForm.setData('keterangan', e.target.value)} className={inputCls} /></div>
+                                <div><label className={labelCls}>Kategori</label><select value={expenseForm.data.kategori_pengeluaran} onChange={e => expenseForm.setData('kategori_pengeluaran', e.target.value)} className={inputCls}>{['Konsumsi','Peralatan','Transportasi','Dekorasi','Dokumentasi','Honor/Jasa','Lainnya'].map(k => <option key={k} value={k}>{k}</option>)}</select></div>
                             </div>
                             <div className="flex justify-end gap-3 pt-2">
-                                <button type="button" onClick={closeExpenseModal} className="rounded-xl border border-[#1C2541]/60 px-4 py-2.5 text-sm text-slate-400 hover:text-white transition">Batal</button>
-                                <button type="submit" disabled={expenseForm.processing} className="rounded-xl bg-emerald-500 px-4 py-2.5 text-sm font-bold text-[#0B132B] hover:bg-emerald-400 transition disabled:opacity-60">
-                                    {expenseForm.processing ? 'Menyimpan...' : 'Simpan Pengeluaran'}
-                                </button>
+                                <button type="submit" className="rounded-xl bg-emerald-600 px-5 py-2.5 text-sm font-bold text-white hover:bg-emerald-700 transition">Simpan</button>
                             </div>
                         </form>
                     </Dialog.Content>
@@ -858,70 +763,20 @@ export default function Events({ events = [], flash }: EventsProps) {
             {/* Detail Modal */}
             <Dialog.Root open={showDetailModal !== null} onOpenChange={open => !open && setShowDetailModal(null)}>
                 <Dialog.Portal>
-                    <Dialog.Overlay className="fixed inset-0 z-50 bg-black/70 backdrop-blur-sm" />
-                    <Dialog.Content className="fixed left-1/2 top-1/2 z-50 max-h-[90vh] w-full max-w-3xl -translate-x-1/2 -translate-y-1/2 overflow-y-auto rounded-2xl border border-[#1C2541]/60 bg-[#090E1A] shadow-2xl">
-                        <div className="sticky top-0 flex items-center justify-between border-b border-[#1C2541]/40 bg-[#090E1A]/95 px-6 py-4 z-10">
-                            <div>
-                                <Dialog.Title className="text-lg font-black text-white">Detail Kegiatan</Dialog.Title>
-                                <Dialog.Description className="sr-only">Detail kegiatan RT.</Dialog.Description>
-                            </div>
-                            <Dialog.Close asChild>
-                                <button className="rounded-xl p-2 text-slate-400 hover:text-white hover:bg-[#1C2541]/60 transition"><X size={20} /></button>
-                            </Dialog.Close>
+                    <Dialog.Overlay className="fixed inset-0 z-50 bg-slate-900/40 backdrop-blur-sm" />
+                    <Dialog.Content className="fixed left-1/2 top-1/2 z-50 max-h-[90vh] w-full max-w-3xl -translate-x-1/2 -translate-y-1/2 overflow-y-auto rounded-2xl border border-slate-200 bg-white shadow-2xl">
+                        <div className="sticky top-0 z-10 flex items-center justify-between border-b border-slate-200 bg-slate-50 px-6 py-4">
+                            <Dialog.Title className="text-lg font-black text-slate-900">Detail Kegiatan</Dialog.Title>
+                            <Dialog.Close asChild><button className="rounded-xl p-2 text-slate-400 hover:bg-slate-200"><X size={20} /></button></Dialog.Close>
                         </div>
                         {showDetailModal && (
-                            <div className="space-y-5 p-6">
-                                <div className="rounded-xl border border-emerald-500/20 bg-emerald-500/5 p-5">
-                                    <div className="flex items-start justify-between gap-3 mb-4">
-                                        <h2 className="text-xl font-black text-white">{showDetailModal.title}</h2>
-                                        <span className={`shrink-0 inline-flex items-center gap-1.5 rounded-lg px-3 py-1 text-xs font-bold ${getStatusConfig(showDetailModal.status).cls}`}>
-                                            <span className={`w-1.5 h-1.5 rounded-full ${getStatusConfig(showDetailModal.status).dot}`} />{showDetailModal.status}
-                                        </span>
+                            <div className="space-y-5 p-6 text-sm">
+                                <div className="rounded-xl border border-emerald-200 bg-emerald-50 p-5">
+                                    <h2 className="text-xl font-black text-slate-900 mb-4">{showDetailModal.title}</h2>
+                                    <div className="grid grid-cols-2 gap-3">
+                                        <div><p className="text-xs font-bold text-slate-500">Tanggal</p><p className="font-bold text-slate-900">{formatDate(showDetailModal.date)}</p></div>
+                                        <div><p className="text-xs font-bold text-slate-500">Lokasi</p><p className="font-bold text-slate-900">{showDetailModal.location}</p></div>
                                     </div>
-                                    <div className="grid grid-cols-2 gap-3 text-sm">
-                                        {[
-                                            ['Kategori', showDetailModal.category],
-                                            ['Tanggal', formatDate(showDetailModal.date)],
-                                            ['Waktu', `${showDetailModal.startTime || '-'} - ${showDetailModal.endTime || '-'}`],
-                                            ['Lokasi', showDetailModal.location],
-                                            ['Penanggung Jawab', showDetailModal.responsible || '-'],
-                                            ['Target Peserta', `${showDetailModal.targetParticipants || 0} orang`],
-                                            ['Kehadiran', showDetailModal.mandatory ? 'Wajib Hadir' : 'Tidak Wajib'],
-                                        ].map(([label, value]) => (
-                                            <div key={label}>
-                                                <p className="text-slate-500 text-xs">{label}</p>
-                                                <p className="font-semibold text-white text-sm mt-0.5">{value}</p>
-                                            </div>
-                                        ))}
-                                    </div>
-                                </div>
-                                <div>
-                                    <h3 className="mb-2 text-xs font-bold uppercase tracking-wider text-slate-500">Deskripsi Kegiatan</h3>
-                                    <p className="rounded-xl bg-[#111A2E]/60 border border-[#1C2541]/40 p-4 text-sm text-slate-300 leading-relaxed">{showDetailModal.description || '-'}</p>
-                                </div>
-                                <div>
-                                    <h3 className="mb-2 text-xs font-bold uppercase tracking-wider text-slate-500">Hasil Kegiatan / Catatan</h3>
-                                    <p className="rounded-xl bg-[#111A2E]/60 border border-[#1C2541]/40 p-4 text-sm text-slate-300 leading-relaxed whitespace-pre-line">
-                                        {showDetailModal.hasilKegiatan || showDetailModal.notes || 'Belum ada hasil kegiatan yang dicatat.'}
-                                    </p>
-                                </div>
-                                <div>
-                                    <h3 className="mb-2 text-xs font-bold uppercase tracking-wider text-slate-500">
-                                        Foto Dokumentasi ({showDetailModal.fotoDokumentasiUrls?.length || 0})
-                                    </h3>
-                                    {(showDetailModal.fotoDokumentasiUrls?.length ?? 0) > 0 ? (
-                                        <div className="grid grid-cols-3 gap-3">
-                                            {showDetailModal.fotoDokumentasiUrls!.map((url, idx) => (
-                                                <a key={idx} href={url} target="_blank" rel="noreferrer" className="group relative rounded-xl overflow-hidden border border-slate-700 aspect-video bg-[#0B132B] hover:border-emerald-500/50 transition">
-                                                    <img src={url} alt={`Dokumentasi ${idx + 1}`} className="w-full h-full object-cover group-hover:scale-105 transition duration-300" />
-                                                </a>
-                                            ))}
-                                        </div>
-                                    ) : (
-                                        <div className="rounded-xl bg-[#111A2E]/40 border border-dashed border-[#1C2541]/40 p-4 text-center text-xs text-slate-500">
-                                            Belum ada foto dokumentasi yang di-upload.
-                                        </div>
-                                    )}
                                 </div>
                             </div>
                         )}
@@ -932,72 +787,19 @@ export default function Events({ events = [], flash }: EventsProps) {
             {/* Budget Modal */}
             <Dialog.Root open={showBudgetModal !== null} onOpenChange={open => !open && setShowBudgetModal(null)}>
                 <Dialog.Portal>
-                    <Dialog.Overlay className="fixed inset-0 z-50 bg-black/70 backdrop-blur-sm" />
-                    <Dialog.Content className="fixed left-1/2 top-1/2 z-50 max-h-[90vh] w-full max-w-5xl -translate-x-1/2 -translate-y-1/2 overflow-y-auto rounded-2xl border border-[#1C2541]/60 bg-[#090E1A] shadow-2xl">
-                        <div className="sticky top-0 flex items-center justify-between border-b border-[#1C2541]/40 bg-[#090E1A]/95 px-6 py-4 z-10">
-                            <div>
-                                <Dialog.Title className="text-lg font-black text-white">Kelola Dana Kegiatan</Dialog.Title>
-                                <Dialog.Description className="sr-only">Kelola dana dan pengeluaran kegiatan.</Dialog.Description>
-                            </div>
-                            <Dialog.Close asChild>
-                                <button className="rounded-xl p-2 text-slate-400 hover:text-white hover:bg-[#1C2541]/60 transition"><X size={20} /></button>
-                            </Dialog.Close>
+                    <Dialog.Overlay className="fixed inset-0 z-50 bg-slate-900/40 backdrop-blur-sm" />
+                    <Dialog.Content className="fixed left-1/2 top-1/2 z-50 w-full max-w-5xl -translate-x-1/2 -translate-y-1/2 rounded-2xl border border-slate-200 bg-white shadow-2xl">
+                        <div className="flex items-center justify-between border-b border-slate-200 bg-slate-50 px-6 py-4">
+                            <Dialog.Title className="text-lg font-black text-slate-900">Kelola Dana</Dialog.Title>
+                            <Dialog.Close asChild><button className="rounded-xl p-2 text-slate-400 hover:bg-slate-200"><X size={20} /></button></Dialog.Close>
                         </div>
                         {showBudgetModal && (
-                            <div className="space-y-6 p-6">
-                                <div className="rounded-xl border border-[#1C2541]/60 bg-[#0B132B]/60 p-4">
-                                    <h3 className="text-base font-black text-white mb-1">{showBudgetModal.title}</h3>
-                                    <div className="flex gap-4 text-xs text-slate-400">
-                                        <span>{formatDate(showBudgetModal.date)}</span>
-                                        <span>Sumber: {showBudgetModal.budgetSource || '-'}</span>
-                                        <span className="text-emerald-400 font-semibold">{getBudgetStatus(showBudgetModal)}</span>
-                                    </div>
-                                </div>
-                                <div className="grid grid-cols-2 gap-4 lg:grid-cols-4">
-                                    {[
-                                        { label: 'Estimasi', value: showBudgetModal.estimatedCost, color: 'text-blue-300', bg: 'bg-blue-500/10 border-blue-500/20' },
-                                        { label: 'Dana Tersedia', value: showBudgetModal.estimatedCost, color: 'text-emerald-300', bg: 'bg-emerald-500/10 border-emerald-500/20' },
-                                        { label: 'Aktual', value: showBudgetModal.actualCost || 0, color: 'text-amber-300', bg: 'bg-amber-500/10 border-amber-500/20' },
-                                        { label: 'Selisih', value: Math.abs(showBudgetModal.estimatedCost - (showBudgetModal.actualCost || 0)), color: 'text-slate-300', bg: 'bg-[#0B132B]/60 border-[#1C2541]/60' },
-                                    ].map(({ label, value, color, bg }) => (
-                                        <div key={label} className={`rounded-xl border p-4 ${bg}`}>
-                                            <p className="text-xs text-slate-500 mb-1">{label}</p>
-                                            <p className={`text-lg font-black ${color}`}>{formatCurrency(value)}</p>
-                                        </div>
-                                    ))}
-                                </div>
-                                <div>
-                                    <div className="mb-3 flex items-center justify-between">
-                                        <h3 className="text-sm font-bold text-white">Rincian Pengeluaran</h3>
-                                        <button type="button" onClick={() => openExpenseModal(showBudgetModal)} className="flex items-center gap-1.5 rounded-xl bg-emerald-500 px-3 py-2 text-xs font-bold text-[#0B132B] hover:bg-emerald-400 transition">
-                                            <Plus size={14} /> Tambah
-                                        </button>
-                                    </div>
-                                    <div className="overflow-x-auto rounded-xl border border-[#1C2541]/60">
-                                        <table className="w-full text-xs min-w-[700px]">
-                                            <thead>
-                                                <tr className="border-b border-[#1C2541]/40 bg-[#0B132B]/60">
-                                                    {['Tanggal','Nama','Kategori','Nominal','Metode','Bukti','Ket'].map(h => <th key={h} className="px-4 py-3 text-left font-bold uppercase tracking-wider text-slate-500">{h}</th>)}
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                {(showBudgetModal.expenses || []).map(expense => (
-                                                    <tr key={expense.id} className="border-b border-[#1C2541]/30 hover:bg-[#111A2E]/50 transition">
-                                                        <td className="px-4 py-3 text-slate-400">{formatShortDate(expense.date)}</td>
-                                                        <td className="px-4 py-3 font-semibold text-white">{expense.name}</td>
-                                                        <td className="px-4 py-3"><span className="rounded-lg bg-[#111A2E] px-2 py-0.5 text-slate-400">{expense.category}</span></td>
-                                                        <td className="px-4 py-3 font-bold text-amber-300">{formatCurrency(expense.amount)}</td>
-                                                        <td className="px-4 py-3 text-slate-400">{expense.paymentMethod}</td>
-                                                        <td className="px-4 py-3"><span className={`rounded-lg px-2 py-0.5 font-semibold ${expense.hasProof ? 'bg-emerald-500/20 text-emerald-400' : 'bg-red-500/20 text-red-400'}`}>{expense.hasProof ? 'Ada' : 'Tidak'}</span></td>
-                                                        <td className="px-4 py-3 text-slate-500">{expense.notes || '-'}</td>
-                                                    </tr>
-                                                ))}
-                                            </tbody>
-                                        </table>
-                                        {(showBudgetModal.expenses || []).length === 0 && (
-                                            <div className="p-8 text-center text-sm text-slate-500">Belum ada pengeluaran aktual.</div>
-                                        )}
-                                    </div>
+                            <div className="p-6">
+                                <div className="grid grid-cols-4 gap-4 mb-6">
+                                    <div className="rounded-xl border p-4 bg-blue-50 border-blue-200"><p className="text-xs font-bold text-slate-600">Estimasi</p><p className="text-lg font-black text-blue-700">{formatCurrency(showBudgetModal.estimatedCost)}</p></div>
+                                    <div className="rounded-xl border p-4 bg-emerald-50 border-emerald-200"><p className="text-xs font-bold text-slate-600">Tersedia</p><p className="text-lg font-black text-emerald-700">{formatCurrency(showBudgetModal.estimatedCost)}</p></div>
+                                    <div className="rounded-xl border p-4 bg-amber-50 border-amber-200"><p className="text-xs font-bold text-slate-600">Aktual</p><p className="text-lg font-black text-amber-700">{formatCurrency(showBudgetModal.actualCost || 0)}</p></div>
+                                    <div className="rounded-xl border p-4 bg-slate-50 border-slate-200"><p className="text-xs font-bold text-slate-600">Selisih</p><p className="text-lg font-black text-slate-900">{formatCurrency(Math.abs(showBudgetModal.estimatedCost - (showBudgetModal.actualCost || 0)))}</p></div>
                                 </div>
                             </div>
                         )}
@@ -1008,25 +810,12 @@ export default function Events({ events = [], flash }: EventsProps) {
             {/* Delete Modal */}
             <Dialog.Root open={showDeleteModal !== null} onOpenChange={open => !open && setShowDeleteModal(null)}>
                 <Dialog.Portal>
-                    <Dialog.Overlay className="fixed inset-0 z-50 bg-black/70 backdrop-blur-sm" />
-                    <Dialog.Content className="fixed left-1/2 top-1/2 z-50 w-full max-w-md -translate-x-1/2 -translate-y-1/2 rounded-2xl border border-[#1C2541]/60 bg-[#090E1A] shadow-2xl">
-                        <div className="p-6">
-                            <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-2xl bg-red-500/10 border border-red-500/20">
-                                <Trash2 size={22} className="text-red-400" />
-                            </div>
-                            <Dialog.Title className="mb-2 text-lg font-black text-white">Hapus Kegiatan?</Dialog.Title>
-                            <Dialog.Description className="mb-6 text-sm text-slate-400">
-                                {showDeleteModal ? `Data kegiatan "${showDeleteModal.title}" akan dihapus permanen dan tidak bisa dikembalikan.` : 'Data kegiatan akan dihapus.'}
-                            </Dialog.Description>
-                            <div className="flex justify-end gap-3">
-                                <Dialog.Close asChild>
-                                    <button className="rounded-xl border border-[#1C2541]/60 px-4 py-2.5 text-sm text-slate-400 hover:text-white transition">Batal</button>
-                                </Dialog.Close>
-                                <button type="button" onClick={handleDelete} className="rounded-xl bg-red-500 px-4 py-2.5 text-sm font-bold text-white hover:bg-red-400 transition">
-                                    Ya, Hapus
-                                </button>
-                            </div>
-                        </div>
+                    <Dialog.Overlay className="fixed inset-0 z-50 bg-slate-900/40 backdrop-blur-sm" />
+                    <Dialog.Content className="fixed left-1/2 top-1/2 z-50 w-full max-w-sm -translate-x-1/2 -translate-y-1/2 rounded-2xl border border-slate-200 bg-white shadow-2xl p-6">
+                        <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-2xl bg-red-50 border border-red-200"><Trash2 size={22} className="text-red-700" /></div>
+                        <Dialog.Title className="mb-2 text-lg font-black text-slate-900">Hapus Kegiatan?</Dialog.Title>
+                        <p className="mb-6 text-sm text-slate-600 font-medium">Data akan dihapus permanen.</p>
+                        <div className="flex justify-end gap-3"><button onClick={handleDelete} className="rounded-xl bg-red-600 px-4 py-2.5 text-sm font-bold text-white hover:bg-red-700">Ya, Hapus</button></div>
                     </Dialog.Content>
                 </Dialog.Portal>
             </Dialog.Root>
