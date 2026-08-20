@@ -97,26 +97,26 @@ function formatDateFull(value?: string | null) {
 function getEventColorClass(category?: string | null) {
     const cat = String(category || '').toLowerCase();
     if (cat.includes('sosial') || cat.includes('bakti')) {
-        return 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/20';
+        return 'bg-emerald-50 text-emerald-700 border border-emerald-200';
     }
     if (cat.includes('perayaan') || cat.includes('hut') || cat.includes('lomba')) {
-        return 'bg-amber-500/10 text-amber-400 border border-amber-500/20';
+        return 'bg-amber-50 text-amber-700 border border-amber-200';
     }
     if (cat.includes('rapat') || cat.includes('musyawarah') || cat.includes('rt')) {
-        return 'bg-indigo-500/10 text-indigo-400 border border-indigo-500/20';
+        return 'bg-indigo-50 text-indigo-700 border border-indigo-200';
     }
-    return 'bg-slate-800 text-slate-400 border border-slate-700/60';
+    return 'bg-slate-100 text-slate-700 border border-slate-200';
 }
 
 function getEventBadgeColor(category?: string | null) {
     const cat = String(category || '').toLowerCase();
     if (cat.includes('sosial') || cat.includes('bakti')) {
-        return 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/20';
+        return 'bg-emerald-50 text-emerald-700 border border-emerald-200';
     }
     if (cat.includes('perayaan') || cat.includes('hut')) {
-        return 'bg-amber-500/10 text-amber-400 border border-amber-500/20';
+        return 'bg-amber-50 text-amber-700 border border-amber-200';
     }
-    return 'bg-indigo-500/10 text-indigo-400 border border-indigo-500/20';
+    return 'bg-indigo-50 text-indigo-700 border border-indigo-200';
 }
 
 export default function Kegiatan({ profile = fallbackProfile, events = [], pastEvents = [] }: Props) {
@@ -247,24 +247,24 @@ export default function Kegiatan({ profile = fallbackProfile, events = [], pastE
             <div className="mx-auto max-w-6xl space-y-6 px-4 py-6 lg:px-8 lg:py-8">
                 {/* Header Back & Titles */}
                 <div className="flex items-center gap-3">
-                    <Link href="/warga/dashboard" className="rounded-xl bg-[#131b2e] border border-slate-800 p-2 text-slate-400 hover:text-slate-200 transition">
+                    <Link href="/warga/dashboard" className="rounded-xl bg-white border border-slate-200 p-2 text-slate-600 hover:text-slate-900 shadow-sm transition">
                         <ArrowLeft size={16} />
                     </Link>
                     <div>
-                        <h1 className="text-xl font-black text-slate-100 tracking-tight">Kegiatan RT</h1>
-                        <p className="text-xs text-slate-500 mt-0.5">Kelola dan ikuti agenda kebersamaan warga lingkungan SMART-RT.</p>
+                        <h1 className="text-xl font-black text-slate-900 tracking-tight">Kegiatan RT</h1>
+                        <p className="text-xs text-slate-600 mt-0.5 font-medium">Kelola dan ikuti agenda kebersamaan warga lingkungan SMART-RT.</p>
                     </div>
                 </div>
 
                 {/* Mobile Search input */}
                 <div className="lg:hidden relative">
-                    <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-500" size={16} />
+                    <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" size={16} />
                     <input
                         type="text"
                         value={search}
                         onChange={(e) => handleSearch(e.target.value)}
                         placeholder="Cari kegiatan..."
-                        className="w-full rounded-2xl border border-slate-800 bg-[#131b2e] py-3 pl-10 pr-4 text-xs text-slate-200 placeholder-slate-500 focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500"
+                        className="w-full rounded-2xl border border-slate-200 bg-white py-3 pl-10 pr-4 text-xs text-slate-900 placeholder-slate-400 focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500"
                     />
                 </div>
 
@@ -272,30 +272,30 @@ export default function Kegiatan({ profile = fallbackProfile, events = [], pastE
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
                     {/* Left Column: Calendar Component */}
                     <div className="lg:col-span-8">
-                        <div className="rounded-3xl border border-slate-800 bg-[#0b1220] p-5 shadow-xl relative overflow-hidden">
+                        <div className="rounded-3xl border border-slate-200 bg-white p-5 shadow-sm relative overflow-hidden">
                             {/* Calendar Header Nav */}
-                            <div className="flex items-center justify-between mb-4 border-b border-slate-850 pb-4">
+                            <div className="flex items-center justify-between mb-4 border-b border-slate-200 pb-4">
                                 <div className="flex items-center gap-2">
-                                    <h2 className="text-base font-black text-slate-150 capitalize tracking-tight">{monthName}</h2>
+                                    <h2 className="text-base font-black text-slate-900 capitalize tracking-tight">{monthName}</h2>
                                     <div className="flex items-center gap-1">
                                         <button 
                                             onClick={() => changeMonth('prev')}
-                                            className="p-1 rounded-lg bg-[#131b2e] border border-slate-850 text-slate-400 hover:text-slate-250 transition"
+                                            className="p-1 rounded-lg bg-white border border-slate-200 text-slate-600 hover:bg-slate-50 transition shadow-sm"
                                         >
                                             <ChevronLeft size={14} />
                                         </button>
                                         <button 
                                             onClick={() => changeMonth('next')}
-                                            className="p-1 rounded-lg bg-[#131b2e] border border-slate-850 text-slate-400 hover:text-slate-250 transition"
+                                            className="p-1 rounded-lg bg-white border border-slate-200 text-slate-600 hover:bg-slate-50 transition shadow-sm"
                                         >
                                             <ChevronRight size={14} />
                                         </button>
                                     </div>
                                 </div>
                                 {/* Filter pills mock */}
-                                <div className="flex items-center gap-1.5 bg-[#131b2e] p-1 rounded-xl border border-slate-850">
-                                    <button className="px-3 py-1 rounded-lg text-[9px] font-black uppercase bg-slate-800 text-slate-200">Bulan</button>
-                                    <button className="px-3 py-1 rounded-lg text-[9px] font-black uppercase text-slate-500 hover:text-slate-300">Minggu</button>
+                                <div className="flex items-center gap-1.5 bg-slate-100 p-1 rounded-xl border border-slate-200">
+                                    <button className="px-3 py-1 rounded-lg text-[9px] font-bold uppercase bg-emerald-600 text-white shadow-sm">Bulan</button>
+                                    <button className="px-3 py-1 rounded-lg text-[9px] font-bold uppercase text-slate-600 hover:text-slate-900">Minggu</button>
                                 </div>
                             </div>
 
@@ -311,7 +311,7 @@ export default function Kegiatan({ profile = fallbackProfile, events = [], pastE
                             </div>
 
                             {/* Calendar Days grid */}
-                            <div className="grid grid-cols-7 gap-1 border border-slate-850 rounded-2xl overflow-hidden bg-[#131b2e]/20">
+                            <div className="grid grid-cols-7 gap-1 border border-slate-200 rounded-2xl overflow-hidden bg-slate-50">
                                 {calendarGrid.map((gridDay, idx) => {
                                     // Find events on this day
                                     const dayEvents = safeEvents.filter(e => e.date === gridDay.dateString);
@@ -319,17 +319,17 @@ export default function Kegiatan({ profile = fallbackProfile, events = [], pastE
                                     return (
                                         <div 
                                             key={`${gridDay.dateString}-${idx}`}
-                                            className={`min-h-[72px] sm:min-h-[85px] p-2 flex flex-col justify-between border-slate-850 transition duration-150 ${
+                                            className={`min-h-[72px] sm:min-h-[85px] p-2 flex flex-col justify-between border-slate-200 transition duration-150 ${
                                                 idx % 7 !== 6 ? 'border-r' : ''
                                             } ${
                                                 idx < calendarGrid.length - 7 ? 'border-b' : ''
                                             } ${
-                                                gridDay.isCurrentMonth ? 'bg-transparent' : 'bg-slate-950/20'
+                                                gridDay.isCurrentMonth ? 'bg-white' : 'bg-slate-100/60'
                                             }`}
                                         >
                                             {/* Date number */}
                                             <span className={`text-[10px] font-black leading-none ${
-                                                gridDay.isCurrentMonth ? 'text-slate-350' : 'text-slate-600'
+                                                gridDay.isCurrentMonth ? 'text-slate-900' : 'text-slate-400'
                                             }`}>
                                                 {gridDay.day}
                                             </span>
@@ -358,26 +358,24 @@ export default function Kegiatan({ profile = fallbackProfile, events = [], pastE
                     {/* Right Column: Event Stats & Agenda Terdekat */}
                     <div className="lg:col-span-4 space-y-6">
                         {/* Summary Widget */}
-                        <div className="rounded-3xl border border-slate-800 bg-[#0b1220] p-5 shadow-xl relative overflow-hidden group">
-                            <div className="absolute top-0 right-0 w-32 h-32 bg-indigo-500/5 rounded-full blur-3xl"></div>
-                            
+                        <div className="rounded-3xl border border-slate-200 bg-white p-5 shadow-sm relative overflow-hidden">
                             <h2 className="text-[10px] font-black text-slate-500 uppercase tracking-widest mb-4">Ringkasan Kegiatan</h2>
                             
                             <div className="grid grid-cols-2 gap-4">
                                 <div>
-                                    <p className="text-2xl font-black text-slate-100">{safeEvents.length}</p>
+                                    <p className="text-2xl font-black text-slate-900">{safeEvents.length}</p>
                                     <p className="text-[9px] uppercase font-bold text-slate-500 mt-1 tracking-wider">Mendatang</p>
                                 </div>
-                                <div className="border-l border-slate-850 pl-4">
-                                    <p className="text-2xl font-black text-emerald-400">{activePastEvents.length + 20}</p>
+                                <div className="border-l border-slate-200 pl-4">
+                                    <p className="text-2xl font-black text-emerald-600">{activePastEvents.length + 20}</p>
                                     <p className="text-[9px] uppercase font-bold text-slate-500 mt-1 tracking-wider">Total Selesai</p>
                                 </div>
                             </div>
                         </div>
 
                         {/* Agenda Terdekat list */}
-                        <div className="rounded-3xl border border-slate-800 bg-[#0b1220] p-5 shadow-xl relative overflow-hidden">
-                            <div className="flex items-center justify-between mb-4 border-b border-slate-850/80 pb-3">
+                        <div className="rounded-3xl border border-slate-200 bg-white p-5 shadow-sm relative overflow-hidden">
+                            <div className="flex items-center justify-between mb-4 border-b border-slate-200 pb-3">
                                 <h3 className="text-xs font-black text-slate-300 uppercase tracking-wider">Agenda Terdekat</h3>
                                 <span className="text-[10px] font-black text-emerald-400 hover:text-emerald-350 transition cursor-pointer">Lihat Semua</span>
                             </div>
@@ -391,7 +389,7 @@ export default function Kegiatan({ profile = fallbackProfile, events = [], pastE
                                     {filteredEvents.slice(0, 3).map((event) => (
                                         <div 
                                             key={event.id}
-                                            className="rounded-2xl border border-slate-850 bg-[#131b2e]/30 overflow-hidden hover:border-slate-700/60 transition group"
+                                            className="rounded-2xl border border-slate-200 bg-white overflow-hidden hover:border-emerald-200 transition group shadow-sm"
                                         >
                                             {/* Thumbnail kecil jika ada */}
                                             {(event.imageUrl || event.image) && (
@@ -401,7 +399,7 @@ export default function Kegiatan({ profile = fallbackProfile, events = [], pastE
                                                         alt={event.title}
                                                         className="w-full h-full object-cover group-hover:scale-105 transition duration-300"
                                                     />
-                                                    <div className="absolute inset-0 bg-gradient-to-t from-[#131b2e] via-transparent to-transparent opacity-70" />
+                                                    <div className="absolute inset-0 bg-gradient-to-t from-white via-transparent to-transparent opacity-70" />
                                                 </div>
                                             )}
                                             <div className="p-3.5 space-y-3">
@@ -414,28 +412,28 @@ export default function Kegiatan({ profile = fallbackProfile, events = [], pastE
                                                     </span>
                                                 </div>
 
-                                                <h4 className="text-xs font-black text-slate-200 leading-snug tracking-tight group-hover:text-emerald-400 transition-colors">
+                                                <h4 className="text-xs font-black text-slate-900 leading-snug tracking-tight group-hover:text-emerald-700 transition-colors">
                                                     {event.title}
                                                 </h4>
 
-                                                <div className="space-y-1.5 text-[10px] text-slate-400 font-medium">
+                                                <div className="space-y-1.5 text-[10px] text-slate-600 font-medium">
                                                     <p className="flex items-center gap-1.5">
-                                                        <CalendarIcon size={12} className="text-emerald-400/80 shrink-0" />
+                                                        <CalendarIcon size={12} className="text-emerald-600 shrink-0" />
                                                         <span>{formatDate(event.date)}</span>
                                                     </p>
                                                     {event.location && (
                                                         <p className="flex items-center gap-1.5">
-                                                            <MapPinIcon size={12} className="text-emerald-400/80 shrink-0" />
+                                                            <MapPinIcon size={12} className="text-emerald-600 shrink-0" />
                                                             <span className="truncate">{event.location}</span>
                                                         </p>
                                                     )}
                                                 </div>
 
-                                                <div className="pt-3 border-t border-slate-850/60 flex gap-2">
+                                                <div className="pt-3 border-t border-slate-100 flex gap-2">
                                                     <button
                                                         type="button"
                                                         onClick={() => openEventModal(event)}
-                                                        className={['py-2 rounded-xl border border-slate-800 bg-[#0b1220] hover:bg-[#1a243d] text-[10px] font-bold text-slate-350 text-center transition', event.status?.toLowerCase() === 'dijadwalkan' ? 'flex-1' : 'w-full'].join(' ')}
+                                                        className={['py-2 rounded-xl border border-slate-200 bg-slate-50 hover:bg-slate-100 text-[10px] font-bold text-slate-700 text-center transition', event.status?.toLowerCase() === 'dijadwalkan' ? 'flex-1' : 'w-full'].join(' ')}
                                                     >
                                                         Detail
                                                     </button>
@@ -444,7 +442,7 @@ export default function Kegiatan({ profile = fallbackProfile, events = [], pastE
                                                             <button
                                                                 type="button"
                                                                 onClick={() => cancelJoinEvent(event)}
-                                                                className="flex-1 py-2 rounded-xl bg-red-500/10 border border-red-500/20 hover:bg-red-500/20 text-[10px] font-black text-red-400 text-center transition active:scale-97"
+                                                                className="flex-1 py-2 rounded-xl bg-red-50 border border-red-200 hover:bg-red-100 text-[10px] font-bold text-red-700 text-center transition active:scale-97"
                                                             >
                                                                 Batal Ikut
                                                             </button>
@@ -452,7 +450,7 @@ export default function Kegiatan({ profile = fallbackProfile, events = [], pastE
                                                             <button
                                                                 type="button"
                                                                 onClick={() => joinEvent(event)}
-                                                                className="flex-1 py-2 rounded-xl bg-emerald-400 hover:bg-emerald-300 text-slate-950 text-[10px] font-black text-center transition active:scale-97"
+                                                                className="flex-1 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-[10px] font-bold text-center transition active:scale-97 shadow-sm"
                                                             >
                                                                 Daftar
                                                             </button>
@@ -469,31 +467,30 @@ export default function Kegiatan({ profile = fallbackProfile, events = [], pastE
                 </div>
 
                 {/* Bottom Row: Kegiatan Terlaksana (Past events list cards) */}
-                <div className="rounded-3xl border border-slate-800 bg-[#0b1220] p-5 shadow-xl">
-                    <h3 className="text-xs font-black text-slate-300 uppercase tracking-wider mb-5 pb-3 border-b border-slate-850/80 flex items-center gap-2">
-                        <CalendarDays size={14} className="text-emerald-400" />
+                <div className="rounded-3xl border border-slate-200 bg-white p-5 shadow-sm">
+                    <h3 className="text-xs font-black text-slate-900 uppercase tracking-wider mb-5 pb-3 border-b border-slate-100 flex items-center gap-2">
+                        <CalendarDays size={14} className="text-emerald-600" />
                         <span>Kegiatan Terlaksana</span>
                     </h3>
 
                     {activePastEvents.length > 0 ? (
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                             {activePastEvents.map((evt) => {
-                                // Gunakan imageUrl dari backend, fallback ke image dummy
                                 const thumbnail = evt.imageUrl || evt.image || null;
                                 return (
                                     <div 
                                         key={evt.id}
-                                        className="rounded-2xl border border-slate-850 bg-[#131b2e]/10 overflow-hidden shadow hover:border-slate-700/60 transition group flex flex-col justify-between"
+                                        className="rounded-2xl border border-slate-200 bg-white overflow-hidden shadow-sm hover:border-emerald-200 transition group flex flex-col justify-between"
                                     >
                                         <div>
                                             {thumbnail ? (
                                                 <div className="h-40 w-full overflow-hidden relative">
                                                     <img src={thumbnail} alt={evt.title} className="w-full h-full object-cover group-hover:scale-102 transition duration-300" />
-                                                    <div className="absolute inset-0 bg-gradient-to-t from-[#0b1220] via-transparent to-transparent opacity-80" />
+                                                    <div className="absolute inset-0 bg-gradient-to-t from-white via-transparent to-transparent opacity-80" />
                                                 </div>
                                             ) : (
-                                                <div className="h-40 w-full bg-[#131b2e] flex items-center justify-center border-b border-slate-850">
-                                                    <CalendarIcon size={24} className="text-slate-650" />
+                                                <div className="h-40 w-full bg-slate-50 flex items-center justify-center border-b border-slate-200">
+                                                    <CalendarIcon size={24} className="text-slate-400" />
                                                 </div>
                                             )}
                                             <div className="p-4 space-y-2">
@@ -501,21 +498,21 @@ export default function Kegiatan({ profile = fallbackProfile, events = [], pastE
                                                     <span className="text-[8px] font-black text-slate-500 tracking-wider font-mono">
                                                         {formatDate(evt.date)}
                                                     </span>
-                                                    <span className="text-[8px] font-extrabold text-emerald-400 bg-emerald-500/10 border border-emerald-500/20 px-1.5 py-0.5 rounded uppercase tracking-wider">
+                                                    <span className="text-[8px] font-bold text-emerald-700 bg-emerald-50 border border-emerald-200 px-1.5 py-0.5 rounded uppercase tracking-wider">
                                                         {evt.category || 'Selesai'}
                                                     </span>
                                                 </div>
-                                                <h4 className="text-xs font-black text-slate-200 group-hover:text-emerald-400 transition-colors leading-tight">
+                                                <h4 className="text-xs font-black text-slate-900 group-hover:text-emerald-700 transition-colors leading-tight">
                                                     {evt.title}
                                                 </h4>
-                                                <p className="text-[10px] text-slate-450 leading-relaxed font-medium line-clamp-2">
+                                                <p className="text-[10px] text-slate-600 leading-relaxed font-medium line-clamp-2">
                                                     {evt.description || 'Kegiatan warga RT telah selesai dilaksanakan dengan baik.'}
                                                 </p>
                                             </div>
                                         </div>
-                                        <div className="p-4 pt-0 border-t border-slate-850/40 mt-3 flex items-center justify-between gap-2">
-                                            <span className="text-[9px] font-bold text-slate-550 flex items-center gap-1 shrink-0">
-                                                <Users size={11} className="text-emerald-400" />
+                                        <div className="p-4 pt-0 border-t border-slate-100 mt-3 flex items-center justify-between gap-2">
+                                            <span className="text-[9px] font-bold text-slate-500 flex items-center gap-1 shrink-0">
+                                                <Users size={11} className="text-emerald-600" />
                                                 <span>Selesai • {evt.participantsCount || 0} Hadir</span>
                                             </span>
                                             <div className="flex items-center gap-2">
@@ -523,7 +520,7 @@ export default function Kegiatan({ profile = fallbackProfile, events = [], pastE
                                                 <button 
                                                     type="button"
                                                     onClick={() => openEventModal(evt, 'info')}
-                                                    className="text-[9px] font-black text-slate-400 hover:text-slate-200 transition flex items-center gap-1 border border-slate-800 rounded-lg px-2 py-1"
+                                                    className="text-[9px] font-bold text-slate-600 hover:text-slate-900 transition flex items-center gap-1 border border-slate-200 bg-slate-50 hover:bg-slate-100 rounded-lg px-2 py-1"
                                                 >
                                                     <span>Detail</span>
                                                 </button>
@@ -531,7 +528,7 @@ export default function Kegiatan({ profile = fallbackProfile, events = [], pastE
                                                 <button 
                                                     type="button"
                                                     onClick={() => openEventModal(evt, 'dokumentasi')}
-                                                    className="text-[9px] font-black text-emerald-400 hover:text-emerald-300 transition flex items-center gap-1.5"
+                                                    className="text-[9px] font-bold text-emerald-700 hover:text-emerald-800 transition flex items-center gap-1.5"
                                                 >
                                                     <span>Dokumentasi</span>
                                                     <ArrowLeft size={10} className="rotate-180 mt-0.5 stroke-[2.5]" />
@@ -543,7 +540,7 @@ export default function Kegiatan({ profile = fallbackProfile, events = [], pastE
                             })}
                         </div>
                     ) : (
-                        <div className="rounded-2xl border border-dashed border-slate-800/80 bg-[#131b2e]/10 p-8 text-center text-xs text-slate-500">
+                        <div className="rounded-2xl border border-dashed border-slate-200 bg-slate-50 p-8 text-center text-xs text-slate-500 font-medium">
                             Belum ada kegiatan yang telah terlaksana.
                         </div>
                     )}
@@ -552,35 +549,35 @@ export default function Kegiatan({ profile = fallbackProfile, events = [], pastE
 
             {/* Modal: View Event/Participants Details */}
             {selectedEvent && (
-                <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/60 p-4 backdrop-blur-sm">
-                    <div className="w-full max-w-lg max-h-[90vh] flex flex-col rounded-3xl bg-[#0b1220] border border-slate-800 shadow-2xl overflow-hidden">
+                <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/40 p-4 backdrop-blur-sm">
+                    <div className="w-full max-w-lg max-h-[90vh] flex flex-col rounded-3xl bg-white border border-slate-200 shadow-2xl overflow-hidden">
                         {/* Modal Header */}
-                        <div className="flex items-start justify-between gap-4 border-b border-slate-800/80 p-5 bg-[#131b2e]/30 shrink-0">
+                        <div className="flex items-start justify-between gap-4 border-b border-slate-200 p-5 bg-slate-50 shrink-0">
                             <div className="min-w-0 flex-1">
                                 <span className={`rounded px-1.5 py-0.5 text-[8px] font-black uppercase tracking-wide inline-block ${getEventBadgeColor(selectedEvent.category)}`}>
                                     {selectedEvent.category || 'Umum'}
                                 </span>
-                                <h3 className="mt-2 text-base font-black text-slate-100 leading-tight line-clamp-2">{selectedEvent.title}</h3>
+                                <h3 className="mt-2 text-base font-black text-slate-900 leading-tight line-clamp-2">{selectedEvent.title}</h3>
                                 <p className="mt-1 text-[10px] text-slate-500 font-bold">{formatDateFull(selectedEvent.date)}</p>
                             </div>
                             <button
                                 type="button"
                                 onClick={() => { setSelectedEvent(null); setModalTab('info'); }}
-                                className="rounded-xl p-1.5 text-slate-400 hover:bg-[#131b2e] hover:text-slate-200 transition shrink-0"
+                                className="rounded-xl p-1.5 text-slate-400 hover:bg-slate-200 hover:text-slate-800 transition shrink-0"
                             >
                                 <X size={18} />
                             </button>
                         </div>
 
                         {/* Tab Switcher */}
-                        <div className="flex shrink-0 border-b border-slate-800/60 bg-[#0b1220]">
+                        <div className="flex shrink-0 border-b border-slate-200 bg-white">
                             <button
                                 type="button"
                                 onClick={() => setModalTab('info')}
-                                className={`flex-1 flex items-center justify-center gap-1.5 py-3 text-[11px] font-black uppercase tracking-wider transition ${
+                                className={`flex-1 flex items-center justify-center gap-1.5 py-3 text-[11px] font-bold uppercase tracking-wider transition ${
                                     modalTab === 'info'
-                                        ? 'text-slate-100 border-b-2 border-emerald-400'
-                                        : 'text-slate-500 hover:text-slate-300'
+                                        ? 'text-emerald-700 border-b-2 border-emerald-600 bg-emerald-50/30'
+                                        : 'text-slate-500 hover:text-slate-800'
                                 }`}
                             >
                                 <FileText size={12} />
@@ -589,16 +586,16 @@ export default function Kegiatan({ profile = fallbackProfile, events = [], pastE
                             <button
                                 type="button"
                                 onClick={() => setModalTab('dokumentasi')}
-                                className={`flex-1 flex items-center justify-center gap-1.5 py-3 text-[11px] font-black uppercase tracking-wider transition ${
+                                className={`flex-1 flex items-center justify-center gap-1.5 py-3 text-[11px] font-bold uppercase tracking-wider transition ${
                                     modalTab === 'dokumentasi'
-                                        ? 'text-slate-100 border-b-2 border-emerald-400'
-                                        : 'text-slate-500 hover:text-slate-300'
+                                        ? 'text-emerald-700 border-b-2 border-emerald-600 bg-emerald-50/30'
+                                        : 'text-slate-500 hover:text-slate-800'
                                 }`}
                             >
                                 <Images size={12} />
                                 Dokumentasi
                                 {(selectedEvent.fotoDokumentasi?.length ?? 0) > 0 && (
-                                    <span className="ml-1 rounded-full bg-emerald-500/20 text-emerald-400 text-[9px] font-black px-1.5 py-0.5">
+                                    <span className="ml-1 rounded-full bg-emerald-100 text-emerald-800 text-[9px] font-black px-1.5 py-0.5">
                                         {selectedEvent.fotoDokumentasi!.length}
                                     </span>
                                 )}
@@ -610,7 +607,7 @@ export default function Kegiatan({ profile = fallbackProfile, events = [], pastE
                             <div className="p-5 overflow-y-auto space-y-4 flex-1 scrollbar-thin">
                                 {/* Foto/Poster kegiatan jika ada */}
                                 {(selectedEvent.imageUrl || selectedEvent.image) && (
-                                    <div className="rounded-2xl overflow-hidden border border-slate-800">
+                                    <div className="rounded-2xl overflow-hidden border border-slate-200">
                                         <img
                                             src={selectedEvent.imageUrl || selectedEvent.image}
                                             alt={selectedEvent.title}
@@ -620,26 +617,26 @@ export default function Kegiatan({ profile = fallbackProfile, events = [], pastE
                                 )}
 
                                 {/* Description block */}
-                                <div className="rounded-2xl bg-[#131b2e]/30 border border-slate-850 p-4 space-y-2">
+                                <div className="rounded-2xl bg-slate-50 border border-slate-200 p-4 space-y-2">
                                     <p className="text-[9px] font-bold text-slate-500 uppercase tracking-wider">Deskripsi Kegiatan</p>
-                                    <p className="text-xs text-slate-350 leading-relaxed font-medium whitespace-pre-line">
+                                    <p className="text-xs text-slate-700 leading-relaxed font-medium whitespace-pre-line">
                                         {selectedEvent.description || 'Tidak ada deskripsi tambahan.'}
                                     </p>
                                 </div>
 
                                 {/* Details meta grid */}
-                                <div className="grid grid-cols-2 gap-3 text-xs text-slate-400 font-medium">
-                                    <div className="bg-[#131b2e]/20 border border-slate-850 rounded-2xl p-3">
+                                <div className="grid grid-cols-2 gap-3 text-xs text-slate-600 font-medium">
+                                    <div className="bg-slate-50 border border-slate-200 rounded-2xl p-3">
                                         <p className="text-[8px] uppercase font-bold text-slate-500 tracking-wider">Jam Mulai</p>
-                                        <p className="text-xs font-black text-slate-300 mt-1 flex items-center gap-1.5">
-                                            <Clock size={12} className="text-emerald-400" />
+                                        <p className="text-xs font-bold text-slate-900 mt-1 flex items-center gap-1.5">
+                                            <Clock size={12} className="text-emerald-600" />
                                             <span>{selectedEvent.time || '-'}</span>
                                         </p>
                                     </div>
-                                    <div className="bg-[#131b2e]/20 border border-slate-850 rounded-2xl p-3">
+                                    <div className="bg-slate-50 border border-slate-200 rounded-2xl p-3">
                                         <p className="text-[8px] uppercase font-bold text-slate-500 tracking-wider">Lokasi</p>
-                                        <p className="text-xs font-black text-slate-300 mt-1 flex items-center gap-1.5">
-                                            <MapPin size={12} className="text-emerald-400" />
+                                        <p className="text-xs font-bold text-slate-900 mt-1 flex items-center gap-1.5">
+                                            <MapPin size={12} className="text-emerald-600" />
                                             <span className="truncate">{selectedEvent.location || '-'}</span>
                                         </p>
                                     </div>
@@ -647,30 +644,30 @@ export default function Kegiatan({ profile = fallbackProfile, events = [], pastE
 
                                 {/* Participants List */}
                                 <div className="space-y-2.5">
-                                    <h4 className="text-[10px] font-black text-slate-400 uppercase tracking-wider flex items-center justify-between">
+                                    <h4 className="text-[10px] font-bold text-slate-500 uppercase tracking-wider flex items-center justify-between">
                                         <span>Partisipasi Warga</span>
-                                        <span className="text-emerald-400">{selectedEvent.participantsCount || 0} Terdaftar</span>
+                                        <span className="text-emerald-700 font-bold">{selectedEvent.participantsCount || 0} Terdaftar</span>
                                     </h4>
                                     <div className="space-y-2 max-h-48 overflow-y-auto scrollbar-thin">
                                         {(selectedEvent.participants || []).length > 0 ? (
                                             (selectedEvent.participants || []).map((participant) => (
                                                 <div
                                                     key={participant.id}
-                                                    className="flex items-center gap-3 rounded-2xl border border-slate-850 bg-[#131b2e]/20 p-3"
+                                                    className="flex items-center gap-3 rounded-2xl border border-slate-200 bg-slate-50 p-3"
                                                 >
-                                                    <div className="flex h-8 w-8 items-center justify-center rounded-full bg-emerald-500/10 text-xs font-black text-emerald-400 border border-emerald-500/20">
+                                                    <div className="flex h-8 w-8 items-center justify-center rounded-full bg-emerald-50 text-xs font-black text-emerald-700 border border-emerald-200">
                                                         {participant.initials}
                                                     </div>
                                                     <div className="min-w-0 flex-1">
-                                                        <p className="truncate font-bold text-slate-200 text-xs">{participant.name}</p>
-                                                        <p className="text-[10px] text-slate-500 font-bold">
+                                                        <p className="truncate font-bold text-slate-900 text-xs">{participant.name}</p>
+                                                        <p className="text-[10px] text-slate-500 font-medium">
                                                             Rumah No. {participant.houseNumber || '-'}
                                                         </p>
                                                     </div>
                                                 </div>
                                             ))
                                         ) : (
-                                            <div className="rounded-2xl border border-dashed border-slate-850 bg-[#131b2e]/10 p-6 text-center text-[11px] text-slate-500">
+                                            <div className="rounded-2xl border border-dashed border-slate-200 bg-slate-50 p-6 text-center text-[11px] text-slate-500 font-medium">
                                                 Belum ada warga terdaftar. Klik "Daftar" untuk berpartisipasi.
                                             </div>
                                         )}
@@ -684,30 +681,30 @@ export default function Kegiatan({ profile = fallbackProfile, events = [], pastE
                             <div className="p-5 overflow-y-auto space-y-5 flex-1 scrollbar-thin">
                                 {/* Hasil Kegiatan (teks) */}
                                 <div className="space-y-2">
-                                    <p className="text-[9px] font-black text-slate-500 uppercase tracking-widest flex items-center gap-1.5">
-                                        <FileText size={11} className="text-emerald-400" />
+                                    <p className="text-[9px] font-bold text-slate-500 uppercase tracking-widest flex items-center gap-1.5">
+                                        <FileText size={11} className="text-emerald-600" />
                                         Hasil Kegiatan
                                     </p>
                                     {selectedEvent.hasilKegiatan ? (
-                                        <div className="rounded-2xl bg-[#131b2e]/40 border border-slate-800 p-4">
-                                            <p className="text-xs text-slate-300 leading-relaxed font-medium whitespace-pre-line">
+                                        <div className="rounded-2xl bg-slate-50 border border-slate-200 p-4">
+                                            <p className="text-xs text-slate-700 leading-relaxed font-medium whitespace-pre-line">
                                                 {selectedEvent.hasilKegiatan}
                                             </p>
                                         </div>
                                     ) : (
-                                        <div className="rounded-2xl border border-dashed border-slate-800 bg-[#131b2e]/10 p-6 text-center">
-                                            <p className="text-[11px] text-slate-500">Hasil kegiatan belum tersedia.</p>
+                                        <div className="rounded-2xl border border-dashed border-slate-200 bg-slate-50 p-6 text-center">
+                                            <p className="text-[11px] text-slate-500 font-medium">Hasil kegiatan belum tersedia.</p>
                                         </div>
                                     )}
                                 </div>
 
                                 {/* Foto Dokumentasi */}
                                 <div className="space-y-3">
-                                    <p className="text-[9px] font-black text-slate-500 uppercase tracking-widest flex items-center gap-1.5">
-                                        <Images size={11} className="text-emerald-400" />
+                                    <p className="text-[9px] font-bold text-slate-500 uppercase tracking-widest flex items-center gap-1.5">
+                                        <Images size={11} className="text-emerald-600" />
                                         Foto Dokumentasi
                                         {(selectedEvent.fotoDokumentasi?.length ?? 0) > 0 && (
-                                            <span className="text-emerald-400 font-black">({selectedEvent.fotoDokumentasi!.length} foto)</span>
+                                            <span className="text-emerald-700 font-bold">({selectedEvent.fotoDokumentasi!.length} foto)</span>
                                         )}
                                     </p>
                                     {(selectedEvent.fotoDokumentasi?.length ?? 0) > 0 ? (
@@ -717,37 +714,37 @@ export default function Kegiatan({ profile = fallbackProfile, events = [], pastE
                                                     key={idx}
                                                     type="button"
                                                     onClick={() => setLightboxUrl(url)}
-                                                    className="group relative rounded-xl overflow-hidden border border-slate-800 aspect-video bg-[#131b2e] hover:border-emerald-500/40 transition"
+                                                    className="group relative rounded-xl overflow-hidden border border-slate-200 aspect-video bg-slate-100 hover:border-emerald-300 transition"
                                                 >
                                                     <img
                                                         src={url}
                                                         alt={`Dokumentasi ${idx + 1}`}
                                                         className="w-full h-full object-cover group-hover:scale-105 transition duration-300"
                                                     />
-                                                    <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition flex items-center justify-center">
+                                                    <div className="absolute inset-0 bg-slate-900/0 group-hover:bg-slate-900/20 transition flex items-center justify-center">
                                                         <ZoomIn size={20} className="text-white opacity-0 group-hover:opacity-100 transition" />
                                                     </div>
                                                 </button>
                                             ))}
                                         </div>
                                     ) : (
-                                        <div className="rounded-2xl border border-dashed border-slate-800 bg-[#131b2e]/10 p-6 text-center">
-                                            <p className="text-[11px] text-slate-500">Belum ada foto dokumentasi.</p>
+                                        <div className="rounded-2xl border border-dashed border-slate-200 bg-slate-50 p-6 text-center">
+                                            <p className="text-[11px] text-slate-500 font-medium">Belum ada foto dokumentasi.</p>
                                         </div>
                                     )}
                                 </div>
 
                                 {/* Tombol Lihat Dokumen Arsip */}
-                                <div className="rounded-2xl border border-emerald-500/20 bg-emerald-500/5 p-4 flex items-center justify-between gap-3">
+                                <div className="rounded-2xl border border-emerald-200 bg-emerald-50/60 p-4 flex items-center justify-between gap-3">
                                     <div className="min-w-0">
-                                        <p className="text-xs font-black text-emerald-400">Arsip Dokumen RT</p>
-                                        <p className="text-[10px] text-slate-500 mt-0.5">Unduh laporan dan dokumen resmi terkait kegiatan.</p>
+                                        <p className="text-xs font-bold text-emerald-900">Arsip Dokumen RT</p>
+                                        <p className="text-[10px] text-slate-600 font-medium mt-0.5">Unduh laporan dan dokumen resmi terkait kegiatan.</p>
                                     </div>
                                     <a
                                         href="/#dokumen"
                                         target="_blank"
                                         rel="noopener noreferrer"
-                                        className="shrink-0 inline-flex items-center gap-1.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-[10px] font-black text-slate-950 px-3 py-2 transition active:scale-95"
+                                        className="shrink-0 inline-flex items-center gap-1.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-[10px] font-bold text-white px-3 py-2 transition active:scale-95 shadow-sm"
                                     >
                                         <ExternalLink size={12} />
                                         Lihat Arsip
@@ -757,11 +754,11 @@ export default function Kegiatan({ profile = fallbackProfile, events = [], pastE
                         )}
 
                         {/* Modal Footer */}
-                        <div className="border-t border-slate-800/80 p-4 bg-[#131b2e]/10 flex gap-3 shrink-0">
+                        <div className="border-t border-slate-200 p-4 bg-slate-50 flex gap-3 shrink-0">
                             <button 
                                 type="button" 
                                 onClick={() => { setSelectedEvent(null); setModalTab('info'); }}
-                                className={['rounded-xl bg-[#131b2e] hover:bg-[#1a243d] border border-slate-800 px-4 py-2.5 text-xs font-bold text-slate-300 transition', selectedEvent.status?.toLowerCase() === 'dijadwalkan' ? 'flex-1' : 'w-full'].join(' ')}
+                                className={['rounded-xl bg-white hover:bg-slate-100 border border-slate-200 px-4 py-2.5 text-xs font-bold text-slate-700 transition shadow-sm', selectedEvent.status?.toLowerCase() === 'dijadwalkan' ? 'flex-1' : 'w-full'].join(' ')}
                             >
                                 Tutup
                             </button>
@@ -773,7 +770,7 @@ export default function Kegiatan({ profile = fallbackProfile, events = [], pastE
                                             cancelJoinEvent(selectedEvent);
                                             setSelectedEvent(null);
                                         }}
-                                        className="flex-1 rounded-xl bg-red-500/10 border border-red-500/20 hover:bg-red-500/20 text-xs font-black text-red-400 transition"
+                                        className="flex-1 rounded-xl bg-red-50 border border-red-200 hover:bg-red-100 text-xs font-bold text-red-700 transition shadow-sm"
                                     >
                                         Batal Daftar
                                     </button>
@@ -784,7 +781,7 @@ export default function Kegiatan({ profile = fallbackProfile, events = [], pastE
                                             joinEvent(selectedEvent);
                                             setSelectedEvent(null);
                                         }}
-                                        className="flex-1 rounded-xl bg-emerald-400 hover:bg-emerald-300 text-slate-950 text-xs font-black transition"
+                                        className="flex-1 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold transition shadow-sm"
                                     >
                                         Daftar Kegiatan
                                     </button>

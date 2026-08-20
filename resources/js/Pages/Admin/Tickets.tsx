@@ -229,39 +229,39 @@ export default function Tickets({
 
             {/* Page Header */}
             <div className="mb-6">
-                <p className="text-xs font-semibold uppercase tracking-widest text-emerald-400 mb-1">
+                <p className="text-xs font-bold uppercase tracking-widest text-emerald-600 mb-1">
                     Layanan Dukungan
                 </p>
-                <h2 className="text-2xl font-black text-white">Helpdesk Tiket</h2>
-                <p className="text-slate-400 text-sm mt-1">
+                <h2 className="text-2xl font-black text-slate-900">Helpdesk Tiket</h2>
+                <p className="text-slate-600 text-sm mt-1 font-medium">
                     Kelola tiket pengaduan, surat, iuran, dan kegiatan dari warga atau publik secara real-time.
                 </p>
             </div>
 
             {/* Metrics Header */}
             <div className="mb-6 grid grid-cols-2 gap-4 lg:grid-cols-4">
-                <div className="rounded-2xl border border-[#1C2541]/60 bg-[#0B132B]/60 p-5 col-span-2 lg:col-span-1 backdrop-blur-sm">
+                <div className="rounded-2xl border border-slate-200 bg-white p-5 col-span-2 lg:col-span-1 shadow-sm">
                     <div className="flex items-center gap-3">
-                        <div className="rounded-xl bg-blue-500/10 border border-blue-500/20 p-3">
-                            <MessageCircle size={22} className="text-blue-400" />
+                        <div className="rounded-xl bg-blue-50 border border-blue-200 p-3">
+                            <MessageCircle size={22} className="text-blue-700" />
                         </div>
                         <div>
-                            <p className="text-3xl font-black text-white">{summary.total}</p>
+                            <p className="text-3xl font-black text-slate-900">{summary.total}</p>
                             <p className="text-xs font-bold text-slate-500 uppercase tracking-wider">Total Tiket</p>
                         </div>
                     </div>
                 </div>
 
                 {[
-                    { label: 'Tiket Baru (Menunggu)', value: summary.baru, color: 'text-blue-400', filter: 'Menunggu Admin', icon: Clock },
-                    { label: 'Sedang Diproses', value: summary.proses, color: 'text-orange-400', filter: 'Diproses', icon: AlertCircle },
-                    { label: 'Selesai', value: summary.selesai, color: 'text-emerald-400', filter: 'Selesai', icon: CheckCircle },
+                    { label: 'Tiket Baru (Menunggu)', value: summary.baru, color: 'text-blue-700', filter: 'Menunggu Admin', icon: Clock },
+                    { label: 'Sedang Diproses', value: summary.proses, color: 'text-amber-700', filter: 'Diproses', icon: AlertCircle },
+                    { label: 'Selesai', value: summary.selesai, color: 'text-emerald-700', filter: 'Selesai', icon: CheckCircle },
                 ].map(({ label, value, color, filter, icon: Icon }) => (
                     <button
                         key={label}
                         onClick={() => setStatusFilter(statusFilter === filter ? 'all' : filter)}
-                        className={`text-left rounded-2xl border bg-[#0B132B]/60 p-5 backdrop-blur-sm transition ${
-                            statusFilter === filter ? 'border-emerald-500/40 bg-emerald-950/5' : 'border-[#1C2541]/60'
+                        className={`text-left rounded-2xl border p-5 transition shadow-sm ${
+                            statusFilter === filter ? 'border-emerald-500 bg-emerald-50/60' : 'border-slate-200 bg-white hover:bg-slate-50'
                         }`}
                     >
                         <div className="flex items-center justify-between mb-2">
@@ -276,17 +276,17 @@ export default function Tickets({
             {/* Main Content Workspace Split-Pane */}
             <div className="flex flex-col gap-6 lg:flex-row h-[600px]">
                 {/* Left pane: ticket search and list */}
-                <div className="flex-1 flex flex-col rounded-2xl border border-[#1C2541]/60 bg-[#0B132B]/60 overflow-hidden backdrop-blur-sm">
+                <div className="flex-1 flex flex-col rounded-2xl border border-slate-200 bg-white overflow-hidden shadow-sm">
                     {/* Search and status tabs header */}
-                    <div className="p-4 border-b border-[#1C2541]/40 space-y-3">
+                    <div className="p-4 border-b border-slate-200 space-y-3 bg-slate-50">
                         <div className="relative">
-                            <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-500" size={15} />
+                            <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400" size={15} />
                             <input
                                 type="text"
                                 value={searchTerm}
                                 onChange={(e) => setSearchTerm(e.target.value)}
                                 placeholder="Cari nomor tiket, nama pengirim, subjek..."
-                                className="w-full rounded-xl border border-[#1C2541]/60 bg-[#111A2E]/60 py-2.5 pl-10 pr-4 text-xs text-slate-200 placeholder-slate-500 focus:outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 transition"
+                                className="w-full rounded-xl border border-slate-200 bg-white py-2.5 pl-10 pr-4 text-xs text-slate-900 placeholder-slate-400 focus:outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 transition"
                             />
                         </div>
 
@@ -302,8 +302,8 @@ export default function Tickets({
                                     onClick={() => setStatusFilter(tab.value)}
                                     className={`rounded-xl px-3 py-1.5 text-xs font-bold transition ${
                                         statusFilter === tab.value
-                                            ? 'bg-emerald-500 text-[#0B132B]'
-                                            : 'border border-[#1C2541]/60 text-slate-400 hover:text-white'
+                                            ? 'bg-emerald-600 text-white shadow-sm'
+                                            : 'border border-slate-200 bg-white text-slate-600 hover:bg-slate-100'
                                     }`}
                                 >
                                     {tab.label}
@@ -313,10 +313,10 @@ export default function Tickets({
                     </div>
 
                     {/* Scrollable list */}
-                    <div className="flex-1 overflow-y-auto divide-y divide-[#1C2541]/40">
+                    <div className="flex-1 overflow-y-auto divide-y divide-slate-100">
                         {(!tickets || tickets.data.length === 0) ? (
                             <div className="p-8 text-center text-slate-500 flex flex-col items-center justify-center h-full">
-                                <MessageSquare size={36} className="text-slate-700 mb-2" />
+                                <MessageSquare size={36} className="text-slate-400 mb-2" />
                                 <p className="text-sm">Tidak ada tiket bantuan yang sesuai.</p>
                             </div>
                         ) : (
@@ -334,27 +334,27 @@ export default function Tickets({
                                         key={ticket.id}
                                         onClick={() => void handleSelectTicket(ticket)}
                                         className={`w-full p-4 text-left flex items-start gap-3 transition ${
-                                            isSelected ? 'bg-emerald-500/10' : 'hover:bg-[#111A2E]/30'
+                                            isSelected ? 'bg-emerald-50/80 border-l-4 border-emerald-600' : 'hover:bg-slate-50'
                                         }`}
                                     >
-                                        <div className="h-10 w-10 shrink-0 rounded-xl bg-gradient-to-br from-emerald-500/10 to-teal-500/10 border border-emerald-500/20 flex items-center justify-center text-sm font-black text-emerald-400">
+                                        <div className="h-10 w-10 shrink-0 rounded-xl bg-emerald-50 border border-emerald-200 flex items-center justify-center text-sm font-black text-emerald-700">
                                             {initials}
                                         </div>
                                         <div className="flex-1 min-w-0">
                                             <div className="flex justify-between items-start gap-1">
-                                                <h4 className="text-xs font-bold text-white truncate max-w-[150px]">{ticket.nama_lengkap}</h4>
+                                                <h4 className="text-xs font-bold text-slate-900 truncate max-w-[150px]">{ticket.nama_lengkap}</h4>
                                                 <span className={`shrink-0 rounded px-1.5 py-0.5 text-[9px] font-black uppercase tracking-wider ${
                                                     ticket.status === 'Menunggu Admin'
-                                                        ? 'bg-blue-500/15 text-blue-400 border border-blue-500/20'
+                                                        ? 'bg-blue-50 text-blue-700 border border-blue-200'
                                                         : ticket.status === 'Diproses'
-                                                        ? 'bg-orange-500/15 text-orange-400 border border-orange-500/20'
-                                                        : 'bg-emerald-500/15 text-emerald-400 border border-emerald-500/20'
+                                                        ? 'bg-amber-50 text-amber-700 border border-amber-200'
+                                                        : 'bg-emerald-50 text-emerald-700 border border-emerald-200'
                                                 }`}>
                                                     {ticket.status === 'Menunggu Admin' ? 'BARU' : ticket.status}
                                                 </span>
                                             </div>
                                             <p className="text-[10px] text-slate-500 font-mono mt-0.5">{ticket.nomor_tiket} · {ticket.kategori}</p>
-                                            <p className="text-xs text-slate-300 font-bold truncate mt-1">{ticket.judul}</p>
+                                            <p className="text-xs text-slate-700 font-bold truncate mt-1">{ticket.judul}</p>
                                         </div>
                                     </button>
                                 );
@@ -364,52 +364,52 @@ export default function Tickets({
                 </div>
 
                 {/* Right pane: ticket detail and live chat workspace */}
-                <div className="w-full lg:w-[480px] shrink-0 flex flex-col rounded-2xl border border-[#1C2541]/60 bg-[#0B132B]/60 overflow-hidden backdrop-blur-sm">
+                <div className="w-full lg:w-[480px] shrink-0 flex flex-col rounded-2xl border border-slate-200 bg-white overflow-hidden shadow-sm">
                     {selectedTicket ? (
                         <>
                             {/* Selected ticket header details */}
-                            <div className="p-4 border-b border-[#1C2541]/40 bg-[#0B132B]/40 flex flex-col gap-2">
+                            <div className="p-4 border-b border-slate-200 bg-slate-50 flex flex-col gap-2">
                                 <div className="flex items-center justify-between">
                                     <p className="text-[10px] font-bold font-mono text-slate-500">{selectedTicket.nomor_tiket}</p>
                                     <span className={`text-[10px] font-black rounded-lg px-2 py-0.5 ${
                                         selectedTicket.status === 'Menunggu Admin'
-                                            ? 'bg-blue-500/20 text-blue-300'
+                                            ? 'bg-blue-100 text-blue-800'
                                             : selectedTicket.status === 'Diproses'
-                                            ? 'bg-orange-500/20 text-orange-300'
-                                            : 'bg-emerald-500/20 text-emerald-300'
+                                            ? 'bg-amber-100 text-amber-800'
+                                            : 'bg-emerald-100 text-emerald-800'
                                     }`}>
                                         {selectedTicket.status}
                                     </span>
                                 </div>
-                                <h3 className="text-sm font-black text-white leading-snug">{selectedTicket.judul}</h3>
-                                <p className="text-[11px] text-slate-400">{selectedTicket.kategori} · {selectedTicket.created_at}</p>
+                                <h3 className="text-sm font-black text-slate-900 leading-snug">{selectedTicket.judul}</h3>
+                                <p className="text-[11px] text-slate-600 font-medium">{selectedTicket.kategori} · {selectedTicket.created_at}</p>
 
-                                <div className="grid grid-cols-2 gap-2 mt-2 pt-2 border-t border-[#1C2541]/40 text-xs">
-                                    <div className="flex items-center gap-1.5 text-slate-300">
-                                        <User size={13} className="text-slate-500" />
+                                <div className="grid grid-cols-2 gap-2 mt-2 pt-2 border-t border-slate-200 text-xs">
+                                    <div className="flex items-center gap-1.5 text-slate-700 font-medium">
+                                        <User size={13} className="text-slate-400" />
                                         <span className="truncate">{selectedTicket.nama_lengkap}</span>
                                     </div>
-                                    <div className="flex items-center gap-1.5 text-slate-300">
-                                        <Phone size={13} className="text-slate-500" />
+                                    <div className="flex items-center gap-1.5 text-slate-700 font-medium">
+                                        <Phone size={13} className="text-slate-400" />
                                         <span className="truncate">{selectedTicket.whatsapp}</span>
                                     </div>
                                     {selectedTicket.no_rumah && (
-                                        <div className="flex items-center gap-1.5 text-slate-300">
-                                            <FileText size={13} className="text-slate-500" />
+                                        <div className="flex items-center gap-1.5 text-slate-700 font-medium">
+                                            <FileText size={13} className="text-slate-400" />
                                             <span>Rumah {selectedTicket.no_rumah}</span>
                                         </div>
                                     )}
                                     {selectedTicket.email && (
-                                        <div className="flex items-center gap-1.5 text-slate-300 col-span-2">
-                                            <Mail size={13} className="text-slate-500" />
+                                        <div className="flex items-center gap-1.5 text-slate-700 font-medium col-span-2">
+                                            <Mail size={13} className="text-slate-400" />
                                             <span className="truncate">{selectedTicket.email}</span>
                                         </div>
                                     )}
                                 </div>
 
                                 {selectedTicket.keperluan && (
-                                    <p className="text-[11px] text-slate-400 bg-[#111A2E]/60 p-2 rounded-lg mt-1 border border-[#1C2541]/20">
-                                        <span className="font-bold text-slate-300 block mb-0.5">Keperluan:</span>
+                                    <p className="text-[11px] text-slate-700 bg-white p-2 rounded-lg mt-1 border border-slate-200 font-medium">
+                                        <span className="font-bold text-slate-900 block mb-0.5">Keperluan:</span>
                                         {selectedTicket.keperluan}
                                     </p>
                                 )}
@@ -421,7 +421,7 @@ export default function Tickets({
                                     <div className="space-y-4">
                                         <div>
                                             <h4 className="text-[10px] font-bold text-slate-500 uppercase tracking-wider mb-1">Isi Keluhan / Pesan</h4>
-                                            <p className="whitespace-pre-line rounded-xl border border-[#1C2541]/60 bg-[#0B132B]/40 p-4 text-xs leading-relaxed text-slate-300">
+                                            <p className="whitespace-pre-line rounded-xl border border-slate-200 bg-slate-50 p-4 text-xs leading-relaxed text-slate-800 font-medium">
                                                 {selectedTicket.pesan || 'Tidak ada isi pesan detail.'}
                                             </p>
                                         </div>
@@ -429,15 +429,15 @@ export default function Tickets({
                                         {selectedTicket.lampiran_url && (
                                             <div>
                                                 <h4 className="text-[10px] font-bold text-slate-500 uppercase tracking-wider mb-2">Lampiran Berkas</h4>
-                                                <div className="flex items-center justify-between rounded-xl border border-blue-500/20 bg-blue-500/5 p-3">
+                                                <div className="flex items-center justify-between rounded-xl border border-blue-200 bg-blue-50 p-3">
                                                     <div className="min-w-0 flex-1">
-                                                        <p className="text-xs font-semibold text-white truncate">{selectedTicket.lampiran_name}</p>
+                                                        <p className="text-xs font-bold text-slate-900 truncate">{selectedTicket.lampiran_name}</p>
                                                     </div>
                                                     <a
                                                         href={selectedTicket.lampiran_url}
                                                         target="_blank"
                                                         rel="noopener noreferrer"
-                                                        className="inline-flex items-center gap-1 bg-blue-500 hover:bg-blue-400 text-[#090E1A] text-[10px] font-bold px-2.5 py-1 rounded transition"
+                                                        className="inline-flex items-center gap-1 bg-blue-600 hover:bg-blue-700 text-white text-[10px] font-bold px-2.5 py-1 rounded transition"
                                                     >
                                                         <Download size={11} /> Buka
                                                     </a>
@@ -446,16 +446,16 @@ export default function Tickets({
                                         )}
                                     </div>
 
-                                    <div className="flex gap-3 pt-4 border-t border-[#1C2541]/40">
+                                    <div className="flex gap-3 pt-4 border-t border-slate-200">
                                         <button
                                             onClick={handleCloseTicket}
-                                            className="flex-1 py-2.5 rounded-xl border border-red-500/20 hover:bg-red-500/10 text-red-400 text-xs font-bold transition flex items-center justify-center gap-1.5"
+                                            className="flex-1 py-2.5 rounded-xl border border-red-200 bg-red-50 hover:bg-red-100 text-red-700 text-xs font-bold transition flex items-center justify-center gap-1.5"
                                         >
                                             Tolak / Tutup Tiket
                                         </button>
                                         <button
                                             onClick={handleStartConversation}
-                                            className="flex-1 py-2.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-[#0B132B] text-xs font-black transition flex items-center justify-center gap-1.5 shadow-lg shadow-emerald-500/10"
+                                            className="flex-1 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold transition flex items-center justify-center gap-1.5 shadow-sm"
                                         >
                                             Mulai Percakapan
                                         </button>
@@ -466,18 +466,18 @@ export default function Tickets({
                                 <div className="flex-1 flex flex-col overflow-hidden">
                                     <div
                                         ref={chatBodyRef}
-                                        className="flex-1 overflow-y-auto p-4 space-y-3 bg-[#090E1A]/40"
+                                        className="flex-1 overflow-y-auto p-4 space-y-3 bg-slate-50/50"
                                     >
                                         {/* Ticket description card */}
-                                        <div className="bg-[#111A2E]/40 border border-[#1C2541]/30 rounded-xl p-3 text-[11px] text-slate-300">
-                                            <p className="font-bold text-slate-400">Deskripsi Kasus:</p>
+                                        <div className="bg-white border border-slate-200 rounded-xl p-3 text-[11px] text-slate-700 shadow-sm">
+                                            <p className="font-bold text-slate-900">Deskripsi Kasus:</p>
                                             <p className="mt-1 font-medium">{selectedTicket.pesan}</p>
                                             {selectedTicket.lampiran_url && (
                                                 <a
                                                     href={selectedTicket.lampiran_url}
                                                     target="_blank"
                                                     rel="noreferrer"
-                                                    className="mt-2 text-emerald-400 inline-flex items-center gap-1 hover:underline font-bold"
+                                                    className="mt-2 text-emerald-700 inline-flex items-center gap-1 hover:underline font-bold"
                                                 >
                                                     <Download size={10} /> {selectedTicket.lampiran_name}
                                                 </a>
@@ -490,23 +490,23 @@ export default function Tickets({
                                                 className={`flex flex-col ${msg.is_admin ? 'items-end' : 'items-start'}`}
                                             >
                                                 <div
-                                                    className={`max-w-[80%] rounded-xl px-3 py-2 text-xs leading-relaxed ${
+                                                    className={`max-w-[80%] rounded-xl px-3.5 py-2 text-xs leading-relaxed shadow-sm ${
                                                         msg.is_admin
-                                                            ? 'bg-emerald-500 text-[#0B132B] font-bold rounded-tr-none'
-                                                            : 'bg-[#111A2E] border border-[#1C2541]/60 text-slate-200 rounded-tl-none'
+                                                            ? 'bg-emerald-600 text-white font-medium rounded-tr-none'
+                                                            : 'bg-white border border-slate-200 text-slate-800 font-medium rounded-tl-none'
                                                     }`}
                                                 >
                                                     <p>{msg.message}</p>
                                                 </div>
-                                                <span className="text-[9px] text-slate-500 mt-1 px-1">
+                                                <span className="text-[9px] text-slate-400 mt-1 px-1 font-medium">
                                                     {msg.is_admin ? 'Anda' : 'Warga'} • {msg.created_at}
                                                 </span>
                                             </div>
                                         ))}
 
                                         {userIsTyping && (
-                                            <div className="flex items-center gap-2 rounded-xl border border-slate-700/60 bg-[#111A2E]/80 px-3 py-1.5 text-xs font-semibold text-slate-400 shadow-sm w-max animate-pulse">
-                                                <Loader2 className="animate-spin text-emerald-400" size={12} />
+                                            <div className="flex items-center gap-2 rounded-xl border border-slate-200 bg-white px-3 py-1.5 text-xs font-semibold text-slate-600 shadow-sm w-max animate-pulse">
+                                                <Loader2 className="animate-spin text-emerald-600" size={12} />
                                                 Warga sedang mengetik...
                                             </div>
                                         )}
@@ -514,13 +514,13 @@ export default function Tickets({
 
                                     {/* Action footer */}
                                     {selectedTicket.status === 'Selesai' ? (
-                                        <div className="p-4 bg-[#0B132B]/80 border-t border-[#1C2541]/40 text-center">
+                                        <div className="p-4 bg-slate-50 border-t border-slate-200 text-center">
                                             <span className="text-xs text-slate-500 font-bold">
                                                 Tiket Bantuan Ini Telah Diselesaikan.
                                             </span>
                                         </div>
                                     ) : (
-                                        <div className="p-3 bg-[#0B132B]/80 border-t border-[#1C2541]/40 flex flex-col gap-2">
+                                        <div className="p-3 bg-white border-t border-slate-200 flex flex-col gap-2">
                                             <form onSubmit={handleSendChatMessage} className="flex items-center gap-2">
                                                 <div className="flex-1 relative">
                                                     <input
@@ -528,13 +528,13 @@ export default function Tickets({
                                                         value={chatInput}
                                                         onChange={handleChatInputChange}
                                                         placeholder="Ketik balasan Anda..."
-                                                        className="w-full rounded-full border border-[#1C2541]/70 bg-[#111A2E] py-2 pl-4 pr-10 text-xs text-slate-200 placeholder-slate-500 focus:outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 transition"
+                                                        className="w-full rounded-full border border-slate-200 bg-slate-50 py-2 pl-4 pr-10 text-xs text-slate-900 placeholder-slate-400 focus:outline-none focus:bg-white focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 transition"
                                                     />
                                                 </div>
                                                 <button
                                                     type="submit"
                                                     disabled={!chatInput.trim()}
-                                                    className="h-8 w-8 shrink-0 flex items-center justify-center rounded-full bg-emerald-500 hover:bg-emerald-400 text-[#090E1A] transition disabled:opacity-50"
+                                                    className="h-8 w-8 shrink-0 flex items-center justify-center rounded-full bg-emerald-600 hover:bg-emerald-700 text-white transition disabled:opacity-50 shadow-sm"
                                                 >
                                                     <Send size={14} />
                                                 </button>
@@ -545,7 +545,7 @@ export default function Tickets({
                                                 </span>
                                                 <button
                                                     onClick={handleCloseTicket}
-                                                    className="text-[10px] text-red-400 hover:text-red-300 font-bold"
+                                                    className="text-[10px] text-red-600 hover:text-red-700 font-bold"
                                                 >
                                                     Tutup Tiket
                                                 </button>
@@ -557,9 +557,9 @@ export default function Tickets({
                         </>
                     ) : (
                         <div className="flex-1 flex flex-col items-center justify-center p-8 text-slate-500 text-center">
-                            <MessageCircle size={48} className="text-slate-700 mb-3" />
-                            <h4 className="text-sm font-bold text-white">Buka Tiket</h4>
-                            <p className="text-xs mt-1 max-w-xs">
+                            <MessageCircle size={48} className="text-slate-300 mb-3" />
+                            <h4 className="text-sm font-bold text-slate-900">Buka Tiket</h4>
+                            <p className="text-xs mt-1 max-w-xs text-slate-600 font-medium">
                                 Pilih tiket bantuan dari daftar di sebelah kiri untuk melihat detail masalah dan memulai live chat real-time.
                             </p>
                         </div>

@@ -78,21 +78,21 @@ function formatFileSize(size?: number) {
 function getCategoryBadgeStyle(category?: string) {
     const cat = String(category || '').toLowerCase();
     if (cat.includes('penting')) {
-        return 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/20';
+        return 'bg-emerald-50 text-emerald-700 border border-emerald-200';
     }
     if (cat.includes('keamanan')) {
-        return 'bg-cyan-500/10 text-cyan-400 border border-cyan-500/20';
+        return 'bg-cyan-50 text-cyan-700 border border-cyan-200';
     }
     if (cat.includes('kegiatan')) {
-        return 'bg-amber-500/10 text-amber-400 border border-amber-500/20';
+        return 'bg-amber-50 text-amber-700 border border-amber-200';
     }
     if (cat.includes('iuran') || cat.includes('keuangan')) {
-        return 'bg-indigo-500/10 text-indigo-400 border border-indigo-500/20';
+        return 'bg-indigo-50 text-indigo-700 border border-indigo-200';
     }
     if (cat.includes('informasi') || cat.includes('kesehatan')) {
-        return 'bg-blue-500/10 text-blue-400 border border-blue-500/20';
+        return 'bg-blue-50 text-blue-700 border border-blue-200';
     }
-    return 'bg-slate-800 text-slate-400 border border-slate-700/60';
+    return 'bg-slate-100 text-slate-700 border border-slate-200';
 }
 
 function getAnnouncementImage(item: Announcement) {
@@ -178,24 +178,24 @@ export default function Pengumuman({ profile = fallbackProfile, announcements = 
             <div className="mx-auto max-w-6xl space-y-6 px-4 py-6 lg:px-8 lg:py-8">
                 {/* Header Back & Titles */}
                 <div className="flex items-center gap-3">
-                    <Link href="/warga/dashboard" className="rounded-xl bg-[#131b2e] border border-slate-800 p-2 text-slate-400 hover:text-slate-200 transition">
+                    <Link href="/warga/dashboard" className="rounded-xl bg-white border border-slate-200 p-2 text-slate-600 hover:text-slate-900 shadow-sm transition">
                         <ArrowLeft size={16} />
                     </Link>
                     <div>
-                        <h1 className="text-xl font-black text-slate-100 tracking-tight">Pengumuman Warga</h1>
-                        <p className="text-xs text-slate-500 mt-0.5">Tetap terinformasi dengan berita terbaru, aturan lingkungan, dan jadwal kegiatan rutin di wilayah RT kita.</p>
+                        <h1 className="text-xl font-black text-slate-900 tracking-tight">Pengumuman Warga</h1>
+                        <p className="text-xs text-slate-600 mt-0.5 font-medium">Tetap terinformasi dengan berita terbaru, aturan lingkungan, dan jadwal kegiatan rutin di wilayah RT kita.</p>
                     </div>
                 </div>
 
                 {/* Mobile Search Input */}
                 <div className="lg:hidden relative">
-                    <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-500" size={16} />
+                    <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" size={16} />
                     <input
                         type="text"
                         value={searchTerm}
                         onChange={(e) => handleSearch(e.target.value)}
                         placeholder="Cari pengumuman..."
-                        className="w-full rounded-2xl border border-slate-800 bg-[#131b2e] py-3 pl-10 pr-4 text-xs text-slate-200 placeholder-slate-500 focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500"
+                        className="w-full rounded-2xl border border-slate-200 bg-white py-3 pl-10 pr-4 text-xs text-slate-900 placeholder-slate-400 focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500"
                     />
                 </div>
 
@@ -206,8 +206,8 @@ export default function Pengumuman({ profile = fallbackProfile, announcements = 
                         onClick={() => handleCategorySelect('all')}
                         className={`shrink-0 rounded-full px-4 py-2 text-xs font-bold transition ${
                             categoryFilter === 'all' 
-                                ? 'bg-emerald-400 text-slate-950 shadow-md shadow-emerald-400/10' 
-                                : 'bg-[#131b2e] border border-slate-800 text-slate-400 hover:text-slate-200 hover:border-slate-700'
+                                ? 'bg-emerald-600 text-white shadow-sm' 
+                                : 'bg-white border border-slate-200 text-slate-700 hover:bg-slate-50'
                         }`}
                     >
                         Semua
@@ -219,8 +219,8 @@ export default function Pengumuman({ profile = fallbackProfile, announcements = 
                             onClick={() => handleCategorySelect(category)}
                             className={`shrink-0 rounded-full px-4 py-2 text-xs font-bold transition capitalize ${
                                 categoryFilter === category 
-                                    ? 'bg-emerald-400 text-slate-950 shadow-md shadow-emerald-400/10' 
-                                    : 'bg-[#131b2e] border border-slate-800 text-slate-400 hover:text-slate-200 hover:border-slate-700'
+                                    ? 'bg-emerald-600 text-white shadow-sm' 
+                                    : 'bg-white border border-slate-200 text-slate-700 hover:bg-slate-50'
                             }`}
                         >
                             {category}
@@ -230,8 +230,8 @@ export default function Pengumuman({ profile = fallbackProfile, announcements = 
 
                 {/* Grid Layout of Cards */}
                 {filtered.length === 0 ? (
-                    <div className="rounded-3xl border border-dashed border-slate-800 bg-[#0b1220] p-12 text-center text-xs text-slate-500">
-                        <Bell size={36} className="mx-auto text-slate-600 mb-2" />
+                    <div className="rounded-3xl border border-dashed border-slate-200 bg-white p-12 text-center text-xs text-slate-500 shadow-sm">
+                        <Bell size={36} className="mx-auto text-slate-400 mb-2" />
                         <span>Tidak ada pengumuman yang ditemukan untuk pencarian atau kategori ini.</span>
                     </div>
                 ) : (
@@ -243,21 +243,16 @@ export default function Pengumuman({ profile = fallbackProfile, announcements = 
                             return (
                                 <div 
                                     key={item.id} 
-                                    className="rounded-3xl border border-slate-800 bg-[#0b1220] overflow-hidden shadow-xl hover:border-slate-700/85 hover:shadow-2xl transition-all duration-300 flex flex-col justify-between group lg:col-span-1"
+                                    className="rounded-3xl border border-slate-200 bg-white overflow-hidden shadow-sm hover:border-emerald-200 hover:shadow-md transition-all duration-300 flex flex-col justify-between group lg:col-span-1"
                                 >
                                     <div>
                                         {/* Card Cover Image */}
-                                        <div className="relative w-full overflow-hidden bg-slate-950/40 shrink-0 flex items-center justify-center h-48 border-b border-slate-800/60">
-                                            <div 
-                                                className="absolute inset-0 bg-cover bg-center blur-md opacity-20 scale-105 pointer-events-none" 
-                                                style={{ backgroundImage: `url(${getAnnouncementImage(item)})` }}
-                                            />
+                                        <div className="relative w-full overflow-hidden bg-slate-100 shrink-0 flex items-center justify-center h-48 border-b border-slate-200">
                                             <img 
                                                 src={getAnnouncementImage(item)} 
                                                 alt={title}
-                                                className="relative w-full h-full object-contain mx-auto transition duration-500 group-hover:scale-[1.03]"
+                                                className="relative w-full h-full object-cover transition duration-500 group-hover:scale-[1.03]"
                                             />
-                                            <div className="absolute inset-0 bg-gradient-to-t from-[#0b1220] via-transparent to-transparent opacity-60" />
                                         </div>
 
                                         {/* Details Container */}
@@ -271,11 +266,11 @@ export default function Pengumuman({ profile = fallbackProfile, announcements = 
                                                 </span>
                                             </div>
 
-                                            <h2 className="text-base font-black text-slate-100 leading-snug tracking-tight group-hover:text-emerald-400 transition-colors">
+                                            <h2 className="text-base font-black text-slate-900 leading-snug tracking-tight group-hover:text-emerald-700 transition-colors">
                                                 {title}
                                             </h2>
 
-                                            <p className="text-xs text-slate-400 leading-relaxed font-medium line-clamp-3">
+                                            <p className="text-xs text-slate-600 leading-relaxed font-medium line-clamp-3">
                                                 {body}
                                             </p>
                                         </div>
@@ -286,7 +281,7 @@ export default function Pengumuman({ profile = fallbackProfile, announcements = 
                                         <button 
                                             type="button" 
                                             onClick={() => setSelected(item)}
-                                            className="w-full py-2.5 rounded-xl border border-slate-800/80 hover:bg-[#131b2e] hover:border-slate-700 hover:text-emerald-400 text-xs font-bold text-slate-350 text-center transition flex items-center justify-center gap-1.5"
+                                            className="w-full py-2.5 rounded-xl border border-slate-200 hover:bg-emerald-50 hover:border-emerald-200 hover:text-emerald-700 text-xs font-bold text-slate-700 text-center transition flex items-center justify-center gap-1.5 bg-white"
                                         >
                                             <span>Baca Selengkapnya</span>
                                             <ArrowLeft size={13} className="rotate-180 mt-0.5 stroke-[2]" />
@@ -305,7 +300,7 @@ export default function Pengumuman({ profile = fallbackProfile, announcements = 
                             type="button"
                             disabled={currentPage === 1}
                             onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
-                            className="rounded-xl border border-slate-800 bg-[#0b1220] p-2 text-slate-400 hover:text-slate-200 disabled:opacity-30 disabled:hover:text-slate-400 transition"
+                            className="rounded-xl border border-slate-200 bg-white p-2 text-slate-600 hover:bg-slate-50 disabled:opacity-40 transition"
                         >
                             <ChevronLeft size={14} />
                         </button>
@@ -314,10 +309,10 @@ export default function Pengumuman({ profile = fallbackProfile, announcements = 
                                 key={page}
                                 type="button"
                                 onClick={() => setCurrentPage(page)}
-                                className={`h-8 w-8 rounded-xl text-xs font-black transition ${
+                                className={`h-8 w-8 rounded-xl text-xs font-bold transition ${
                                     currentPage === page 
-                                        ? 'bg-emerald-400 text-slate-950 shadow-md shadow-emerald-400/10' 
-                                        : 'border border-slate-800 bg-[#0b1220] text-slate-400 hover:text-slate-200'
+                                        ? 'bg-emerald-600 text-white shadow-sm' 
+                                        : 'border border-slate-200 bg-white text-slate-700 hover:bg-slate-50'
                                 }`}
                             >
                                 {page}
@@ -327,7 +322,7 @@ export default function Pengumuman({ profile = fallbackProfile, announcements = 
                             type="button"
                             disabled={currentPage === totalPages}
                             onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
-                            className="rounded-xl border border-slate-800 bg-[#0b1220] p-2 text-slate-400 hover:text-slate-200 disabled:opacity-30 disabled:hover:text-slate-400 transition"
+                            className="rounded-xl border border-slate-200 bg-white p-2 text-slate-600 hover:bg-slate-50 disabled:opacity-40 transition"
                         >
                             <ChevronRight size={14} />
                         </button>
@@ -337,33 +332,29 @@ export default function Pengumuman({ profile = fallbackProfile, announcements = 
 
             {/* Modal: View Announcement Detail */}
             {selected && (
-                <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/60 p-4 backdrop-blur-sm">
-                    <div className="w-full max-w-2xl max-h-[90vh] flex flex-col rounded-3xl bg-[#0b1220] border border-slate-800 shadow-2xl overflow-hidden animate-in fade-in zoom-in-95 duration-200">
+                <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/40 p-4 backdrop-blur-sm">
+                    <div className="w-full max-w-2xl max-h-[90vh] flex flex-col rounded-3xl bg-white border border-slate-200 shadow-2xl overflow-hidden animate-in fade-in zoom-in-95 duration-200">
                         {/* Modal Header */}
-                        <div className="flex items-start justify-between gap-4 border-b border-slate-800/80 p-5 bg-[#131b2e]/30">
+                        <div className="flex items-start justify-between gap-4 border-b border-slate-200 p-5 bg-slate-50">
                             <div>
                                 <span className={`rounded-md px-2 py-0.5 text-[9px] font-extrabold tracking-wide uppercase inline-block ${getCategoryBadgeStyle(selected.kategori || selected.category)}`}>
                                     {selected.kategori || selected.category || 'Umum'}
                                 </span>
-                                <h3 className="text-base font-black text-slate-100 leading-snug tracking-tight mt-2">{selected.judul || selected.title}</h3>
+                                <h3 className="text-base font-black text-slate-900 leading-snug tracking-tight mt-2">{selected.judul || selected.title}</h3>
                                 <p className="mt-1 text-[10px] text-slate-500 font-bold">{formatDate(selected.publishedAt || selected.date)}</p>
                             </div>
-                            <button type="button" onClick={() => setSelected(null)} className="rounded-xl p-1.5 text-slate-400 hover:bg-[#131b2e] hover:text-slate-200 transition">
+                            <button type="button" onClick={() => setSelected(null)} className="rounded-xl p-1.5 text-slate-400 hover:bg-slate-200 hover:text-slate-900 transition">
                                 <X size={18} />
                             </button>
                         </div>
 
                         {/* Modal Content */}
-                        <div className="p-5 overflow-y-auto space-y-5 flex-1 scrollbar-thin scrollbar-thumb-slate-800">
+                        <div className="p-5 overflow-y-auto space-y-5 flex-1 scrollbar-thin">
                             {/* Cover Image */}
                             {(() => {
                                 const coverSrc = getAnnouncementImage(selected);
                                 return coverSrc ? (
-                                    <div className="relative w-full overflow-hidden bg-slate-950/60 border border-slate-800/80 rounded-2xl flex items-center justify-center">
-                                        <div 
-                                            className="absolute inset-0 bg-cover bg-center blur-md opacity-20 scale-105 pointer-events-none" 
-                                            style={{ backgroundImage: `url(${coverSrc})` }}
-                                        />
+                                    <div className="relative w-full overflow-hidden bg-slate-100 border border-slate-200 rounded-2xl flex items-center justify-center">
                                         <img 
                                             src={coverSrc} 
                                             alt={selected.judul || selected.title} 
@@ -373,22 +364,22 @@ export default function Pengumuman({ profile = fallbackProfile, announcements = 
                                 ) : null;
                             })()}
 
-                            <div className="whitespace-pre-line rounded-2xl bg-[#131b2e]/30 border border-slate-850 p-4 text-xs leading-relaxed text-slate-350 font-medium">
+                            <div className="whitespace-pre-line rounded-2xl bg-slate-50 border border-slate-200 p-4 text-xs leading-relaxed text-slate-700 font-medium">
                                 {selected.isi || selected.body}
                             </div>
 
                             {/* Attachments List */}
                             {(selected.files?.length ?? 0) > 0 && (
                                 <div className="space-y-3">
-                                    <h4 className="flex items-center gap-2 text-xs font-black text-slate-300 uppercase tracking-wider">
-                                        <FileText size={14} className="text-emerald-400" />
+                                    <h4 className="flex items-center gap-2 text-xs font-black text-slate-900 uppercase tracking-wider">
+                                        <FileText size={14} className="text-emerald-600" />
                                         <span>Dokumen Lampiran</span>
                                     </h4>
                                     <div className="space-y-2">
                                         {selected.files?.map((file) => (
-                                            <div key={file.id} className="flex items-center justify-between gap-4 rounded-2xl border border-slate-850 bg-[#131b2e]/20 p-3">
+                                            <div key={file.id} className="flex items-center justify-between gap-4 rounded-2xl border border-slate-200 bg-slate-50 p-3">
                                                 <div className="min-w-0">
-                                                    <p className="text-xs font-bold text-slate-200 truncate">{file.originalName || 'Lampiran'}</p>
+                                                    <p className="text-xs font-bold text-slate-900 truncate">{file.originalName || 'Lampiran'}</p>
                                                     <p className="text-[10px] text-slate-500 font-semibold">{formatFileSize(file.size)}</p>
                                                 </div>
                                                 {file.url && (
@@ -396,9 +387,9 @@ export default function Pengumuman({ profile = fallbackProfile, announcements = 
                                                         href={file.url} 
                                                         target="_blank" 
                                                         rel="noopener noreferrer" 
-                                                        className="inline-flex items-center justify-center gap-1.5 rounded-xl bg-[#131b2e] border border-slate-800 hover:bg-[#1a243d] hover:text-slate-150 px-3.5 py-2 text-xs font-bold text-slate-300 transition"
+                                                        className="inline-flex items-center justify-center gap-1.5 rounded-xl bg-white border border-slate-200 hover:bg-emerald-50 hover:border-emerald-200 px-3.5 py-2 text-xs font-bold text-emerald-700 transition shadow-sm"
                                                     >
-                                                        <Download size={13} className="text-emerald-400" />
+                                                        <Download size={13} className="text-emerald-600" />
                                                         <span>Download</span>
                                                     </a>
                                                 )}
@@ -410,11 +401,11 @@ export default function Pengumuman({ profile = fallbackProfile, announcements = 
                         </div>
 
                         {/* Modal Footer */}
-                        <div className="border-t border-slate-800/80 p-5 bg-[#131b2e]/10 flex justify-end">
+                        <div className="border-t border-slate-200 p-5 bg-slate-50 flex justify-end">
                             <button 
                                 type="button" 
                                 onClick={() => setSelected(null)}
-                                className="rounded-xl bg-[#131b2e] hover:bg-[#1a243d] border border-slate-800 px-4 py-2.5 text-xs font-bold text-slate-300 transition"
+                                className="rounded-xl bg-white hover:bg-slate-100 border border-slate-200 px-4 py-2.5 text-xs font-bold text-slate-700 transition shadow-sm"
                             >
                                 Tutup Pengumuman
                             </button>
@@ -426,7 +417,7 @@ export default function Pengumuman({ profile = fallbackProfile, announcements = 
             {/* Floating Action Button (FAB) for Complaints */}
             <Link 
                 href="/warga/pengaduan" 
-                className="fixed bottom-6 right-6 lg:bottom-8 lg:right-8 z-40 flex h-12 w-12 items-center justify-center rounded-full bg-emerald-400 hover:bg-emerald-300 text-slate-950 shadow-lg shadow-emerald-400/20 active:scale-95 transition"
+                className="fixed bottom-6 right-6 lg:bottom-8 lg:right-8 z-40 flex h-12 w-12 items-center justify-center rounded-full bg-emerald-600 hover:bg-emerald-700 text-white shadow-lg shadow-emerald-600/20 active:scale-95 transition"
                 title="Lapor Aduan"
             >
                 <Plus size={22} className="stroke-[3]" />

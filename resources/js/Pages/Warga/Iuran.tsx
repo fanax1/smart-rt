@@ -106,17 +106,17 @@ function statusClass(status?: string) {
     switch (status) {
         case 'Sudah Bayar':
         case 'Lunas':
-            return 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/20';
+            return 'bg-emerald-50 text-emerald-700 border border-emerald-200';
         case 'Menunggu Verifikasi':
-            return 'bg-amber-500/10 text-amber-400 border border-amber-500/20';
+            return 'bg-amber-50 text-amber-700 border border-amber-200';
         case 'Kurang Bayar':
-            return 'bg-orange-500/10 text-orange-400 border border-orange-500/20';
+            return 'bg-amber-50 text-amber-700 border border-amber-200';
         case 'Ditolak':
         case 'Belum Bayar':
         case 'Menunggak':
-            return 'bg-red-500/10 text-red-400 border border-red-500/20';
+            return 'bg-red-50 text-red-700 border border-red-200';
         default:
-            return 'bg-slate-800 text-slate-400 border border-slate-700/60';
+            return 'bg-slate-100 text-slate-700 border border-slate-200';
     }
 }
 
@@ -218,37 +218,34 @@ export default function Iuran({ profile = fallbackProfile, currentBills = [], pa
                 {/* Header Back & Titles & Upload Button */}
                 <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4">
                     <div className="flex items-center gap-3">
-                        <Link href="/warga/dashboard" className="rounded-xl bg-[#131b2e] border border-slate-800 p-2 text-slate-400 hover:text-slate-200 transition">
+                        <Link href="/warga/dashboard" className="rounded-xl bg-white border border-slate-200 p-2 text-slate-600 hover:text-slate-900 shadow-sm transition">
                             <ArrowLeft size={16} />
                         </Link>
                         <div>
-                            <h1 className="text-xl font-black text-slate-100 tracking-tight">Pembayaran Iuran</h1>
-                            <p className="text-xs text-slate-500 mt-0.5">Status tagihan bulanan dan riwayat pembayaran</p>
+                            <h1 className="text-xl font-black text-slate-900 tracking-tight">Pembayaran Iuran</h1>
+                            <p className="text-xs text-slate-600 mt-0.5 font-medium">Status tagihan bulanan dan riwayat pembayaran</p>
                         </div>
                     </div>
 
                     <button
                         type="button"
                         onClick={() => openUploadModal(mainBill || { id: null, amount: 0, period: new Date().toISOString().slice(0, 7) })}
-                        className="flex items-center justify-center gap-2 rounded-2xl bg-[#131b2e] hover:bg-[#1a243d] border border-slate-800 text-xs font-bold text-slate-200 px-4 py-2.5 transition active:scale-97 self-start sm:self-center"
+                        className="flex items-center justify-center gap-2 rounded-2xl bg-white hover:bg-slate-50 border border-slate-200 text-xs font-bold text-slate-700 px-4 py-2.5 transition active:scale-97 self-start sm:self-center shadow-sm"
                     >
-                        <UploadCloud size={14} className="text-emerald-400" />
+                        <UploadCloud size={14} className="text-emerald-600" />
                         <span>Input Bukti Pembayaran</span>
                     </button>
                 </div>
 
                 {/* Grid Layout: Main Bill & Sub Stats Cards */}
                 <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-                    {/* Left Side: Big Bill Card (Yellow highlighted tagihan) */}
+                    {/* Left Side: Big Bill Card */}
                     <div className="lg:col-span-2">
                         {mainBill ? (
-                            <div className="rounded-3xl border border-amber-500/30 bg-[#0b1220] p-6 shadow-xl relative overflow-hidden group h-full flex flex-col justify-between hover:border-amber-500/50 transition-colors duration-300">
-                                {/* Amber Glow Accent for Tagihan */}
-                                <div className="absolute top-0 right-0 w-40 h-40 bg-amber-500/5 rounded-full blur-3xl group-hover:bg-amber-500/10 transition duration-300"></div>
-
+                            <div className="rounded-3xl border border-amber-200 bg-amber-50/50 p-6 shadow-sm relative overflow-hidden group h-full flex flex-col justify-between hover:border-amber-300 transition-colors duration-300">
                                 <div className="space-y-4">
                                     <div className="flex items-center justify-between">
-                                        <span className="bg-amber-500/10 text-amber-400 border border-amber-500/20 rounded-md px-2.5 py-0.5 text-[10px] font-extrabold tracking-wider uppercase">
+                                        <span className="bg-amber-100 text-amber-800 border border-amber-200 rounded-md px-2.5 py-0.5 text-[10px] font-extrabold tracking-wider uppercase">
                                             Tagihan Bulan Ini
                                         </span>
                                         <span className="text-[10px] font-bold text-slate-500">
@@ -257,42 +254,42 @@ export default function Iuran({ profile = fallbackProfile, currentBills = [], pa
                                     </div>
 
                                     <div className="pt-2">
-                                        <h2 className="text-3xl font-black text-slate-100 tracking-tight">
+                                        <h2 className="text-3xl font-black text-slate-900 tracking-tight">
                                             {formatCurrency(totalTagihan)}
                                         </h2>
-                                        <p className="text-xs text-slate-400 mt-1 flex items-center gap-1.5">
-                                            <Calendar size={13} className="text-amber-500/80" />
-                                            Jatuh tempo: <span className="font-bold text-slate-350">{formatDate(mainBill.dueDate)}</span>
+                                        <p className="text-xs text-slate-600 mt-1 flex items-center gap-1.5 font-medium">
+                                            <Calendar size={13} className="text-amber-600" />
+                                            Jatuh tempo: <span className="font-bold text-slate-900">{formatDate(mainBill.dueDate)}</span>
                                         </p>
                                     </div>
 
                                     {/* Verification Status Warning/Notice inside Bill Card */}
                                     {mainBill.status === 'Menunggu Verifikasi' && (
-                                        <div className="rounded-2xl bg-amber-500/10 border border-amber-500/20 p-3 flex gap-2.5 items-start text-[11px] leading-relaxed text-amber-400 mt-3">
+                                        <div className="rounded-2xl bg-amber-100/80 border border-amber-200 p-3 flex gap-2.5 items-start text-[11px] leading-relaxed text-amber-900 mt-3 font-semibold">
                                             <AlertCircle size={15} className="shrink-0 mt-0.5" />
                                             <span>Bukti pembayaran sudah dikirim dan sedang menunggu verifikasi admin.</span>
                                         </div>
                                     )}
 
                                     {mainBill.notes && mainBill.status === 'Ditolak' && (
-                                        <div className="rounded-2xl bg-red-500/10 border border-red-500/20 p-3 flex gap-2.5 items-start text-[11px] leading-relaxed text-red-400 mt-3">
+                                        <div className="rounded-2xl bg-red-50 border border-red-200 p-3 flex gap-2.5 items-start text-[11px] leading-relaxed text-red-700 mt-3 font-semibold">
                                             <AlertCircle size={15} className="shrink-0 mt-0.5" />
                                             <div>
                                                 <p className="font-bold">Unggahan Bukti Ditolak Admin:</p>
-                                                <p className="text-slate-400 mt-0.5">{mainBill.notes}</p>
+                                                <p className="text-slate-600 mt-0.5">{mainBill.notes}</p>
                                             </div>
                                         </div>
                                     )}
                                 </div>
 
                                 {/* Action Buttons */}
-                                <div className="flex flex-wrap gap-3 pt-6 border-t border-slate-800/80 mt-6">
+                                <div className="flex flex-wrap gap-3 pt-6 border-t border-amber-200/60 mt-6">
                                     {canUploadProof(mainBill) ? (
                                         <>
                                             <button 
                                                 type="button" 
                                                 onClick={() => openUploadModal(mainBill)}
-                                                className="inline-flex items-center gap-2 rounded-xl bg-emerald-400 hover:bg-emerald-300 text-slate-950 px-5 py-2.5 text-xs font-black transition active:scale-97 shadow-lg"
+                                                className="inline-flex items-center gap-2 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white px-5 py-2.5 text-xs font-bold transition active:scale-97 shadow-sm"
                                             >
                                                 <UploadCloud size={14} className="stroke-[2.5]" />
                                                 <span>Bayar Sekarang</span>
@@ -300,30 +297,30 @@ export default function Iuran({ profile = fallbackProfile, currentBills = [], pa
                                             <button 
                                                 type="button"
                                                 onClick={() => setIsDetailModalOpen(true)}
-                                                className="inline-flex items-center gap-2 rounded-xl bg-transparent border border-slate-800 hover:bg-[#131b2e] text-slate-300 px-5 py-2.5 text-xs font-bold transition active:scale-97"
+                                                className="inline-flex items-center gap-2 rounded-xl bg-white border border-slate-200 hover:bg-slate-50 text-slate-700 px-5 py-2.5 text-xs font-bold transition active:scale-97 shadow-sm"
                                             >
                                                 <span>Detail Tagihan</span>
                                             </button>
                                         </>
                                     ) : (
                                         <div className="flex items-center flex-wrap gap-3 w-full">
-                                            <div className="flex items-center gap-2 text-xs font-bold text-slate-400 bg-[#131b2e] px-4 py-2.5 rounded-xl border border-slate-800">
+                                            <div className="flex items-center gap-2 text-xs font-bold text-slate-700 bg-white px-4 py-2.5 rounded-xl border border-slate-200 shadow-sm">
                                                 {mainBill.status === 'Sudah Bayar' || mainBill.status === 'Lunas' ? (
                                                     <>
-                                                        <CheckCircle size={14} className="text-emerald-400" />
-                                                        <span className="text-emerald-400">Tagihan Terbayar Lunas</span>
+                                                        <CheckCircle size={14} className="text-emerald-600" />
+                                                        <span className="text-emerald-700">Tagihan Terbayar Lunas</span>
                                                     </>
                                                 ) : (
                                                     <>
-                                                        <Clock size={14} className="text-amber-400" />
-                                                        <span className="text-amber-400">Sedang Diproses Verifikasi</span>
+                                                        <Clock size={14} className="text-amber-600" />
+                                                        <span className="text-amber-700">Sedang Diproses Verifikasi</span>
                                                     </>
                                                 )}
                                             </div>
                                             <button 
                                                 type="button"
                                                 onClick={() => setIsDetailModalOpen(true)}
-                                                className="inline-flex items-center gap-2 rounded-xl bg-transparent border border-slate-800 hover:bg-[#131b2e] text-slate-300 px-5 py-2.5 text-xs font-bold transition active:scale-97"
+                                                className="inline-flex items-center gap-2 rounded-xl bg-white border border-slate-200 hover:bg-slate-50 text-slate-700 px-5 py-2.5 text-xs font-bold transition active:scale-97 shadow-sm"
                                             >
                                                 <span>Detail Tagihan</span>
                                             </button>
@@ -332,8 +329,8 @@ export default function Iuran({ profile = fallbackProfile, currentBills = [], pa
                                 </div>
                             </div>
                         ) : (
-                            <div className="rounded-3xl border border-dashed border-slate-800 p-8 text-center text-xs text-slate-500 bg-[#0b1220] h-full flex flex-col justify-center items-center">
-                                <Wallet size={36} className="text-slate-600 mb-2" />
+                            <div className="rounded-3xl border border-dashed border-slate-200 p-8 text-center text-xs text-slate-500 bg-white h-full flex flex-col justify-center items-center shadow-sm">
+                                <Wallet size={36} className="text-slate-400 mb-2" />
                                 <span>Belum ada tagihan iuran aktif untuk bulan ini.</span>
                             </div>
                         )}
@@ -341,50 +338,48 @@ export default function Iuran({ profile = fallbackProfile, currentBills = [], pa
 
                     {/* Right Side: Smaller Status summary widgets */}
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1 gap-4">
-                        {/* Summary Widget 1: Sudah Bayar (Green Highlight) */}
-                        <div className="rounded-2xl border border-emerald-500/30 bg-[#0b1220] p-4 shadow-md relative overflow-hidden group hover:border-emerald-500/50 transition-colors duration-300">
-                            <div className="absolute top-0 right-0 w-24 h-24 bg-emerald-500/5 rounded-full blur-2xl group-hover:bg-emerald-500/10 transition duration-300"></div>
+                        {/* Summary Widget 1: Sudah Bayar */}
+                        <div className="rounded-2xl border border-emerald-200 bg-emerald-50/50 p-4 shadow-sm relative overflow-hidden group">
                             <div className="flex items-center justify-between mb-3">
-                                <span className="bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 rounded-md px-1.5 py-0.5 text-[9px] font-extrabold uppercase tracking-wide">
+                                <span className="bg-emerald-100 text-emerald-800 border border-emerald-200 rounded-md px-1.5 py-0.5 text-[9px] font-extrabold uppercase tracking-wide">
                                     Sudah Bayar
                                 </span>
-                                <CheckCircle size={15} className="text-emerald-400" />
+                                <CheckCircle size={15} className="text-emerald-600" />
                             </div>
-                            <h3 className="text-xl font-black text-slate-100">{formatCurrency(totalPaid)}</h3>
-                            <p className="text-[10px] text-slate-500 mt-1.5">
-                                Terakhir bayar: <span className="font-semibold text-slate-400">{lastPaidDate}</span>
+                            <h3 className="text-xl font-black text-slate-900">{formatCurrency(totalPaid)}</h3>
+                            <p className="text-[10px] text-slate-500 mt-1.5 font-medium">
+                                Terakhir bayar: <span className="font-bold text-slate-700">{lastPaidDate}</span>
                             </p>
                         </div>
 
-                        {/* Summary Widget 2: Belum Bayar (Red Highlight) */}
-                        <div className="rounded-2xl border border-red-500/30 bg-[#0b1220] p-4 shadow-md relative overflow-hidden group hover:border-red-500/50 transition-colors duration-300">
-                            <div className="absolute top-0 right-0 w-24 h-24 bg-red-500/5 rounded-full blur-2xl group-hover:bg-red-500/10 transition duration-300"></div>
+                        {/* Summary Widget 2: Belum Bayar */}
+                        <div className="rounded-2xl border border-red-200 bg-red-50/50 p-4 shadow-sm relative overflow-hidden group">
                             <div className="flex items-center justify-between mb-3">
-                                <span className="bg-red-500/10 text-red-400 border border-red-500/20 rounded-md px-1.5 py-0.5 text-[9px] font-extrabold uppercase tracking-wide">
+                                <span className="bg-red-100 text-red-800 border border-red-200 rounded-md px-1.5 py-0.5 text-[9px] font-extrabold uppercase tracking-wide">
                                     Belum Bayar
                                 </span>
-                                <AlertCircle size={15} className="text-red-400" />
+                                <AlertCircle size={15} className="text-red-600" />
                             </div>
-                            <h3 className="text-xl font-black text-slate-100">{formatCurrency(totalUnpaid)}</h3>
-                            <p className="text-[10px] text-slate-500 mt-1.5">
-                                Tunggakan berjalan: <span className="font-semibold text-slate-400">{unpaidCount} bulan</span>
+                            <h3 className="text-xl font-black text-slate-900">{formatCurrency(totalUnpaid)}</h3>
+                            <p className="text-[10px] text-slate-500 mt-1.5 font-medium">
+                                Tunggakan berjalan: <span className="font-bold text-slate-700">{unpaidCount} bulan</span>
                             </p>
                         </div>
                     </div>
                 </div>
 
                 {/* Payments History Section */}
-                <div className="rounded-3xl border border-slate-800 bg-[#0b1220] p-5 shadow-xl">
-                    <div className="flex items-center justify-between mb-5 pb-3 border-b border-slate-800/80">
+                <div className="rounded-3xl border border-slate-200 bg-white p-5 shadow-sm">
+                    <div className="flex items-center justify-between mb-5 pb-3 border-b border-slate-200">
                         <div className="flex items-center gap-2">
-                            <Clock size={16} className="text-emerald-400" />
-                            <h3 className="text-xs font-black text-slate-300 uppercase tracking-wider">Riwayat Pembayaran</h3>
+                            <Clock size={16} className="text-emerald-600" />
+                            <h3 className="text-xs font-black text-slate-900 uppercase tracking-wider">Riwayat Pembayaran</h3>
                         </div>
                         <div className="flex items-center gap-2">
-                            <button className="p-1.5 rounded-lg bg-[#131b2e] border border-slate-850 text-slate-400 hover:text-slate-200 transition">
+                            <button className="p-1.5 rounded-lg bg-white border border-slate-200 text-slate-600 hover:bg-slate-50 transition shadow-sm">
                                 <SlidersHorizontal size={13} />
                             </button>
-                            <button className="p-1.5 rounded-lg bg-[#131b2e] border border-slate-850 text-slate-400 hover:text-slate-200 transition">
+                            <button className="p-1.5 rounded-lg bg-white border border-slate-200 text-slate-600 hover:bg-slate-50 transition shadow-sm">
                                 <Download size={13} />
                             </button>
                         </div>
@@ -392,34 +387,34 @@ export default function Iuran({ profile = fallbackProfile, currentBills = [], pa
 
                     <div className="overflow-x-auto -mx-5 px-5">
                         {history.length === 0 ? (
-                            <div className="text-center py-8 text-xs text-slate-500 border border-dashed border-slate-850 rounded-2xl">
+                            <div className="text-center py-8 text-xs text-slate-500 border border-dashed border-slate-200 rounded-2xl">
                                 Belum ada riwayat pembayaran iuran.
                             </div>
                         ) : (
                             <table className="w-full text-left border-collapse min-w-[500px]">
                                 <thead>
-                                    <tr className="border-b border-slate-850/80 text-[10px] text-slate-500 font-bold uppercase tracking-wider">
-                                        <th className="pb-3 pt-1">Bulan / Tahun</th>
-                                        <th className="pb-3 pt-1">Jenis Iuran</th>
-                                        <th className="pb-3 pt-1">Jumlah</th>
-                                        <th className="pb-3 pt-1">Metode</th>
-                                        <th className="pb-3 pt-1">Status</th>
-                                        <th className="pb-3 pt-1 text-right">Aksi</th>
+                                    <tr className="border-b border-slate-200 bg-slate-50 text-[10px] text-slate-600 font-bold uppercase tracking-wider">
+                                        <th className="pb-3 pt-3 pl-3">Bulan / Tahun</th>
+                                        <th className="pb-3 pt-3">Jenis Iuran</th>
+                                        <th className="pb-3 pt-3">Jumlah</th>
+                                        <th className="pb-3 pt-3">Metode</th>
+                                        <th className="pb-3 pt-3">Status</th>
+                                        <th className="pb-3 pt-3 pr-3 text-right">Aksi</th>
                                     </tr>
                                 </thead>
-                                <tbody className="divide-y divide-slate-850/40 text-xs">
+                                <tbody className="divide-y divide-slate-100 text-xs">
                                     {history.map((payment) => (
-                                        <tr key={payment.id ?? `${payment.date}-${payment.amount}`} className="hover:bg-[#131b2e]/10 transition-colors">
-                                            <td className="py-3.5 font-bold text-slate-200">
+                                        <tr key={payment.id ?? `${payment.date}-${payment.amount}`} className="hover:bg-slate-50 transition-colors">
+                                            <td className="py-3.5 pl-3 font-bold text-slate-900">
                                                 {getPaymentMonthYear(payment.title, payment.date)}
                                             </td>
-                                            <td className="py-3.5 text-slate-400 font-medium">
+                                            <td className="py-3.5 text-slate-600 font-medium">
                                                 Iuran Bulanan (Kebersihan & Keamanan)
                                             </td>
-                                            <td className="py-3.5 font-black text-slate-355">
+                                            <td className="py-3.5 font-black text-slate-900">
                                                 {formatCurrency(payment.amount)}
                                             </td>
-                                            <td className="py-3.5 text-slate-400">
+                                            <td className="py-3.5 text-slate-600">
                                                 {getFormattedMethod(payment.method)}
                                             </td>
                                             <td className="py-3.5">
@@ -427,11 +422,11 @@ export default function Iuran({ profile = fallbackProfile, currentBills = [], pa
                                                     {payment.status === 'Sudah Bayar' || payment.status === 'Lunas' ? 'Lunas' : payment.status}
                                                 </span>
                                             </td>
-                                            <td className="py-3.5 text-right">
+                                            <td className="py-3.5 pr-3 text-right">
                                                 <button
                                                     type="button"
                                                     onClick={() => setSelectedPayment(payment)}
-                                                    className="inline-flex items-center gap-1 rounded-md bg-[#131b2e] border border-slate-800/80 px-2.5 py-1 text-[10px] font-bold text-emerald-400 hover:bg-[#1a243d] hover:text-emerald-300 transition"
+                                                    className="inline-flex items-center gap-1 rounded-xl bg-white border border-slate-200 hover:bg-emerald-50 hover:border-emerald-200 px-3 py-1.5 text-[10px] font-bold text-emerald-700 transition shadow-sm"
                                                 >
                                                     <Receipt size={10} />
                                                     <span>Invoice</span>
@@ -448,19 +443,19 @@ export default function Iuran({ profile = fallbackProfile, currentBills = [], pa
 
             {/* Modal: Upload Bukti Pembayaran */}
             {selectedBill && (
-                <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/60 p-4 backdrop-blur-sm">
-                    <div className="w-full max-w-md rounded-3xl bg-[#0b1220] border border-slate-800 shadow-2xl overflow-hidden">
-                        <div className="flex items-start justify-between gap-4 border-b border-slate-800/80 p-5 bg-[#131b2e]/30">
+                <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/40 p-4 backdrop-blur-sm">
+                    <div className="w-full max-w-md rounded-3xl bg-white border border-slate-200 shadow-2xl overflow-hidden animate-in fade-in zoom-in-95 duration-200">
+                        <div className="flex items-start justify-between gap-4 border-b border-slate-200 p-5 bg-slate-50">
                             <div>
-                                <span className="text-[10px] font-extrabold uppercase tracking-wider text-emerald-400">Upload Bukti</span>
-                                <h2 className="mt-1 text-base font-black text-slate-100 leading-tight">
+                                <span className="text-[10px] font-extrabold uppercase tracking-wider text-emerald-700">Upload Bukti</span>
+                                <h2 className="mt-1 text-base font-black text-slate-900 leading-tight">
                                     {selectedBill.title || 'Iuran Bulanan'}
                                 </h2>
-                                <p className="mt-1.5 text-xs text-slate-400">
-                                    Periode: <span className="font-semibold text-slate-300">{selectedBill.period || '-'}</span> · Jumlah: <span className="font-bold text-emerald-400">{formatCurrency(selectedBill.amount)}</span>
+                                <p className="mt-1.5 text-xs text-slate-600 font-medium">
+                                    Periode: <span className="font-bold text-slate-900">{selectedBill.period || '-'}</span> · Jumlah: <span className="font-bold text-emerald-700">{formatCurrency(selectedBill.amount)}</span>
                                 </p>
                             </div>
-                            <button type="button" onClick={closeUploadModal} className="rounded-xl p-1.5 text-slate-400 hover:bg-[#131b2e] hover:text-slate-200 transition">
+                            <button type="button" onClick={closeUploadModal} className="rounded-xl p-1.5 text-slate-400 hover:bg-slate-200 hover:text-slate-900 transition">
                                 <X size={18} />
                             </button>
                         </div>
@@ -468,55 +463,55 @@ export default function Iuran({ profile = fallbackProfile, currentBills = [], pa
                         <form onSubmit={submitProof} className="space-y-4 p-5">
                             {/* Periode Input */}
                             <div>
-                                <label className="text-xs font-bold text-slate-400">Periode (Bulan / Tahun)</label>
+                                <label className="text-xs font-bold text-slate-700">Periode (Bulan / Tahun)</label>
                                 <input
                                     type="month"
                                     required
                                     disabled={selectedBill && selectedBill.id !== null}
                                     value={uploadForm.data.period}
                                     onChange={(event) => uploadForm.setData('period', event.target.value)}
-                                    className="mt-2 w-full rounded-xl border border-slate-800 bg-[#131b2e] px-4 py-3 text-xs text-slate-200 focus:border-emerald-500 focus:ring-emerald-500 disabled:opacity-50"
+                                    className="mt-1.5 w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-xs text-slate-900 focus:bg-white focus:border-emerald-500 focus:ring-emerald-500 disabled:opacity-50 transition"
                                 />
-                                {uploadForm.errors.period && <p className="mt-1 text-xs text-red-500">{uploadForm.errors.period}</p>}
+                                {uploadForm.errors.period && <p className="mt-1 text-xs font-bold text-red-600">{uploadForm.errors.period}</p>}
                             </div>
 
                             {/* Nominal Pembayaran Input */}
                             <div>
-                                <label className="text-xs font-bold text-slate-400">Jumlah Pembayaran (Rp)</label>
+                                <label className="text-xs font-bold text-slate-700">Jumlah Pembayaran (Rp)</label>
                                 <input
                                     type="number"
                                     required
                                     disabled={selectedBill && selectedBill.id !== null}
                                     value={uploadForm.data.amount}
                                     onChange={(event) => uploadForm.setData('amount', event.target.value)}
-                                    className="mt-2 w-full rounded-xl border border-slate-800 bg-[#131b2e] px-4 py-3 text-xs text-slate-200 focus:border-emerald-500 focus:ring-emerald-500 disabled:opacity-50"
+                                    className="mt-1.5 w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-xs text-slate-900 focus:bg-white focus:border-emerald-500 focus:ring-emerald-500 disabled:opacity-50 transition"
                                     placeholder="Contoh: 150000"
                                 />
-                                {uploadForm.errors.amount && <p className="mt-1 text-xs text-red-500">{uploadForm.errors.amount}</p>}
+                                {uploadForm.errors.amount && <p className="mt-1 text-xs font-bold text-red-600">{uploadForm.errors.amount}</p>}
                             </div>
 
                             <div>
-                                <label className="text-xs font-bold text-slate-400">Metode Pembayaran</label>
+                                <label className="text-xs font-bold text-slate-700">Metode Pembayaran</label>
                                 <select
                                     value={uploadForm.data.metode_pembayaran}
                                     onChange={(event) => uploadForm.setData('metode_pembayaran', event.target.value)}
-                                    className="mt-2 w-full rounded-xl border-slate-800 bg-[#131b2e] px-4 py-3 text-xs text-slate-200 focus:border-emerald-500 focus:ring-emerald-500"
+                                    className="mt-1.5 w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-xs text-slate-900 focus:bg-white focus:border-emerald-500 focus:ring-emerald-500 transition"
                                 >
                                     <option value="transfer_bank">Transfer Bank</option>
                                     <option value="qris">QRIS</option>
                                     <option value="tunai">Tunai / Cash</option>
                                 </select>
-                                {uploadForm.errors.metode_pembayaran && <p className="mt-1 text-xs text-red-500">{uploadForm.errors.metode_pembayaran}</p>}
+                                {uploadForm.errors.metode_pembayaran && <p className="mt-1 text-xs font-bold text-red-600">{uploadForm.errors.metode_pembayaran}</p>}
                             </div>
 
                             <div>
-                                <label className="text-xs font-bold text-slate-400">Bukti Pembayaran</label>
-                                <div className="mt-2 relative">
+                                <label className="text-xs font-bold text-slate-700">Bukti Pembayaran</label>
+                                <div className="mt-1.5 relative">
                                     {!uploadForm.data.bukti_pembayaran ? (
-                                        <label className="flex flex-col items-center justify-center border-2 border-dashed border-slate-800 hover:border-emerald-500/50 rounded-2xl p-6 bg-[#131b2e]/50 cursor-pointer transition group">
-                                            <UploadCloud size={28} className="text-slate-500 group-hover:text-emerald-400 transition mb-2" />
-                                            <span className="text-xs font-semibold text-slate-350">Pilih atau Seret Foto / Dokumen</span>
-                                            <span className="text-[10px] text-slate-500 mt-1">PNG, JPG, WEBP, atau PDF (Maks. 2MB)</span>
+                                        <label className="flex flex-col items-center justify-center border-2 border-dashed border-slate-200 hover:border-emerald-500 rounded-2xl p-6 bg-slate-50 cursor-pointer transition group">
+                                            <UploadCloud size={28} className="text-slate-400 group-hover:text-emerald-600 transition mb-2" />
+                                            <span className="text-xs font-bold text-slate-700">Pilih atau Seret Foto / Dokumen</span>
+                                            <span className="text-[10px] text-slate-500 mt-1 font-medium">PNG, JPG, WEBP, atau PDF (Maks. 2MB)</span>
                                             <input
                                                 type="file"
                                                 accept="image/*,.pdf"
@@ -525,16 +520,16 @@ export default function Iuran({ profile = fallbackProfile, currentBills = [], pa
                                             />
                                         </label>
                                     ) : (
-                                        <div className="flex items-center justify-between border border-emerald-500/30 rounded-2xl p-4 bg-emerald-500/5">
+                                        <div className="flex items-center justify-between border border-emerald-200 rounded-2xl p-4 bg-emerald-50">
                                             <div className="flex items-center gap-3 overflow-hidden">
-                                                <div className="p-2 rounded-xl bg-emerald-500/10 text-emerald-400 shrink-0">
+                                                <div className="p-2 rounded-xl bg-emerald-100 text-emerald-700 shrink-0">
                                                     <FileText size={18} />
                                                 </div>
                                                 <div className="min-w-0">
-                                                    <p className="text-xs font-bold text-slate-200 truncate">
+                                                    <p className="text-xs font-bold text-slate-900 truncate">
                                                         {(uploadForm.data.bukti_pembayaran as File).name}
                                                     </p>
-                                                    <p className="text-[10px] text-slate-500">
+                                                    <p className="text-[10px] text-slate-500 font-medium">
                                                         {((uploadForm.data.bukti_pembayaran as File).size / 1024 / 1024).toFixed(2)} MB
                                                     </p>
                                                 </div>
@@ -542,37 +537,37 @@ export default function Iuran({ profile = fallbackProfile, currentBills = [], pa
                                             <button
                                                 type="button"
                                                 onClick={() => uploadForm.setData('bukti_pembayaran', null)}
-                                                className="p-1 rounded-lg bg-red-500/10 text-red-400 border border-red-500/20 hover:bg-red-500/20 transition shrink-0"
+                                                className="p-1 rounded-lg bg-red-100 text-red-700 border border-red-200 hover:bg-red-200 transition shrink-0"
                                             >
                                                 <X size={14} />
                                             </button>
                                         </div>
                                     )}
                                 </div>
-                                {uploadForm.errors.bukti_pembayaran && <p className="mt-1.5 text-xs text-red-500">{uploadForm.errors.bukti_pembayaran}</p>}
+                                {uploadForm.errors.bukti_pembayaran && <p className="mt-1.5 text-xs font-bold text-red-600">{uploadForm.errors.bukti_pembayaran}</p>}
                             </div>
 
                             <div>
-                                <label className="text-xs font-bold text-slate-400">Catatan Opsional</label>
+                                <label className="text-xs font-bold text-slate-700">Catatan Opsional</label>
                                 <textarea
                                     value={uploadForm.data.catatan}
                                     onChange={(event) => uploadForm.setData('catatan', event.target.value)}
                                     rows={3}
-                                    className="mt-2 w-full rounded-xl border-slate-800 bg-[#131b2e] px-4 py-3 text-xs text-slate-200 placeholder-slate-650 focus:border-emerald-500 focus:ring-emerald-500"
+                                    className="mt-1.5 w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-xs text-slate-900 placeholder-slate-400 focus:bg-white focus:border-emerald-500 focus:ring-emerald-500 transition"
                                     placeholder="Contoh: Transfer dari rekening BCA atas nama Fatih..."
                                 />
-                                {uploadForm.errors.catatan && <p className="mt-1 text-xs text-red-500">{uploadForm.errors.catatan}</p>}
+                                {uploadForm.errors.catatan && <p className="mt-1 text-xs font-bold text-red-600">{uploadForm.errors.catatan}</p>}
                             </div>
 
-                            <div className="rounded-2xl bg-emerald-500/5 border border-emerald-500/20 p-3.5 text-[11px] leading-relaxed text-slate-400">
-                                Setelah bukti dikirim, status tagihan berubah menjadi <strong className="text-amber-400 font-bold">Menunggu Verifikasi</strong>. Admin RT akan memeriksa bukti sebelum status diubah menjadi <strong className="text-emerald-400 font-bold">Lunas</strong>.
+                            <div className="rounded-2xl bg-amber-50 border border-amber-200 p-3.5 text-[11px] leading-relaxed text-slate-700 font-medium">
+                                Setelah bukti dikirim, status tagihan berubah menjadi <strong className="text-amber-800 font-bold">Menunggu Verifikasi</strong>. Admin RT akan memeriksa bukti sebelum status diubah menjadi <strong className="text-emerald-700 font-bold">Lunas</strong>.
                             </div>
 
                             <div className="flex justify-end gap-3 pt-2">
-                                <button type="button" onClick={closeUploadModal} className="rounded-xl border border-slate-800 px-4 py-2.5 text-xs font-bold text-slate-400 hover:bg-[#131b2e] transition">
+                                <button type="button" onClick={closeUploadModal} className="rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-xs font-bold text-slate-700 hover:bg-slate-100 transition shadow-sm">
                                     Batal
                                 </button>
-                                <button type="submit" disabled={uploadForm.processing} className="rounded-xl bg-emerald-400 hover:bg-emerald-300 text-slate-950 px-4 py-2.5 text-xs font-black transition disabled:opacity-50">
+                                <button type="submit" disabled={uploadForm.processing} className="rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white px-4 py-2.5 text-xs font-bold transition shadow-sm disabled:opacity-50">
                                     {uploadForm.processing ? 'Mengirim...' : 'Kirim Bukti'}
                                 </button>
                             </div>
@@ -583,19 +578,19 @@ export default function Iuran({ profile = fallbackProfile, currentBills = [], pa
 
             {/* Modal: Detail Rincian Iuran */}
             {isDetailModalOpen && (
-                <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/60 p-4 backdrop-blur-sm">
-                    <div className="w-full max-w-md rounded-3xl bg-[#0b1220] border border-slate-800 shadow-2xl overflow-hidden">
-                        <div className="flex items-start justify-between gap-4 border-b border-slate-800/80 p-5 bg-[#131b2e]/30">
+                <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/40 p-4 backdrop-blur-sm">
+                    <div className="w-full max-w-md rounded-3xl bg-white border border-slate-200 shadow-2xl overflow-hidden animate-in fade-in zoom-in-95 duration-200">
+                        <div className="flex items-start justify-between gap-4 border-b border-slate-200 p-5 bg-slate-50">
                             <div>
-                                <span className="text-[10px] font-extrabold uppercase tracking-wider text-amber-400">Rincian Tagihan</span>
-                                <h2 className="mt-1 text-base font-black text-slate-100 leading-tight">
+                                <span className="text-[10px] font-extrabold uppercase tracking-wider text-amber-800">Rincian Tagihan</span>
+                                <h2 className="mt-1 text-base font-black text-slate-900 leading-tight">
                                     Rincian Komponen Iuran
                                 </h2>
-                                <p className="mt-1.5 text-xs text-slate-400">
+                                <p className="mt-1.5 text-xs text-slate-600 font-medium">
                                     Rincian iuran bulanan berdasarkan kebijakan pengurus RT.
                                 </p>
                             </div>
-                            <button type="button" onClick={() => setIsDetailModalOpen(false)} className="rounded-xl p-1.5 text-slate-400 hover:bg-[#131b2e] hover:text-slate-200 transition">
+                            <button type="button" onClick={() => setIsDetailModalOpen(false)} className="rounded-xl p-1.5 text-slate-400 hover:bg-slate-200 hover:text-slate-900 transition">
                                 <X size={18} />
                             </button>
                         </div>
@@ -606,22 +601,22 @@ export default function Iuran({ profile = fallbackProfile, currentBills = [], pa
                             ) : (
                                 <div className="space-y-3.5">
                                     {billComponents.map((comp) => (
-                                        <div key={comp.id} className="flex justify-between items-start gap-4 py-2.5 border-b border-slate-850/40">
+                                        <div key={comp.id} className="flex justify-between items-start gap-4 py-2.5 border-b border-slate-100">
                                             <div className="space-y-0.5">
-                                                <p className="text-xs font-bold text-slate-200">{comp.name}</p>
+                                                <p className="text-xs font-bold text-slate-900">{comp.name}</p>
                                                 {comp.note && (
-                                                    <p className="text-[10px] text-slate-400 italic font-medium leading-relaxed">{comp.note}</p>
+                                                    <p className="text-[10px] text-slate-500 italic font-medium leading-relaxed">{comp.note}</p>
                                                 )}
                                             </div>
-                                            <span className="text-xs font-black text-slate-100 shrink-0">
+                                            <span className="text-xs font-black text-slate-900 shrink-0">
                                                 {formatCurrency(comp.amount)}
                                             </span>
                                         </div>
                                     ))}
                                     
-                                    <div className="flex justify-between items-center pt-4 border-t border-slate-850">
-                                        <span className="text-xs font-black text-slate-300">Total Iuran Bulanan</span>
-                                        <span className="text-sm font-black text-amber-400">
+                                    <div className="flex justify-between items-center pt-4 border-t border-slate-200">
+                                        <span className="text-xs font-black text-slate-900">Total Iuran Bulanan</span>
+                                        <span className="text-sm font-black text-emerald-700">
                                             {formatCurrency(billComponents.reduce((sum, comp) => sum + comp.amount, 0))}
                                         </span>
                                     </div>
@@ -632,7 +627,7 @@ export default function Iuran({ profile = fallbackProfile, currentBills = [], pa
                                 <button 
                                     type="button" 
                                     onClick={() => setIsDetailModalOpen(false)} 
-                                    className="w-full rounded-xl bg-[#131b2e] hover:bg-[#1a243d] border border-slate-800 px-4 py-2.5 text-xs font-bold text-slate-300 transition"
+                                    className="w-full rounded-xl bg-slate-100 hover:bg-slate-200 border border-slate-200 px-4 py-2.5 text-xs font-bold text-slate-700 transition"
                                 >
                                     Tutup Rincian
                                 </button>
@@ -644,32 +639,30 @@ export default function Iuran({ profile = fallbackProfile, currentBills = [], pa
 
             {/* Modal: View Receipt / Invoice Detail */}
             {selectedPayment && (
-                <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/60 p-4 backdrop-blur-sm">
-                    <div className="w-full max-w-sm rounded-3xl bg-[#0b1220] border border-slate-800 shadow-2xl p-5 relative overflow-hidden group">
-                        <div className="absolute top-0 right-0 w-24 h-24 bg-emerald-500/5 rounded-full blur-2xl"></div>
-                        
-                        <div className="flex justify-between items-start pb-4 border-b border-slate-800/80 mb-4">
+                <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/40 p-4 backdrop-blur-sm">
+                    <div className="w-full max-w-sm rounded-3xl bg-white border border-slate-200 shadow-2xl p-5 relative overflow-hidden animate-in fade-in zoom-in-95 duration-200">
+                        <div className="flex justify-between items-start pb-4 border-b border-slate-200 mb-4">
                             <div>
-                                <span className="text-[10px] font-extrabold uppercase tracking-wider text-emerald-400">Bukti Pembayaran</span>
-                                <h3 className="text-sm font-black text-slate-100 mt-1">Invoice #{selectedPayment.id || '-'}-Iuran</h3>
+                                <span className="text-[10px] font-extrabold uppercase tracking-wider text-emerald-700">Bukti Pembayaran</span>
+                                <h3 className="text-sm font-black text-slate-900 mt-1">Invoice #{selectedPayment.id || '-'}-Iuran</h3>
                             </div>
-                            <button type="button" onClick={() => setSelectedPayment(null)} className="rounded-lg p-1 text-slate-400 hover:bg-[#131b2e] transition">
+                            <button type="button" onClick={() => setSelectedPayment(null)} className="rounded-lg p-1 text-slate-400 hover:bg-slate-100 hover:text-slate-900 transition">
                                 <X size={16} />
                             </button>
                         </div>
 
-                        <div className="space-y-3.5 text-xs text-slate-400">
+                        <div className="space-y-3.5 text-xs text-slate-600 font-medium">
                             <div className="flex justify-between">
                                 <span>Judul</span>
-                                <span className="font-bold text-slate-200">{selectedPayment.title || '-'}</span>
+                                <span className="font-bold text-slate-900">{selectedPayment.title || '-'}</span>
                             </div>
                             <div className="flex justify-between">
                                 <span>Tanggal Bayar</span>
-                                <span className="font-bold text-slate-200">{formatDate(selectedPayment.date)}</span>
+                                <span className="font-bold text-slate-900">{formatDate(selectedPayment.date)}</span>
                             </div>
                             <div className="flex justify-between">
                                 <span>Metode</span>
-                                <span className="font-bold text-slate-200">{getFormattedMethod(selectedPayment.method)}</span>
+                                <span className="font-bold text-slate-900">{getFormattedMethod(selectedPayment.method)}</span>
                             </div>
                             <div className="flex justify-between">
                                 <span>Status</span>
@@ -677,21 +670,21 @@ export default function Iuran({ profile = fallbackProfile, currentBills = [], pa
                                     {selectedPayment.status === 'Sudah Bayar' || selectedPayment.status === 'Lunas' ? 'Lunas' : selectedPayment.status}
                                 </span>
                             </div>
-                            <div className="flex justify-between pt-2 border-t border-slate-850/60">
-                                <span className="text-slate-300 font-bold">Total Pembayaran</span>
-                                <span className="font-black text-emerald-400 text-sm">{formatCurrency(selectedPayment.amount)}</span>
+                            <div className="flex justify-between pt-2 border-t border-slate-200">
+                                <span className="text-slate-900 font-bold">Total Pembayaran</span>
+                                <span className="font-black text-emerald-700 text-sm">{formatCurrency(selectedPayment.amount)}</span>
                             </div>
 
                             {selectedPayment.proofUrl && (
-                                <div className="pt-4 border-t border-slate-850/60 flex flex-col gap-2">
+                                <div className="pt-4 border-t border-slate-200 flex flex-col gap-2">
                                     <span className="text-xs text-slate-500 font-bold">Dokumen Lampiran Bukti</span>
                                     <a
                                         href={selectedPayment.proofUrl}
                                         target="_blank"
                                         rel="noreferrer"
-                                        className="inline-flex items-center justify-center gap-2 rounded-xl bg-[#131b2e] border border-slate-800 px-4 py-2.5 text-xs font-bold text-slate-300 hover:bg-[#1a243d] hover:text-slate-100 transition shadow-sm w-full"
+                                        className="inline-flex items-center justify-center gap-2 rounded-xl bg-slate-50 border border-slate-200 px-4 py-2.5 text-xs font-bold text-slate-700 hover:bg-emerald-50 hover:border-emerald-200 hover:text-emerald-700 transition shadow-sm w-full"
                                     >
-                                        <Eye size={13} className="text-emerald-400" />
+                                        <Eye size={13} className="text-emerald-600" />
                                         <span>Lihat Dokumen Bukti</span>
                                     </a>
                                 </div>

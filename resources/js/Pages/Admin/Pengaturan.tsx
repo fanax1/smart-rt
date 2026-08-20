@@ -149,8 +149,8 @@ function formatPeriod(period: CommitteePeriod) {
     return 'Tahun belum diisi';
 }
 
-const inputCls = 'w-full rounded-xl border border-[#1C2541]/60 bg-[#0B132B]/80 px-3 py-2.5 text-slate-200 placeholder-slate-500 focus:outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 transition text-sm';
-const labelCls = 'mb-1.5 block text-xs font-semibold uppercase tracking-wider text-slate-400';
+const inputCls = 'w-full rounded-xl border border-slate-200 bg-slate-50 px-3 py-2.5 text-slate-900 placeholder-slate-400 focus:outline-none focus:bg-white focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 transition text-sm';
+const labelCls = 'mb-1.5 block text-xs font-bold uppercase tracking-wider text-slate-700';
 
 export default function Pengaturan({
     activePeriod, previousPeriods, committeePeriods,
@@ -299,22 +299,22 @@ export default function Pengaturan({
             {/* Header */}
             <div className="mb-6 flex items-start justify-between flex-wrap gap-3">
                 <div>
-                    <p className="text-xs font-semibold uppercase tracking-widest text-emerald-400 mb-1">Admin Panel</p>
-                    <h2 className="text-2xl font-black text-white">Konfigurasi Lingkungan RT</h2>
-                    <p className="text-slate-400 text-sm mt-1">Kelola profil RT, struktur kepengurusan, dan konfigurasi notifikasi di satu dashboard.</p>
+                    <p className="text-xs font-bold uppercase tracking-widest text-emerald-600 mb-1">Admin Panel</p>
+                    <h2 className="text-2xl font-black text-slate-900">Konfigurasi Lingkungan RT</h2>
+                    <p className="text-slate-600 text-sm mt-1 font-medium">Kelola profil RT, struktur kepengurusan, dan konfigurasi notifikasi di satu dashboard.</p>
                 </div>
                 {activeTab === 'Struktur Kepengurusan' && (
                     <div className="flex items-center gap-3">
-                        <button onClick={openCreatePeriod} className="flex items-center gap-2 rounded-xl border border-[#1C2541]/60 bg-[#0B132B]/60 px-4 py-2.5 text-sm font-semibold text-slate-300 hover:text-white transition">
+                        <button onClick={openCreatePeriod} className="flex items-center gap-2 rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-sm font-semibold text-slate-700 hover:bg-slate-50 transition shadow-sm">
                             <Calendar size={15} /> + Periode
                         </button>
-                        <button onClick={() => openCreateMember()} disabled={committeePeriods.length === 0} className="flex items-center gap-2 rounded-xl bg-emerald-500 px-5 py-2.5 text-sm font-bold text-[#0B132B] hover:bg-emerald-400 transition disabled:opacity-40">
+                        <button onClick={() => openCreateMember()} disabled={committeePeriods.length === 0} className="flex items-center gap-2 rounded-xl bg-emerald-600 px-5 py-2.5 text-sm font-bold text-white hover:bg-emerald-700 transition shadow-sm disabled:opacity-40">
                             <Plus size={16} /> Tambah Anggota
                         </button>
                     </div>
                 )}
                 {activeTab === 'Kontak Darurat' && (
-                    <button onClick={openCreateContact} className="flex items-center gap-2 rounded-xl bg-emerald-500 px-5 py-2.5 text-sm font-bold text-[#0B132B] hover:bg-emerald-400 transition">
+                    <button onClick={openCreateContact} className="flex items-center gap-2 rounded-xl bg-emerald-600 px-5 py-2.5 text-sm font-bold text-white hover:bg-emerald-700 transition shadow-sm">
                         <Plus size={16} /> Tambah Kontak
                     </button>
                 )}
@@ -322,21 +322,21 @@ export default function Pengaturan({
 
             {/* Flash Messages */}
             {flash?.success && (
-                <div className="mb-6 rounded-xl border border-emerald-500/30 bg-emerald-500/10 px-4 py-3 text-sm text-emerald-300">
+                <div className="mb-6 rounded-xl border border-emerald-200 bg-emerald-50 px-4 py-3 text-sm font-semibold text-emerald-800 shadow-sm">
                     {flash.success}
                 </div>
             )}
             {flash?.error && (
-                <div className="mb-6 rounded-xl border border-red-500/30 bg-red-500/10 px-4 py-3 text-sm text-red-300">
+                <div className="mb-6 rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm font-semibold text-red-800 shadow-sm">
                     {flash.error}
                 </div>
             )}
 
             {/* Tab Nav */}
-            <div className="mb-6 flex gap-1 overflow-x-auto rounded-2xl border border-[#1C2541]/60 bg-[#0B132B]/60 p-1.5">
+            <div className="mb-6 flex gap-1 overflow-x-auto rounded-2xl border border-slate-200 bg-white p-1.5 shadow-sm">
                 {tabs.map(({ key, icon: Icon, label }) => (
                     <button key={key} onClick={() => setActiveTab(key)}
-                        className={`flex items-center gap-2 rounded-xl px-4 py-2.5 text-sm font-bold whitespace-nowrap transition ${activeTab === key ? 'bg-emerald-500 text-[#0B132B] shadow-lg shadow-emerald-500/20' : 'text-slate-400 hover:text-white hover:bg-[#111A2E]/60'}`}>
+                        className={`flex items-center gap-2 rounded-xl px-4 py-2.5 text-sm font-bold whitespace-nowrap transition ${activeTab === key ? 'bg-emerald-600 text-white shadow-sm' : 'text-slate-600 hover:text-slate-900 hover:bg-slate-50'}`}>
                         <Icon size={15} />{label}
                     </button>
                 ))}
@@ -346,11 +346,11 @@ export default function Pengaturan({
             {activeTab === 'Profil RT' && (
                 <div className="grid gap-6 lg:grid-cols-3">
                     {/* Form */}
-                    <div className="lg:col-span-2 rounded-2xl border border-[#1C2541]/60 bg-[#0B132B]/60 overflow-hidden">
-                        <div className="border-b border-[#1C2541]/40 px-5 py-4 flex items-center gap-2">
-                            <Shield size={16} className="text-emerald-400" />
-                            <h3 className="text-sm font-bold text-white">Profil Wilayah RT</h3>
-                            <span className="ml-auto text-[10px] font-bold bg-emerald-500/15 text-emerald-400 border border-emerald-500/30 px-2 py-0.5 rounded-lg">TERVERIFIKASI</span>
+                    <div className="lg:col-span-2 rounded-2xl border border-slate-200 bg-white overflow-hidden shadow-sm">
+                        <div className="border-b border-slate-200 px-5 py-4 flex items-center gap-2 bg-slate-50">
+                            <Shield size={16} className="text-emerald-600" />
+                            <h3 className="text-sm font-bold text-slate-900">Profil Wilayah RT</h3>
+                            <span className="ml-auto text-[10px] font-bold bg-emerald-50 text-emerald-700 border border-emerald-200 px-2 py-0.5 rounded-lg">TERVERIFIKASI</span>
                         </div>
                         <div className="p-5 space-y-4">
                             <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
@@ -381,7 +381,7 @@ export default function Pengaturan({
                                 <button
                                     onClick={() => saveGroup('profil_rt', profilValues)}
                                     disabled={savingGroup === 'profil_rt'}
-                                    className="flex items-center gap-2 rounded-xl bg-emerald-500 px-5 py-2.5 text-sm font-bold text-[#0B132B] hover:bg-emerald-400 transition disabled:opacity-60"
+                                    className="flex items-center gap-2 rounded-xl bg-emerald-600 px-5 py-2.5 text-sm font-bold text-white hover:bg-emerald-700 transition disabled:opacity-60 shadow-sm"
                                 >
                                     <Save size={15} />{savingGroup === 'profil_rt' ? 'Menyimpan...' : 'Simpan Perubahan'}
                                 </button>
@@ -391,8 +391,8 @@ export default function Pengaturan({
 
                     {/* Preview card */}
                     <div className="space-y-4">
-                        <div className="rounded-2xl border border-emerald-500/20 bg-emerald-500/5 p-5">
-                            <h4 className="text-xs font-bold uppercase tracking-widest text-emerald-400 mb-3">Preview RT</h4>
+                        <div className="rounded-2xl border border-emerald-200 bg-emerald-50/50 p-5 shadow-sm">
+                            <h4 className="text-xs font-bold uppercase tracking-widest text-emerald-800 mb-3">Preview RT</h4>
                             <div className="space-y-2">
                                 {[
                                     { label: 'Nama RT', key: 'rt_name' },
@@ -402,17 +402,17 @@ export default function Pengaturan({
                                     { label: 'Telepon', key: 'telepon_rt' },
                                 ].map(({ label, key, special }) => (
                                     <div key={key}>
-                                        <p className="text-[10px] text-slate-500">{label}</p>
-                                        <p className="text-sm font-semibold text-white">
+                                        <p className="text-[10px] text-slate-500 font-medium">{label}</p>
+                                        <p className="text-sm font-bold text-slate-900">
                                             {special ? `RT ${profilValues['rt_number'] || '-'} / RW ${profilValues['rw_number'] || '-'}` : (profilValues[key] || '-')}
                                         </p>
                                     </div>
                                 ))}
                             </div>
                         </div>
-                        <div className="rounded-2xl border border-[#1C2541]/60 bg-[#0B132B]/60 p-5">
+                        <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
                             <h4 className="text-xs font-bold uppercase tracking-widest text-slate-500 mb-3">Alamat Kantor</h4>
-                            <p className="text-sm text-slate-400 leading-relaxed">{profilValues['alamat_kantor'] || 'Belum diisi'}</p>
+                            <p className="text-sm text-slate-700 font-medium leading-relaxed">{profilValues['alamat_kantor'] || 'Belum diisi'}</p>
                         </div>
                     </div>
                 </div>
@@ -421,10 +421,10 @@ export default function Pengaturan({
             {/* ── TAB: Tampilan ── */}
             {activeTab === 'Tampilan' && (
                 <div className="grid gap-6 lg:grid-cols-3">
-                    <div className="lg:col-span-2 rounded-2xl border border-[#1C2541]/60 bg-[#0B132B]/60 overflow-hidden">
-                        <div className="border-b border-[#1C2541]/40 px-5 py-4 flex items-center gap-2">
-                            <Zap size={16} className="text-emerald-400" />
-                            <h3 className="text-sm font-bold text-white">Konfigurasi Tampilan</h3>
+                    <div className="lg:col-span-2 rounded-2xl border border-slate-200 bg-white overflow-hidden shadow-sm">
+                        <div className="border-b border-slate-200 px-5 py-4 flex items-center gap-2 bg-slate-50">
+                            <Zap size={16} className="text-emerald-600" />
+                            <h3 className="text-sm font-bold text-slate-900">Konfigurasi Tampilan</h3>
                         </div>
                         <div className="p-5 space-y-4">
                             {(settingsByGroup['tampilan'] || []).filter(s => s.type !== 'image').map(setting => (
@@ -438,7 +438,7 @@ export default function Pengaturan({
                                 </div>
                             ))}
                             <div className="flex justify-end pt-2">
-                                <button onClick={() => saveGroup('tampilan', tampilanValues)} disabled={savingGroup === 'tampilan'} className="flex items-center gap-2 rounded-xl bg-emerald-500 px-5 py-2.5 text-sm font-bold text-[#0B132B] hover:bg-emerald-400 transition disabled:opacity-60">
+                                <button onClick={() => saveGroup('tampilan', tampilanValues)} disabled={savingGroup === 'tampilan'} className="flex items-center gap-2 rounded-xl bg-emerald-600 px-5 py-2.5 text-sm font-bold text-white hover:bg-emerald-700 transition disabled:opacity-60 shadow-sm">
                                     <Save size={15} />{savingGroup === 'tampilan' ? 'Menyimpan...' : 'Simpan Tampilan'}
                                 </button>
                             </div>
@@ -446,8 +446,8 @@ export default function Pengaturan({
                     </div>
 
                     {/* Logo upload panel */}
-                    <div className="rounded-2xl border border-[#1C2541]/60 bg-[#0B132B]/60 overflow-hidden">
-                        <div className="border-b border-[#1C2541]/40 px-5 py-4">
+                    <div className="rounded-2xl border border-slate-200 bg-white overflow-hidden shadow-sm">
+                        <div className="border-b border-slate-200 px-5 py-4 bg-slate-50">
                             <h3 className="text-sm font-bold text-white">Logo Unit RT</h3>
                             <p className="text-xs text-slate-500 mt-0.5">Visuel branding di seluruh halaman</p>
                         </div>

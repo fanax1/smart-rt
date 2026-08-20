@@ -34,52 +34,52 @@ export default function Login({ status, canResetPassword }: LoginProps) {
         <>
             <Head title="Masuk Portal Warga" />
 
-            <div className="min-h-screen bg-[#060e20] text-slate-100 selection:bg-emerald-400/30 md:flex">
+            <div className="min-h-screen bg-slate-50 text-slate-900 selection:bg-emerald-500/20 md:flex">
                 <section
-                    className="relative hidden overflow-hidden p-10 md:flex md:w-1/2 lg:w-3/5 flex-col justify-between"
+                    className="relative hidden overflow-hidden p-10 md:flex md:w-1/2 lg:w-3/5 flex-col justify-between border-r border-slate-200"
                     style={{
                         background:
-                            'radial-gradient(circle at top left, #006c49 0%, #0b1326 48%, #060e20 100%)',
+                            'radial-gradient(circle at top left, #ecfdf5 0%, #f0fdf4 48%, #f8fafc 100%)',
                     }}
                 >
                     <div
-                        className="absolute inset-0 opacity-40"
+                        className="absolute inset-0 opacity-60"
                         style={{
                             backgroundImage:
-                                'radial-gradient(rgba(78, 222, 163, 0.12) 1px, transparent 1px)',
+                                'radial-gradient(rgba(16, 185, 129, 0.15) 1px, transparent 1px)',
                             backgroundSize: '32px 32px',
                         }}
                     />
 
                     <div className="relative z-10 flex items-center gap-3">
                         {rtSettings?.logoUrl ? (
-                            <img src={rtSettings.logoUrl} alt={rtSettings.siteName} className="h-11 w-11 rounded-2xl object-cover" />
+                            <img src={rtSettings.logoUrl} alt={rtSettings.siteName} className="h-11 w-11 rounded-2xl object-cover shadow-sm" />
                         ) : (
-                            <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-emerald-400 shadow-lg shadow-emerald-400/20">
-                                <HomeIcon className="h-6 w-6 text-[#003824]" />
+                            <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-emerald-600 shadow-md shadow-emerald-600/20 text-white">
+                                <HomeIcon className="h-6 w-6" />
                             </div>
                         )}
 
                         <div>
-                            <p className="text-xl font-bold tracking-tight text-emerald-100">
+                            <p className="text-xl font-black tracking-tight text-emerald-950">
                                 {rtSettings?.siteName || 'SMART-RT 004'}
                             </p>
-                            <p className="text-xs font-medium uppercase tracking-[0.3em] text-emerald-300/80">
+                            <p className="text-xs font-bold uppercase tracking-[0.3em] text-emerald-700">
                                 {rtSettings?.kelurahan || 'Kelurahan Bahagia'} {rtSettings?.kota || 'Bekasi'}
                             </p>
                         </div>
                     </div>
 
                     <div className="relative z-10 max-w-xl">
-                        <div className="mb-6 inline-flex rounded-full border border-emerald-300/20 bg-emerald-300/10 px-4 py-2 text-sm font-semibold text-emerald-100 backdrop-blur">
+                        <div className="mb-6 inline-flex rounded-full border border-emerald-200 bg-emerald-50 px-4 py-2 text-sm font-bold text-emerald-800 shadow-sm">
                             Sistem Informasi Layanan Warga
                         </div>
 
-                        <h1 className="mb-5 text-5xl font-bold leading-tight tracking-tight text-emerald-50">
+                        <h1 className="mb-5 text-5xl font-black leading-tight tracking-tight text-slate-900">
                             Solusi Cerdas Lingkungan Bahagia
                         </h1>
 
-                        <p className="mb-12 text-lg leading-8 text-slate-300">
+                        <p className="mb-12 text-lg leading-8 text-slate-600 font-medium">
                             Layanan digital warga dalam satu sistem untuk mewujudkan tata kelola lingkungan yang transparan,
                             modern, dan mudah diakses.
                         </p>
@@ -88,7 +88,7 @@ export default function Login({ status, canResetPassword }: LoginProps) {
                             <FeatureCard
                                 icon={<UsersIcon className="h-6 w-6" />}
                                 title="Kelola data warga"
-                                description="Data kependudukan terintegrasi and aman."
+                                description="Data kependudukan terintegrasi dan aman."
                                 color="emerald"
                             />
 
@@ -108,65 +108,65 @@ export default function Login({ status, canResetPassword }: LoginProps) {
                         </div>
                     </div>
 
-                    <p className="relative z-10 text-xs text-slate-400">
+                    <p className="relative z-10 text-xs font-semibold text-slate-500">
                         © 2024 RT 004. Digital Neighborhood Management System.
                     </p>
 
-                    <div className="absolute -right-20 bottom-0 h-96 w-96 rounded-full bg-emerald-400/10 blur-[100px]" />
-                    <div className="absolute -left-20 top-1/2 h-64 w-64 rounded-full bg-cyan-400/10 blur-[80px]" />
+                    <div className="absolute -right-20 bottom-0 h-96 w-96 rounded-full bg-emerald-500/10 blur-[100px]" />
+                    <div className="absolute -left-20 top-1/2 h-64 w-64 rounded-full bg-teal-500/10 blur-[80px]" />
                 </section>
 
-                <main className="flex min-h-screen w-full items-center justify-center px-5 py-10 md:w-1/2 lg:w-2/5">
+                <main className="flex min-h-screen w-full items-center justify-center bg-slate-50 px-5 py-10 md:w-1/2 lg:w-2/5">
                     <div className="w-full max-w-md">
                         <div className="mb-10 flex items-center gap-3 md:hidden">
                             {rtSettings?.logoUrl ? (
-                                <img src={rtSettings.logoUrl} alt={rtSettings.siteName} className="h-10 w-10 rounded-2xl object-cover" />
+                                <img src={rtSettings.logoUrl} alt={rtSettings.siteName} className="h-10 w-10 rounded-2xl object-cover shadow-sm" />
                             ) : (
-                                <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-emerald-400">
-                                    <HomeIcon className="h-5 w-5 text-[#003824]" />
+                                <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-emerald-600 text-white">
+                                    <HomeIcon className="h-5 w-5" />
                                 </div>
                             )}
 
                             <div>
-                                <p className="text-lg font-bold text-emerald-100">{rtSettings?.siteName || 'SMART-RT'}</p>
-                                <p className="text-xs text-slate-400">{rtSettings?.rtName || 'Layanan Digital Warga'}</p>
+                                <p className="text-lg font-black text-slate-900">{rtSettings?.siteName || 'SMART-RT'}</p>
+                                <p className="text-xs font-medium text-slate-500">{rtSettings?.rtName || 'Layanan Digital Warga'}</p>
                             </div>
                         </div>
 
                         <div className="mb-8 text-center md:text-left">
-                            <h2 className="mb-3 text-3xl font-bold tracking-tight text-white">
+                            <h2 className="mb-3 text-3xl font-black tracking-tight text-slate-900">
                                 Selamat Datang Kembali
                             </h2>
-                            <p className="text-sm leading-6 text-slate-400">
+                            <p className="text-sm leading-6 text-slate-600 font-medium">
                                 Masuk ke akun Anda untuk melanjutkan akses layanan digital RT.
                             </p>
                         </div>
 
                         {status && (
-                            <div className="mb-5 rounded-2xl border border-emerald-400/20 bg-emerald-400/10 px-4 py-3 text-sm font-medium text-emerald-200">
+                            <div className="mb-5 rounded-2xl border border-emerald-200 bg-emerald-50 px-4 py-3 text-sm font-bold text-emerald-800">
                                 {status}
                             </div>
                         )}
 
-                        <div className="rounded-2xl sm:rounded-[32px] border border-white/10 bg-[#171f33] p-6 sm:p-8 shadow-2xl shadow-black/30">
+                        <div className="rounded-2xl sm:rounded-[32px] border border-slate-200 bg-white p-6 sm:p-8 shadow-xl">
                             <form onSubmit={submit} className="space-y-6">
                                 <div>
                                     <label
                                         htmlFor="email"
-                                        className="mb-2 ml-1 block text-sm font-semibold text-slate-300"
+                                        className="mb-2 ml-1 block text-sm font-bold text-slate-700"
                                     >
                                         Alamat Email
                                     </label>
 
                                     <div className="group relative">
-                                        <MailIcon className="absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-slate-500 transition group-focus-within:text-emerald-300" />
+                                        <MailIcon className="absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-slate-400 transition group-focus-within:text-emerald-600" />
 
                                         <input
                                             id="email"
                                             type="email"
                                             name="email"
                                             value={data.email}
-                                            className="h-14 w-full rounded-2xl border border-white/10 bg-[#222a3d] pl-12 pr-4 text-sm text-white outline-none transition placeholder:text-slate-500 focus:border-emerald-300 focus:ring-4 focus:ring-emerald-300/10"
+                                            className="h-14 w-full rounded-2xl border border-slate-200 bg-slate-50 pl-12 pr-4 text-sm text-slate-900 outline-none transition placeholder:text-slate-400 focus:bg-white focus:border-emerald-500 focus:ring-4 focus:ring-emerald-500/10"
                                             placeholder="nama@email.com"
                                             autoComplete="username"
                                             onChange={(e) => setData('email', e.target.value)}
@@ -174,7 +174,7 @@ export default function Login({ status, canResetPassword }: LoginProps) {
                                     </div>
 
                                     {errors.email && (
-                                        <p className="mt-2 text-sm text-red-300">{errors.email}</p>
+                                        <p className="mt-2 text-sm font-semibold text-red-600">{errors.email}</p>
                                     )}
                                 </div>
 
@@ -182,7 +182,7 @@ export default function Login({ status, canResetPassword }: LoginProps) {
                                     <div className="mb-2 flex items-center justify-between px-1">
                                         <label
                                             htmlFor="password"
-                                            className="text-sm font-semibold text-slate-300"
+                                            className="text-sm font-bold text-slate-700"
                                         >
                                             Kata Sandi
                                         </label>
@@ -190,7 +190,7 @@ export default function Login({ status, canResetPassword }: LoginProps) {
                                         {canResetPassword && (
                                             <Link
                                                 href={route('password.request')}
-                                                className="text-sm font-semibold text-emerald-300 transition hover:text-emerald-200 hover:underline"
+                                                className="text-sm font-bold text-emerald-700 transition hover:text-emerald-800 hover:underline"
                                             >
                                                 Lupa kata sandi?
                                             </Link>
@@ -198,14 +198,14 @@ export default function Login({ status, canResetPassword }: LoginProps) {
                                     </div>
 
                                     <div className="group relative">
-                                        <LockIcon className="absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-slate-500 transition group-focus-within:text-emerald-300" />
+                                        <LockIcon className="absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-slate-400 transition group-focus-within:text-emerald-600" />
 
                                         <input
                                             id="password"
                                             type={showPassword ? 'text' : 'password'}
                                             name="password"
                                             value={data.password}
-                                            className="h-14 w-full rounded-2xl border border-white/10 bg-[#222a3d] pl-12 pr-12 text-sm text-white outline-none transition placeholder:text-slate-500 focus:border-emerald-300 focus:ring-4 focus:ring-emerald-300/10"
+                                            className="h-14 w-full rounded-2xl border border-slate-200 bg-slate-50 pl-12 pr-12 text-sm text-slate-900 outline-none transition placeholder:text-slate-400 focus:bg-white focus:border-emerald-500 focus:ring-4 focus:ring-emerald-500/10"
                                             placeholder="••••••••"
                                             autoComplete="current-password"
                                             onChange={(e) => setData('password', e.target.value)}
@@ -214,7 +214,7 @@ export default function Login({ status, canResetPassword }: LoginProps) {
                                         <button
                                             type="button"
                                             onClick={() => setShowPassword((value) => !value)}
-                                            className="absolute right-4 top-1/2 -translate-y-1/2 text-slate-500 transition hover:text-slate-200"
+                                            className="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 transition hover:text-slate-700"
                                             aria-label={showPassword ? 'Sembunyikan kata sandi' : 'Tampilkan kata sandi'}
                                         >
                                             {showPassword ? (
@@ -226,7 +226,7 @@ export default function Login({ status, canResetPassword }: LoginProps) {
                                     </div>
 
                                     {errors.password && (
-                                        <p className="mt-2 text-sm text-red-300">{errors.password}</p>
+                                        <p className="mt-2 text-sm font-semibold text-red-600">{errors.password}</p>
                                     )}
                                 </div>
 
@@ -236,10 +236,10 @@ export default function Login({ status, canResetPassword }: LoginProps) {
                                         name="remember"
                                         checked={data.remember}
                                         onChange={(e) => setData('remember', e.target.checked)}
-                                        className="h-5 w-5 rounded-md border-white/10 bg-[#222a3d] text-emerald-400 focus:ring-emerald-300/20"
+                                        className="h-5 w-5 rounded-md border-slate-300 bg-slate-50 text-emerald-600 focus:ring-emerald-500/20"
                                     />
 
-                                    <span className="select-none text-sm text-slate-300">
+                                    <span className="select-none text-sm font-medium text-slate-700">
                                         Ingat saya di perangkat ini
                                     </span>
                                 </label>
@@ -247,10 +247,10 @@ export default function Login({ status, canResetPassword }: LoginProps) {
                                 <button
                                     type="submit"
                                     disabled={processing}
-                                    className="flex h-14 w-full items-center justify-center gap-2 rounded-2xl bg-emerald-400 text-base font-bold text-[#003824] shadow-lg shadow-emerald-400/10 transition hover:bg-emerald-300 active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-70"
+                                    className="flex h-14 w-full items-center justify-center gap-2 rounded-2xl bg-emerald-600 text-base font-bold text-white shadow-lg shadow-emerald-600/15 transition hover:bg-emerald-700 active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-70"
                                 >
                                     {processing && (
-                                        <span className="h-5 w-5 animate-spin rounded-full border-2 border-[#003824]/30 border-t-[#003824]" />
+                                        <span className="h-5 w-5 animate-spin rounded-full border-2 border-white/30 border-t-white" />
                                     )}
 
                                     <span>{processing ? 'Memproses...' : 'Masuk'}</span>
@@ -259,23 +259,23 @@ export default function Login({ status, canResetPassword }: LoginProps) {
 
                             <div className="relative my-8">
                                 <div className="absolute inset-0 flex items-center">
-                                    <div className="w-full border-t border-white/10" />
+                                    <div className="w-full border-t border-slate-200" />
                                 </div>
 
                                 <div className="relative flex justify-center">
-                                    <span className="bg-[#171f33] px-4 text-xs font-semibold uppercase tracking-[0.3em] text-slate-500">
+                                    <span className="bg-white px-4 text-xs font-bold uppercase tracking-[0.3em] text-slate-400">
                                         Atau
                                     </span>
                                 </div>
                             </div>
 
-                            <p className="text-center text-sm text-slate-400">
+                            <p className="text-center text-sm text-slate-600 font-medium">
                                 Belum punya akun? Daftar gratis untuk warga setempat{' '}
                                 <a
                                     href="https://wa.me/6282210176042?text=Halo%20Sekretariat%20RT%2C%20saya%20ingin%20mendaftar%20akun%20SMART-RT."
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="font-bold text-emerald-300 transition hover:text-emerald-200 hover:underline"
+                                    className="font-bold text-emerald-700 transition hover:text-emerald-800 hover:underline"
                                 >
                                     Hubungi Sekretariat RT
                                 </a>
@@ -283,14 +283,14 @@ export default function Login({ status, canResetPassword }: LoginProps) {
 
                         </div>
 
-                        <div className="mt-8 flex justify-center gap-4 opacity-60 transition hover:opacity-90">
-                            <div className="flex items-center gap-2 rounded-xl border border-white/10 px-4 py-2 text-xs text-slate-300">
-                                <PhoneIcon className="h-4 w-4" />
+                        <div className="mt-8 flex justify-center gap-4">
+                            <div className="flex items-center gap-2 rounded-xl border border-slate-200 bg-white px-4 py-2 text-xs text-slate-600 shadow-sm font-semibold">
+                                <PhoneIcon className="h-4 w-4 text-emerald-600" />
                                 <span>Siap Seluler</span>
                             </div>
 
-                            <div className="flex items-center gap-2 rounded-xl border border-white/10 px-4 py-2 text-xs text-slate-300">
-                                <ShieldIcon className="h-4 w-4" />
+                            <div className="flex items-center gap-2 rounded-xl border border-slate-200 bg-white px-4 py-2 text-xs text-slate-600 shadow-sm font-semibold">
+                                <ShieldIcon className="h-4 w-4 text-emerald-600" />
                                 <span>Akses Aman</span>
                             </div>
                         </div>
@@ -313,20 +313,20 @@ function FeatureCard({
     color: 'emerald' | 'cyan' | 'amber';
 }) {
     const colorClass = {
-        emerald: 'bg-emerald-400/10 text-emerald-300',
-        cyan: 'bg-cyan-400/10 text-cyan-300',
-        amber: 'bg-amber-400/10 text-amber-300',
+        emerald: 'bg-emerald-50 text-emerald-700 border border-emerald-200',
+        cyan: 'bg-teal-50 text-teal-700 border border-teal-200',
+        amber: 'bg-amber-50 text-amber-700 border border-amber-200',
     }[color];
 
     return (
-        <div className="flex items-center gap-4 rounded-2xl border border-emerald-300/10 bg-[#171f33]/70 p-6 backdrop-blur transition duration-300 hover:translate-x-2">
-            <div className={`flex h-12 w-12 items-center justify-center rounded-full ${colorClass}`}>
+        <div className="flex items-center gap-4 rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition duration-300 hover:translate-x-2">
+            <div className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl ${colorClass}`}>
                 {icon}
             </div>
 
             <div>
-                <h3 className="text-lg font-bold text-white">{title}</h3>
-                <p className="text-sm text-slate-400">{description}</p>
+                <h3 className="text-base font-bold text-slate-900">{title}</h3>
+                <p className="text-xs text-slate-600 font-medium">{description}</p>
             </div>
         </div>
     );
