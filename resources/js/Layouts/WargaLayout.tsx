@@ -78,7 +78,6 @@ export default function WargaLayout({ children, profile, title, searchQuery, onS
         : 'Akun warga';
 
     return (
-    return (
         <div className="flex min-h-screen bg-slate-50 text-slate-900 antialiased font-sans">
             {/* Sidebar (Desktop) */}
             <aside className="fixed left-0 top-0 z-40 hidden h-full w-64 flex-col border-r border-slate-200 bg-white shadow-sm lg:flex">
