@@ -249,6 +249,9 @@ export default function Documents({
     const safeFilters: Filters = { ...defaultFilters, ...filters };
     const safeSummary: Summary = { ...defaultSummary, ...summary };
 
+    const currentYear = new Date().getFullYear();
+    const yearOptions = useMemo(() => Array.from({ length: 7 }, (_, index) => currentYear - 2 + index), [currentYear]);
+
     const [filterState, setFilterState] = useState<Filters>(safeFilters);
     const [selectedDocument, setSelectedDocument] = useState<Dokumen | null>(null);
     const [editingDocument, setEditingDocument] = useState<Dokumen | null>(null);

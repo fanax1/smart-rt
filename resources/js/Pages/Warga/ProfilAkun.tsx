@@ -22,7 +22,7 @@ import {
     AlertCircle,
     Mail
 } from 'lucide-react';
-import { useState, useRef, useEffect, FormEvent } from 'react';
+import { useState, useRef, useEffect, FormEvent, ChangeEvent } from 'react';
 
 type KartuKeluarga = {
     noKK?: string | null;
