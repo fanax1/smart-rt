@@ -68,23 +68,23 @@ export function Sidebar({ activeMenu, isOpen, onClose }: SidebarProps) {
     };
 
     return (
-        <aside className={['fixed left-0 top-0 z-50 lg:z-20 flex h-screen w-64 flex-col bg-[#0B132B] border-r border-[#1C2541]/40 text-slate-300 font-sans transition-transform duration-300', isOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'].join(' ')}>
+        <aside className={['fixed left-0 top-0 z-50 lg:z-20 flex h-screen w-64 flex-col bg-white border-r border-slate-200 text-slate-700 font-sans transition-transform duration-300', isOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'].join(' ')}>
             {/* Header Brand */}
-            <div className="flex items-center justify-between border-b border-[#1C2541]/40 p-6">
+            <div className="flex items-center justify-between border-b border-slate-200 p-6">
                 <div className="flex items-center gap-3">
-                    <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 shadow-[0_0_15px_rgba(16,185,129,0.15)]">
+                    <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-emerald-50 border border-emerald-200 text-emerald-700 shadow-sm">
                         <LayoutGrid size={22} />
                     </div>
                     <div>
-                        <h1 className="text-base font-black tracking-wider text-white leading-none">SMART-RT</h1>
-                        <p className="mt-1.5 text-[9px] font-bold tracking-[0.2em] text-emerald-400">SISTEM MANAJEMEN</p>
+                        <h1 className="text-base font-black tracking-wider text-slate-900 leading-none">SMART-RT</h1>
+                        <p className="mt-1.5 text-[9px] font-bold tracking-[0.2em] text-emerald-700">SISTEM MANAJEMEN</p>
                     </div>
                 </div>
                 {onClose && (
                     <button
                         type="button"
                         onClick={onClose}
-                        className="rounded-xl p-2 text-slate-400 hover:text-white hover:bg-[#111A2E] lg:hidden"
+                        className="rounded-xl p-2 text-slate-400 hover:text-slate-700 hover:bg-slate-100 lg:hidden"
                         aria-label="Tutup sidebar"
                     >
                         <X size={18} />
@@ -97,12 +97,12 @@ export function Sidebar({ activeMenu, isOpen, onClose }: SidebarProps) {
                 {/* Ringkasan / Dashboard */}
                 <Link
                     href="/dashboard"
-                    className={`flex w-full items-center gap-3 rounded-xl px-4 py-3 text-sm font-semibold transition-all duration-200 border-l-4 ${activeMenu === 'dashboard'
-                        ? 'bg-[#10B981]/10 text-emerald-400 border-emerald-500 shadow-[inset_1px_0_0_rgba(16,185,129,0.2)]'
-                        : 'text-slate-400 hover:bg-[#111A2E] hover:text-white border-transparent'
+                    className={`flex w-full items-center gap-3 rounded-xl px-4 py-3 text-sm font-bold transition-all duration-200 border-l-4 ${activeMenu === 'dashboard'
+                        ? 'bg-emerald-50 text-emerald-700 border-emerald-600 shadow-sm'
+                        : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900 border-transparent'
                         }`}
                 >
-                    <Home size={18} className={activeMenu === 'dashboard' ? 'text-emerald-400' : 'text-slate-400'} />
+                    <Home size={18} className={activeMenu === 'dashboard' ? 'text-emerald-700' : 'text-slate-500'} />
                     <span>Ringkasan</span>
                 </Link>
 
@@ -111,16 +111,16 @@ export function Sidebar({ activeMenu, isOpen, onClose }: SidebarProps) {
                     <button
                         type="button"
                         onClick={() => setOpenDataWarga((current) => !current)}
-                        className={`flex w-full items-center gap-3 rounded-xl px-4 py-3 text-sm font-semibold transition-all duration-200 border-l-4 ${isDataWargaActive
-                            ? 'bg-[#10B981]/10 text-emerald-400 border-emerald-500'
-                            : 'text-slate-400 hover:bg-[#111A2E] hover:text-white border-transparent'
+                        className={`flex w-full items-center gap-3 rounded-xl px-4 py-3 text-sm font-bold transition-all duration-200 border-l-4 ${isDataWargaActive
+                            ? 'bg-emerald-50 text-emerald-700 border-emerald-600'
+                            : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900 border-transparent'
                             }`}
                     >
-                        <Users size={18} className={isDataWargaActive ? 'text-emerald-400' : 'text-slate-400'} />
+                        <Users size={18} className={isDataWargaActive ? 'text-emerald-700' : 'text-slate-500'} />
                         <span className="flex-1 text-left">Data Warga</span>
                         <ChevronDown
                             size={16}
-                            className={`transition-transform duration-200 ${openDataWarga ? 'rotate-180 text-emerald-400' : 'text-slate-400'}`}
+                            className={`transition-transform duration-200 ${openDataWarga ? 'rotate-180 text-emerald-700' : 'text-slate-400'}`}
                         />
                     </button>
 
@@ -134,9 +134,9 @@ export function Sidebar({ activeMenu, isOpen, onClose }: SidebarProps) {
                                     <Link
                                         key={item.id}
                                         href={item.href}
-                                        className={`flex items-center gap-3 rounded-xl px-4 py-2.5 text-xs font-semibold transition-all duration-200 border-l-4 ${isActive
-                                            ? 'bg-[#10B981]/5 text-emerald-400 border-emerald-500'
-                                            : 'text-slate-500 hover:bg-[#111A2E] hover:text-white border-transparent'
+                                        className={`flex items-center gap-3 rounded-xl px-4 py-2.5 text-xs font-bold transition-all duration-200 border-l-4 ${isActive
+                                            ? 'bg-emerald-50 text-emerald-700 border-emerald-600'
+                                            : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900 border-transparent'
                                             }`}
                                     >
                                         <Icon size={15} />
@@ -161,15 +161,15 @@ export function Sidebar({ activeMenu, isOpen, onClose }: SidebarProps) {
                             <Link
                                 key={item.id}
                                 href={item.href}
-                                className={`flex w-full items-center gap-3 rounded-xl px-4 py-3 text-sm font-semibold transition-all duration-200 border-l-4 ${isActive
-                                    ? 'bg-[#10B981]/10 text-emerald-400 border-emerald-500 shadow-[inset_1px_0_0_rgba(16,185,129,0.2)]'
-                                    : 'text-slate-400 hover:bg-[#111A2E] hover:text-white border-transparent'
+                                className={`flex w-full items-center gap-3 rounded-xl px-4 py-3 text-sm font-bold transition-all duration-200 border-l-4 ${isActive
+                                    ? 'bg-emerald-50 text-emerald-700 border-emerald-600 shadow-sm'
+                                    : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900 border-transparent'
                                     }`}
                             >
-                                <Icon size={18} className={isActive ? 'text-emerald-400' : 'text-slate-400'} />
+                                <Icon size={18} className={isActive ? 'text-emerald-700' : 'text-slate-500'} />
                                 <span className="flex-1">{item.label}</span>
                                 {item.id === 'tickets' && unreadTicketsCount > 0 && (
-                                    <span className="rounded-full bg-emerald-500 px-2 py-0.5 text-[10px] font-black text-[#0B132B]">
+                                    <span className="rounded-full bg-emerald-600 px-2 py-0.5 text-[10px] font-black text-white">
                                         {unreadTicketsCount}
                                     </span>
                                 )}
@@ -179,16 +179,16 @@ export function Sidebar({ activeMenu, isOpen, onClose }: SidebarProps) {
             </nav>
 
             {/* Sidebar Bottom / Card & Footer */}
-            <div className="p-4 border-t border-[#1C2541]/40 space-y-4">
+            <div className="p-4 border-t border-slate-200 space-y-4">
                 {/* Portal Dukungan Card */}
-                <div className="rounded-2xl border border-emerald-500/20 bg-emerald-950/10 p-4 space-y-3">
-                    <p className="text-xs font-black text-white">Portal Dukungan</p>
-                    <p className="text-[10px] leading-relaxed text-slate-400">Butuh bantuan teknis manajemen sistem?</p>
+                <div className="rounded-2xl border border-emerald-200 bg-emerald-50/70 p-4 space-y-3">
+                    <p className="text-xs font-black text-slate-900">Portal Dukungan</p>
+                    <p className="text-[10px] leading-relaxed text-slate-600">Butuh bantuan teknis manajemen sistem?</p>
                     <a
                         href="https://google.com"
                         target="_blank"
                         rel="noreferrer"
-                        className="block w-full rounded-xl bg-emerald-500 hover:bg-emerald-400 py-2.5 text-center text-xs font-bold text-[#0B132B] transition duration-200 shadow-md shadow-emerald-500/10"
+                        className="block w-full rounded-xl bg-emerald-600 hover:bg-emerald-700 py-2.5 text-center text-xs font-bold text-white transition duration-200 shadow-sm"
                     >
                         Dapatkan Bantuan
                     </a>
@@ -199,7 +199,7 @@ export function Sidebar({ activeMenu, isOpen, onClose }: SidebarProps) {
                     <button
                         type="button"
                         onClick={handleLogout}
-                        className="flex w-full items-center gap-3 rounded-xl px-4 py-2.5 text-sm font-semibold text-red-400 hover:bg-red-950/20 hover:text-red-300 transition-all duration-200"
+                        className="flex w-full items-center gap-3 rounded-xl px-4 py-2.5 text-sm font-bold text-red-600 hover:bg-red-50 hover:text-red-700 transition-all duration-200"
                     >
                         <LogOut size={18} />
                         <span>Keluar</span>

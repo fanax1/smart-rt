@@ -153,16 +153,16 @@ export default function Dashboard({
                 {/* Greeting & Date Header */}
                 <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
                     <div>
-                        <h1 className="text-2xl font-black text-slate-100 lg:text-3xl tracking-tight">
+                        <h1 className="text-2xl font-black text-slate-900 lg:text-3xl tracking-tight">
                             {greeting(safeProfile.jenisKelamin)}, {formattedGreetingName}.
                         </h1>
-                        <p className="text-xs text-slate-400 mt-1">
+                        <p className="text-xs text-slate-600 mt-1">
                             Berikut adalah ringkasan aktivitas di lingkungan RT {safeProfile.rt || '04'} hari ini.
                         </p>
                     </div>
 
-                    <div className="inline-flex items-center gap-2 rounded-xl bg-[#131b2e] px-4 py-2 text-xs font-semibold text-emerald-400 border border-slate-800 shadow-sm self-start md:self-auto">
-                        <Calendar size={14} className="text-emerald-400" />
+                    <div className="inline-flex items-center gap-2 rounded-xl bg-white px-4 py-2 text-xs font-bold text-emerald-700 border border-slate-200 shadow-sm self-start md:self-auto">
+                        <Calendar size={14} className="text-emerald-700" />
                         <span>{getFormattedToday()}</span>
                     </div>
                 </div>
@@ -174,62 +174,62 @@ export default function Dashboard({
                         {/* Status Iuran & Pengumuman Grid */}
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                             {/* Card 1: Status Iuran */}
-                            <div className="flex flex-col justify-between rounded-3xl bg-[#0b1220] border border-slate-800/80 p-5 shadow-lg relative overflow-hidden group hover:border-slate-700/60 transition">
+                            <div className="flex flex-col justify-between rounded-3xl bg-white border border-slate-200 p-5 shadow-sm relative overflow-hidden group hover:border-emerald-500/40 transition">
                                 <div className="absolute top-0 right-0 w-32 h-32 bg-emerald-500/5 rounded-full blur-3xl group-hover:bg-emerald-500/10 transition"></div>
                                 <div>
                                     <div className="flex items-center justify-between mb-4">
                                         <span className="text-[10px] uppercase font-bold text-slate-500 tracking-wider">Status Iuran</span>
-                                        <span className="text-xs font-semibold text-slate-400 bg-[#131b2e] px-2.5 py-0.5 rounded-lg border border-slate-800">
+                                        <span className="text-xs font-bold text-slate-600 bg-slate-100 px-2.5 py-0.5 rounded-lg border border-slate-200">
                                             {billingPeriod}
                                         </span>
                                     </div>
-                                    <h2 className="text-2xl font-black text-emerald-400 tracking-tight mt-2">
+                                    <h2 className="text-2xl font-black text-emerald-700 tracking-tight mt-2">
                                         Rp {billingAmount.toLocaleString('id-ID')}
                                     </h2>
                                     
                                     <div className="mt-4">
                                         <span className={`inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-[10px] font-bold tracking-wide uppercase ${
                                             billingStatus === 'Sudah Bayar' 
-                                                ? 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/20'
+                                                ? 'bg-emerald-50 text-emerald-700 border border-emerald-200'
                                                 : billingStatus === 'Menunggu Verifikasi'
-                                                ? 'bg-amber-500/10 text-amber-400 border border-amber-500/20'
-                                                : 'bg-red-500/10 text-red-400 border border-red-500/20'
+                                                ? 'bg-amber-50 text-amber-700 border border-amber-200'
+                                                : 'bg-red-50 text-red-700 border border-red-200'
                                         }`}>
                                             <span className={`h-1.5 w-1.5 rounded-full ${
-                                                billingStatus === 'Sudah Bayar' ? 'bg-emerald-400' : billingStatus === 'Menunggu Verifikasi' ? 'bg-amber-400' : 'bg-red-400'
+                                                billingStatus === 'Sudah Bayar' ? 'bg-emerald-600' : billingStatus === 'Menunggu Verifikasi' ? 'bg-amber-600' : 'bg-red-600'
                                             }`} />
                                             {billingStatus}
                                         </span>
                                     </div>
                                 </div>
 
-                                <div className="border-t border-slate-800/60 pt-4 mt-6 flex items-center justify-between">
-                                    <Link href="/warga/iuran" className="inline-flex items-center gap-1 text-xs font-bold text-slate-400 hover:text-emerald-400 transition">
+                                <div className="border-t border-slate-100 pt-4 mt-6 flex items-center justify-between">
+                                    <Link href="/warga/iuran" className="inline-flex items-center gap-1 text-xs font-bold text-slate-600 hover:text-emerald-700 transition">
                                         Riwayat Iuran
                                         <ChevronRight size={14} className="mt-0.5" />
                                     </Link>
-                                    <div className="p-2 rounded-xl bg-emerald-500/5 text-emerald-400">
+                                    <div className="p-2 rounded-xl bg-emerald-50 text-emerald-700 border border-emerald-200">
                                         <Wallet size={16} />
                                     </div>
                                 </div>
                             </div>
 
                             {/* Card 2: Pengumuman Terbaru */}
-                            <div className="rounded-3xl bg-[#0b1220] border border-slate-800/80 p-5 shadow-lg hover:border-slate-700/60 transition flex flex-col justify-between">
+                            <div className="rounded-3xl bg-white border border-slate-200 p-5 shadow-sm hover:border-emerald-500/40 transition flex flex-col justify-between">
                                 <div>
                                     <div className="flex items-center justify-between mb-4">
                                         <div className="flex items-center gap-2">
-                                            <Megaphone size={16} className="text-emerald-400" />
-                                            <h2 className="text-xs font-black text-slate-300 uppercase tracking-wider">Pengumuman Terbaru</h2>
+                                            <Megaphone size={16} className="text-emerald-700" />
+                                            <h2 className="text-xs font-black text-slate-900 uppercase tracking-wider">Pengumuman Terbaru</h2>
                                         </div>
-                                        <Link href="/warga/pengumuman" className="text-[11px] font-bold text-emerald-400 hover:text-emerald-300 transition">
+                                        <Link href="/warga/pengumuman" className="text-[11px] font-bold text-emerald-700 hover:text-emerald-800 transition">
                                             Lihat Semua
                                         </Link>
                                     </div>
 
                                     <div className="space-y-3">
                                         {announcements.length === 0 ? (
-                                            <div className="rounded-2xl border border-dashed border-slate-800 p-4 text-center text-xs text-slate-500">
+                                            <div className="rounded-2xl border border-dashed border-slate-300 p-4 text-center text-xs text-slate-500">
                                                 Belum ada pengumuman terbaru.
                                             </div>
                                         ) : (
@@ -239,13 +239,13 @@ export default function Dashboard({
                                                     <Link 
                                                         key={item.id} 
                                                         href="/warga/pengumuman" 
-                                                        className="block rounded-2xl border border-slate-800/50 bg-[#131b2e]/40 p-3 hover:border-slate-700 hover:bg-[#131b2e]/70 transition"
+                                                        className="block rounded-2xl border border-slate-200 bg-slate-50 p-3 hover:border-emerald-500/40 hover:bg-white transition"
                                                     >
                                                         <div className="flex items-center justify-between mb-1.5">
                                                             <span className={`rounded-md px-1.5 py-0.5 text-[9px] font-extrabold uppercase tracking-wide ${
                                                                 isPenting 
-                                                                    ? 'bg-red-500/10 text-red-400 border border-red-500/20' 
-                                                                    : 'bg-blue-500/10 text-blue-400 border border-blue-500/20'
+                                                                    ? 'bg-red-50 text-red-700 border border-red-200' 
+                                                                    : 'bg-blue-50 text-blue-700 border border-blue-200'
                                                             }`}>
                                                                 {item.kategori || item.category || 'Info'}
                                                             </span>
@@ -253,10 +253,10 @@ export default function Dashboard({
                                                                 {getRelativeTime(item.publishedAt || item.date)}
                                                             </span>
                                                         </div>
-                                                        <p className="line-clamp-1 text-xs font-bold text-slate-300">
+                                                        <p className="line-clamp-1 text-xs font-bold text-slate-900">
                                                             {item.judul || item.title || '-'}
                                                         </p>
-                                                        <p className="line-clamp-1 text-[10px] text-slate-500 mt-0.5">
+                                                        <p className="line-clamp-1 text-[10px] text-slate-600 mt-0.5">
                                                             {item.isi || item.body || '-'}
                                                         </p>
                                                     </Link>
@@ -269,20 +269,20 @@ export default function Dashboard({
                         </div>
 
                         {/* Kegiatan Mendatang */}
-                        <div className="rounded-3xl bg-[#0b1220] border border-slate-800/80 p-5 shadow-lg">
+                        <div className="rounded-3xl bg-white border border-slate-200 p-5 shadow-sm">
                             <div className="flex items-center justify-between mb-5">
                                 <div className="flex items-center gap-2">
-                                    <Calendar size={16} className="text-emerald-400" />
-                                    <h2 className="text-xs font-black text-slate-300 uppercase tracking-wider">Kegiatan Mendatang</h2>
+                                    <Calendar size={16} className="text-emerald-700" />
+                                    <h2 className="text-xs font-black text-slate-900 uppercase tracking-wider">Kegiatan Mendatang</h2>
                                 </div>
-                                <Link href="/warga/kegiatan" className="text-[11px] font-bold text-emerald-400 hover:text-emerald-300 transition">
+                                <Link href="/warga/kegiatan" className="text-[11px] font-bold text-emerald-700 hover:text-emerald-800 transition">
                                     Lihat Semua
                                 </Link>
                             </div>
 
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                                 {events.length === 0 ? (
-                                    <div className="col-span-2 rounded-2xl border border-dashed border-slate-800 p-8 text-center text-xs text-slate-500">
+                                    <div className="col-span-2 rounded-2xl border border-dashed border-slate-300 p-8 text-center text-xs text-slate-500">
                                         Belum ada agenda kegiatan mendatang.
                                     </div>
                                 ) : (
@@ -292,13 +292,13 @@ export default function Dashboard({
                                         return (
                                             <div 
                                                 key={event.id} 
-                                                className="flex items-start gap-4 rounded-2xl bg-[#131b2e]/30 border border-slate-800/80 p-4 shadow-sm"
+                                                className="flex items-start gap-4 rounded-2xl bg-slate-50 border border-slate-200 p-4 shadow-sm"
                                             >
                                                 {/* Calendar Date Block */}
                                                 <div className={`flex flex-col items-center justify-center h-14 w-12 shrink-0 rounded-xl ${
                                                     isMandatory 
-                                                        ? 'bg-emerald-500 text-slate-950 font-black' 
-                                                        : 'bg-slate-800 text-slate-300 font-bold border border-slate-700/60'
+                                                        ? 'bg-emerald-600 text-white font-black' 
+                                                        : 'bg-white text-slate-800 font-bold border border-slate-200'
                                                 }`}>
                                                     <span className="text-lg leading-none">{dateParts.day}</span>
                                                     <span className="text-[9px] uppercase mt-0.5 tracking-wider font-extrabold">{dateParts.month}</span>
@@ -306,15 +306,15 @@ export default function Dashboard({
 
                                                 {/* Event Info */}
                                                 <div className="min-w-0 flex-1 space-y-1">
-                                                    <h3 className="line-clamp-1 text-xs font-bold text-slate-200">
+                                                    <h3 className="line-clamp-1 text-xs font-bold text-slate-900">
                                                         {event.title || event.judul || '-'}
                                                     </h3>
-                                                    <div className="flex items-center gap-1.5 text-[10px] text-slate-500">
-                                                        <Clock size={11} className="text-emerald-400/80" />
+                                                    <div className="flex items-center gap-1.5 text-[10px] text-slate-600">
+                                                        <Clock size={11} className="text-emerald-600" />
                                                         <span className="truncate">{event.time || '-'}</span>
                                                     </div>
-                                                    <div className="flex items-center gap-1.5 text-[10px] text-slate-500">
-                                                        <MapPin size={11} className="text-emerald-400/80 shrink-0" />
+                                                    <div className="flex items-center gap-1.5 text-[10px] text-slate-600">
+                                                        <MapPin size={11} className="text-emerald-600 shrink-0" />
                                                         <span className="truncate">{event.location || event.lokasi || '-'}</span>
                                                     </div>
                                                 </div>
@@ -333,13 +333,13 @@ export default function Dashboard({
                             {/* Action 1: Ajukan Surat */}
                             <Link 
                                 href="/warga/ajukan-surat"
-                                className="flex flex-col lg:flex-row items-center lg:justify-between gap-4 rounded-3xl bg-emerald-400 hover:bg-emerald-300 text-slate-950 p-5 transition duration-200 shadow-lg group active:scale-98"
+                                className="flex flex-col lg:flex-row items-center lg:justify-between gap-4 rounded-3xl bg-emerald-600 hover:bg-emerald-700 text-white p-5 transition duration-200 shadow-md group active:scale-98"
                             >
                                 <div className="text-center lg:text-left">
                                     <p className="text-sm font-black tracking-tight leading-none">Ajukan Surat</p>
-                                    <p className="text-[10px] font-bold text-slate-800 mt-1 hidden lg:block">Proses dokumen RT instan</p>
+                                    <p className="text-[10px] font-medium text-emerald-100 mt-1 hidden lg:block">Proses dokumen RT instan</p>
                                 </div>
-                                <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-slate-950/10 text-slate-950 border border-slate-950/15 group-hover:scale-105 transition">
+                                <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-white/10 text-white border border-white/20 group-hover:scale-105 transition">
                                     <Plus size={22} className="stroke-[3]" />
                                 </div>
                             </Link>
@@ -347,26 +347,26 @@ export default function Dashboard({
                             {/* Action 2: Lapor Masalah */}
                             <Link 
                                 href="/warga/pengaduan"
-                                className="flex flex-col lg:flex-row items-center lg:justify-between gap-4 rounded-3xl bg-[#131b2e] border border-red-500/25 text-red-400 p-5 hover:bg-red-500/5 hover:border-red-500/40 transition duration-200 shadow-lg group active:scale-98"
+                                className="flex flex-col lg:flex-row items-center lg:justify-between gap-4 rounded-3xl bg-white border border-red-200 text-red-700 p-5 hover:bg-red-50 transition duration-200 shadow-sm group active:scale-98"
                             >
                                 <div className="text-center lg:text-left">
-                                    <p className="text-sm font-black tracking-tight leading-none text-slate-200">Lapor Masalah</p>
+                                    <p className="text-sm font-black tracking-tight leading-none text-slate-900">Lapor Masalah</p>
                                     <p className="text-[10px] text-slate-500 mt-1 hidden lg:block">Laporkan aduan lingkungan</p>
                                 </div>
-                                <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-red-500/10 text-red-400 border border-red-500/25 group-hover:scale-105 transition">
+                                <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-red-50 text-red-700 border border-red-200 group-hover:scale-105 transition">
                                     <AlertTriangle size={20} />
                                 </div>
                             </Link>
                         </div>
 
                         {/* Warga Profile Card */}
-                        <div className="rounded-3xl border border-slate-800 bg-[#0b1220] p-5 shadow-xl relative overflow-hidden group">
+                        <div className="rounded-3xl border border-slate-200 bg-white p-5 shadow-sm relative overflow-hidden group">
                             {/* Graphic background details */}
                             <div className="absolute top-0 right-0 w-40 h-40 bg-emerald-500/5 rounded-full blur-3xl group-hover:bg-emerald-500/10 transition"></div>
                             
-                            <div className="flex flex-col items-center text-center pb-6 border-b border-slate-800/80 relative">
+                            <div className="flex flex-col items-center text-center pb-6 border-b border-slate-100 relative">
                                 <div className="relative mb-4">
-                                    <div className="flex h-20 w-20 items-center justify-center overflow-hidden rounded-full border-2 border-emerald-500/20 bg-[#131b2e] shadow-lg">
+                                    <div className="flex h-20 w-20 items-center justify-center overflow-hidden rounded-full border-2 border-emerald-200 bg-emerald-50 shadow-md">
                                         {safeProfile.profilePhotoUrl ? (
                                             <img
                                                 src={safeProfile.profilePhotoUrl}
@@ -374,34 +374,34 @@ export default function Dashboard({
                                                 className="h-full w-full object-cover"
                                             />
                                         ) : (
-                                            <span className="text-2xl font-black text-emerald-400">{safeProfile.initials}</span>
+                                            <span className="text-2xl font-black text-emerald-700">{safeProfile.initials}</span>
                                         )}
                                     </div>
-                                    <div className="absolute -bottom-1 -right-1 p-1.5 rounded-full bg-[#131b2e] border border-slate-800 shadow text-emerald-400">
+                                    <div className="absolute -bottom-1 -right-1 p-1.5 rounded-full bg-white border border-slate-200 shadow text-emerald-700">
                                         <Sparkles size={11} />
                                     </div>
                                 </div>
 
-                                <h3 className="text-base font-black text-slate-100 leading-tight">
+                                <h3 className="text-base font-black text-slate-900 leading-tight">
                                     {safeProfile.name}
                                 </h3>
-                                <p className="text-[10px] font-bold uppercase tracking-wider text-emerald-400 bg-emerald-500/10 border border-emerald-500/20 rounded-md px-2 py-0.5 mt-2 inline-block">
+                                <p className="text-[10px] font-bold uppercase tracking-wider text-emerald-700 bg-emerald-50 border border-emerald-200 rounded-md px-2 py-0.5 mt-2 inline-block">
                                     {safeProfile.hubunganKeluarga || 'Anggota Keluarga'}
                                 </p>
                             </div>
 
                             {/* stats grid */}
                             <div className="grid grid-cols-2 gap-3 pt-5 relative">
-                                <div className="bg-[#131b2e]/40 border border-slate-800/60 rounded-2xl p-3 text-center hover:border-slate-800 transition">
+                                <div className="bg-slate-50 border border-slate-200 rounded-2xl p-3 text-center transition">
                                     <span className="text-[9px] uppercase font-bold text-slate-500 tracking-wider">Anggota</span>
-                                    <p className="text-base font-black text-slate-200 mt-1">
+                                    <p className="text-base font-black text-slate-900 mt-1">
                                         {familyCount} <span className="text-xs font-semibold text-slate-500">Orang</span>
                                     </p>
                                 </div>
 
-                                <div className="bg-[#131b2e]/40 border border-slate-800/60 rounded-2xl p-3 text-center hover:border-slate-800 transition">
+                                <div className="bg-slate-50 border border-slate-200 rounded-2xl p-3 text-center transition">
                                     <span className="text-[9px] uppercase font-bold text-slate-500 tracking-wider">No Rumah</span>
-                                    <p className="text-base font-black text-emerald-400 mt-1">
+                                    <p className="text-base font-black text-emerald-700 mt-1">
                                         {safeProfile.houseNumber || '-'}
                                     </p>
                                 </div>
@@ -411,12 +411,12 @@ export default function Dashboard({
                 </div>
 
                 {/* Footer Section */}
-                <div className="border-t border-slate-800/60 pt-6 mt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-[10px] text-slate-500">
+                <div className="border-t border-slate-200 pt-6 mt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-[10px] text-slate-500">
                     <p>© 2026 SMART-RT. Powered by Digital Civic Platform.</p>
                     <div className="flex items-center gap-4">
-                        <a href="#" className="hover:text-slate-400 transition">Syarat & Ketentuan</a>
-                        <a href="#" className="hover:text-slate-400 transition">Pusat Bantuan</a>
-                        <a href="#" className="hover:text-slate-400 transition">Kontak Pengurus</a>
+                        <a href="#" className="hover:text-slate-700 transition">Syarat & Ketentuan</a>
+                        <a href="#" className="hover:text-slate-700 transition">Pusat Bantuan</a>
+                        <a href="#" className="hover:text-slate-700 transition">Kontak Pengurus</a>
                     </div>
                 </div>
             </div>

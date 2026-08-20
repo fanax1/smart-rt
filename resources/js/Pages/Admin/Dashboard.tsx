@@ -157,89 +157,88 @@ export default function Dashboard({
             {/* Title Header Section */}
             <div className="mb-8 flex flex-col justify-between gap-4 sm:flex-row sm:items-center">
                 <div>
-                    <h2 className="text-3xl font-black tracking-tight text-white">Admin Console</h2>
-                    <p className="mt-1 text-sm text-slate-400 font-medium">System-wide performance and engagement metrics for SMART-RT.</p>
+                    <h2 className="text-3xl font-black tracking-tight text-slate-900">Admin Console</h2>
+                    <p className="mt-1 text-sm text-slate-600 font-medium">System-wide performance and engagement metrics for SMART-RT.</p>
                 </div>
-
             </div>
 
             {/* Categorized Notifications Card Grid */}
             <div className="mb-8 grid grid-cols-1 gap-6 lg:grid-cols-3">
                 {/* 1. TIKET HELPDESK CARD */}
-                <div className="rounded-2xl border border-emerald-500/20 bg-[#111A2E]/60 p-6 shadow-md relative overflow-hidden backdrop-blur-sm">
+                <div className="rounded-2xl border border-emerald-200 bg-white p-6 shadow-sm relative overflow-hidden">
                     <div className="mb-4 flex items-center justify-between">
-                        <span className="text-[10px] font-black tracking-widest text-emerald-400 uppercase">TIKET HELPDESK MASUK</span>
-                        <div className="flex h-8 w-8 items-center justify-center rounded-lg border border-emerald-500/20 bg-emerald-500/10 text-emerald-400">
+                        <span className="text-[10px] font-black tracking-widest text-emerald-700 uppercase">TIKET HELPDESK MASUK</span>
+                        <div className="flex h-8 w-8 items-center justify-center rounded-lg border border-emerald-200 bg-emerald-50 text-emerald-700">
                             <MessageSquare size={16} />
                         </div>
                     </div>
 
                     <div className="grid grid-cols-5 gap-4 items-center">
-                        <div className="col-span-2 flex flex-col justify-center border-r border-[#1C2541]/40 pr-4">
+                        <div className="col-span-2 flex flex-col justify-center border-r border-slate-100 pr-4">
                             <div className="flex items-center gap-1.5">
                                 <span className="relative flex h-2 w-2">
                                     <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
                                     <span className="relative inline-flex rounded-full h-2 w-2 bg-red-500"></span>
                                 </span>
-                                <span className="text-[9px] font-bold text-red-400 tracking-wider">MENUNGGU</span>
+                                <span className="text-[9px] font-bold text-red-600 tracking-wider">MENUNGGU</span>
                             </div>
-                            <h3 className="text-4xl font-black tracking-tight text-white mt-1.5">{helpdeskStats.pending}</h3>
-                            <p className="text-[10px] text-slate-400 font-semibold mt-1">Belum Dijawab</p>
+                            <h3 className="text-4xl font-black tracking-tight text-slate-900 mt-1.5">{helpdeskStats.pending}</h3>
+                            <p className="text-[10px] text-slate-500 font-semibold mt-1">Belum Dijawab</p>
                         </div>
-                        <div className="col-span-3 pl-2 space-y-2 text-xs font-semibold text-slate-300">
+                        <div className="col-span-3 pl-2 space-y-2 text-xs font-semibold text-slate-700">
                             <div className="flex justify-between items-center">
-                                <span className="text-slate-400">Total Tiket</span>
-                                <span className="text-white font-black">{helpdeskStats.total}</span>
+                                <span className="text-slate-500">Total Tiket</span>
+                                <span className="text-slate-900 font-black">{helpdeskStats.total}</span>
                             </div>
                             <div className="flex justify-between items-center">
-                                <span className="text-slate-400">Sedang Diproses</span>
-                                <span className="text-amber-400 font-black">{helpdeskStats.processing}</span>
+                                <span className="text-slate-500">Sedang Diproses</span>
+                                <span className="text-amber-600 font-black">{helpdeskStats.processing}</span>
                             </div>
                             <div className="flex justify-between items-center">
-                                <span className="text-slate-400">Selesai</span>
-                                <span className="text-emerald-400 font-black">{helpdeskStats.resolved}</span>
+                                <span className="text-slate-500">Selesai</span>
+                                <span className="text-emerald-700 font-black">{helpdeskStats.resolved}</span>
                             </div>
                         </div>
                     </div>
 
                     <div className="absolute bottom-0 left-6 right-6">
-                        <div className="h-[3px] w-1/3 rounded-t-full bg-emerald-500"></div>
+                        <div className="h-[3px] w-1/3 rounded-t-full bg-emerald-600"></div>
                     </div>
                 </div>
 
                 {/* 2. PENGADUAN WARGA CARD */}
-                <div className="rounded-2xl border border-amber-500/20 bg-[#111A2E]/60 p-6 shadow-md relative overflow-hidden backdrop-blur-sm">
+                <div className="rounded-2xl border border-amber-200 bg-white p-6 shadow-sm relative overflow-hidden">
                     <div className="mb-4 flex items-center justify-between">
-                        <span className="text-[10px] font-black tracking-widest text-amber-400 uppercase">PENGADUAN WARGA MASUK</span>
-                        <div className="flex h-8 w-8 items-center justify-center rounded-lg border border-amber-500/20 bg-amber-500/10 text-amber-400">
+                        <span className="text-[10px] font-black tracking-widest text-amber-700 uppercase">PENGADUAN WARGA MASUK</span>
+                        <div className="flex h-8 w-8 items-center justify-center rounded-lg border border-amber-200 bg-amber-50 text-amber-700">
                             <AlertTriangle size={16} />
                         </div>
                     </div>
 
                     <div className="grid grid-cols-5 gap-4 items-center">
-                        <div className="col-span-2 flex flex-col justify-center border-r border-[#1C2541]/40 pr-4">
+                        <div className="col-span-2 flex flex-col justify-center border-r border-slate-100 pr-4">
                             <div className="flex items-center gap-1.5">
                                 <span className="relative flex h-2 w-2">
                                     <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-400 opacity-75"></span>
                                     <span className="relative inline-flex rounded-full h-2 w-2 bg-amber-500"></span>
                                 </span>
-                                <span className="text-[9px] font-bold text-amber-400 tracking-wider">DIAJUKAN</span>
+                                <span className="text-[9px] font-bold text-amber-600 tracking-wider">DIAJUKAN</span>
                             </div>
-                            <h3 className="text-4xl font-black tracking-tight text-white mt-1.5">{pengaduanStats.pending}</h3>
-                            <p className="text-[10px] text-slate-400 font-semibold mt-1">Laporan Baru</p>
+                            <h3 className="text-4xl font-black tracking-tight text-slate-900 mt-1.5">{pengaduanStats.pending}</h3>
+                            <p className="text-[10px] text-slate-500 font-semibold mt-1">Laporan Baru</p>
                         </div>
-                        <div className="col-span-3 pl-2 space-y-2 text-xs font-semibold text-slate-300">
+                        <div className="col-span-3 pl-2 space-y-2 text-xs font-semibold text-slate-700">
                             <div className="flex justify-between items-center">
-                                <span className="text-slate-400">Total Pengaduan</span>
-                                <span className="text-white font-black">{pengaduanStats.total}</span>
+                                <span className="text-slate-500">Total Pengaduan</span>
+                                <span className="text-slate-900 font-black">{pengaduanStats.total}</span>
                             </div>
                             <div className="flex justify-between items-center">
-                                <span className="text-slate-400">Sedang Diproses</span>
-                                <span className="text-amber-400 font-black">{pengaduanStats.processing}</span>
+                                <span className="text-slate-500">Sedang Diproses</span>
+                                <span className="text-amber-600 font-black">{pengaduanStats.processing}</span>
                             </div>
                             <div className="flex justify-between items-center">
-                                <span className="text-slate-400">Selesai</span>
-                                <span className="text-emerald-400 font-black">{pengaduanStats.resolved}</span>
+                                <span className="text-slate-500">Selesai</span>
+                                <span className="text-emerald-700 font-black">{pengaduanStats.resolved}</span>
                             </div>
                         </div>
                     </div>
@@ -250,38 +249,38 @@ export default function Dashboard({
                 </div>
 
                 {/* 3. PENGAJUAN SURAT CARD */}
-                <div className="rounded-2xl border border-purple-500/20 bg-[#111A2E]/60 p-6 shadow-md relative overflow-hidden backdrop-blur-sm">
+                <div className="rounded-2xl border border-purple-200 bg-white p-6 shadow-sm relative overflow-hidden">
                     <div className="mb-4 flex items-center justify-between">
-                        <span className="text-[10px] font-black tracking-widest text-purple-400 uppercase">PENGAJUAN SURAT MASUK</span>
-                        <div className="flex h-8 w-8 items-center justify-center rounded-lg border border-purple-500/20 bg-purple-500/10 text-purple-400">
+                        <span className="text-[10px] font-black tracking-widest text-purple-700 uppercase">PENGAJUAN SURAT MASUK</span>
+                        <div className="flex h-8 w-8 items-center justify-center rounded-lg border border-purple-200 bg-purple-50 text-purple-700">
                             <Calendar size={16} />
                         </div>
                     </div>
 
                     <div className="grid grid-cols-5 gap-4 items-center">
-                        <div className="col-span-2 flex flex-col justify-center border-r border-[#1C2541]/40 pr-4">
+                        <div className="col-span-2 flex flex-col justify-center border-r border-slate-100 pr-4">
                             <div className="flex items-center gap-1.5">
                                 <span className="relative flex h-2 w-2">
                                     <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-purple-400 opacity-75"></span>
                                     <span className="relative inline-flex rounded-full h-2 w-2 bg-purple-500"></span>
                                 </span>
-                                <span className="text-[9px] font-bold text-purple-400 tracking-wider">DIAJUKAN</span>
+                                <span className="text-[9px] font-bold text-purple-600 tracking-wider">DIAJUKAN</span>
                             </div>
-                            <h3 className="text-4xl font-black tracking-tight text-white mt-1.5">{suratStats.pending}</h3>
-                            <p className="text-[10px] text-slate-400 font-semibold mt-1">Surat Baru</p>
+                            <h3 className="text-4xl font-black tracking-tight text-slate-900 mt-1.5">{suratStats.pending}</h3>
+                            <p className="text-[10px] text-slate-500 font-semibold mt-1">Surat Baru</p>
                         </div>
-                        <div className="col-span-3 pl-2 space-y-2 text-xs font-semibold text-slate-300">
+                        <div className="col-span-3 pl-2 space-y-2 text-xs font-semibold text-slate-700">
                             <div className="flex justify-between items-center">
-                                <span className="text-slate-400">Total Pengajuan</span>
-                                <span className="text-white font-black">{suratStats.total}</span>
+                                <span className="text-slate-500">Total Pengajuan</span>
+                                <span className="text-slate-900 font-black">{suratStats.total}</span>
                             </div>
                             <div className="flex justify-between items-center">
-                                <span className="text-slate-400">Disetujui RT</span>
-                                <span className="text-emerald-400 font-black">{suratStats.approved}</span>
+                                <span className="text-slate-500">Disetujui RT</span>
+                                <span className="text-emerald-700 font-black">{suratStats.approved}</span>
                             </div>
                             <div className="flex justify-between items-center">
-                                <span className="text-slate-400">Selesai/Diambil</span>
-                                <span className="text-purple-400 font-black">{suratStats.resolved}</span>
+                                <span className="text-slate-500">Selesai/Diambil</span>
+                                <span className="text-purple-700 font-black">{suratStats.resolved}</span>
                             </div>
                         </div>
                     </div>
@@ -293,21 +292,21 @@ export default function Dashboard({
             </div>
 
             {/* Graph Card Section: Analytics Performance */}
-            <div className="mb-8 rounded-2xl border border-[#1C2541]/50 bg-[#111A2E]/40 p-6 shadow-lg relative overflow-hidden">
+            <div className="mb-8 rounded-2xl border border-slate-200 bg-white p-6 shadow-sm relative overflow-hidden">
                 <div className="mb-6 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
                     <div>
-                        <h3 className="text-base font-black text-white">Analytics Performance</h3>
-                        <p className="mt-1 text-xs font-semibold text-slate-400">Citizen reports vs. Resolution speed monthly tracking.</p>
+                        <h3 className="text-base font-black text-slate-900">Analytics Performance</h3>
+                        <p className="mt-1 text-xs font-semibold text-slate-500">Citizen reports vs. Resolution speed monthly tracking.</p>
                     </div>
                     {/* Graph Legends */}
                     <div className="flex items-center gap-6">
                         <div className="flex items-center gap-2">
-                            <span className="h-2.5 w-2.5 rounded-full bg-emerald-500"></span>
-                            <span className="text-xs font-bold text-slate-300">Reports</span>
+                            <span className="h-2.5 w-2.5 rounded-full bg-emerald-600"></span>
+                            <span className="text-xs font-bold text-slate-700">Reports</span>
                         </div>
                         <div className="flex items-center gap-2">
                             <span className="h-2.5 w-2.5 rounded-full bg-purple-500 border border-purple-300 border-dashed"></span>
-                            <span className="text-xs font-bold text-slate-300">Resolutions</span>
+                            <span className="text-xs font-bold text-slate-700">Resolutions</span>
                         </div>
                     </div>
                 </div>
@@ -318,13 +317,8 @@ export default function Dashboard({
                         <defs>
                             {/* Grid Lines Pattern */}
                             <pattern id="grid" width="1000" height="40" patternUnits="userSpaceOnUse">
-                                <line x1="0" y1="0" x2="1000" y2="0" stroke="#1C2541" strokeWidth="0.5" strokeDasharray="4 4" />
+                                <line x1="0" y1="0" x2="1000" y2="0" stroke="#E2E8F0" strokeWidth="0.5" strokeDasharray="4 4" />
                             </pattern>
-                            {/* Glow Filters */}
-                            <filter id="glow-emerald" x="-20%" y="-20%" width="140%" height="140%">
-                                <feGaussianBlur stdDeviation="4" result="blur" />
-                                <feComposite in="SourceGraphic" in2="blur" operator="over" />
-                            </filter>
                             {/* Gradient Backgrounds */}
                             <linearGradient id="grad-emerald" x1="0" y1="0" x2="0" y2="1">
                                 <stop offset="0%" stopColor="#10B981" stopOpacity="0.15" />
@@ -336,7 +330,7 @@ export default function Dashboard({
                         <rect width="1000" height="200" fill="url(#grid)" />
 
                         {/* Baseline X-Axis Line */}
-                        <line x1="0" y1="200" x2="1000" y2="200" stroke="#1C2541" strokeWidth="1" />
+                        <line x1="0" y1="200" x2="1000" y2="200" stroke="#CBD5E1" strokeWidth="1" />
 
                         {/* Area Gradient under curve Reports */}
                         <path
@@ -348,25 +342,24 @@ export default function Dashboard({
                         <path
                             d="M 50 130 C 120 100, 180 140, 250 110 C 320 80, 380 160, 450 150 C 520 140, 580 50, 650 60 C 720 70, 780 180, 850 160 C 920 140, 950 40, 950 40"
                             fill="none"
-                            stroke="#10B981"
+                            stroke="#059669"
                             strokeWidth="3.5"
                             strokeLinecap="round"
-                            filter="url(#glow-emerald)"
                         />
 
                         {/* Curve Line 2: Resolutions (Dashed Purple/White) */}
                         <path
                             d="M 50 150 C 120 160, 180 90, 250 130 C 320 170, 380 120, 450 100 C 520 80, 580 150, 650 130 C 720 110, 780 130, 850 100 C 920 70, 950 120, 950 120"
                             fill="none"
-                            stroke="#c084fc"
+                            stroke="#a855f7"
                             strokeWidth="2.5"
                             strokeDasharray="6 6"
                             strokeLinecap="round"
                         />
 
                         {/* Dots on peak points */}
-                        <circle cx="650" cy="60" r="4.5" fill="#10B981" stroke="#0B132B" strokeWidth="1.5" />
-                        <circle cx="450" cy="100" r="4" fill="#c084fc" stroke="#0B132B" strokeWidth="1.5" />
+                        <circle cx="650" cy="60" r="4.5" fill="#059669" stroke="#ffffff" strokeWidth="1.5" />
+                        <circle cx="450" cy="100" r="4" fill="#a855f7" stroke="#ffffff" strokeWidth="1.5" />
 
                         {/* X-Axis Month Labels */}
                         {['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'].map((m, i) => (
@@ -389,12 +382,12 @@ export default function Dashboard({
             {/* Bottom Panels: Real-time Online Citizens & Unified Incoming Request Notifications */}
             <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
                 {/* Real-time Online Citizens List Box */}
-                <div className="rounded-2xl border border-[#1C2541]/50 bg-[#111A2E]/50 p-6 shadow-md flex flex-col h-[480px]">
+                <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm flex flex-col h-[480px]">
                     <div className="mb-4 flex items-center justify-between">
-                        <h3 className="text-base font-black text-white">Warga Sedang Online</h3>
+                        <h3 className="text-base font-black text-slate-900">Warga Sedang Online</h3>
                         <span className={`rounded-full px-2.5 py-0.5 text-[9px] font-black shadow-sm shrink-0 ${onlineCitizens.length === 0
-                                ? 'bg-slate-500/10 border border-slate-500/20 text-slate-400'
-                                : 'bg-emerald-500/10 border border-emerald-500/20 text-emerald-400'
+                                ? 'bg-slate-100 border border-slate-200 text-slate-600'
+                                : 'bg-emerald-50 border border-emerald-200 text-emerald-700'
                             }`}>
                             {onlineCitizens.length} ONLINE
                         </span>
@@ -402,10 +395,10 @@ export default function Dashboard({
 
                     {/* Citizens List */}
                     {onlineCitizens.length === 0 ? (
-                        <div className="flex-1 flex flex-col items-center justify-center text-slate-500 py-10 font-sans">
-                            <Users size={36} className="text-slate-600 mb-2.5 opacity-40 animate-pulse" />
-                            <p className="text-xs font-bold text-slate-400">Tidak ada warga online saat ini</p>
-                            <p className="text-[10px] text-slate-500 mt-1 max-w-[200px] text-center leading-normal">
+                        <div className="flex-1 flex flex-col items-center justify-center text-slate-400 py-10 font-sans">
+                            <Users size={36} className="text-slate-300 mb-2.5 opacity-40 animate-pulse" />
+                            <p className="text-xs font-bold text-slate-500">Tidak ada warga online saat ini</p>
+                            <p className="text-[10px] text-slate-400 mt-1 max-w-[200px] text-center leading-normal">
                                 Akun warga yang sedang membuka portal akan terdeteksi secara otomatis.
                             </p>
                         </div>
@@ -422,21 +415,21 @@ export default function Dashboard({
                                 return (
                                     <div
                                         key={c.id}
-                                        className="w-full flex items-center gap-3 rounded-2xl p-3.5 border border-[#1C2541]/40 bg-[#111A2E]/30"
+                                        className="w-full flex items-center gap-3 rounded-2xl p-3.5 border border-slate-200 bg-slate-50"
                                     >
                                         <div className="relative shrink-0">
-                                            <div className="flex h-10 w-10 items-center justify-center overflow-hidden rounded-full bg-emerald-500/10 border border-emerald-500/20 text-xs font-bold text-emerald-400">
+                                            <div className="flex h-10 w-10 items-center justify-center overflow-hidden rounded-full bg-emerald-100 border border-emerald-200 text-xs font-bold text-emerald-700">
                                                 <span>{citizenInitials}</span>
                                             </div>
-                                            <span className="absolute bottom-0.5 right-0.5 h-2 w-2 rounded-full border border-[#111A2E] bg-emerald-500 animate-pulse"></span>
+                                            <span className="absolute bottom-0.5 right-0.5 h-2 w-2 rounded-full border border-white bg-emerald-500 animate-pulse"></span>
                                         </div>
                                         <div className="min-w-0 flex-1 leading-tight">
                                             <div className="flex items-center justify-between">
-                                                <p className="truncate text-xs font-bold text-white">{c.name}</p>
-                                                <span className="text-[9px] text-emerald-400 font-bold shrink-0">Aktif</span>
+                                                <p className="truncate text-xs font-bold text-slate-900">{c.name}</p>
+                                                <span className="text-[9px] text-emerald-700 font-bold shrink-0">Aktif</span>
                                             </div>
-                                            <p className="truncate text-[10px] text-slate-400 mt-1 font-semibold leading-normal">
-                                                No. Rumah: <span className="text-slate-200">{c.no_rumah || '-'}</span>
+                                            <p className="truncate text-[10px] text-slate-500 mt-1 font-semibold leading-normal">
+                                                No. Rumah: <span className="text-slate-700">{c.no_rumah || '-'}</span>
                                             </p>
                                         </div>
                                     </div>
@@ -447,23 +440,23 @@ export default function Dashboard({
                 </div>
 
                 {/* Database Incoming Notifications Box */}
-                <div className="rounded-2xl border border-[#1C2541]/50 bg-[#111A2E]/50 p-6 shadow-md flex flex-col justify-between h-[480px] lg:col-span-2">
-                    <div className="mb-4 flex items-center justify-between pb-3 border-b border-[#1C2541]/30">
+                <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm flex flex-col justify-between h-[480px] lg:col-span-2">
+                    <div className="mb-4 flex items-center justify-between pb-3 border-b border-slate-100">
                         <div>
-                            <h3 className="text-base font-black text-white">Notifikasi & Aktivitas Masuk</h3>
-                            <p className="text-[10px] text-slate-400 mt-0.5 font-semibold">Daftar permintaan yang memerlukan tindakan admin.</p>
+                            <h3 className="text-base font-black text-slate-900">Notifikasi & Aktivitas Masuk</h3>
+                            <p className="text-[10px] text-slate-500 mt-0.5 font-semibold">Daftar permintaan yang memerlukan tindakan admin.</p>
                         </div>
-                        <span className="rounded-full bg-amber-500/10 border border-amber-500/20 px-2.5 py-0.5 text-[9px] font-black text-amber-400 shadow-sm shrink-0">
+                        <span className="rounded-full bg-amber-50 border border-amber-200 px-2.5 py-0.5 text-[9px] font-black text-amber-700 shadow-sm shrink-0">
                             {recentNotifications.length} PENDING
                         </span>
                     </div>
 
                     {/* Notifications List */}
                     {recentNotifications.length === 0 ? (
-                        <div className="flex-1 flex flex-col items-center justify-center text-slate-500 py-10 font-sans">
-                            <FileText size={36} className="text-slate-600 mb-2.5 opacity-40" />
-                            <p className="text-xs font-bold text-slate-400">Tidak ada aktivitas masuk saat ini</p>
-                            <p className="text-[10px] text-slate-500 mt-1">Semua tiket helpdesk, pengaduan, dan surat telah diselesaikan.</p>
+                        <div className="flex-1 flex flex-col items-center justify-center text-slate-400 py-10 font-sans">
+                            <FileText size={36} className="text-slate-300 mb-2.5 opacity-40" />
+                            <p className="text-xs font-bold text-slate-500">Tidak ada aktivitas masuk saat ini</p>
+                            <p className="text-[10px] text-slate-400 mt-1">Semua tiket helpdesk, pengaduan, dan surat telah diselesaikan.</p>
                         </div>
                     ) : (
                         <div className="flex-1 overflow-y-auto space-y-2.5 pr-1 pb-1">
@@ -475,14 +468,14 @@ export default function Dashboard({
                                 return (
                                     <div
                                         key={item.key}
-                                        className="flex items-start justify-between gap-4 rounded-2xl border border-[#1C2541]/40 bg-[#111A2E]/30 p-3.5 transition hover:bg-[#111A2E]/50"
+                                        className="flex items-start justify-between gap-4 rounded-2xl border border-slate-200 bg-slate-50 p-3.5 transition hover:bg-slate-100"
                                     >
                                         <div className="flex items-start gap-3 min-w-0">
                                             <div className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-xl border ${isTicket
-                                                    ? 'text-emerald-400 bg-emerald-500/10 border-emerald-500/20'
+                                                    ? 'text-emerald-700 bg-emerald-50 border-emerald-200'
                                                     : isComplaint
-                                                        ? 'text-amber-400 bg-amber-500/10 border-amber-500/20'
-                                                        : 'text-purple-400 bg-purple-500/10 border-purple-500/20'
+                                                        ? 'text-amber-700 bg-amber-50 border-amber-200'
+                                                        : 'text-purple-700 bg-purple-50 border-purple-200'
                                                 }`}>
                                                 {isTicket && <MessageSquare size={16} />}
                                                 {isComplaint && <AlertTriangle size={16} />}
@@ -492,27 +485,27 @@ export default function Dashboard({
                                             <div className="min-w-0 leading-tight">
                                                 <div className="flex items-center gap-2 flex-wrap">
                                                     <span className={`rounded px-1.5 py-0.5 text-[8px] font-black uppercase tracking-wider ${isTicket
-                                                            ? 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/20'
+                                                            ? 'bg-emerald-50 text-emerald-700 border border-emerald-200'
                                                             : isComplaint
-                                                                ? 'bg-amber-500/10 text-amber-400 border border-amber-500/20'
-                                                                : 'bg-purple-500/10 text-purple-400 border border-purple-500/20'
+                                                                ? 'bg-amber-50 text-amber-700 border border-amber-200'
+                                                                : 'bg-purple-50 text-purple-700 border border-purple-200'
                                                         }`}>
                                                         {isTicket ? 'Helpdesk Ticket' : isComplaint ? 'Pengaduan Warga' : 'Pengajuan Surat'}
                                                     </span>
                                                     <span className="text-[9px] font-semibold text-slate-500 select-all">{item.ref_no}</span>
                                                 </div>
-                                                <h4 className="text-xs font-bold text-white mt-1.5 truncate max-w-[220px] sm:max-w-[340px] md:max-w-[420px]">
+                                                <h4 className="text-xs font-bold text-slate-900 mt-1.5 truncate max-w-[220px] sm:max-w-[340px] md:max-w-[420px]">
                                                     {item.title}
                                                 </h4>
-                                                <p className="text-[10px] text-slate-400 font-semibold mt-1">
-                                                    Oleh: <span className="text-slate-200">{item.sender}</span> • <span className="text-slate-500">{item.date}</span>
+                                                <p className="text-[10px] text-slate-500 font-semibold mt-1">
+                                                    Oleh: <span className="text-slate-700">{item.sender}</span> • <span className="text-slate-500">{item.date}</span>
                                                 </p>
                                             </div>
                                         </div>
 
                                         <a
                                             href={item.link}
-                                            className="inline-flex shrink-0 items-center gap-1 text-[10px] font-black tracking-wider text-emerald-400 hover:text-emerald-300 transition mt-1.5"
+                                            className="inline-flex shrink-0 items-center gap-1 text-[10px] font-black tracking-wider text-emerald-700 hover:text-emerald-800 transition mt-1.5"
                                         >
                                             <span>PROSES</span>
                                             <ArrowRight size={11} />

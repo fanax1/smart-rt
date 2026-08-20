@@ -59,9 +59,9 @@ function OfficialCard({ member, onClick }: OfficialCardProps) {
             type="button"
             onClick={() => onClick(member)}
             aria-label={`Lihat detail profil ${member.nama}`}
-            className="relative flex w-full cursor-pointer flex-col items-center justify-center rounded-2xl border border-slate-800 bg-slate-900/60 p-4 text-center transition duration-200 hover:-translate-y-1 hover:border-emerald-400/60 hover:shadow-lg hover:shadow-emerald-500/5 focus:outline-none focus:ring-2 focus:ring-emerald-400 min-w-[145px] snap-center sm:min-w-0"
+            className="relative flex w-full cursor-pointer flex-col items-center justify-center rounded-2xl border border-slate-200 bg-white p-4 text-center transition duration-200 hover:-translate-y-1 hover:border-emerald-400 hover:shadow-md shadow-sm focus:outline-none focus:ring-2 focus:ring-emerald-400 min-w-[145px] snap-center sm:min-w-0"
         >
-            <div className="h-20 w-20 overflow-hidden rounded-full border-2 border-emerald-400/40 p-0.5 sm:h-24 sm:w-24 shrink-0 mb-3 flex items-center justify-center bg-slate-950">
+            <div className="h-20 w-20 overflow-hidden rounded-full border-2 border-emerald-500/30 p-0.5 sm:h-24 sm:w-24 shrink-0 mb-3 flex items-center justify-center bg-slate-100">
                 {photoUrl ? (
                     <img
                         src={photoUrl}
@@ -69,15 +69,15 @@ function OfficialCard({ member, onClick }: OfficialCardProps) {
                         className="h-full w-full rounded-full object-cover"
                     />
                 ) : (
-                    <div className="flex h-full w-full items-center justify-center rounded-full bg-emerald-500/15 text-2xl font-black text-emerald-400 uppercase">
+                    <div className="flex h-full w-full items-center justify-center rounded-full bg-emerald-50 text-2xl font-black text-emerald-700 uppercase">
                         {initials(member.nama)}
                     </div>
                 )}
             </div>
-            <h4 className="text-sm sm:text-base font-semibold leading-tight text-white break-words w-full">
+            <h4 className="text-sm sm:text-base font-semibold leading-tight text-slate-900 break-words w-full">
                 {member.nama}
             </h4>
-            <p className="mt-1 text-[11px] sm:text-xs font-bold uppercase tracking-wide text-emerald-400">
+            <p className="mt-1 text-[11px] sm:text-xs font-bold uppercase tracking-wide text-emerald-700">
                 {positionLabel(member)}
             </p>
         </button>
@@ -102,21 +102,21 @@ function OfficialDetailModal({ member, period, onClose }: DetailModalProps) {
     if (!member) return null;
 
     return (
-        <div className="fixed inset-0 z-[60] flex items-center justify-center bg-black/70 p-4 backdrop-blur-sm">
+        <div className="fixed inset-0 z-[60] flex items-center justify-center bg-slate-900/40 p-4 backdrop-blur-sm">
             <div className="fixed inset-0" onClick={onClose} aria-hidden="true" />
             
-            <div className="relative w-full max-w-md max-h-[calc(100vh-2rem)] overflow-y-auto rounded-2xl border border-slate-800 bg-slate-950 p-6 text-slate-200 shadow-2xl z-10 no-scrollbar">
+            <div className="relative w-full max-w-md max-h-[calc(100vh-2rem)] overflow-y-auto rounded-2xl border border-slate-200 bg-white p-6 text-slate-900 shadow-2xl z-10 no-scrollbar">
                 <button
                     type="button"
                     onClick={onClose}
                     aria-label="Tutup Detail"
-                    className="absolute right-4 top-4 rounded-xl p-2 text-slate-400 hover:bg-slate-900 hover:text-white transition"
+                    className="absolute right-4 top-4 rounded-xl p-2 text-slate-500 hover:bg-slate-100 hover:text-slate-900 transition"
                 >
                     <X size={20} />
                 </button>
 
                 <div className="flex flex-col items-center text-center">
-                    <div className="h-24 w-24 overflow-hidden rounded-full border-2 border-emerald-400/40 p-0.5 mb-4 shrink-0 bg-slate-900">
+                    <div className="h-24 w-24 overflow-hidden rounded-full border-2 border-emerald-500/30 p-0.5 mb-4 shrink-0 bg-slate-100">
                         {member.foto ? (
                             <img
                                 src={member.foto}
@@ -124,27 +124,27 @@ function OfficialDetailModal({ member, period, onClose }: DetailModalProps) {
                                 className="h-full w-full rounded-full object-cover"
                             />
                         ) : (
-                            <div className="flex h-full w-full items-center justify-center rounded-full bg-emerald-500/15 text-3xl font-black text-emerald-400 uppercase">
+                            <div className="flex h-full w-full items-center justify-center rounded-full bg-emerald-50 text-3xl font-black text-emerald-700 uppercase">
                                 {initials(member.nama)}
                             </div>
                         )}
                     </div>
 
-                    <h3 className="text-xl font-black text-white px-2 break-words w-full">
+                    <h3 className="text-xl font-black text-slate-900 px-2 break-words w-full">
                         {member.nama}
                     </h3>
-                    <p className="mt-1.5 text-xs font-bold uppercase tracking-widest text-emerald-400 bg-emerald-500/10 px-3.5 py-1 rounded-full">
+                    <p className="mt-1.5 text-xs font-bold uppercase tracking-widest text-emerald-700 bg-emerald-50 border border-emerald-200 px-3.5 py-1 rounded-full">
                         {positionLabel(member)}
                     </p>
                 </div>
 
-                <div className="mt-6 space-y-4 border-t border-slate-800/60 pt-5 text-sm">
+                <div className="mt-6 space-y-4 border-t border-slate-200 pt-5 text-sm">
                     {period && (
                         <div className="flex items-start gap-3">
                             <Calendar size={16} className="text-slate-400 mt-0.5 shrink-0" />
                             <div>
                                 <p className="text-xs text-slate-500 font-bold uppercase tracking-wider">Periode Jabatan</p>
-                                <p className="text-slate-300 font-semibold mt-0.5">{period.tahun} • {period.status === 'aktif' ? 'Aktif Menjabat' : 'Selesai Menjabat'}</p>
+                                <p className="text-slate-700 font-semibold mt-0.5">{period.tahun} • {period.status === 'aktif' ? 'Aktif Menjabat' : 'Selesai Menjabat'}</p>
                             </div>
                         </div>
                     )}
@@ -154,7 +154,7 @@ function OfficialDetailModal({ member, period, onClose }: DetailModalProps) {
                             <FileText size={16} className="text-slate-400 mt-0.5 shrink-0" />
                             <div>
                                 <p className="text-xs text-slate-500 font-bold uppercase tracking-wider">Deskripsi Tugas</p>
-                                <p className="text-slate-300 leading-relaxed mt-0.5">{member.deskripsi}</p>
+                                <p className="text-slate-700 leading-relaxed mt-0.5">{member.deskripsi}</p>
                             </div>
                         </div>
                     )}
@@ -164,7 +164,7 @@ function OfficialDetailModal({ member, period, onClose }: DetailModalProps) {
                             <Phone size={16} className="text-slate-400 mt-0.5 shrink-0" />
                             <div>
                                 <p className="text-xs text-slate-500 font-bold uppercase tracking-wider">Nomor Telepon</p>
-                                <a href={`tel:${member.phone}`} className="inline-block text-emerald-400 hover:underline font-semibold mt-0.5">
+                                <a href={`tel:${member.phone}`} className="inline-block text-emerald-700 hover:underline font-semibold mt-0.5">
                                     {member.phone}
                                 </a>
                             </div>
@@ -176,7 +176,7 @@ function OfficialDetailModal({ member, period, onClose }: DetailModalProps) {
                             <Mail size={16} className="text-slate-400 mt-0.5 shrink-0" />
                             <div>
                                 <p className="text-xs text-slate-500 font-bold uppercase tracking-wider">Email</p>
-                                <a href={`mailto:${member.email}`} className="inline-block text-emerald-400 hover:underline font-semibold mt-0.5">
+                                <a href={`mailto:${member.email}`} className="inline-block text-emerald-700 hover:underline font-semibold mt-0.5">
                                     {member.email}
                                 </a>
                             </div>
@@ -188,7 +188,7 @@ function OfficialDetailModal({ member, period, onClose }: DetailModalProps) {
                             <MapPin size={16} className="text-slate-400 mt-0.5 shrink-0" />
                             <div>
                                 <p className="text-xs text-slate-500 font-bold uppercase tracking-wider">Alamat</p>
-                                <p className="text-slate-300 mt-0.5">{(member as any).alamat}</p>
+                                <p className="text-slate-700 mt-0.5">{(member as any).alamat}</p>
                             </div>
                         </div>
                     )}
@@ -198,7 +198,7 @@ function OfficialDetailModal({ member, period, onClose }: DetailModalProps) {
                     <button
                         type="button"
                         onClick={onClose}
-                        className="w-full rounded-xl bg-slate-900 border border-slate-800 py-2.5 text-center text-xs font-bold text-slate-300 hover:bg-slate-800 hover:text-white transition duration-200"
+                        className="w-full rounded-xl bg-slate-100 border border-slate-200 py-2.5 text-center text-xs font-bold text-slate-700 hover:bg-slate-200 hover:text-slate-900 transition duration-200"
                     >
                         Tutup
                     </button>
@@ -238,27 +238,27 @@ function AllOfficialsModal({
     const currentPeriod = periods.find((p) => p.id === selectedPeriodId) || periods[0];
 
     return (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/75 p-4 backdrop-blur-sm">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/40 p-4 backdrop-blur-sm">
             <div className="fixed inset-0" onClick={onClose} aria-hidden="true" />
             
-            <div className="relative w-full max-w-5xl max-h-[calc(100vh-2rem)] overflow-y-auto rounded-2xl border border-slate-800 bg-slate-950 p-6 text-slate-200 shadow-2xl z-10 no-scrollbar">
+            <div className="relative w-full max-w-5xl max-h-[calc(100vh-2rem)] overflow-y-auto rounded-2xl border border-slate-200 bg-white p-6 text-slate-900 shadow-2xl z-10 no-scrollbar">
                 <button
                     type="button"
                     onClick={onClose}
                     aria-label="Tutup Daftar Pengurus"
-                    className="absolute right-4 top-4 rounded-xl p-2 text-slate-400 hover:bg-slate-900 hover:text-white transition"
+                    className="absolute right-4 top-4 rounded-xl p-2 text-slate-500 hover:bg-slate-100 hover:text-slate-900 transition"
                 >
                     <X size={20} />
                 </button>
 
                 <div className="mb-6">
-                    <h3 className="text-xl font-black text-white">Struktur Kepengurusan Lengkap</h3>
-                    <p className="text-xs text-slate-400 mt-1">Daftar lengkap seluruh pengurus RT 004 untuk setiap periode kepengurusan.</p>
+                    <h3 className="text-xl font-black text-slate-900">Struktur Kepengurusan Lengkap</h3>
+                    <p className="text-xs text-slate-600 mt-1">Daftar lengkap seluruh pengurus RT 004 untuk setiap periode kepengurusan.</p>
                 </div>
 
                 {/* Period switcher inside modal */}
                 {periods.length > 1 && (
-                    <div className="mb-6 flex flex-wrap gap-2 border-b border-slate-800/60 pb-4">
+                    <div className="mb-6 flex flex-wrap gap-2 border-b border-slate-200 pb-4">
                         {periods.map((p) => (
                             <button
                                 key={p.id}
@@ -267,14 +267,14 @@ function AllOfficialsModal({
                                 className={[
                                     'inline-flex items-center gap-1.5 rounded-full px-4 py-2 text-xs font-bold transition active:scale-95',
                                     selectedPeriodId === p.id
-                                        ? 'bg-emerald-500 text-slate-950 shadow-md shadow-emerald-500/10'
-                                        : 'border border-slate-800 bg-slate-900/60 text-slate-400 hover:border-slate-700 hover:text-slate-200',
+                                        ? 'bg-emerald-600 text-white shadow-md'
+                                        : 'border border-slate-200 bg-slate-50 text-slate-600 hover:bg-slate-100 hover:text-slate-900',
                                 ].join(' ')}
                             >
                                 <Calendar size={13} />
                                 {p.tahun}
                                 {p.status === 'aktif' && (
-                                    <span className="rounded-full bg-slate-950/20 px-1.5 py-0.5 text-[9px] uppercase tracking-wider font-extrabold text-emerald-950">
+                                    <span className="rounded-full bg-emerald-100 px-1.5 py-0.5 text-[9px] uppercase tracking-wider font-extrabold text-emerald-800">
                                         Aktif
                                     </span>
                                 )}
@@ -285,7 +285,7 @@ function AllOfficialsModal({
 
                 {currentPeriod ? (
                     <div>
-                        <div className="mb-4 rounded-xl border border-slate-800/60 bg-slate-900/40 p-4 text-xs font-bold text-slate-400">
+                        <div className="mb-4 rounded-xl border border-slate-200 bg-slate-50 p-4 text-xs font-bold text-slate-600">
                             Periode {currentPeriod.tahun} • Terdiri dari {currentPeriod.anggota.length} Pengurus RT
                         </div>
                         
@@ -307,7 +307,7 @@ function AllOfficialsModal({
                     <button
                         type="button"
                         onClick={onClose}
-                        className="rounded-xl border border-slate-800 bg-slate-900 px-5 py-2.5 text-xs font-bold text-slate-400 hover:text-white hover:bg-slate-850 transition"
+                        className="rounded-xl border border-slate-200 bg-slate-100 px-5 py-2.5 text-xs font-bold text-slate-700 hover:bg-slate-200 hover:text-slate-900 transition"
                     >
                         Tutup
                     </button>
@@ -374,12 +374,12 @@ export default function StrukturKeanggotaan({ periods = [] }: Props) {
 
     if (safePeriods.length === 0 || !activePeriod) {
         return (
-            <section className="bg-slate-950 py-20 text-slate-100">
+            <section className="bg-white py-20 text-slate-900">
                 <div className="mx-auto max-w-container-max px-margin-mobile md:px-margin-desktop">
                     <div className="mx-auto max-w-3xl text-center">
-                        <p className="text-xs font-bold uppercase tracking-[0.28em] text-emerald-400">Organisasi</p>
-                        <h2 className="mt-3 text-3xl font-extrabold tracking-tight text-white md:text-5xl">Struktur Kepengurusan RT</h2>
-                        <p className="mt-4 text-sm leading-7 text-slate-400">
+                        <p className="text-xs font-bold uppercase tracking-[0.28em] text-emerald-700">Organisasi</p>
+                        <h2 className="mt-3 text-3xl font-extrabold tracking-tight text-slate-900 md:text-5xl">Struktur Kepengurusan RT</h2>
+                        <p className="mt-4 text-sm leading-7 text-slate-600">
                             Data struktur pengurus belum tersedia. Setelah admin menambahkan periode dan anggota pengurus, bagian ini akan tampil otomatis.
                         </p>
                     </div>
@@ -389,7 +389,7 @@ export default function StrukturKeanggotaan({ periods = [] }: Props) {
     }
 
     return (
-        <section className="relative overflow-hidden bg-slate-950 py-20 text-slate-100">
+        <section className="relative overflow-hidden bg-white py-20 text-slate-900">
             <div className="absolute inset-0 pointer-events-none">
                 <div className="absolute left-[-10rem] top-[-10rem] h-96 w-96 rounded-full bg-emerald-500/5 blur-3xl" />
                 <div className="absolute right-[-10rem] top-36 h-96 w-96 rounded-full bg-emerald-500/5 blur-3xl" />
@@ -397,9 +397,9 @@ export default function StrukturKeanggotaan({ periods = [] }: Props) {
 
             <div className="relative mx-auto max-w-container-max px-margin-mobile md:px-margin-desktop">
                 <div className="mx-auto max-w-3xl text-center mb-10">
-                    <p className="text-xs font-bold uppercase tracking-[0.28em] text-emerald-400">Organisasi</p>
-                    <h2 className="mt-3 text-3xl font-extrabold tracking-tight text-white md:text-5xl">Struktur Kepengurusan RT 004</h2>
-                    <p className="mx-auto mt-4 max-w-2xl text-sm leading-7 text-slate-400 md:text-base">
+                    <p className="text-xs font-bold uppercase tracking-[0.28em] text-emerald-700">Organisasi</p>
+                    <h2 className="mt-3 text-3xl font-extrabold tracking-tight text-slate-900 md:text-5xl">Struktur Kepengurusan RT 004</h2>
+                    <p className="mx-auto mt-4 max-w-2xl text-sm leading-7 text-slate-600 md:text-base">
                         Susunan pengurus utama RT. Klik kartu untuk melihat detail profil dan informasi kontak.
                     </p>
                 </div>
@@ -460,7 +460,7 @@ export default function StrukturKeanggotaan({ periods = [] }: Props) {
                         )}
                     </div>
                 ) : (
-                    <div className="mx-auto max-w-3xl text-center py-10 rounded-2xl border border-dashed border-slate-800 bg-slate-900/20 text-slate-500 text-sm">
+                    <div className="mx-auto max-w-3xl text-center py-10 rounded-2xl border border-dashed border-slate-200 bg-slate-50 text-slate-500 text-sm">
                         Belum ada data pengurus utama (Ketua RT, Wakil Ketua RT, Sekretaris) yang terkonfigurasi untuk periode aktif ini.
                     </div>
                 )}
@@ -470,7 +470,7 @@ export default function StrukturKeanggotaan({ periods = [] }: Props) {
                     <button
                         type="button"
                         onClick={() => setShowAllOfficials(true)}
-                        className="inline-flex min-h-11 items-center justify-center rounded-xl border border-emerald-400/40 px-6 py-2.5 text-sm font-semibold text-emerald-300 transition hover:bg-emerald-400/10 active:scale-95 focus:outline-none focus:ring-2 focus:ring-emerald-400"
+                        className="inline-flex min-h-11 items-center justify-center rounded-xl border border-emerald-600 px-6 py-2.5 text-sm font-semibold text-emerald-700 transition hover:bg-emerald-50 active:scale-95 focus:outline-none focus:ring-2 focus:ring-emerald-400"
                     >
                         Lihat Semua Pengurus
                     </button>

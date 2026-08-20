@@ -11,11 +11,11 @@ export default function AdminLayout({ activeMenu, children }: AdminLayoutProps) 
     const [sidebarOpen, setSidebarOpen] = useState(false);
 
     return (
-        <div className="min-h-screen bg-[#090E1A] text-slate-100 font-sans antialiased">
+        <div className="min-h-screen bg-slate-50 text-slate-900 font-sans antialiased">
             {/* Sidebar drawer backdrop for mobile */}
             {sidebarOpen && (
                 <div
-                    className="fixed inset-0 z-40 bg-black/60 backdrop-blur-sm lg:hidden transition-opacity"
+                    className="fixed inset-0 z-40 bg-slate-900/40 backdrop-blur-sm lg:hidden transition-opacity"
                     onClick={() => setSidebarOpen(false)}
                 />
             )}

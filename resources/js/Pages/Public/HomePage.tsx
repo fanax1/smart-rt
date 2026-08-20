@@ -235,38 +235,38 @@ const navLinks = [
 
 // ─── Status / priority helpers ───────────────────────────────────────────────
 const statusConfig: Record<string, { label: string; icon: string; cls: string }> = {
-    diajukan: { label: 'Menunggu', icon: 'schedule', cls: 'bg-surface-container-highest text-on-surface' },
-    diproses: { label: 'Diproses', icon: 'sync', cls: 'bg-secondary-container/20 text-secondary' },
-    selesai: { label: 'Selesai', icon: 'check_circle', cls: 'bg-primary-container/20 text-primary' },
-    ditolak: { label: 'Ditolak', icon: 'cancel', cls: 'bg-error-container/20 text-error' },
+    diajukan: { label: 'Menunggu', icon: 'schedule', cls: 'bg-slate-100 text-slate-700 border border-slate-200' },
+    diproses: { label: 'Diproses', icon: 'sync', cls: 'bg-blue-50 text-blue-700 border border-blue-200' },
+    selesai: { label: 'Selesai', icon: 'check_circle', cls: 'bg-emerald-50 text-emerald-700 border border-emerald-200' },
+    ditolak: { label: 'Ditolak', icon: 'cancel', cls: 'bg-red-50 text-red-700 border border-red-200' },
 };
 const priorityConfig: Record<string, { label: string; icon: string; cls: string }> = {
-    darurat: { label: 'Darurat', icon: 'priority_high', cls: 'text-error' },
-    tinggi: { label: 'Urgent', icon: 'priority_high', cls: 'text-error' },
-    sedang: { label: 'Sedang', icon: 'eco', cls: 'text-primary' },
-    rendah: { label: 'Info', icon: 'info', cls: 'text-secondary' },
+    darurat: { label: 'Darurat', icon: 'priority_high', cls: 'text-rose-600 font-bold' },
+    tinggi: { label: 'Urgent', icon: 'priority_high', cls: 'text-rose-600 font-bold' },
+    sedang: { label: 'Sedang', icon: 'eco', cls: 'text-emerald-700 font-bold' },
+    rendah: { label: 'Info', icon: 'info', cls: 'text-blue-700 font-bold' },
 };
 const kategoriConfig: Record<string, { label: string; icon: string; cls: string }> = {
-    lingkungan: { label: 'Lingkungan', icon: 'eco', cls: 'text-primary' },
-    keamanan: { label: 'Keamanan', icon: 'minor_crash', cls: 'text-tertiary' },
-    fasilitas: { label: 'Fasilitas', icon: 'construction', cls: 'text-secondary' },
-    sosial: { label: 'Sosial', icon: 'groups', cls: 'text-primary' },
-    administrasi: { label: 'Administrasi', icon: 'description', cls: 'text-secondary' },
-    lainnya: { label: 'Lainnya', icon: 'help', cls: 'text-on-surface-variant' },
+    lingkungan: { label: 'Lingkungan', icon: 'eco', cls: 'text-emerald-700' },
+    keamanan: { label: 'Keamanan', icon: 'minor_crash', cls: 'text-amber-700' },
+    fasilitas: { label: 'Fasilitas', icon: 'construction', cls: 'text-indigo-700' },
+    sosial: { label: 'Sosial', icon: 'groups', cls: 'text-emerald-700' },
+    administrasi: { label: 'Administrasi', icon: 'description', cls: 'text-blue-700' },
+    lainnya: { label: 'Lainnya', icon: 'help', cls: 'text-slate-600' },
 };
 
 // ─── Announcement category ────────────────────────────────────────────────────
 const announcementBadge: Record<string, string> = {
-    umum: 'bg-secondary-container text-on-secondary-container',
-    penting: 'bg-error-container text-on-error-container',
-    kegiatan: 'bg-primary-container/30 text-primary',
-    iuran: 'bg-primary-container/30 text-primary',
-    sosial: 'bg-primary-container/20 text-primary',
-    keamanan: 'bg-tertiary-container text-on-tertiary-container',
+    umum: 'bg-blue-50 text-blue-700 border border-blue-200',
+    penting: 'bg-red-50 text-red-700 border border-red-200',
+    kegiatan: 'bg-emerald-50 text-emerald-700 border border-emerald-200',
+    iuran: 'bg-emerald-50 text-emerald-700 border border-emerald-200',
+    sosial: 'bg-teal-50 text-teal-700 border border-teal-200',
+    keamanan: 'bg-amber-50 text-amber-700 border border-amber-200',
 };
 function annBadgeClass(cat?: string | null) {
     const key = (cat || 'umum').toLowerCase();
-    return announcementBadge[key] || 'bg-surface-container-highest text-on-surface';
+    return announcementBadge[key] || 'bg-slate-100 text-slate-700 border border-slate-200';
 }
 function annLabel(cat?: string | null) {
     if (!cat) return 'Umum';
@@ -276,11 +276,11 @@ function annLabel(cat?: string | null) {
 // ─── Document icon helper ─────────────────────────────────────────────────────
 function docIcon(cat?: string | null) {
     const c = (cat || '').toLowerCase();
-    if (c.includes('laporan') || c.includes('keuangan')) return { icon: 'picture_as_pdf', cls: 'bg-error-container/20 text-error' };
-    if (c.includes('peraturan') || c.includes('tata')) return { icon: 'description', cls: 'bg-primary-container/20 text-primary' };
-    if (c.includes('formulir') || c.includes('form')) return { icon: 'contact_page', cls: 'bg-surface-container-highest/50 text-on-surface-variant' };
-    if (c.includes('agenda') || c.includes('kalender')) return { icon: 'calendar_month', cls: 'bg-secondary-container/20 text-secondary' };
-    return { icon: 'folder', cls: 'bg-primary-container/20 text-primary' };
+    if (c.includes('laporan') || c.includes('keuangan')) return { icon: 'picture_as_pdf', cls: 'bg-red-50 text-red-600 border border-red-200' };
+    if (c.includes('peraturan') || c.includes('tata')) return { icon: 'description', cls: 'bg-emerald-50 text-emerald-700 border border-emerald-200' };
+    if (c.includes('formulir') || c.includes('form')) return { icon: 'contact_page', cls: 'bg-blue-50 text-blue-700 border border-blue-200' };
+    if (c.includes('agenda') || c.includes('kalender')) return { icon: 'calendar_month', cls: 'bg-indigo-50 text-indigo-700 border border-indigo-200' };
+    return { icon: 'folder', cls: 'bg-emerald-50 text-emerald-700 border border-emerald-200' };
 }
 
 function formatFileSize(size?: number) {
@@ -738,7 +738,7 @@ export default function HomePage({
     ];
 
     return (
-        <div className="min-h-screen bg-surface text-on-surface font-sans">
+        <div className="min-h-screen bg-slate-50 text-slate-900 font-sans">
             <Head title={`${safeSite.title} | Portal Digital Warga`} />
 
             {/* ── Emergency Bar ── */}
@@ -763,20 +763,20 @@ export default function HomePage({
             </div>
 
             {/* ── Sticky Navbar ── */}
-            <nav className="sticky top-0 z-40 border-b border-slate-800 lg:border-outline-variant/20 bg-slate-950/95 lg:bg-surface/80 backdrop-blur glass-nav">
+            <nav className="sticky top-0 z-40 border-b border-slate-200 bg-white/95 backdrop-blur glass-nav">
                 <div className="mx-auto flex h-16 lg:h-20 max-w-container-max items-center justify-between px-margin-mobile md:px-margin-desktop">
                     {/* Logo */}
                     <a href="#beranda" className="flex items-center gap-3 min-w-0 mr-4">
                         {safeSite.logoUrl ? (
                             <img src={safeSite.logoUrl} alt={safeSite.title} className="h-9 w-9 lg:h-10 lg:w-10 rounded-xl object-cover shrink-0" />
                         ) : (
-                            <div className="flex h-9 w-9 lg:h-10 lg:w-10 shrink-0 items-center justify-center rounded-xl bg-primary/20 text-primary">
+                            <div className="flex h-9 w-9 lg:h-10 lg:w-10 shrink-0 items-center justify-center rounded-xl bg-emerald-50 text-emerald-700 border border-emerald-200">
                                 <Home size={18} />
                             </div>
                         )}
                         <div className="min-w-0">
-                            <p className="text-sm lg:text-lg font-extrabold leading-none text-on-surface truncate" title={safeSite.title}>{safeSite.title}</p>
-                            <p className="text-[9px] lg:text-[10px] font-bold uppercase tracking-widest text-primary mt-1">{safeSite.rtName}</p>
+                            <p className="text-sm lg:text-lg font-extrabold leading-none text-slate-900 truncate" title={safeSite.title}>{safeSite.title}</p>
+                            <p className="text-[9px] lg:text-[10px] font-bold uppercase tracking-widest text-emerald-700 mt-1">{safeSite.rtName}</p>
                         </div>
                     </a>
 
@@ -789,8 +789,8 @@ export default function HomePage({
                                 className={[
                                     'relative rounded-full px-4 py-2 text-sm font-bold transition',
                                     activeSection === link.id
-                                        ? 'text-primary active-dot'
-                                        : 'text-on-surface-variant hover:text-primary',
+                                        ? 'text-emerald-700 active-dot'
+                                        : 'text-slate-600 hover:text-emerald-700',
                                 ].join(' ')}
                             >
                                 {link.label}
@@ -798,7 +798,7 @@ export default function HomePage({
                         ))}
                     </div>
 
-                    {/* Header actions (responsively handled: icon on mobile, details on desktop) */}
+                    {/* Header actions */}
                     <div className="flex items-center gap-3">
                         {isLoggedIn && authUser ? (
                             <ProfileDropdown
@@ -813,10 +813,10 @@ export default function HomePage({
                             />
                         ) : (
                             <>
-                                <Link href="/login" className="rounded-xl border border-outline-variant/40 px-3.5 py-1.5 text-xs lg:text-sm font-bold text-on-surface hover:text-primary transition">
+                                <Link href="/login" className="rounded-xl border border-slate-200 bg-white px-3.5 py-1.5 text-xs lg:text-sm font-bold text-slate-700 hover:text-emerald-700 hover:bg-slate-50 transition">
                                     Masuk
                                 </Link>
-                                <Link href="/warga/dashboard" className="hidden lg:inline-flex items-center gap-2 rounded-xl bg-primary-container px-5 py-2.5 text-sm font-bold text-on-primary-container shadow-lg shadow-primary-container/20 transition hover:bg-primary-container/90 active:scale-95">
+                                <Link href="/warga/dashboard" className="hidden lg:inline-flex items-center gap-2 rounded-xl bg-emerald-600 px-5 py-2.5 text-sm font-bold text-white shadow-md transition hover:bg-emerald-700 active:scale-95">
                                     <LayoutDashboard size={16} /> Portal Warga
                                 </Link>
                             </>
@@ -829,41 +829,41 @@ export default function HomePage({
                 {/* Flash Messages */}
                 {flash?.error && (
                     <div className="mx-auto max-w-container-max px-margin-mobile md:px-margin-desktop mt-6">
-                        <div className="rounded-2xl border border-red-500/30 bg-red-500/10 px-5 py-4 text-sm text-red-400 font-bold shadow-lg shadow-red-500/5 flex items-center justify-between">
+                        <div className="rounded-2xl border border-red-200 bg-red-50 px-5 py-4 text-sm text-red-700 font-bold shadow-sm flex items-center justify-between">
                             <span>{flash.error}</span>
                         </div>
                     </div>
                 )}
                 {flash?.success && (
                     <div className="mx-auto max-w-container-max px-margin-mobile md:px-margin-desktop mt-6">
-                        <div className="rounded-2xl border border-emerald-500/30 bg-emerald-500/10 px-5 py-4 text-sm text-emerald-400 font-bold shadow-lg shadow-emerald-500/5 flex items-center justify-between">
+                        <div className="rounded-2xl border border-emerald-200 bg-emerald-50 px-5 py-4 text-sm text-emerald-700 font-bold shadow-sm flex items-center justify-between">
                             <span>{flash.success}</span>
                         </div>
                     </div>
                 )}
                 {/* ── 1. Hero ── */}
-                <section id="beranda" className="relative overflow-hidden pt-12 sm:pt-16 pb-12 bg-slate-950">
-                    <div className="absolute -left-24 top-24 h-72 w-72 rounded-full bg-emerald-500/5 blur-3xl animate-pulse" />
-                    <div className="absolute -right-20 bottom-10 h-80 w-80 rounded-full bg-emerald-500/5 blur-3xl animate-pulse" />
+                <section id="beranda" className="relative overflow-hidden pt-12 sm:pt-16 pb-12 bg-gradient-to-b from-emerald-50/60 via-slate-50 to-white">
+                    <div className="absolute -left-24 top-24 h-72 w-72 rounded-full bg-emerald-400/10 blur-3xl animate-pulse" />
+                    <div className="absolute -right-20 bottom-10 h-80 w-80 rounded-full bg-emerald-400/10 blur-3xl animate-pulse" />
 
                     <div className="relative mx-auto grid max-w-container-max items-center gap-10 px-margin-mobile md:px-margin-desktop py-4 md:py-12 md:grid-cols-2">
                         <div className="space-y-5 text-left">
-                            <div className="inline-flex items-center gap-2 rounded-full border border-emerald-500/20 bg-slate-900 px-3.5 py-1.5 text-emerald-400">
-                                <span className="material-symbols-outlined text-sm font-bold text-emerald-400 animate-bounce">bolt</span>
+                            <div className="inline-flex items-center gap-2 rounded-full border border-emerald-200 bg-emerald-50 px-3.5 py-1.5 text-emerald-700">
+                                <span className="material-symbols-outlined text-sm font-bold text-emerald-600 animate-bounce">bolt</span>
                                 <span className="text-[10px] font-black uppercase tracking-widest">
                                     INOVASI WARGA DIGITAL
                                 </span>
                             </div>
 
-                            <h1 className="text-4xl sm:text-5xl font-black leading-tight tracking-tight text-slate-100 md:text-5xl lg:text-6xl">
+                            <h1 className="text-4xl sm:text-5xl font-black leading-tight tracking-tight text-slate-900 md:text-5xl lg:text-6xl">
                                 {isLoggedIn ? (
-                                    <>Selamat Datang,<br className="sm:hidden" /><span className="text-emerald-400"> {firstName}!</span></>
+                                    <>Selamat Datang,<br className="sm:hidden" /><span className="text-emerald-600"> {firstName}!</span></>
                                 ) : (
-                                    <>Transformasi <span className="text-emerald-400">Digital</span> untuk Lingkungan yang Harmonis.</>
+                                    <>Transformasi <span className="text-emerald-600">Digital</span> untuk Lingkungan yang Harmonis.</>
                                 )}
                             </h1>
 
-                            <p className="max-w-lg text-xs sm:text-sm leading-relaxed text-slate-400">
+                            <p className="max-w-lg text-xs sm:text-sm leading-relaxed text-slate-600">
                                 {isLoggedIn
                                     ? "Semoga hari Anda menyenangkan! Akses portal warga untuk memantau iuran, surat administratif, dan informasi rukun tetangga."
                                     : "Saatnya RT 004 melangkah lebih maju. Urus dokumen administrasi, cek iuran berkala, dan pantau info terkini jadi lebih mudah kapan saja."}
@@ -872,21 +872,21 @@ export default function HomePage({
                             <div className="flex flex-row gap-3 pt-1 w-full max-w-sm">
                                 {isLoggedIn ? (
                                     <>
-                                        <Link href={dashboardUrl} className="flex-1 inline-flex items-center justify-center gap-2 rounded-2xl bg-emerald-400 hover:bg-emerald-300 py-3.5 text-xs font-bold text-slate-950 shadow-lg shadow-emerald-400/20 transition active:scale-95">
+                                        <Link href={dashboardUrl} className="flex-1 inline-flex items-center justify-center gap-2 rounded-2xl bg-emerald-600 hover:bg-emerald-700 py-3.5 text-xs font-bold text-white shadow-md transition active:scale-95">
                                             {dashboardLabel} <span className="material-symbols-outlined text-[16px]">dashboard</span>
                                         </Link>
                                         {!isAdmin && (
-                                            <Link href="/warga/iuran" className="flex-1 inline-flex items-center justify-center gap-2 rounded-2xl border border-slate-800 bg-slate-900 py-3.5 text-xs font-bold text-slate-200 hover:bg-slate-800 transition active:scale-95">
+                                            <Link href="/warga/iuran" className="flex-1 inline-flex items-center justify-center gap-2 rounded-2xl border border-slate-200 bg-white py-3.5 text-xs font-bold text-slate-700 hover:bg-slate-100 transition active:scale-95">
                                                 Cek Iuran <span className="material-symbols-outlined text-[16px]">arrow_forward</span>
                                             </Link>
                                         )}
                                     </>
                                 ) : (
                                     <>
-                                        <Link href="/warga/dashboard" className="flex-1 inline-flex items-center justify-center gap-2 rounded-2xl bg-emerald-400 hover:bg-emerald-300 py-3.5 text-xs font-bold text-slate-950 shadow-lg shadow-emerald-400/20 transition active:scale-95">
+                                        <Link href="/warga/dashboard" className="flex-1 inline-flex items-center justify-center gap-2 rounded-2xl bg-emerald-600 hover:bg-emerald-700 py-3.5 text-xs font-bold text-white shadow-md transition active:scale-95">
                                             Portal Warga
                                         </Link>
-                                        <Link href="/login" className="flex-1 inline-flex items-center justify-center gap-2 rounded-2xl border border-slate-800 bg-slate-900 py-3.5 text-xs font-bold text-slate-200 hover:bg-slate-800 transition active:scale-95">
+                                        <Link href="/login" className="flex-1 inline-flex items-center justify-center gap-2 rounded-2xl border border-slate-200 bg-white py-3.5 text-xs font-bold text-slate-700 hover:bg-slate-100 transition active:scale-95">
                                             Cek Iuran
                                         </Link>
                                     </>
@@ -896,28 +896,28 @@ export default function HomePage({
 
                         {/* Hero gallery card */}
                         <div className="relative group w-full">
-                            <div className="absolute -inset-4 rounded-full bg-emerald-500/5 blur-3xl" />
-                            <div className="relative rounded-3xl border border-slate-800 bg-slate-900/40 p-3 shadow-2xl backdrop-blur-sm">
-                                <div className="overflow-hidden rounded-2xl bg-black/40">
+                            <div className="absolute -inset-4 rounded-full bg-emerald-400/10 blur-3xl" />
+                            <div className="relative rounded-3xl border border-slate-200 bg-white/90 p-3 shadow-xl backdrop-blur-sm">
+                                <div className="overflow-hidden rounded-2xl bg-slate-100">
                                     {heroList.length > 0 && activeHero ? (
                                         <div className="relative h-[320px] sm:h-[380px]">
                                             <button type="button" onClick={() => openGalleryDetail(activeHero, activeHeroIndex)} className="block h-full w-full text-left">
                                                 <img src={activeHero.imageUrl} alt={activeHero.title} className="h-full w-full object-cover transition duration-700 hover:scale-105" />
-                                                <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-transparent" />
+                                                <div className="absolute inset-0 bg-gradient-to-t from-slate-900/90 via-slate-900/30 to-transparent" />
                                                 <div className="absolute bottom-0 left-0 right-0 p-6">
                                                     <span className="mb-2.5 inline-block rounded-xl bg-purple-500/20 border border-purple-500/30 px-3 py-1 text-[10px] font-black uppercase tracking-wider text-purple-300">
                                                         {activeHero.category || 'Momen Warga'}
                                                     </span>
-                                                    <h3 className="line-clamp-2 text-lg md:text-xl font-bold text-slate-100">{activeHero.title}</h3>
-                                                    <p className="mt-1 text-xs text-slate-400 font-semibold">{activeHero.publishedAt || ''}</p>
+                                                    <h3 className="line-clamp-2 text-lg md:text-xl font-bold text-white">{activeHero.title}</h3>
+                                                    <p className="mt-1 text-xs text-slate-300 font-semibold">{activeHero.publishedAt || ''}</p>
                                                 </div>
                                             </button>
                                             {heroList.length > 1 && (
                                                 <>
-                                                    <button type="button" onClick={goToPreviousHero} aria-label="Sebelumnya" className="absolute left-3 top-1/2 z-10 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full bg-slate-900/60 text-slate-200 border border-slate-800 backdrop-blur transition hover:bg-slate-900">
+                                                    <button type="button" onClick={goToPreviousHero} aria-label="Sebelumnya" className="absolute left-3 top-1/2 z-10 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full bg-white/80 text-slate-700 border border-slate-200 backdrop-blur transition hover:bg-white">
                                                         <ChevronLeft size={20} />
                                                     </button>
-                                                    <button type="button" onClick={goToNextHero} aria-label="Berikutnya" className="absolute right-3 top-1/2 z-10 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full bg-slate-900/60 text-slate-200 border border-slate-800 backdrop-blur transition hover:bg-slate-900">
+                                                    <button type="button" onClick={goToNextHero} aria-label="Berikutnya" className="absolute right-3 top-1/2 z-10 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full bg-white/80 text-slate-700 border border-slate-200 backdrop-blur transition hover:bg-white">
                                                         <ChevronRight size={20} />
                                                     </button>
                                                 </>
@@ -926,8 +926,8 @@ export default function HomePage({
                                     ) : (
                                         <div className="flex h-[320px] items-center justify-center sm:h-[380px]">
                                             <div className="text-center p-8">
-                                                <Camera size={48} className="mx-auto mb-3 text-slate-700" />
-                                                <p className="font-bold text-slate-400">Belum ada foto galeri</p>
+                                                <Camera size={48} className="mx-auto mb-3 text-slate-400" />
+                                                <p className="font-bold text-slate-600">Belum ada foto galeri</p>
                                                 <p className="mt-2 text-xs text-slate-500">Foto kegiatan akan tampil di sini setelah admin mempublishnya.</p>
                                             </div>
                                         </div>
@@ -938,7 +938,7 @@ export default function HomePage({
                                     <div className="mt-3 flex justify-center gap-1.5">
                                         {heroList.map((_, i) => (
                                             <button key={i} type="button" onClick={() => setActiveHeroIndex(i)}
-                                                className={['h-1.5 rounded-full transition', i === activeHeroIndex ? 'w-6 bg-emerald-400' : 'w-1.5 bg-slate-700'].join(' ')}
+                                                className={['h-1.5 rounded-full transition', i === activeHeroIndex ? 'w-6 bg-emerald-600' : 'w-1.5 bg-slate-300'].join(' ')}
                                                 aria-label={`Foto ${i + 1}`}
                                             />
                                         ))}
@@ -952,7 +952,7 @@ export default function HomePage({
                 {/* ── 2. Quick Stats ── */}
                 <section className="relative -mt-8 z-10 px-margin-mobile md:px-margin-desktop">
                     <div className="mx-auto max-w-container-max">
-                        <div className="grid grid-cols-2 gap-4 rounded-3xl border border-slate-800 bg-slate-900/90 p-5 shadow-2xl md:grid-cols-4">
+                        <div className="grid grid-cols-2 gap-4 rounded-3xl border border-slate-200 bg-white p-5 shadow-xl md:grid-cols-4">
                             {(stats.length > 0 ? stats : defaultStats).map((stat, i) => (
                                 <StatCard key={stat.label} stat={stat} index={i} />
                             ))}
@@ -964,9 +964,9 @@ export default function HomePage({
                 <section id="layanan" className="py-stack-lg">
                     <div className="mx-auto max-w-container-max px-margin-mobile md:px-margin-desktop">
                         <div className="mb-10 text-center">
-                            <span className="text-xs font-bold uppercase tracking-widest text-emerald-400">Layanan</span>
-                            <h2 className="mt-1 text-3xl font-black text-on-surface md:text-4xl">Layanan Warga Digital</h2>
-                            <p className="mt-2 text-on-surface-variant max-w-xl mx-auto">Akses cepat semua kebutuhan administratif dan komunitas dalam satu platform.</p>
+                            <span className="text-xs font-bold uppercase tracking-widest text-emerald-700">Layanan</span>
+                            <h2 className="mt-1 text-3xl font-black text-slate-900 md:text-4xl">Layanan Warga Digital</h2>
+                            <p className="mt-2 text-slate-600 max-w-xl mx-auto">Akses cepat semua kebutuhan administratif dan komunitas dalam satu platform.</p>
                         </div>
                         <div className="grid grid-cols-2 gap-gutter md:grid-cols-3 lg:grid-cols-6">
                             {serviceCards.map((item) => (
@@ -982,16 +982,16 @@ export default function HomePage({
                 </div>
 
                 {/* ── 5. Berita & Pengumuman ── */}
-                <section id="berita" className="py-stack-lg bg-surface-container-lowest/30">
+                <section id="berita" className="py-stack-lg bg-slate-50/80">
                     <div className="mx-auto max-w-container-max px-margin-mobile md:px-margin-desktop">
                         <div className="mb-10 text-center">
-                            <span className="text-xs font-bold uppercase tracking-widest text-emerald-400">Informasi Terkini</span>
-                            <h2 className="mt-1 text-3xl font-black text-on-surface md:text-4xl">Berita &amp; Pengumuman</h2>
-                            <p className="mt-2 text-on-surface-variant max-w-xl mx-auto">Informasi terbaru seputar lingkungan RT 004.</p>
+                            <span className="text-xs font-bold uppercase tracking-widest text-emerald-700">Informasi Terkini</span>
+                            <h2 className="mt-1 text-3xl font-black text-slate-900 md:text-4xl">Berita &amp; Pengumuman</h2>
+                            <p className="mt-2 text-slate-600 max-w-xl mx-auto">Informasi terbaru seputar lingkungan RT 004.</p>
                         </div>
 
                         {/* Search & Category Filter for News */}
-                        <div className="mb-6 flex flex-col gap-4 md:flex-row md:items-center md:justify-between border-b border-slate-800 pb-6">
+                        <div className="mb-6 flex flex-col gap-4 md:flex-row md:items-center md:justify-between border-b border-slate-200 pb-6">
                             {/* Search Input */}
                             <div className="relative flex-1 max-w-md w-full">
                                 <input
@@ -999,9 +999,9 @@ export default function HomePage({
                                     value={newsSearch}
                                     onChange={(e) => setNewsSearch(e.target.value)}
                                     placeholder="Cari berita..."
-                                    className="w-full rounded-xl border border-slate-800 bg-slate-900/60 px-4 py-2.5 pl-10 text-xs text-slate-100 placeholder-slate-500 focus:border-emerald-400 focus:outline-none focus:ring-1 focus:ring-emerald-400/30 transition"
+                                    className="w-full rounded-xl border border-slate-200 bg-white px-4 py-2.5 pl-10 text-xs text-slate-900 placeholder-slate-400 focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500/30 transition"
                                 />
-                                <span className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-500 text-sm">
+                                <span className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-sm">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5"><path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
                                 </span>
                             </div>
@@ -1016,8 +1016,8 @@ export default function HomePage({
                                         className={[
                                             'px-4 py-2 rounded-full text-xs font-bold transition capitalize',
                                             newsCategory.toLowerCase() === cat.toLowerCase()
-                                                ? 'bg-emerald-500 text-slate-950 font-black shadow-md shadow-emerald-500/10'
-                                                : 'border border-slate-800 bg-slate-900/40 text-slate-400 hover:border-slate-700 hover:text-slate-200'
+                                                ? 'bg-emerald-600 text-white font-bold shadow-md'
+                                                : 'border border-slate-200 bg-white text-slate-600 hover:bg-slate-100 hover:text-slate-900'
                                         ].join(' ')}
                                     >
                                         {cat === 'semua' ? 'Semua Kategori' : cat}
@@ -1039,7 +1039,7 @@ export default function HomePage({
                                         <button
                                             type="button"
                                             onClick={() => setShowAllNews(prev => !prev)}
-                                            className="inline-flex min-h-11 items-center justify-center gap-2 rounded-xl border border-emerald-400/40 px-6 py-2.5 text-sm font-semibold text-emerald-300 transition hover:bg-emerald-400/10 active:scale-[0.98] focus:outline-none"
+                                            className="inline-flex min-h-11 items-center justify-center gap-2 rounded-xl border border-emerald-600 px-6 py-2.5 text-sm font-semibold text-emerald-700 transition hover:bg-emerald-50 active:scale-[0.98] focus:outline-none"
                                         >
                                             {showAllNews ? 'Sembunyikan Sebagian' : 'Lihat Semua Berita'}
                                         </button>
@@ -1057,22 +1057,22 @@ export default function HomePage({
                 </section>
 
                 {/* ── 6. Kegiatan / Agenda ── */}
-                <section id="kegiatan" className="py-stack-lg">
+                <section id="kegiatan" className="py-stack-lg bg-white">
                     <div className="mx-auto max-w-container-max px-margin-mobile md:px-margin-desktop">
                         <div className="mb-10 text-center">
-                            <span className="text-xs font-bold uppercase tracking-widest text-emerald-400">Agenda RT</span>
-                            <h2 className="mt-1 text-3xl font-black text-on-surface md:text-4xl">Agenda Mendatang</h2>
-                            <p className="mt-2 text-on-surface-variant max-w-xl mx-auto">Daftar kegiatan, rapat warga, dan iuran lingkungan berikutnya.</p>
+                            <span className="text-xs font-bold uppercase tracking-widest text-emerald-700">Agenda RT</span>
+                            <h2 className="mt-1 text-3xl font-black text-slate-900 md:text-4xl">Agenda Mendatang</h2>
+                            <p className="mt-2 text-slate-600 max-w-xl mx-auto">Daftar kegiatan, rapat warga, dan iuran lingkungan berikutnya.</p>
                         </div>
 
                         {/* Calendar Day Strip */}
-                        <div className="mb-8 rounded-3xl border border-slate-800 bg-slate-900/40 p-5">
+                        <div className="mb-8 rounded-3xl border border-slate-200 bg-slate-50 p-5">
                             <div className="mb-4 flex items-center justify-between">
-                                <h3 className="text-sm font-bold text-slate-200">Jadwal {currentMonthLabel}</h3>
+                                <h3 className="text-sm font-bold text-slate-900">Jadwal {currentMonthLabel}</h3>
                                 <button
                                     type="button"
                                     onClick={() => setShowCalendarModal(true)}
-                                    className="text-xs font-bold text-emerald-400 hover:text-emerald-300 flex items-center gap-1"
+                                    className="text-xs font-bold text-emerald-700 hover:text-emerald-800 flex items-center gap-1"
                                 >
                                     Lihat Semua <span className="text-[10px]">&gt;</span>
                                 </button>
@@ -1096,8 +1096,8 @@ export default function HomePage({
                                             className={[
                                                 'flex flex-col items-center justify-center rounded-2xl py-3.5 px-4 min-w-[64px] md:w-28 transition relative',
                                                 isSelected
-                                                    ? 'bg-emerald-400 text-slate-950 font-extrabold shadow-md shadow-emerald-500/10'
-                                                    : 'border border-slate-800 bg-slate-900/60 text-slate-400 hover:border-slate-700 hover:text-slate-200'
+                                                    ? 'bg-emerald-600 text-white font-bold shadow-md'
+                                                    : 'border border-slate-200 bg-white text-slate-600 hover:bg-slate-100 hover:text-slate-900'
                                             ].join(' ')}
                                         >
                                             <span className="text-[8px] font-bold uppercase tracking-wider">{day.dayName}</span>
@@ -1105,12 +1105,12 @@ export default function HomePage({
 
                                             {/* Indicator dot for selected day */}
                                             {isSelected && (
-                                                <span className="absolute bottom-1.5 h-1 w-1 rounded-full bg-slate-950" />
+                                                <span className="absolute bottom-1.5 h-1 w-1 rounded-full bg-white" />
                                             )}
 
                                             {/* Event present indicator dot */}
                                             {!isSelected && hasEvent && (
-                                                <span className="absolute bottom-1.5 h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                                                <span className="absolute bottom-1.5 h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse" />
                                             )}
                                         </button>
                                     );
@@ -1125,13 +1125,13 @@ export default function HomePage({
                                         const participants = event.participants ?? [];
                                         const count = event.participantsCount ?? participants.length;
                                         return (
-                                            <article key={event.id} className="group rounded-3xl border border-slate-800 bg-slate-900/60 p-5 shadow-sm transition hover:border-emerald-500/30 hover:shadow-xl md:p-8">
+                                            <article key={event.id} className="group rounded-3xl border border-slate-200 bg-white p-5 shadow-sm transition hover:border-emerald-500/40 hover:shadow-md md:p-8">
                                                 <div className="flex flex-col">
 
                                                     {/* Badge and Details grouped in flex-row */}
                                                     <div className="flex flex-row items-start gap-4 flex-1 min-w-0">
                                                         {/* Date badge */}
-                                                        <div className="flex h-16 w-16 sm:h-20 sm:w-20 md:h-24 md:w-24 shrink-0 flex-col items-center justify-center rounded-2xl border border-emerald-500/20 bg-emerald-500/10 text-emerald-400">
+                                                        <div className="flex h-16 w-16 sm:h-20 sm:w-20 md:h-24 md:w-24 shrink-0 flex-col items-center justify-center rounded-2xl border border-emerald-200 bg-emerald-50 text-emerald-700">
                                                             <Calendar size={22} className="md:w-6 md:h-6" />
                                                             <span className="mt-0.5 text-[8px] md:text-xs font-bold uppercase tracking-wider">Agenda</span>
                                                         </div>
@@ -1140,43 +1140,43 @@ export default function HomePage({
                                                         <div className="min-w-0 flex-1">
                                                             <div className="mb-2 flex flex-wrap items-center gap-1.5">
                                                                 {event.type && (
-                                                                    <span className="rounded-full bg-slate-800 px-2.5 py-0.5 text-[10px] md:text-xs font-bold text-slate-300">{event.type}</span>
+                                                                    <span className="rounded-full bg-slate-100 px-2.5 py-0.5 text-[10px] md:text-xs font-bold text-slate-700">{event.type}</span>
                                                                 )}
                                                                 {event.status && (
-                                                                    <span className="rounded-full bg-emerald-500/10 px-2.5 py-0.5 text-[10px] md:text-xs font-bold text-emerald-400">{event.status}</span>
+                                                                    <span className="rounded-full bg-emerald-50 border border-emerald-200 px-2.5 py-0.5 text-[10px] md:text-xs font-bold text-emerald-700">{event.status}</span>
                                                                 )}
                                                                 <button
                                                                     type="button"
                                                                     onClick={() => setSelectedParticipantsEvent(event)}
-                                                                    className="rounded-full bg-slate-800/80 hover:bg-slate-700/80 px-2.5 py-0.5 text-[10px] md:text-xs font-bold text-emerald-400 border border-slate-700/50 flex items-center gap-1 transition"
+                                                                    className="rounded-full bg-emerald-50 hover:bg-emerald-100 px-2.5 py-0.5 text-[10px] md:text-xs font-bold text-emerald-700 border border-emerald-200 flex items-center gap-1 transition"
                                                                 >
                                                                     <span className="material-symbols-outlined text-[12px] md:text-[14px]" style={{ fontVariationSettings: "'FILL' 1" }}>groups</span>
                                                                     {count} Ikut
                                                                 </button>
                                                             </div>
-                                                            <h3 className="text-sm sm:text-lg md:text-2xl font-bold text-slate-100 group-hover:text-emerald-400 transition leading-snug">{event.title}</h3>
+                                                            <h3 className="text-sm sm:text-lg md:text-2xl font-bold text-slate-900 group-hover:text-emerald-600 transition leading-snug">{event.title}</h3>
                                                             {event.description && (
-                                                                <p className="mt-2 line-clamp-2 text-xs md:text-sm leading-relaxed text-slate-400">{event.description}</p>
+                                                                <p className="mt-2 line-clamp-2 text-xs md:text-sm leading-relaxed text-slate-600">{event.description}</p>
                                                             )}
-                                                            <div className="mt-3 flex flex-col sm:flex-row sm:flex-wrap gap-2 sm:gap-4 text-xs text-slate-400">
+                                                            <div className="mt-3 flex flex-col sm:flex-row sm:flex-wrap gap-2 sm:gap-4 text-xs text-slate-500">
                                                                 <span className="flex items-center gap-1.5">
-                                                                    <Clock size={14} className="text-emerald-400" /> {event.date || '-'} {event.time ? `· ${event.time}` : ''}
+                                                                    <Clock size={14} className="text-emerald-600" /> {event.date || '-'} {event.time ? `· ${event.time}` : ''}
                                                                 </span>
                                                                 <span className="flex items-center gap-1.5">
-                                                                    <MapPin size={14} className="text-emerald-400" /> {event.location || '-'}
+                                                                    <MapPin size={14} className="text-emerald-600" /> {event.location || '-'}
                                                                 </span>
                                                             </div>
                                                         </div>
                                                     </div>
 
                                                     {/* Bottom Action Area (RSVP & Share & Detail) */}
-                                                    <div className="mt-4 pt-4 border-t border-slate-800/60 flex items-center gap-3 w-full">
+                                                    <div className="mt-4 pt-4 border-t border-slate-200 flex items-center gap-3 w-full">
                                                         <button
                                                             type="button"
                                                             onClick={() => openEventDetailModal(event)}
-                                                            className="flex-1 inline-flex items-center justify-center gap-1.5 rounded-xl border border-slate-700/80 bg-slate-800/60 px-4 py-2.5 text-xs font-bold text-slate-200 hover:bg-slate-700 hover:text-white transition active:scale-95"
+                                                            className="flex-1 inline-flex items-center justify-center gap-1.5 rounded-xl border border-slate-200 bg-slate-100 px-4 py-2.5 text-xs font-bold text-slate-700 hover:bg-slate-200 hover:text-slate-900 transition active:scale-95"
                                                         >
-                                                            <FileText size={14} className="text-emerald-400" />
+                                                            <FileText size={14} className="text-emerald-600" />
                                                             Detail &amp; Dokumentasi
                                                         </button>
 
@@ -1184,13 +1184,13 @@ export default function HomePage({
                                                             isWargaLoggedIn ? (
                                                                 event.isJoined ? (
                                                                     <div className="flex-1 flex gap-2">
-                                                                        <span className="flex-1 flex items-center justify-center rounded-xl bg-emerald-500/10 py-2.5 text-xs font-bold text-emerald-400">
+                                                                        <span className="flex-1 flex items-center justify-center rounded-xl bg-emerald-50 border border-emerald-200 py-2.5 text-xs font-bold text-emerald-700">
                                                                             Sudah Ikut
                                                                         </span>
                                                                         <button
                                                                             type="button"
                                                                             onClick={() => cancelJoinEvent(event)}
-                                                                            className="rounded-xl border border-error/30 bg-slate-900 px-3 py-2.5 text-xs font-bold text-error transition hover:bg-slate-800"
+                                                                            className="rounded-xl border border-red-200 bg-red-50 px-3 py-2.5 text-xs font-bold text-red-700 transition hover:bg-red-100"
                                                                         >
                                                                             Batal
                                                                         </button>
@@ -1199,7 +1199,7 @@ export default function HomePage({
                                                                     <button
                                                                         type="button"
                                                                         onClick={() => joinEvent(event)}
-                                                                        className="flex-1 rounded-xl bg-emerald-500 py-2.5 text-xs font-bold text-slate-950 hover:bg-emerald-400 transition active:scale-95"
+                                                                        className="flex-1 rounded-xl bg-emerald-600 py-2.5 text-xs font-bold text-white hover:bg-emerald-700 transition active:scale-95 shadow-sm"
                                                                     >
                                                                         RSVP
                                                                     </button>
@@ -1207,7 +1207,7 @@ export default function HomePage({
                                                             ) : (
                                                                 <Link
                                                                     href="/login"
-                                                                    className="flex-1 flex items-center justify-center rounded-xl bg-slate-800 py-2.5 text-xs font-bold text-slate-200 hover:bg-slate-700 transition"
+                                                                    className="flex-1 flex items-center justify-center rounded-xl bg-slate-100 border border-slate-200 py-2.5 text-xs font-bold text-slate-700 hover:bg-slate-200 transition"
                                                                 >
                                                                     Masuk untuk RSVP
                                                                 </Link>
@@ -1218,7 +1218,7 @@ export default function HomePage({
                                                         <button
                                                             type="button"
                                                             onClick={() => handleShare(event.title || 'Agenda RT', window.location.href)}
-                                                            className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-slate-800 bg-slate-900 text-slate-400 hover:text-emerald-400 hover:border-emerald-500/30 transition"
+                                                            className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-slate-200 bg-slate-50 text-slate-600 hover:text-emerald-700 hover:bg-slate-100 transition"
                                                             title="Bagikan Kegiatan"
                                                         >
                                                             <span className="material-symbols-outlined text-[18px]">share</span>
@@ -1235,7 +1235,7 @@ export default function HomePage({
                                         <button
                                             type="button"
                                             onClick={() => setShowAllEvents(prev => !prev)}
-                                            className="inline-flex min-h-11 items-center justify-center gap-2 rounded-xl border border-emerald-400/40 px-6 py-2.5 text-sm font-semibold text-emerald-300 transition hover:bg-emerald-400/10 active:scale-[0.98] focus:outline-none"
+                                            className="inline-flex min-h-11 items-center justify-center gap-2 rounded-xl border border-emerald-600 px-6 py-2.5 text-sm font-semibold text-emerald-700 transition hover:bg-emerald-50 active:scale-[0.98] focus:outline-none"
                                         >
                                             {showAllEvents ? 'Sembunyikan Sebagian' : 'Lihat Semua Kegiatan'}
                                         </button>
@@ -1249,12 +1249,12 @@ export default function HomePage({
                 </section>
 
                 {/* ── 7. Diskusi & Pengaduan Publik ── */}
-                <section id="diskusi" className="py-stack-lg bg-surface-container-lowest/30">
+                <section id="diskusi" className="py-stack-lg bg-slate-50/80">
                     <div className="mx-auto max-w-container-max px-margin-mobile md:px-margin-desktop">
                         <div className="mb-10 text-center">
-                            <span className="text-xs font-bold uppercase tracking-widest text-primary">Aspirasi Warga</span>
-                            <h2 className="mt-1 text-3xl font-black text-on-surface md:text-4xl">Diskusi &amp; Pengaduan Warga</h2>
-                            <p className="mt-2 text-on-surface-variant">Wadah aspirasi dan laporan warga untuk lingkungan yang lebih baik.</p>
+                            <span className="text-xs font-bold uppercase tracking-widest text-emerald-700">Aspirasi Warga</span>
+                            <h2 className="mt-1 text-3xl font-black text-slate-900 md:text-4xl">Diskusi &amp; Pengaduan Warga</h2>
+                            <p className="mt-2 text-slate-600">Wadah aspirasi dan laporan warga untuk lingkungan yang lebih baik.</p>
                         </div>
 
                         {complaints.length > 0 ? (
@@ -1265,7 +1265,7 @@ export default function HomePage({
                                         const pri = priorityConfig[c.prioritas ?? ''] ?? priorityConfig.sedang;
                                         const kat = kategoriConfig[c.kategori ?? ''] ?? kategoriConfig.lainnya;
                                         return (
-                                            <div key={c.id} className="group flex flex-col gap-4 rounded-[2rem] border border-outline-variant/30 bg-surface-container-low p-6 shadow-sm transition hover:-translate-y-1 hover:border-primary hover:shadow-2xl">
+                                            <div key={c.id} className="group flex flex-col gap-4 rounded-[2rem] border border-slate-200 bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:border-emerald-500 hover:shadow-md">
                                                 {/* Header */}
                                                 <div className="flex items-start justify-between">
                                                     <div className="flex items-center gap-3">
@@ -1273,17 +1273,17 @@ export default function HomePage({
                                                             <img
                                                                 src={c.authorAvatar}
                                                                 alt={c.authorName}
-                                                                className="h-10 w-10 rounded-full object-cover border border-primary/20"
+                                                                className="h-10 w-10 rounded-full object-cover border border-emerald-200"
                                                             />
                                                         ) : (
-                                                            <div className="flex h-10 w-10 items-center justify-center rounded-full bg-primary-container/20 text-sm font-black text-primary">
+                                                            <div className="flex h-10 w-10 items-center justify-center rounded-full bg-emerald-50 text-sm font-black text-emerald-700 border border-emerald-200">
                                                                 {c.authorInitials ?? '?'}
                                                             </div>
                                                         )}
                                                         <div>
-                                                            <p className="text-sm font-bold text-on-surface">{c.authorName}</p>
+                                                            <p className="text-sm font-bold text-slate-900">{c.authorName}</p>
                                                             {c.houseNumber && (
-                                                                <p className="text-[10px] uppercase tracking-widest text-on-surface-variant">No. {c.houseNumber}</p>
+                                                                <p className="text-[10px] uppercase tracking-widest text-slate-500">No. {c.houseNumber}</p>
                                                             )}
                                                         </div>
                                                     </div>
@@ -1298,19 +1298,19 @@ export default function HomePage({
                                                     <div className={['mb-2 flex items-center gap-2 text-[10px] font-black uppercase tracking-widest', pri.cls].join(' ')}>
                                                         <span className="material-symbols-outlined text-[16px]">{pri.icon}</span>
                                                         <span>{pri.label}</span>
-                                                        <span className="mx-1 text-outline-variant">·</span>
+                                                        <span className="mx-1 text-slate-300">·</span>
                                                         <span className={['flex items-center gap-1', kat.cls].join(' ')}>
                                                             <span className="material-symbols-outlined text-[16px]">{kat.icon}</span>
                                                             {kat.label}
                                                         </span>
                                                     </div>
-                                                    <h4 className="text-base font-black text-on-surface group-hover:text-primary transition-colors">{c.judul}</h4>
-                                                    {c.excerpt && <p className="mt-2 line-clamp-2 text-sm leading-5 text-on-surface-variant">{c.excerpt}</p>}
+                                                    <h4 className="text-base font-black text-slate-900 group-hover:text-emerald-600 transition-colors">{c.judul}</h4>
+                                                    {c.excerpt && <p className="mt-2 line-clamp-2 text-sm leading-5 text-slate-600">{c.excerpt}</p>}
                                                 </div>
 
                                                 {/* Footer */}
-                                                <div className="flex items-center justify-end border-t border-outline-variant/20 pt-3">
-                                                    <span className="text-xs text-on-surface-variant">{c.tanggal || '-'}</span>
+                                                <div className="flex items-center justify-end border-t border-slate-100 pt-3">
+                                                    <span className="text-xs text-slate-400">{c.tanggal || '-'}</span>
                                                 </div>
                                             </div>
                                         );
@@ -1318,13 +1318,13 @@ export default function HomePage({
                                 </div>
                                 {isLoggedIn ? (
                                     <div className="mt-8 flex justify-center">
-                                        <Link href="/warga/pengaduan" className="inline-flex items-center gap-2 rounded-2xl bg-primary-container px-7 py-3 font-black text-on-primary-container shadow-lg shadow-primary-container/20 transition hover:bg-primary-container/90 active:scale-95">
+                                        <Link href="/warga/pengaduan" className="inline-flex items-center gap-2 rounded-2xl bg-emerald-600 px-7 py-3 font-black text-white shadow-md transition hover:bg-emerald-700 active:scale-95">
                                             Lihat Semua Pengaduan <ArrowRight size={17} />
                                         </Link>
                                     </div>
                                 ) : (
                                     <div className="mt-8 flex justify-center">
-                                        <Link href="/login" className="inline-flex items-center gap-2 rounded-2xl bg-surface-container-high border border-outline-variant/30 px-7 py-3 font-black text-on-surface transition hover:bg-surface-container-highest active:scale-95">
+                                        <Link href="/login" className="inline-flex items-center gap-2 rounded-2xl bg-white border border-slate-200 px-7 py-3 font-black text-slate-800 shadow-sm transition hover:bg-slate-100 active:scale-95">
                                             Masuk untuk Buat Pengaduan <ArrowRight size={17} />
                                         </Link>
                                     </div>
@@ -1337,15 +1337,15 @@ export default function HomePage({
                 </section>
 
                 {/* ── 8. Galeri Kegiatan ── */}
-                <section id="galeri" className="py-stack-lg bg-surface-container-lowest">
+                <section id="galeri" className="py-stack-lg bg-slate-50/80">
                     <div className="mx-auto max-w-container-max px-margin-mobile md:px-margin-desktop">
                         <div className="mb-8 text-center">
-                            <span className="text-xs font-bold uppercase tracking-widest text-primary">Foto Kegiatan</span>
-                            <h2 className="mt-1 text-3xl font-black text-on-surface md:text-4xl">Galeri Kegiatan</h2>
+                            <span className="text-xs font-bold uppercase tracking-widest text-emerald-700">Foto Kegiatan</span>
+                            <h2 className="mt-1 text-3xl font-black text-slate-900 md:text-4xl">Galeri Kegiatan</h2>
                         </div>
 
                         {/* Category Chips for Gallery */}
-                        <div className="mb-8 flex justify-center border-b border-slate-800 pb-6">
+                        <div className="mb-8 flex justify-center border-b border-slate-200 pb-6">
                             <div className="flex gap-2 overflow-x-auto pb-1 no-scrollbar whitespace-nowrap scroll-smooth">
                                 {galleryCategories.map((cat) => (
                                     <button
@@ -1355,8 +1355,8 @@ export default function HomePage({
                                         className={[
                                             'px-4 py-2 rounded-full text-xs font-bold transition capitalize',
                                             galleryCategory.toLowerCase() === cat.toLowerCase()
-                                                ? 'bg-emerald-500 text-slate-950 font-black shadow-md shadow-emerald-500/10'
-                                                : 'border border-slate-800 bg-slate-900/40 text-slate-400 hover:border-slate-700 hover:text-slate-200'
+                                                ? 'bg-emerald-600 text-white font-bold shadow-md'
+                                                : 'border border-slate-200 bg-white text-slate-600 hover:bg-slate-100 hover:text-slate-900'
                                         ].join(' ')}
                                     >
                                         {cat === 'semua' ? 'Semua Galeri' : cat}
@@ -1369,7 +1369,7 @@ export default function HomePage({
                             <div className="space-y-6">
                                 <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6">
                                     {displayedGallery.map((item, index) => (
-                                        <div key={item.id} className="group relative overflow-hidden rounded-xl border border-slate-800 bg-slate-900/40 p-2 transition hover:border-emerald-500/30 hover:shadow-xl">
+                                        <div key={item.id} className="group relative overflow-hidden rounded-xl border border-slate-200 bg-white p-2 transition hover:border-emerald-500/40 hover:shadow-md">
                                             <button
                                                 type="button"
                                                 onClick={() => openGalleryDetail(item, index)}
@@ -1380,17 +1380,17 @@ export default function HomePage({
                                                     alt={item.title}
                                                     className="h-full w-full object-cover transition duration-500 group-hover:scale-105"
                                                 />
-                                                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent opacity-60" />
+                                                <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-transparent to-transparent opacity-60" />
                                             </button>
 
                                             <div className="mt-3 px-1">
                                                 <div className="flex items-center justify-between gap-2">
-                                                    <span className="rounded bg-emerald-500/10 px-2 py-0.5 text-[9px] font-bold uppercase text-emerald-400">
+                                                    <span className="rounded bg-emerald-50 border border-emerald-200 px-2 py-0.5 text-[9px] font-bold uppercase text-emerald-700">
                                                         {item.category || 'Dokumentasi'}
                                                     </span>
-                                                    <span className="text-[9px] text-slate-400 font-semibold">{item.publishedAt || ''}</span>
+                                                    <span className="text-[9px] text-slate-500 font-semibold">{item.publishedAt || ''}</span>
                                                 </div>
-                                                <h4 className="mt-2 text-xs sm:text-sm font-semibold text-slate-100 line-clamp-1 group-hover:text-emerald-400 transition">
+                                                <h4 className="mt-2 text-xs sm:text-sm font-semibold text-slate-900 line-clamp-1 group-hover:text-emerald-600 transition">
                                                     {item.title}
                                                 </h4>
                                             </div>
@@ -1403,7 +1403,7 @@ export default function HomePage({
                                         <button
                                             type="button"
                                             onClick={() => setShowAllGallery(prev => !prev)}
-                                            className="inline-flex min-h-11 items-center justify-center gap-2 rounded-xl border border-emerald-400/40 px-6 py-2.5 text-sm font-semibold text-emerald-300 transition hover:bg-emerald-400/10 active:scale-[0.98] focus:outline-none"
+                                            className="inline-flex min-h-11 items-center justify-center gap-2 rounded-xl border border-emerald-600 px-6 py-2.5 text-sm font-semibold text-emerald-700 transition hover:bg-emerald-50 active:scale-[0.98] focus:outline-none"
                                         >
                                             {showAllGallery ? 'Sembunyikan Sebagian' : 'Lihat Semua Foto'}
                                         </button>
@@ -1421,16 +1421,16 @@ export default function HomePage({
                 </section>
 
                 {/* ── 9. Dokumen Publik ── */}
-                <section id="dokumen" className="py-stack-lg">
+                <section id="dokumen" className="py-stack-lg bg-white">
                     <div className="mx-auto max-w-container-max px-margin-mobile md:px-margin-desktop">
                         <div className="mb-8 text-center">
-                            <span className="text-xs font-bold uppercase tracking-widest text-emerald-400">Transparansi Data</span>
-                            <h2 className="mt-1 text-3xl font-black text-on-surface md:text-4xl">Dokumen Digital</h2>
-                            <p className="mt-2 text-on-surface-variant max-w-xl mx-auto">Akses dokumen penting secara transparan dan mudah diunduh.</p>
+                            <span className="text-xs font-bold uppercase tracking-widest text-emerald-700">Transparansi Data</span>
+                            <h2 className="mt-1 text-3xl font-black text-slate-900 md:text-4xl">Dokumen Digital</h2>
+                            <p className="mt-2 text-slate-600 max-w-xl mx-auto">Akses dokumen penting secara transparan dan mudah diunduh.</p>
                         </div>
 
                         {/* Search & Category Filter for Documents */}
-                        <div className="mb-6 flex flex-col gap-4 md:flex-row md:items-center md:justify-between border-b border-slate-800 pb-6">
+                        <div className="mb-6 flex flex-col gap-4 md:flex-row md:items-center md:justify-between border-b border-slate-200 pb-6">
                             {/* Search Input */}
                             <div className="relative flex-1 max-w-md w-full">
                                 <input
@@ -1438,9 +1438,9 @@ export default function HomePage({
                                     value={docSearch}
                                     onChange={(e) => setDocSearch(e.target.value)}
                                     placeholder="Cari dokumen..."
-                                    className="w-full rounded-xl border border-slate-800 bg-slate-900/60 px-4 py-2.5 pl-10 text-xs text-slate-100 placeholder-slate-500 focus:border-emerald-400 focus:outline-none focus:ring-1 focus:ring-emerald-400/30 transition"
+                                    className="w-full rounded-xl border border-slate-200 bg-white px-4 py-2.5 pl-10 text-xs text-slate-900 placeholder-slate-400 focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500/30 transition"
                                 />
-                                <span className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-500 text-sm">
+                                <span className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-sm">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5"><path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
                                 </span>
                             </div>
@@ -1455,8 +1455,8 @@ export default function HomePage({
                                         className={[
                                             'px-4 py-2 rounded-full text-xs font-bold transition capitalize',
                                             docCategory.toLowerCase() === cat.toLowerCase()
-                                                ? 'bg-emerald-500 text-slate-950 font-black shadow-md shadow-emerald-500/10'
-                                                : 'border border-slate-800 bg-slate-900/40 text-slate-400 hover:border-slate-700 hover:text-slate-200'
+                                                ? 'bg-emerald-600 text-white font-bold shadow-md'
+                                                : 'border border-slate-200 bg-white text-slate-600 hover:bg-slate-100 hover:text-slate-900'
                                         ].join(' ')}
                                     >
                                         {cat === 'semua' ? 'Semua Dokumen' : cat}
@@ -1478,28 +1478,28 @@ export default function HomePage({
                                         }) : false;
 
                                         return (
-                                            <div key={doc.id} className="group flex flex-col gap-4 rounded-3xl border border-outline-variant/20 bg-slate-900/60 p-5 transition hover:border-emerald-500/30 hover:shadow-xl md:flex-row md:items-center">
+                                            <div key={doc.id} className="group flex flex-col gap-4 rounded-3xl border border-slate-200 bg-white p-5 transition hover:border-emerald-500/40 hover:shadow-md md:flex-row md:items-center">
                                                 <div className="flex items-start gap-4 flex-1 min-w-0">
                                                     <div className={['w-14 h-14 rounded-2xl flex items-center justify-center shrink-0 transition group-hover:scale-110', cls].join(' ')}>
                                                         <span className="material-symbols-outlined text-[28px]" style={{ fontVariationSettings: "'FILL' 1" }}>{icon}</span>
                                                     </div>
                                                     <div className="min-w-0 flex-1">
                                                         <div className="mb-1 flex flex-wrap items-center gap-2">
-                                                            <span className="rounded bg-surface-container-highest px-2 py-0.5 text-[10px] font-bold uppercase text-on-surface-variant">
+                                                            <span className="rounded bg-slate-100 px-2 py-0.5 text-[10px] font-bold uppercase text-slate-700">
                                                                 {doc.category || 'Dokumen'}
                                                             </span>
-                                                            <span className="text-[10px] text-on-surface-variant font-semibold">{doc.publishedAt || ''}</span>
+                                                            <span className="text-[10px] text-slate-500 font-semibold">{doc.publishedAt || ''}</span>
                                                         </div>
-                                                        <h4 className="text-base font-black text-on-surface leading-snug">{doc.title}</h4>
-                                                        {doc.description && <p className="mt-1 line-clamp-2 text-sm text-on-surface-variant leading-relaxed">{doc.description}</p>}
+                                                        <h4 className="text-base font-black text-slate-900 leading-snug">{doc.title}</h4>
+                                                        {doc.description && <p className="mt-1 line-clamp-2 text-sm text-slate-600 leading-relaxed">{doc.description}</p>}
 
                                                         {/* File download area */}
-                                                        <div className="mt-4 border-t border-outline-variant/20 pt-4 flex flex-col gap-2.5">
+                                                        <div className="mt-4 border-t border-slate-200 pt-4 flex flex-col gap-2.5">
                                                             {/* 1. Unduh File Utama */}
                                                             {hasMainFile && (
                                                                 <a
                                                                     href={`/documents/${doc.id}/download-main`}
-                                                                    className="inline-flex items-center justify-center gap-2 rounded-2xl border border-emerald-400/30 hover:border-emerald-450 bg-emerald-500/5 hover:bg-emerald-500/10 px-4 py-3 text-xs font-black text-emerald-400 transition active:scale-[0.98] hover:no-underline w-full text-center"
+                                                                    className="inline-flex items-center justify-center gap-2 rounded-2xl border border-emerald-200 bg-emerald-50 px-4 py-3 text-xs font-bold text-emerald-700 transition hover:bg-emerald-100 active:scale-[0.98] hover:no-underline w-full text-center"
                                                                 >
                                                                     <Download size={14} />
                                                                     <span>Unduh File Utama</span>
@@ -1510,7 +1510,7 @@ export default function HomePage({
                                                             {hasPhotos && (
                                                                 <a
                                                                     href={`/documents/${doc.id}/download-photos`}
-                                                                    className="inline-flex items-center justify-center gap-2 rounded-2xl border border-emerald-400/30 hover:border-emerald-450 bg-emerald-500/5 hover:bg-emerald-500/10 px-4 py-3 text-xs font-black text-emerald-400 transition active:scale-[0.98] hover:no-underline w-full text-center"
+                                                                    className="inline-flex items-center justify-center gap-2 rounded-2xl border border-emerald-200 bg-emerald-50 px-4 py-3 text-xs font-bold text-emerald-700 transition hover:bg-emerald-100 active:scale-[0.98] hover:no-underline w-full text-center"
                                                                 >
                                                                     <Download size={14} />
                                                                     <span>Unduh Foto Kegiatan (.ZIP)</span>
@@ -1521,13 +1521,13 @@ export default function HomePage({
                                                             {(hasMainFile || hasPhotos) ? (
                                                                 <a
                                                                     href={`/documents/${doc.id}/download-all`}
-                                                                    className="inline-flex items-center justify-center gap-2 rounded-2xl bg-emerald-500 px-4 py-3 text-xs font-black text-slate-950 shadow-md shadow-emerald-500/10 transition hover:bg-emerald-400 active:scale-[0.98] hover:no-underline w-full text-center"
+                                                                    className="inline-flex items-center justify-center gap-2 rounded-2xl bg-emerald-600 px-4 py-3 text-xs font-bold text-white shadow-md transition hover:bg-emerald-700 active:scale-[0.98] hover:no-underline w-full text-center"
                                                                 >
                                                                     <Download size={14} className="shrink-0" />
                                                                     <span>Unduh Semuanya (.ZIP)</span>
                                                                 </a>
                                                             ) : (
-                                                                <p className="text-xs text-on-surface-variant italic">Tidak ada file yang dapat diunduh.</p>
+                                                                <p className="text-xs text-slate-500 italic">Tidak ada file yang dapat diunduh.</p>
                                                             )}
                                                         </div>
                                                     </div>
@@ -1542,7 +1542,7 @@ export default function HomePage({
                                         <button
                                             type="button"
                                             onClick={() => setShowAllDocs(prev => !prev)}
-                                            className="inline-flex min-h-11 items-center justify-center gap-2 rounded-xl border border-emerald-400/40 px-6 py-2.5 text-sm font-semibold text-emerald-300 transition hover:bg-emerald-400/10 active:scale-[0.98] focus:outline-none"
+                                            className="inline-flex min-h-11 items-center justify-center gap-2 rounded-xl border border-emerald-600 px-6 py-2.5 text-sm font-semibold text-emerald-700 transition hover:bg-emerald-50 active:scale-[0.98] focus:outline-none"
                                         >
                                             {showAllDocs ? 'Sembunyikan Sebagian' : 'Lihat Semua Dokumen'}
                                         </button>
@@ -1560,17 +1560,17 @@ export default function HomePage({
                 </section>
 
                 {/* ── 10. Kontak ── */}
-                <section id="kontak" className="bg-surface-container-lowest py-stack-lg">
+                <section id="kontak" className="bg-slate-50/80 py-stack-lg">
                     <div className="mx-auto max-w-container-max px-margin-mobile md:px-margin-desktop">
                         <div className="mb-10 text-center">
-                            <span className="text-xs font-bold uppercase tracking-widest text-primary">Kontak RT</span>
-                            <h2 className="mt-1 text-3xl font-black text-on-surface md:text-4xl">Kontak dan Sekretariat</h2>
-                            <p className="mt-2 text-on-surface-variant">Kunjungi kantor sekretariat kami untuk layanan tatap muka dan informasi lebih lanjut.</p>
+                            <span className="text-xs font-bold uppercase tracking-widest text-emerald-700">Kontak RT</span>
+                            <h2 className="mt-1 text-3xl font-black text-slate-900 md:text-4xl">Kontak dan Sekretariat</h2>
+                            <p className="mt-2 text-slate-600">Kunjungi kantor sekretariat kami untuk layanan tatap muka dan informasi lebih lanjut.</p>
                         </div>
 
                         <div className="grid gap-10 md:grid-cols-2">
                             {/* Map */}
-                            <div className="relative h-[360px] overflow-hidden rounded-3xl border border-outline-variant/30 shadow-2xl group bg-surface-container-high">
+                            <div className="relative h-[360px] overflow-hidden rounded-3xl border border-slate-200 shadow-md group bg-slate-100">
                                 {safeSite.gmapsEmbedUrl ? (
                                     <>
                                         <iframe
@@ -1581,21 +1581,21 @@ export default function HomePage({
                                             allowFullScreen={true}
                                             loading="lazy"
                                             referrerPolicy="no-referrer-when-downgrade"
-                                            className="grayscale opacity-80 contrast-125 transition-all duration-300 group-hover:grayscale-0 group-hover:opacity-100"
+                                            className="opacity-90 contrast-105 transition-all duration-300 group-hover:opacity-100"
                                             title="Peta Lokasi Sekretariat RT"
                                         ></iframe>
-                                        <div className="pointer-events-none absolute bottom-4 left-4 rounded-xl bg-surface/90 px-3 py-2 text-xs font-bold text-on-surface shadow-lg backdrop-blur border border-outline-variant/20">
+                                        <div className="pointer-events-none absolute bottom-4 left-4 rounded-xl bg-white/95 px-3 py-2 text-xs font-bold text-slate-900 shadow-md backdrop-blur border border-slate-200">
                                             <div className="flex items-center gap-2">
-                                                <MapPin size={14} className="text-primary animate-bounce" />
+                                                <MapPin size={14} className="text-emerald-700 animate-bounce" />
                                                 <span>Sekretariat {safeSite.rtName}</span>
                                             </div>
                                         </div>
                                     </>
                                 ) : (
                                     <div className="absolute inset-0 flex flex-col items-center justify-center p-8 text-center">
-                                        <span className="material-symbols-outlined mb-4 text-[48px] text-primary">map</span>
-                                        <p className="font-bold text-on-surface">Peta Lokasi</p>
-                                        <p className="mt-2 text-sm text-on-surface-variant">{safeSite.address || 'Alamat belum diatur'}</p>
+                                        <span className="material-symbols-outlined mb-4 text-[48px] text-emerald-700">map</span>
+                                        <p className="font-bold text-slate-900">Peta Lokasi</p>
+                                        <p className="mt-2 text-sm text-slate-600">{safeSite.address || 'Alamat belum diatur'}</p>
                                     </div>
                                 )}
                             </div>
@@ -1615,7 +1615,7 @@ export default function HomePage({
 
                                 {safeSite.emergencyContacts && safeSite.emergencyContacts.length > 0 && (
                                     <div className="col-span-1 sm:col-span-2 mt-6">
-                                        <h4 className="mb-4 text-sm font-semibold text-rose-400 flex items-center gap-2">
+                                        <h4 className="mb-4 text-sm font-bold text-red-700 flex items-center gap-2">
                                             <span className="material-symbols-outlined text-lg" style={{ fontVariationSettings: "'FILL' 1" }}>emergency</span>
                                             Nomor Darurat Lingkungan
                                         </h4>
@@ -1624,18 +1624,18 @@ export default function HomePage({
                                                 <a
                                                     key={idx}
                                                     href={`tel:${contact.phone}`}
-                                                    className="flex items-center justify-between rounded-2xl border border-rose-900/30 bg-rose-950/20 p-4 hover:bg-rose-950/30 transition hover:border-rose-500/30 group hover:no-underline"
+                                                    className="flex items-center justify-between rounded-2xl border border-red-200 bg-red-50/80 p-4 hover:bg-red-100 transition hover:border-red-300 group hover:no-underline"
                                                 >
                                                     <div className="flex items-center gap-3">
-                                                        <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-rose-500/10 text-rose-400 group-hover:scale-105 transition">
+                                                        <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-red-100 text-red-700 group-hover:scale-105 transition">
                                                             <Phone size={16} />
                                                         </div>
                                                         <div>
-                                                            <p className="text-xs font-bold text-slate-100">{contact.label}</p>
-                                                            <p className="text-[10px] text-slate-400 font-semibold">{contact.phone}</p>
+                                                            <p className="text-xs font-bold text-slate-900">{contact.label}</p>
+                                                            <p className="text-[10px] text-slate-600 font-semibold">{contact.phone}</p>
                                                         </div>
                                                     </div>
-                                                    <span className="material-symbols-outlined text-slate-500 text-sm group-hover:text-rose-400 transition" style={{ fontVariationSettings: "'FILL' 1" }}>call</span>
+                                                    <span className="material-symbols-outlined text-slate-400 text-sm group-hover:text-red-700 transition" style={{ fontVariationSettings: "'FILL' 1" }}>call</span>
                                                 </a>
                                             ))}
                                         </div>
@@ -1643,8 +1643,8 @@ export default function HomePage({
                                 )}
 
                                 {!safeSite.address && !safeSite.email && !safeSite.phone && (!safeSite.emergencyContacts || safeSite.emergencyContacts.length === 0) && (
-                                    <div className="col-span-2 rounded-2xl border border-dashed border-outline-variant/30 bg-surface-container-low p-6 text-center text-on-surface-variant">
-                                        <MapPin className="mx-auto mb-2 text-primary" size={28} />
+                                    <div className="col-span-2 rounded-2xl border border-dashed border-slate-300 bg-white p-6 text-center text-slate-600">
+                                        <MapPin className="mx-auto mb-2 text-emerald-700" size={28} />
                                         <p className="text-sm font-semibold">Data kontak belum diatur.</p>
                                         <p className="mt-1 text-xs">Admin dapat mengatur informasi kontak di panel Pengaturan.</p>
                                     </div>
@@ -1656,34 +1656,34 @@ export default function HomePage({
             </main>
 
             {/* ── Footer ── */}
-            <footer className="border-t border-outline-variant/20 bg-surface-container-lowest px-margin-mobile md:px-margin-desktop py-12">
+            <footer className="border-t border-slate-200 bg-slate-100 px-margin-mobile md:px-margin-desktop py-12">
                 <div className="mx-auto grid max-w-container-max gap-8 md:grid-cols-12">
                     <div className="md:col-span-5">
-                        <p className="text-xl font-black text-primary">{safeSite.title}</p>
-                        <p className="mt-2 text-xs font-bold uppercase tracking-widest text-on-surface-variant">{safeSite.rtName}</p>
-                        <p className="mt-3 max-w-sm text-sm leading-6 text-on-surface-variant">
+                        <p className="text-xl font-black text-emerald-700">{safeSite.title}</p>
+                        <p className="mt-2 text-xs font-bold uppercase tracking-widest text-slate-600">{safeSite.rtName}</p>
+                        <p className="mt-3 max-w-sm text-sm leading-6 text-slate-600">
                             {safeSite.footerText || 'Platform digital terpadu untuk mewujudkan tata kelola lingkungan yang transparan, modern, dan inklusif.'}
                         </p>
                         {/* Social links */}
                         {(safeSite.instagram || safeSite.youtube || safeSite.waLink || safeSite.email) && (
                             <div className="mt-5 flex gap-3">
                                 {safeSite.instagram && (
-                                    <a href={`https://instagram.com/${safeSite.instagram}`} target="_blank" rel="noopener noreferrer" className="flex h-9 w-9 items-center justify-center rounded-full bg-surface-container-high text-on-surface-variant transition hover:bg-primary hover:text-surface">
+                                    <a href={`https://instagram.com/${safeSite.instagram}`} target="_blank" rel="noopener noreferrer" className="flex h-9 w-9 items-center justify-center rounded-full bg-white border border-slate-200 text-slate-700 transition hover:bg-emerald-600 hover:text-white hover:border-emerald-600">
                                         <InstagramIcon size={17} />
                                     </a>
                                 )}
                                 {safeSite.youtube && (
-                                    <a href={safeSite.youtube} target="_blank" rel="noopener noreferrer" className="flex h-9 w-9 items-center justify-center rounded-full bg-surface-container-high text-on-surface-variant transition hover:bg-primary hover:text-surface">
+                                    <a href={safeSite.youtube} target="_blank" rel="noopener noreferrer" className="flex h-9 w-9 items-center justify-center rounded-full bg-white border border-slate-200 text-slate-700 transition hover:bg-emerald-600 hover:text-white hover:border-emerald-600">
                                         <YoutubeIcon size={17} />
                                     </a>
                                 )}
                                 {safeSite.waLink && (
-                                    <a href={safeSite.waLink} target="_blank" rel="noopener noreferrer" className="flex h-9 w-9 items-center justify-center rounded-full bg-surface-container-high text-on-surface-variant transition hover:bg-primary hover:text-surface" aria-label="WhatsApp Group">
+                                    <a href={safeSite.waLink} target="_blank" rel="noopener noreferrer" className="flex h-9 w-9 items-center justify-center rounded-full bg-white border border-slate-200 text-slate-700 transition hover:bg-emerald-600 hover:text-white hover:border-emerald-600" aria-label="WhatsApp Group">
                                         <WhatsappIcon size={17} />
                                     </a>
                                 )}
                                 {safeSite.email && (
-                                    <a href={`mailto:${safeSite.email}`} className="flex h-9 w-9 items-center justify-center rounded-full bg-surface-container-high text-on-surface-variant transition hover:bg-primary hover:text-surface">
+                                    <a href={`mailto:${safeSite.email}`} className="flex h-9 w-9 items-center justify-center rounded-full bg-white border border-slate-200 text-slate-700 transition hover:bg-emerald-600 hover:text-white hover:border-emerald-600">
                                         <Mail size={17} />
                                     </a>
                                 )}
@@ -1691,14 +1691,14 @@ export default function HomePage({
                         )}
                     </div>
                     <div className="md:col-span-7">
-                        <div className="flex flex-wrap gap-4 text-sm font-semibold text-on-surface-variant md:justify-end">
+                        <div className="flex flex-wrap gap-4 text-sm font-semibold text-slate-600 md:justify-end">
                             {navLinks.map((link) => (
-                                <a key={link.id} href={`#${link.id}`} className="hover:text-primary transition-colors">
+                                <a key={link.id} href={`#${link.id}`} className="hover:text-emerald-700 transition-colors">
                                     {link.label}
                                 </a>
                             ))}
                         </div>
-                        <p className="mt-6 text-xs text-outline md:text-right">
+                        <p className="mt-6 text-xs text-slate-500 md:text-right">
                             {safeSite.copyright || `© ${new Date().getFullYear()} ${safeSite.rtName}. Portal publik informasi RT.`}
                         </p>
                     </div>
@@ -1707,17 +1707,17 @@ export default function HomePage({
 
             {/* ── Participants modal ── */}
             {selectedParticipantsEvent && (
-                <div onClick={() => setSelectedParticipantsEvent(null)} className="fixed inset-0 z-[55] flex items-center justify-center bg-slate-950/80 p-4 backdrop-blur-sm cursor-pointer">
-                    <div onClick={(e) => e.stopPropagation()} className="max-h-[90vh] w-full max-w-2xl overflow-y-auto rounded-3xl bg-slate-900 border border-slate-800 shadow-2xl cursor-default">
-                        <div className="sticky top-0 z-10 flex items-start justify-between gap-4 border-b border-outline-variant/20 bg-surface-container-low px-6 py-4">
+                <div onClick={() => setSelectedParticipantsEvent(null)} className="fixed inset-0 z-[55] flex items-center justify-center bg-slate-900/40 p-4 backdrop-blur-sm cursor-pointer">
+                    <div onClick={(e) => e.stopPropagation()} className="max-h-[90vh] w-full max-w-2xl overflow-y-auto rounded-3xl bg-white border border-slate-200 shadow-2xl cursor-default">
+                        <div className="sticky top-0 z-10 flex items-start justify-between gap-4 border-b border-slate-200 bg-slate-50 px-6 py-4">
                             <div>
-                                <p className="text-xs font-bold uppercase tracking-widest text-primary">Partisipasi Warga</p>
-                                <h3 className="text-xl font-black text-on-surface">{selectedParticipantsEvent.title}</h3>
-                                <p className="mt-1 text-sm text-on-surface-variant">
+                                <p className="text-xs font-bold uppercase tracking-widest text-emerald-700">Partisipasi Warga</p>
+                                <h3 className="text-xl font-black text-slate-900">{selectedParticipantsEvent.title}</h3>
+                                <p className="mt-1 text-sm text-slate-600">
                                     {(selectedParticipantsEvent.participantsCount ?? selectedParticipantsEvent.participants?.length ?? 0)} warga ikut kegiatan ini.
                                 </p>
                             </div>
-                            <button type="button" onClick={() => setSelectedParticipantsEvent(null)} className="rounded-xl p-2 text-on-surface-variant hover:bg-surface-container-high">
+                            <button type="button" onClick={() => setSelectedParticipantsEvent(null)} className="rounded-xl p-2 text-slate-500 hover:bg-slate-200">
                                 <X size={22} />
                             </button>
                         </div>
@@ -1725,13 +1725,13 @@ export default function HomePage({
                             {selectedParticipantsEvent.participants && selectedParticipantsEvent.participants.length > 0 ? (
                                 <div className="space-y-3">
                                     {selectedParticipantsEvent.participants.map((p, idx) => (
-                                        <div key={p.id} className="flex items-center gap-4 rounded-2xl border border-outline-variant/20 bg-surface-container p-4">
-                                            <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-primary-container/20 text-sm font-black text-primary">
+                                        <div key={p.id} className="flex items-center gap-4 rounded-2xl border border-slate-200 bg-slate-50 p-4">
+                                            <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-emerald-100 text-sm font-black text-emerald-700 border border-emerald-200">
                                                 {p.initials || idx + 1}
                                             </div>
                                             <div>
-                                                <p className="font-bold text-on-surface">{p.name}</p>
-                                                <p className="text-xs text-on-surface-variant">
+                                                <p className="font-bold text-slate-900">{p.name}</p>
+                                                <p className="text-xs text-slate-500">
                                                     {p.houseNumber ? `No. ${p.houseNumber} · ` : ''}
                                                     Bergabung {p.joinedAt || 'baru-baru ini'}
                                                 </p>
@@ -1740,10 +1740,10 @@ export default function HomePage({
                                     ))}
                                 </div>
                             ) : (
-                                <div className="rounded-2xl border border-dashed border-outline-variant/30 bg-surface-container p-8 text-center">
-                                    <Users size={30} className="mx-auto mb-3 text-outline" />
-                                    <p className="font-bold text-on-surface">Belum ada warga yang ikut.</p>
-                                    <p className="mt-1 text-sm text-on-surface-variant">Jadilah warga pertama yang ikut kegiatan ini.</p>
+                                <div className="rounded-2xl border border-dashed border-slate-300 bg-slate-50 p-8 text-center">
+                                    <Users size={30} className="mx-auto mb-3 text-slate-400" />
+                                    <p className="font-bold text-slate-800">Belum ada warga yang ikut.</p>
+                                    <p className="mt-1 text-sm text-slate-500">Jadilah warga pertama yang ikut kegiatan ini.</p>
                                 </div>
                             )}
                         </div>
@@ -1753,20 +1753,20 @@ export default function HomePage({
 
             {/* ── Announcement detail modal ── */}
             {selectedAnnouncement && (
-                <div onClick={() => setSelectedAnnouncement(null)} className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/80 p-4 backdrop-blur-sm cursor-pointer">
-                    <div onClick={(e) => e.stopPropagation()} className="max-h-[90vh] w-full max-w-3xl overflow-y-auto rounded-3xl bg-slate-900 border border-slate-800 shadow-2xl cursor-default">
-                        <div className="sticky top-0 z-10 flex items-center justify-between border-b border-outline-variant/20 bg-surface-container-low px-6 py-4">
+                <div onClick={() => setSelectedAnnouncement(null)} className="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/40 p-4 backdrop-blur-sm cursor-pointer">
+                    <div onClick={(e) => e.stopPropagation()} className="max-h-[90vh] w-full max-w-3xl overflow-y-auto rounded-3xl bg-white border border-slate-200 shadow-2xl cursor-default">
+                        <div className="sticky top-0 z-10 flex items-center justify-between border-b border-slate-200 bg-slate-50 px-6 py-4">
                             <div>
-                                <p className="text-xs font-bold uppercase tracking-widest text-primary">Detail Pengumuman</p>
-                                <h3 className="text-xl font-black text-on-surface">{selectedAnnouncement.title}</h3>
+                                <p className="text-xs font-bold uppercase tracking-widest text-emerald-700">Detail Pengumuman</p>
+                                <h3 className="text-xl font-black text-slate-900">{selectedAnnouncement.title}</h3>
                             </div>
-                            <button type="button" onClick={() => setSelectedAnnouncement(null)} className="rounded-xl p-2 text-on-surface-variant hover:bg-surface-container-high">
+                            <button type="button" onClick={() => setSelectedAnnouncement(null)} className="rounded-xl p-2 text-slate-500 hover:bg-slate-200">
                                 <X size={22} />
                             </button>
                         </div>
 
                         {selectedAnnouncement.imageUrl && (
-                            <div className="relative w-full overflow-hidden bg-black/40 border-b border-outline-variant/20 flex items-center justify-center">
+                            <div className="relative w-full overflow-hidden bg-slate-100 border-b border-slate-200 flex items-center justify-center">
                                 <div
                                     className="absolute inset-0 bg-cover bg-center blur-md opacity-25 scale-105 pointer-events-none"
                                     style={{ backgroundImage: `url(${selectedAnnouncement.imageUrl})` }}
@@ -1784,21 +1784,21 @@ export default function HomePage({
                                 <span className={['rounded-full px-3 py-1 text-xs font-bold', annBadgeClass(selectedAnnouncement.category)].join(' ')}>
                                     {annLabel(selectedAnnouncement.category)}
                                 </span>
-                                <span className="text-sm text-on-surface-variant">{selectedAnnouncement.publishedAt || '-'}</span>
+                                <span className="text-sm text-slate-500">{selectedAnnouncement.publishedAt || '-'}</span>
                             </div>
-                            <div className="whitespace-pre-line text-sm leading-7 text-on-surface-variant">
+                            <div className="whitespace-pre-line text-sm leading-7 text-slate-700">
                                 {selectedAnnouncement.content || selectedAnnouncement.excerpt}
                             </div>
 
                             {(selectedAnnouncement.files ?? []).length > 0 && (
-                                <div className="rounded-2xl border border-outline-variant/20 p-4">
-                                    <p className="mb-3 font-bold text-on-surface">Lampiran</p>
+                                <div className="rounded-2xl border border-slate-200 p-4">
+                                    <p className="mb-3 font-bold text-slate-900">Lampiran</p>
                                     <div className="space-y-2">
                                         {(selectedAnnouncement.files ?? []).map((file) => (
                                             <a key={file.id} href={file.url} target="_blank" rel="noopener noreferrer"
-                                                className="flex items-center justify-between rounded-xl bg-surface-container px-4 py-3 text-sm hover:bg-surface-container-high">
-                                                <span className="font-medium text-on-surface">{file.originalName}</span>
-                                                <span className="inline-flex items-center gap-1 font-bold text-primary">
+                                                className="flex items-center justify-between rounded-xl bg-slate-50 border border-slate-200 px-4 py-3 text-sm hover:bg-slate-100">
+                                                <span className="font-medium text-slate-800">{file.originalName}</span>
+                                                <span className="inline-flex items-center gap-1 font-bold text-emerald-700">
                                                     <Download size={14} /> Buka
                                                 </span>
                                             </a>
@@ -1813,14 +1813,14 @@ export default function HomePage({
 
             {/* ── Gallery all-photos modal ── */}
             {galleryModalOpen && (
-                <div onClick={() => setGalleryModalOpen(false)} className="fixed inset-0 z-[999] flex items-center justify-center bg-slate-950/80 p-4 backdrop-blur-sm cursor-pointer">
-                    <div onClick={(e) => e.stopPropagation()} className="max-h-[90vh] w-full max-w-6xl overflow-hidden rounded-3xl bg-slate-900 border border-slate-800 shadow-2xl cursor-default">
-                        <div className="sticky top-0 z-10 flex items-center justify-between border-b border-outline-variant/20 bg-surface-container-low px-6 py-4">
+                <div onClick={() => setGalleryModalOpen(false)} className="fixed inset-0 z-[999] flex items-center justify-center bg-slate-900/40 p-4 backdrop-blur-sm cursor-pointer">
+                    <div onClick={(e) => e.stopPropagation()} className="max-h-[90vh] w-full max-w-6xl overflow-hidden rounded-3xl bg-white border border-slate-200 shadow-2xl cursor-default">
+                        <div className="sticky top-0 z-10 flex items-center justify-between border-b border-slate-200 bg-slate-50 px-6 py-4">
                             <div>
-                                <p className="text-xs font-bold uppercase tracking-widest text-primary">Galeri Kegiatan</p>
-                                <h3 className="text-xl font-black text-on-surface">Semua Foto Dokumentasi</h3>
+                                <p className="text-xs font-bold uppercase tracking-widest text-emerald-700">Galeri Kegiatan</p>
+                                <h3 className="text-xl font-black text-slate-900">Semua Foto Dokumentasi</h3>
                             </div>
-                            <button type="button" onClick={() => setGalleryModalOpen(false)} className="rounded-xl p-2 text-on-surface-variant hover:bg-surface-container-high">
+                            <button type="button" onClick={() => setGalleryModalOpen(false)} className="rounded-xl p-2 text-slate-500 hover:bg-slate-200">
                                 <X size={22} />
                             </button>
                         </div>
@@ -1829,23 +1829,23 @@ export default function HomePage({
                                 <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
                                     {gallery.map((item, index) => (
                                         <button key={item.id} type="button" onClick={() => openGalleryDetail(item, index)}
-                                            className="group overflow-hidden rounded-3xl border border-outline-variant/20 bg-surface-container text-left shadow-sm transition hover:-translate-y-1 hover:shadow-lg">
-                                            <div className="relative aspect-[4/3] overflow-hidden bg-surface-container-highest">
+                                            className="group overflow-hidden rounded-3xl border border-slate-200 bg-white text-left shadow-sm transition hover:-translate-y-1 hover:shadow-md">
+                                            <div className="relative aspect-[4/3] overflow-hidden bg-slate-100">
                                                 <img src={item.imageUrl} alt={item.title} className="h-full w-full object-cover transition duration-500 group-hover:scale-105" />
-                                                <div className="absolute inset-0 bg-gradient-to-t from-surface/70 via-transparent to-transparent opacity-80" />
-                                                <span className="absolute left-4 top-4 rounded-full bg-primary px-3 py-1 text-[10px] font-bold text-surface">
+                                                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/60 via-transparent to-transparent opacity-80" />
+                                                <span className="absolute left-4 top-4 rounded-full bg-emerald-600 px-3 py-1 text-[10px] font-bold text-white">
                                                     {item.category || 'Dokumentasi'}
                                                 </span>
                                             </div>
                                             <div className="p-4">
-                                                <h4 className="line-clamp-2 text-sm font-black text-on-surface">{item.title}</h4>
-                                                <p className="mt-1 text-xs text-on-surface-variant">{item.publishedAt || ''}</p>
+                                                <h4 className="line-clamp-2 text-sm font-black text-slate-900">{item.title}</h4>
+                                                <p className="mt-1 text-xs text-slate-500">{item.publishedAt || ''}</p>
                                             </div>
                                         </button>
                                     ))}
                                 </div>
                             ) : (
-                                <div className="rounded-2xl border border-dashed border-outline-variant/30 bg-surface-container p-10 text-center text-on-surface-variant">
+                                <div className="rounded-2xl border border-dashed border-slate-300 bg-slate-50 p-10 text-center text-slate-500">
                                     Belum ada foto dokumentasi.
                                 </div>
                             )}
@@ -1856,41 +1856,41 @@ export default function HomePage({
 
             {/* ── Gallery detail modal ── */}
             {selectedGalleryItem && (
-                <div onClick={() => setSelectedGalleryItem(null)} className="fixed inset-0 z-[1000] flex items-center justify-center bg-slate-950/80 p-4 backdrop-blur-sm cursor-pointer">
-                    <div onClick={(e) => e.stopPropagation()} className="max-h-[92vh] w-full max-w-4xl overflow-y-auto rounded-3xl bg-slate-900 border border-slate-800 shadow-2xl cursor-default">
-                        <div className="sticky top-0 z-10 flex items-center justify-between border-b border-outline-variant/20 bg-surface-container-low px-6 py-4">
+                <div onClick={() => setSelectedGalleryItem(null)} className="fixed inset-0 z-[1000] flex items-center justify-center bg-slate-900/40 p-4 backdrop-blur-sm cursor-pointer">
+                    <div onClick={(e) => e.stopPropagation()} className="max-h-[92vh] w-full max-w-4xl overflow-y-auto rounded-3xl bg-white border border-slate-200 shadow-2xl cursor-default">
+                        <div className="sticky top-0 z-10 flex items-center justify-between border-b border-slate-200 bg-slate-50 px-6 py-4">
                             <div>
-                                <p className="text-xs font-bold uppercase tracking-widest text-primary">Detail Foto</p>
-                                <h3 className="line-clamp-1 text-xl font-black text-on-surface">{selectedGalleryItem.title}</h3>
+                                <p className="text-xs font-bold uppercase tracking-widest text-emerald-700">Detail Foto</p>
+                                <h3 className="line-clamp-1 text-xl font-black text-slate-900">{selectedGalleryItem.title}</h3>
                             </div>
-                            <button type="button" onClick={() => setSelectedGalleryItem(null)} className="rounded-xl p-2 text-on-surface-variant hover:bg-surface-container-high">
+                            <button type="button" onClick={() => setSelectedGalleryItem(null)} className="rounded-xl p-2 text-slate-500 hover:bg-slate-200">
                                 <X size={22} />
                             </button>
                         </div>
-                        <img src={selectedGalleryItem.imageUrl} alt={selectedGalleryItem.title} className="max-h-[520px] w-full bg-surface-container-lowest object-contain" />
+                        <img src={selectedGalleryItem.imageUrl} alt={selectedGalleryItem.title} className="max-h-[520px] w-full bg-slate-100 object-contain" />
                         <div className="space-y-4 p-6">
                             <div className="flex flex-wrap items-center gap-2">
-                                <span className="rounded-full bg-primary/10 px-3 py-1 text-xs font-bold text-primary">{selectedGalleryItem.category || 'Dokumentasi'}</span>
-                                <span className="text-sm text-on-surface-variant">{selectedGalleryItem.publishedAt || ''}</span>
+                                <span className="rounded-full bg-emerald-50 border border-emerald-200 px-3 py-1 text-xs font-bold text-emerald-700">{selectedGalleryItem.category || 'Dokumentasi'}</span>
+                                <span className="text-sm text-slate-500">{selectedGalleryItem.publishedAt || ''}</span>
                             </div>
                             {selectedGalleryItem.description && (
-                                <p className="whitespace-pre-line text-sm leading-7 text-on-surface-variant">{selectedGalleryItem.description}</p>
+                                <p className="whitespace-pre-line text-sm leading-7 text-slate-700">{selectedGalleryItem.description}</p>
                             )}
                         </div>
                     </div>
                 </div>
             )}
             {showCalendarModal && (
-                <div onClick={() => setShowCalendarModal(false)} className="fixed inset-0 z-[999] flex items-center justify-center bg-slate-950/80 p-4 backdrop-blur-sm cursor-pointer">
-                    <div onClick={(e) => e.stopPropagation()} className="max-h-[92vh] w-full max-w-4xl overflow-hidden rounded-3xl bg-slate-900 border border-slate-800 shadow-2xl cursor-default flex flex-col animate-in fade-in zoom-in-95 duration-200">
+                <div onClick={() => setShowCalendarModal(false)} className="fixed inset-0 z-[999] flex items-center justify-center bg-slate-900/40 p-4 backdrop-blur-sm cursor-pointer">
+                    <div onClick={(e) => e.stopPropagation()} className="max-h-[92vh] w-full max-w-4xl overflow-hidden rounded-3xl bg-white border border-slate-200 shadow-2xl cursor-default flex flex-col animate-in fade-in zoom-in-95 duration-200">
 
                         {/* Modal Header */}
-                        <div className="sticky top-0 z-10 flex items-center justify-between border-b border-slate-800 bg-slate-900/90 px-6 py-4">
+                        <div className="sticky top-0 z-10 flex items-center justify-between border-b border-slate-200 bg-slate-50 px-6 py-4">
                             <div>
-                                <p className="text-xs font-bold uppercase tracking-widest text-emerald-400">Agenda &amp; Kegiatan</p>
-                                <h3 className="text-xl font-black text-slate-100">Kalender &amp; Riwayat Agenda RT</h3>
+                                <p className="text-xs font-bold uppercase tracking-widest text-emerald-700">Agenda &amp; Kegiatan</p>
+                                <h3 className="text-xl font-black text-slate-900">Kalender &amp; Riwayat Agenda RT</h3>
                             </div>
-                            <button type="button" onClick={() => setShowCalendarModal(false)} className="rounded-xl p-2 text-slate-400 hover:bg-slate-800 hover:text-slate-200 transition">
+                            <button type="button" onClick={() => setShowCalendarModal(false)} className="rounded-xl p-2 text-slate-500 hover:bg-slate-200 transition">
                                 <X size={22} />
                             </button>
                         </div>
@@ -1901,8 +1901,8 @@ export default function HomePage({
 
                                 {/* Monthly Calendar Grid */}
                                 <div className="md:col-span-5 space-y-4">
-                                    <div className="rounded-2xl border border-slate-800 bg-slate-950/40 p-4">
-                                        <div className="mb-4 flex items-center justify-between text-slate-200">
+                                    <div className="rounded-2xl border border-slate-200 bg-slate-50 p-4">
+                                        <div className="mb-4 flex items-center justify-between text-slate-900">
                                             <span className="font-extrabold text-sm uppercase tracking-wider">{currentMonthLabel} {new Date().getFullYear()}</span>
                                             <span className="text-[10px] text-slate-500 font-bold uppercase">Pilih Tanggal</span>
                                         </div>
@@ -1939,17 +1939,17 @@ export default function HomePage({
                                                         className={[
                                                             'h-9 rounded-lg flex flex-col items-center justify-center text-xs font-bold transition relative',
                                                             isSelected
-                                                                ? 'bg-emerald-400 text-slate-950 font-black shadow-md shadow-emerald-500/10'
+                                                                ? 'bg-emerald-600 text-white font-extrabold shadow-md'
                                                                 : isToday
-                                                                    ? 'border border-emerald-500/40 bg-emerald-500/5 text-emerald-400'
-                                                                    : 'hover:bg-slate-800/50 text-slate-300'
+                                                                    ? 'border border-emerald-500 bg-emerald-50 text-emerald-700'
+                                                                    : 'hover:bg-slate-200 text-slate-700'
                                                         ].join(' ')}
                                                     >
                                                         <span>{day.dayNum}</span>
                                                         {hasEvent && (
                                                             <span className={[
                                                                 'absolute bottom-1.5 h-1 w-1 rounded-full',
-                                                                isSelected ? 'bg-slate-950' : 'bg-emerald-400'
+                                                                isSelected ? 'bg-white' : 'bg-emerald-600'
                                                             ].join(' ')} />
                                                         )}
                                                     </button>
@@ -1958,16 +1958,16 @@ export default function HomePage({
                                         </div>
                                     </div>
 
-                                    <div className="flex flex-wrap gap-3 text-[10px] text-slate-400 font-bold px-1">
-                                        <span className="flex items-center gap-1.5"><span className="h-2 w-2 rounded bg-emerald-400" /> Coming Soon</span>
-                                        <span className="flex items-center gap-1.5"><span className="h-2 w-2 rounded bg-amber-400 animate-pulse" /> Hari Ini</span>
-                                        <span className="flex items-center gap-1.5"><span className="h-2 w-2 rounded bg-slate-600" /> Selesai</span>
+                                    <div className="flex flex-wrap gap-3 text-[10px] text-slate-600 font-bold px-1">
+                                        <span className="flex items-center gap-1.5"><span className="h-2 w-2 rounded bg-emerald-600" /> Coming Soon</span>
+                                        <span className="flex items-center gap-1.5"><span className="h-2 w-2 rounded bg-amber-500 animate-pulse" /> Hari Ini</span>
+                                        <span className="flex items-center gap-1.5"><span className="h-2 w-2 rounded bg-slate-400" /> Selesai</span>
                                     </div>
                                 </div>
 
                                 {/* Filtered Agendas List */}
                                 <div className="md:col-span-7 space-y-4">
-                                    <div className="flex gap-1.5 border-b border-slate-800 pb-3 overflow-x-auto no-scrollbar">
+                                    <div className="flex gap-1.5 border-b border-slate-200 pb-3 overflow-x-auto no-scrollbar">
                                         {['semua', 'coming soon', 'sedang berlangsung', 'selesai'].map((statusOption) => (
                                             <button
                                                 key={statusOption}
@@ -1979,8 +1979,8 @@ export default function HomePage({
                                                 className={[
                                                     'px-3.5 py-1.5 rounded-xl text-xs font-bold transition capitalize shrink-0',
                                                     selectedStatusFilter === statusOption && !selectedCalendarModalDate
-                                                        ? 'bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 font-extrabold'
-                                                        : 'border border-transparent text-slate-400 hover:text-slate-200'
+                                                        ? 'bg-emerald-50 border border-emerald-200 text-emerald-700 font-extrabold'
+                                                        : 'border border-transparent text-slate-600 hover:text-slate-900'
                                                 ].join(' ')}
                                             >
                                                 {statusOption === 'semua' ? 'Semua Riwayat' : statusOption === 'sedang berlangsung' ? 'Sedang Berlangsung' : statusOption}
@@ -1993,25 +1993,25 @@ export default function HomePage({
                                             modalFilteredEvents.map((event) => {
                                                 const status = getEventStatus(event.date);
                                                 const statusLabel = status === 'selesai' ? 'Selesai' : status === 'sedang berlangsung' ? 'Hari Ini' : 'Mendatang';
-                                                const statusCls = status === 'selesai' ? 'bg-slate-800 text-slate-400' : status === 'sedang berlangsung' ? 'bg-amber-400/10 text-amber-400 border border-amber-400/20' : 'bg-emerald-400/10 text-emerald-400 border border-emerald-400/20';
+                                                const statusCls = status === 'selesai' ? 'bg-slate-100 text-slate-600' : status === 'sedang berlangsung' ? 'bg-amber-50 text-amber-700 border border-amber-200' : 'bg-emerald-50 text-emerald-700 border border-emerald-200';
 
                                                 return (
-                                                    <div key={event.id} className="rounded-2xl border border-slate-800 bg-slate-950/20 p-4 space-y-3 transition hover:border-slate-700">
+                                                    <div key={event.id} className="rounded-2xl border border-slate-200 bg-slate-50/50 p-4 space-y-3 transition hover:border-slate-300">
                                                         <div className="flex items-start justify-between gap-3">
                                                             <div className="space-y-1">
                                                                 <div className="flex items-center gap-2">
-                                                                    <span className={['rounded-md px-2 py-0.5 text-[9px] font-black uppercase tracking-wider', statusCls].join(' ')}>{statusLabel}</span>
+                                                                    <span className={['rounded-md px-2 py-0.5 text-[9px] font-bold uppercase tracking-wider', statusCls].join(' ')}>{statusLabel}</span>
                                                                     <span className="text-[10px] font-bold text-slate-500 capitalize">{event.type}</span>
                                                                 </div>
-                                                                <h4 className="text-sm font-bold text-slate-200">{event.title}</h4>
+                                                                <h4 className="text-sm font-bold text-slate-900">{event.title}</h4>
                                                             </div>
                                                         </div>
-                                                        <div className="flex flex-col gap-1.5 text-xs text-slate-400">
+                                                        <div className="flex flex-col gap-1.5 text-xs text-slate-600">
                                                             <span className="flex items-center gap-1.5">
-                                                                <Clock size={12} className="text-emerald-400" /> {event.date} {event.time ? `· ${event.time}` : ''}
+                                                                <Clock size={12} className="text-emerald-600" /> {event.date} {event.time ? `· ${event.time}` : ''}
                                                             </span>
                                                             <span className="flex items-center gap-1.5">
-                                                                <MapPin size={12} className="text-emerald-400" /> {event.location}
+                                                                <MapPin size={12} className="text-emerald-600" /> {event.location}
                                                             </span>
                                                         </div>
                                                     </div>
@@ -2031,15 +2031,15 @@ export default function HomePage({
             )}
 
             {/* ── Navigasi Bawah Mobile ── */}
-            <nav className="fixed inset-x-0 bottom-0 z-50 border-t border-slate-800 bg-slate-950/95 pb-[env(safe-area-inset-bottom)] backdrop-blur lg:hidden">
+            <nav className="fixed inset-x-0 bottom-0 z-50 border-t border-slate-200 bg-white/95 pb-[env(safe-area-inset-bottom)] backdrop-blur lg:hidden">
                 <div className="mx-auto grid h-16 max-w-md grid-cols-6 items-center">
                     <a
                         href="#beranda"
                         className={[
                             'flex flex-col items-center justify-center py-2 text-xs font-medium transition',
                             activeTab === 'beranda'
-                                ? 'text-emerald-400 font-bold'
-                                : 'text-slate-400 hover:text-slate-200',
+                                ? 'text-emerald-700 font-bold'
+                                : 'text-slate-600 hover:text-slate-900',
                         ].join(' ')}
                     >
                         <Home size={18} />
@@ -2050,8 +2050,8 @@ export default function HomePage({
                         className={[
                             'flex flex-col items-center justify-center py-2 text-xs font-medium transition',
                             activeTab === 'struktur'
-                                ? 'text-emerald-400 font-bold'
-                                : 'text-slate-400 hover:text-slate-200',
+                                ? 'text-emerald-700 font-bold'
+                                : 'text-slate-600 hover:text-slate-900',
                         ].join(' ')}
                     >
                         <Users size={18} />
@@ -2062,8 +2062,8 @@ export default function HomePage({
                         className={[
                             'flex flex-col items-center justify-center py-2 text-xs font-medium transition',
                             activeTab === 'layanan'
-                                ? 'text-emerald-400 font-bold'
-                                : 'text-slate-400 hover:text-slate-200',
+                                ? 'text-emerald-700 font-bold'
+                                : 'text-slate-600 hover:text-slate-900',
                         ].join(' ')}
                     >
                         <LayoutGrid size={18} />
@@ -2074,8 +2074,8 @@ export default function HomePage({
                         className={[
                             'flex flex-col items-center justify-center py-2 text-xs font-medium transition',
                             activeTab === 'berita'
-                                ? 'text-emerald-400 font-bold'
-                                : 'text-slate-400 hover:text-slate-200',
+                                ? 'text-emerald-700 font-bold'
+                                : 'text-slate-600 hover:text-slate-900',
                         ].join(' ')}
                     >
                         <Newspaper size={18} />
@@ -2086,8 +2086,8 @@ export default function HomePage({
                         className={[
                             'flex flex-col items-center justify-center py-2 text-xs font-medium transition',
                             activeTab === 'galeri'
-                                ? 'text-emerald-400 font-bold'
-                                : 'text-slate-400 hover:text-slate-200',
+                                ? 'text-emerald-700 font-bold'
+                                : 'text-slate-600 hover:text-slate-900',
                         ].join(' ')}
                     >
                         <Camera size={18} />
@@ -2098,8 +2098,8 @@ export default function HomePage({
                         className={[
                             'flex flex-col items-center justify-center py-2 text-xs font-medium transition',
                             activeTab === 'kontak'
-                                ? 'text-emerald-400 font-bold'
-                                : 'text-slate-400 hover:text-slate-200',
+                                ? 'text-emerald-700 font-bold'
+                                : 'text-slate-600 hover:text-slate-900',
                         ].join(' ')}
                     >
                         <Phone size={18} />
@@ -2120,54 +2120,54 @@ export default function HomePage({
             />
 
             {toastMessage && (
-                <div className="fixed bottom-20 left-1/2 z-[9999] -translate-x-1/2 rounded-full bg-emerald-500 px-6 py-3 text-xs font-black text-slate-950 shadow-2xl transition-all animate-bounce">
+                <div className="fixed bottom-20 left-1/2 z-[9999] -translate-x-1/2 rounded-full bg-emerald-600 px-6 py-3 text-xs font-black text-white shadow-2xl transition-all animate-bounce">
                     {toastMessage}
                 </div>
             )}
 
             {/* ── Event Detail Modal (HomePage) ── */}
             {selectedDetailEvent && (
-                <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/80 p-4 backdrop-blur-md">
-                    <div className="w-full max-w-xl max-h-[90vh] flex flex-col rounded-3xl bg-slate-900 border border-slate-800 shadow-2xl overflow-hidden">
+                <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/40 p-4 backdrop-blur-md">
+                    <div className="w-full max-w-xl max-h-[90vh] flex flex-col rounded-3xl bg-white border border-slate-200 shadow-2xl overflow-hidden">
                         {/* Modal Header */}
-                        <div className="flex items-start justify-between gap-4 border-b border-slate-800 p-5 bg-slate-950/40 shrink-0">
+                        <div className="flex items-start justify-between gap-4 border-b border-slate-200 p-5 bg-slate-50 shrink-0">
                             <div className="min-w-0 flex-1">
                                 <div className="flex items-center gap-2 mb-1.5">
                                     {selectedDetailEvent.type && (
-                                        <span className="rounded-full bg-slate-800 px-2.5 py-0.5 text-[10px] font-bold text-slate-300">
+                                        <span className="rounded-full bg-slate-100 px-2.5 py-0.5 text-[10px] font-bold text-slate-700">
                                             {selectedDetailEvent.type}
                                         </span>
                                     )}
                                     {selectedDetailEvent.status && (
-                                        <span className="rounded-full bg-emerald-500/10 px-2.5 py-0.5 text-[10px] font-bold text-emerald-400 border border-emerald-500/20">
+                                        <span className="rounded-full bg-emerald-50 px-2.5 py-0.5 text-[10px] font-bold text-emerald-700 border border-emerald-200">
                                             {selectedDetailEvent.status}
                                         </span>
                                     )}
                                 </div>
-                                <h3 className="text-lg md:text-xl font-extrabold text-slate-100 leading-tight line-clamp-2">
+                                <h3 className="text-lg md:text-xl font-extrabold text-slate-900 leading-tight line-clamp-2">
                                     {selectedDetailEvent.title}
                                 </h3>
-                                <p className="mt-1 text-xs text-slate-400 font-medium">
+                                <p className="mt-1 text-xs text-slate-500 font-medium">
                                     {selectedDetailEvent.date || '-'} {selectedDetailEvent.time ? `· ${selectedDetailEvent.time}` : ''}
                                 </p>
                             </div>
                             <button
                                 type="button"
                                 onClick={() => { setSelectedDetailEvent(null); setDetailModalTab('info'); }}
-                                className="rounded-xl p-2 text-slate-400 hover:bg-slate-800 hover:text-slate-200 transition shrink-0"
+                                className="rounded-xl p-2 text-slate-500 hover:bg-slate-200 transition shrink-0"
                             >
                                 <X size={20} />
                             </button>
                         </div>
 
                         {/* Tab Switcher */}
-                        <div className="flex shrink-0 border-b border-slate-800 bg-slate-950/60">
+                        <div className="flex shrink-0 border-b border-slate-200 bg-slate-50/50">
                             <button
                                 type="button"
                                 onClick={() => setDetailModalTab('info')}
                                 className={`flex-1 flex items-center justify-center gap-1.5 py-3 text-xs font-bold uppercase tracking-wider transition ${detailModalTab === 'info'
-                                        ? 'text-emerald-400 border-b-2 border-emerald-400 font-black'
-                                        : 'text-slate-400 hover:text-slate-200'
+                                        ? 'text-emerald-700 border-b-2 border-emerald-600 font-black'
+                                        : 'text-slate-500 hover:text-slate-900'
                                     }`}
                             >
                                 <FileText size={14} />
@@ -2177,14 +2177,14 @@ export default function HomePage({
                                 type="button"
                                 onClick={() => setDetailModalTab('dokumentasi')}
                                 className={`flex-1 flex items-center justify-center gap-1.5 py-3 text-xs font-bold uppercase tracking-wider transition ${detailModalTab === 'dokumentasi'
-                                        ? 'text-emerald-400 border-b-2 border-emerald-400 font-black'
-                                        : 'text-slate-400 hover:text-slate-200'
+                                        ? 'text-emerald-700 border-b-2 border-emerald-600 font-black'
+                                        : 'text-slate-500 hover:text-slate-900'
                                     }`}
                             >
                                 <Camera size={14} />
                                 Dokumentasi
                                 {(selectedDetailEvent.fotoDokumentasi?.length ?? 0) > 0 && (
-                                    <span className="ml-1.5 rounded-full bg-emerald-500/20 text-emerald-400 text-[10px] font-black px-2 py-0.5">
+                                    <span className="ml-1.5 rounded-full bg-emerald-100 text-emerald-700 text-[10px] font-black px-2 py-0.5">
                                         {selectedDetailEvent.fotoDokumentasi!.length}
                                     </span>
                                 )}
@@ -2196,7 +2196,7 @@ export default function HomePage({
                             <div className="p-5 overflow-y-auto space-y-4 flex-1 scrollbar-thin">
                                 {/* Poster/Image if available */}
                                 {selectedDetailEvent.imageUrl && (
-                                    <div className="rounded-2xl overflow-hidden border border-slate-800 max-h-52">
+                                    <div className="rounded-2xl overflow-hidden border border-slate-200 max-h-52">
                                         <img
                                             src={selectedDetailEvent.imageUrl}
                                             alt={selectedDetailEvent.title}
@@ -2206,26 +2206,26 @@ export default function HomePage({
                                 )}
 
                                 {/* Description */}
-                                <div className="rounded-2xl bg-slate-950/40 border border-slate-800/80 p-4 space-y-2">
-                                    <p className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Deskripsi Kegiatan</p>
-                                    <p className="text-xs md:text-sm text-slate-300 leading-relaxed font-medium whitespace-pre-line">
+                                <div className="rounded-2xl bg-slate-50 border border-slate-200 p-4 space-y-2">
+                                    <p className="text-[10px] font-bold text-slate-500 uppercase tracking-wider">Deskripsi Kegiatan</p>
+                                    <p className="text-xs md:text-sm text-slate-700 leading-relaxed font-medium whitespace-pre-line">
                                         {selectedDetailEvent.description || 'Tidak ada deskripsi tambahan.'}
                                     </p>
                                 </div>
 
                                 {/* Meta Grid */}
-                                <div className="grid grid-cols-2 gap-3 text-xs text-slate-400 font-medium">
-                                    <div className="bg-slate-950/30 border border-slate-800 rounded-2xl p-3.5">
-                                        <p className="text-[9px] uppercase font-bold text-slate-400 tracking-wider">Waktu / Jam</p>
-                                        <p className="text-xs font-bold text-slate-200 mt-1 flex items-center gap-1.5">
-                                            <Clock size={13} className="text-emerald-400" />
+                                <div className="grid grid-cols-2 gap-3 text-xs text-slate-600 font-medium">
+                                    <div className="bg-slate-50 border border-slate-200 rounded-2xl p-3.5">
+                                        <p className="text-[9px] uppercase font-bold text-slate-500 tracking-wider">Waktu / Jam</p>
+                                        <p className="text-xs font-bold text-slate-900 mt-1 flex items-center gap-1.5">
+                                            <Clock size={13} className="text-emerald-600" />
                                             <span>{selectedDetailEvent.time || '-'}</span>
                                         </p>
                                     </div>
-                                    <div className="bg-slate-950/30 border border-slate-800 rounded-2xl p-3.5">
-                                        <p className="text-[9px] uppercase font-bold text-slate-400 tracking-wider">Lokasi</p>
-                                        <p className="text-xs font-bold text-slate-200 mt-1 flex items-center gap-1.5">
-                                            <MapPin size={13} className="text-emerald-400" />
+                                    <div className="bg-slate-50 border border-slate-200 rounded-2xl p-3.5">
+                                        <p className="text-[9px] uppercase font-bold text-slate-500 tracking-wider">Lokasi</p>
+                                        <p className="text-xs font-bold text-slate-900 mt-1 flex items-center gap-1.5">
+                                            <MapPin size={13} className="text-emerald-600" />
                                             <span className="truncate">{selectedDetailEvent.location || '-'}</span>
                                         </p>
                                     </div>
@@ -2233,27 +2233,27 @@ export default function HomePage({
 
                                 {/* Participants List */}
                                 <div className="space-y-2.5">
-                                    <h4 className="text-[10px] font-bold text-slate-400 uppercase tracking-wider flex items-center justify-between">
+                                    <h4 className="text-[10px] font-bold text-slate-500 uppercase tracking-wider flex items-center justify-between">
                                         <span>Partisipasi Warga</span>
-                                        <span className="text-emerald-400">{selectedDetailEvent.participantsCount || 0} Terdaftar</span>
+                                        <span className="text-emerald-700 font-bold">{selectedDetailEvent.participantsCount || 0} Terdaftar</span>
                                     </h4>
                                     <div className="space-y-2 max-h-44 overflow-y-auto scrollbar-thin">
                                         {(selectedDetailEvent.participants || []).length > 0 ? (
                                             (selectedDetailEvent.participants || []).map((p) => (
-                                                <div key={p.id} className="flex items-center gap-3 rounded-2xl border border-slate-800 bg-slate-950/30 p-3">
-                                                    <div className="flex h-8 w-8 items-center justify-center rounded-full bg-emerald-500/10 text-xs font-black text-emerald-400 border border-emerald-500/20">
+                                                <div key={p.id} className="flex items-center gap-3 rounded-2xl border border-slate-200 bg-slate-50 p-3">
+                                                    <div className="flex h-8 w-8 items-center justify-center rounded-full bg-emerald-100 text-xs font-black text-emerald-700 border border-emerald-200">
                                                         {p.initials || p.name?.slice(0, 2).toUpperCase()}
                                                     </div>
                                                     <div className="min-w-0 flex-1">
-                                                        <p className="truncate font-bold text-slate-200 text-xs">{p.name}</p>
+                                                        <p className="truncate font-bold text-slate-900 text-xs">{p.name}</p>
                                                         {p.houseNumber && (
-                                                            <p className="text-[10px] text-slate-400 font-medium">Rumah No. {p.houseNumber}</p>
+                                                            <p className="text-[10px] text-slate-500 font-medium">Rumah No. {p.houseNumber}</p>
                                                         )}
                                                     </div>
                                                 </div>
                                             ))
                                         ) : (
-                                            <div className="rounded-2xl border border-dashed border-slate-800 bg-slate-950/20 p-5 text-center text-xs text-slate-400">
+                                            <div className="rounded-2xl border border-dashed border-slate-300 bg-slate-50 p-5 text-center text-xs text-slate-500">
                                                 Belum ada daftar partisipan warga.
                                             </div>
                                         )}
@@ -2267,30 +2267,30 @@ export default function HomePage({
                             <div className="p-5 overflow-y-auto space-y-5 flex-1 scrollbar-thin">
                                 {/* Hasil Kegiatan (teks) */}
                                 <div className="space-y-2">
-                                    <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest flex items-center gap-1.5">
-                                        <FileText size={13} className="text-emerald-400" />
+                                    <p className="text-[10px] font-bold text-slate-500 uppercase tracking-widest flex items-center gap-1.5">
+                                        <FileText size={13} className="text-emerald-600" />
                                         Hasil Kegiatan
                                     </p>
                                     {selectedDetailEvent.hasilKegiatan ? (
-                                        <div className="rounded-2xl bg-slate-950/40 border border-slate-800 p-4">
-                                            <p className="text-xs md:text-sm text-slate-300 leading-relaxed font-medium whitespace-pre-line">
+                                        <div className="rounded-2xl bg-slate-50 border border-slate-200 p-4">
+                                            <p className="text-xs md:text-sm text-slate-700 leading-relaxed font-medium whitespace-pre-line">
                                                 {selectedDetailEvent.hasilKegiatan}
                                             </p>
                                         </div>
                                     ) : (
-                                        <div className="rounded-2xl border border-dashed border-slate-800 bg-slate-950/20 p-6 text-center">
-                                            <p className="text-xs text-slate-400">Hasil kegiatan belum diisi oleh pengurus.</p>
+                                        <div className="rounded-2xl border border-dashed border-slate-300 bg-slate-50 p-6 text-center">
+                                            <p className="text-xs text-slate-500">Hasil kegiatan belum diisi oleh pengurus.</p>
                                         </div>
                                     )}
                                 </div>
 
                                 {/* Foto Dokumentasi */}
                                 <div className="space-y-3">
-                                    <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest flex items-center gap-1.5">
-                                        <Camera size={13} className="text-emerald-400" />
+                                    <p className="text-[10px] font-bold text-slate-500 uppercase tracking-widest flex items-center gap-1.5">
+                                        <Camera size={13} className="text-emerald-600" />
                                         Foto Dokumentasi
                                         {(selectedDetailEvent.fotoDokumentasi?.length ?? 0) > 0 && (
-                                            <span className="text-emerald-400 font-bold">({selectedDetailEvent.fotoDokumentasi!.length} foto)</span>
+                                            <span className="text-emerald-700 font-bold">({selectedDetailEvent.fotoDokumentasi!.length} foto)</span>
                                         )}
                                     </p>
                                     {(selectedDetailEvent.fotoDokumentasi?.length ?? 0) > 0 ? (
@@ -2300,35 +2300,35 @@ export default function HomePage({
                                                     key={idx}
                                                     type="button"
                                                     onClick={() => setEventLightboxUrl(url)}
-                                                    className="group relative rounded-2xl overflow-hidden border border-slate-800 aspect-video bg-slate-950 hover:border-emerald-500/50 transition"
+                                                    className="group relative rounded-2xl overflow-hidden border border-slate-200 aspect-video bg-slate-100 hover:border-emerald-500 transition"
                                                 >
                                                     <img
                                                         src={url}
                                                         alt={`Dokumentasi ${idx + 1}`}
                                                         className="w-full h-full object-cover group-hover:scale-105 transition duration-300"
                                                     />
-                                                    <div className="absolute inset-0 bg-black/0 group-hover:bg-black/40 transition flex items-center justify-center">
+                                                    <div className="absolute inset-0 bg-slate-900/0 group-hover:bg-slate-900/40 transition flex items-center justify-center">
                                                         <span className="material-symbols-outlined text-white opacity-0 group-hover:opacity-100 transition text-[24px]">zoom_in</span>
                                                     </div>
                                                 </button>
                                             ))}
                                         </div>
                                     ) : (
-                                        <div className="rounded-2xl border border-dashed border-slate-800 bg-slate-950/20 p-6 text-center">
-                                            <p className="text-xs text-slate-400">Belum ada foto dokumentasi yang di-upload.</p>
+                                        <div className="rounded-2xl border border-dashed border-slate-300 bg-slate-50 p-6 text-center">
+                                            <p className="text-xs text-slate-500">Belum ada foto dokumentasi yang di-upload.</p>
                                         </div>
                                     )}
                                 </div>
 
                                 {/* Tombol Lihat Dokumen Arsip */}
-                                <div className="rounded-2xl border border-emerald-500/20 bg-emerald-500/5 p-4 flex items-center justify-between gap-3">
+                                <div className="rounded-2xl border border-emerald-200 bg-emerald-50 p-4 flex items-center justify-between gap-3">
                                     <div className="min-w-0">
-                                        <p className="text-xs font-bold text-emerald-400">Arsip Dokumen RT</p>
-                                        <p className="text-[10px] text-slate-400 mt-0.5">Unduh laporan dan dokumen publik terkait kegiatan.</p>
+                                        <p className="text-xs font-bold text-emerald-700">Arsip Dokumen RT</p>
+                                        <p className="text-[10px] text-slate-600 mt-0.5">Unduh laporan dan dokumen publik terkait kegiatan.</p>
                                     </div>
                                     <a
                                         href="#dokumen"
-                                        className="shrink-0 inline-flex items-center gap-1.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-xs font-bold text-slate-950 px-3.5 py-2 transition active:scale-95"
+                                        className="shrink-0 inline-flex items-center gap-1.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-xs font-bold text-white px-3.5 py-2 transition active:scale-95 shadow-sm"
                                         onClick={() => setSelectedDetailEvent(null)}
                                     >
                                         <Download size={13} />
@@ -2339,11 +2339,11 @@ export default function HomePage({
                         )}
 
                         {/* Modal Footer */}
-                        <div className="border-t border-slate-800 p-4 bg-slate-950/40 flex justify-end shrink-0">
+                        <div className="border-t border-slate-200 p-4 bg-slate-50 flex justify-end shrink-0">
                             <button
                                 type="button"
                                 onClick={() => { setSelectedDetailEvent(null); setDetailModalTab('info'); }}
-                                className="rounded-xl bg-slate-800 hover:bg-slate-700 border border-slate-700 px-5 py-2.5 text-xs font-bold text-slate-300 transition"
+                                className="rounded-xl bg-white hover:bg-slate-100 border border-slate-200 px-5 py-2.5 text-xs font-bold text-slate-700 transition"
                             >
                                 Tutup
                             </button>
@@ -2355,13 +2355,13 @@ export default function HomePage({
             {/* Lightbox Modal */}
             {eventLightboxUrl && (
                 <div
-                    className="fixed inset-0 z-[60] flex items-center justify-center bg-black/90 p-4 cursor-zoom-out backdrop-blur-sm"
+                    className="fixed inset-0 z-[60] flex items-center justify-center bg-slate-900/80 p-4 cursor-zoom-out backdrop-blur-sm"
                     onClick={() => setEventLightboxUrl(null)}
                 >
                     <button
                         type="button"
                         onClick={() => setEventLightboxUrl(null)}
-                        className="absolute top-4 right-4 rounded-xl bg-slate-800 p-2 text-slate-300 hover:text-white transition z-10"
+                        className="absolute top-4 right-4 rounded-xl bg-white/80 p-2 text-slate-700 hover:text-slate-900 transition z-10"
                     >
                         <X size={20} />
                     </button>
@@ -2394,32 +2394,32 @@ function ProfileDropdown({
     return (
         <div className="relative">
             <button type="button" onClick={() => setProfileMenuOpen((c) => !c)}
-                className="inline-flex items-center gap-2 sm:gap-3 rounded-full lg:border border-outline-variant/30 lg:bg-surface-container-high p-1 lg:px-2.5 lg:py-2 lg:pr-4 shadow-sm transition hover:border-primary/40 focus:outline-none">
+                className="inline-flex items-center gap-2 sm:gap-3 rounded-full border border-slate-200 bg-white p-1 lg:px-2.5 lg:py-2 lg:pr-4 shadow-sm transition hover:border-emerald-500/40 focus:outline-none">
                 {authUser.profile_photo_url ? (
                     <img src={authUser.profile_photo_url} alt={authUser.name} className="h-8 w-8 sm:h-9 sm:w-9 rounded-full object-cover" />
                 ) : (
-                    <div className="flex h-8 w-8 sm:h-9 sm:w-9 items-center justify-center rounded-full bg-primary-container text-xs font-black text-on-primary-container">{userInitials}</div>
+                    <div className="flex h-8 w-8 sm:h-9 sm:w-9 items-center justify-center rounded-full bg-emerald-100 text-xs font-black text-emerald-700">{userInitials}</div>
                 )}
                 <div className="hidden lg:block max-w-[150px] text-left leading-tight">
-                    <p className="truncate text-sm font-black text-on-surface">{firstName}</p>
-                    <p className="text-[10px] font-bold uppercase tracking-widest text-primary">{roleLabel}</p>
+                    <p className="truncate text-sm font-black text-slate-900">{firstName}</p>
+                    <p className="text-[10px] font-bold uppercase tracking-widest text-emerald-700">{roleLabel}</p>
                 </div>
-                <ChevronDown size={15} className={['hidden lg:block text-on-surface-variant transition-transform', profileMenuOpen ? 'rotate-180' : ''].join(' ')} />
+                <ChevronDown size={15} className={['hidden lg:block text-slate-500 transition-transform', profileMenuOpen ? 'rotate-180' : ''].join(' ')} />
             </button>
 
             {profileMenuOpen && (
-                <div className="absolute right-0 top-full z-50 mt-3 w-64 overflow-hidden rounded-3xl border border-outline-variant/30 bg-surface-container-low shadow-2xl">
-                    <div className="border-b border-outline-variant/20 bg-surface-container p-4">
-                        <p className="truncate text-sm font-black text-on-surface">{authUser.name}</p>
-                        <p className="mt-1 truncate text-xs text-on-surface-variant">{authUser.email}</p>
+                <div className="absolute right-0 top-full z-50 mt-3 w-64 overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-xl">
+                    <div className="border-b border-slate-100 bg-slate-50 p-4">
+                        <p className="truncate text-sm font-black text-slate-900">{authUser.name}</p>
+                        <p className="mt-1 truncate text-xs text-slate-500">{authUser.email}</p>
                     </div>
                     <div className="p-2">
                         <Link href={dashboardUrl} onClick={() => setProfileMenuOpen(() => false)}
-                            className="flex items-center gap-3 rounded-2xl px-4 py-3 text-sm font-bold text-on-surface transition hover:bg-surface-container hover:text-primary">
+                            className="flex items-center gap-3 rounded-2xl px-4 py-3 text-sm font-bold text-slate-700 transition hover:bg-emerald-50 hover:text-emerald-700">
                             <LayoutDashboard size={16} /> {dashboardLabel}
                         </Link>
                         <Link href="/logout" method="post" as="button"
-                            className="flex w-full items-center gap-3 rounded-2xl px-4 py-3 text-left text-sm font-bold text-error transition hover:bg-error-container/10">
+                            className="flex w-full items-center gap-3 rounded-2xl px-4 py-3 text-left text-sm font-bold text-red-600 transition hover:bg-red-50">
                             <LogOut size={16} /> Keluar
                         </Link>
                     </div>
@@ -2432,11 +2432,11 @@ function ProfileDropdown({
 function ServiceCard({ icon, label, href }: { icon: string; label: string; href: string }) {
     return (
         <Link href={href}
-            className="group flex min-h-[140px] flex-col items-center justify-center gap-4 rounded-3xl border border-slate-800 bg-slate-900/50 p-5 text-center shadow-sm transition hover:-translate-y-1 hover:border-emerald-500/40 hover:shadow-2xl">
-            <div className="flex h-16 w-16 items-center justify-center rounded-full bg-slate-800 text-emerald-400 transition group-hover:bg-emerald-500 group-hover:text-slate-950 group-hover:scale-105">
+            className="group flex min-h-[140px] flex-col items-center justify-center gap-4 rounded-3xl border border-slate-200 bg-white p-5 text-center shadow-sm transition hover:-translate-y-1 hover:border-emerald-500/40 hover:shadow-md">
+            <div className="flex h-16 w-16 items-center justify-center rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200 transition group-hover:bg-emerald-600 group-hover:text-white group-hover:scale-105">
                 <span className="material-symbols-outlined text-[32px]">{icon}</span>
             </div>
-            <span className="text-xs sm:text-sm font-bold text-slate-100 group-hover:text-emerald-400 transition">{label}</span>
+            <span className="text-xs sm:text-sm font-bold text-slate-900 group-hover:text-emerald-700 transition">{label}</span>
         </Link>
     );
 }
@@ -2446,20 +2446,20 @@ function StatCard({ stat, index }: { stat: StatItem; index: number }) {
     const icon = icons[index % icons.length];
     return (
         <div className="rounded-2xl p-2 sm:p-4 text-center">
-            <div className="mx-auto mb-3 flex h-11 w-11 items-center justify-center rounded-2xl bg-emerald-500/10 text-emerald-400">
+            <div className="mx-auto mb-3 flex h-11 w-11 items-center justify-center rounded-2xl bg-emerald-50 text-emerald-700 border border-emerald-200">
                 <span className="material-symbols-outlined text-[22px]">{icon}</span>
             </div>
-            <p className="text-2xl sm:text-3xl font-extrabold text-emerald-400 truncate">{stat.value}<span className="ml-1 text-xs sm:text-sm font-semibold text-slate-400">{stat.unit}</span></p>
-            <p className="mt-1 text-[9px] sm:text-xs font-bold uppercase tracking-widest text-slate-400 leading-tight">{stat.label}</p>
+            <p className="text-2xl sm:text-3xl font-extrabold text-emerald-700 truncate">{stat.value}<span className="ml-1 text-xs sm:text-sm font-semibold text-slate-500">{stat.unit}</span></p>
+            <p className="mt-1 text-[9px] sm:text-xs font-bold uppercase tracking-widest text-slate-600 leading-tight">{stat.label}</p>
         </div>
     );
 }
 
 function ArticleCard({ item, onRead }: { item: Announcement; onRead: () => void }) {
     return (
-        <article className="group flex flex-col overflow-hidden rounded-2xl border border-slate-800 bg-slate-900/60 transition hover:border-emerald-500/30 hover:shadow-xl cursor-pointer" onClick={onRead}>
+        <article className="group flex flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white transition hover:border-emerald-500/40 hover:shadow-md cursor-pointer" onClick={onRead}>
             {/* Image Section */}
-            <div className="relative aspect-[4/3] w-full shrink-0 overflow-hidden bg-black/40 flex items-center justify-center">
+            <div className="relative aspect-[4/3] w-full shrink-0 overflow-hidden bg-slate-100 flex items-center justify-center">
                 {item.imageUrl ? (
                     <>
                         <div
@@ -2473,17 +2473,17 @@ function ArticleCard({ item, onRead }: { item: Announcement; onRead: () => void 
                         />
                     </>
                 ) : (
-                    <div className="flex h-full w-full items-center justify-center bg-slate-950/40">
-                        <span className="material-symbols-outlined text-[32px] md:text-[48px] text-slate-600">newspaper</span>
+                    <div className="flex h-full w-full items-center justify-center bg-slate-100">
+                        <span className="material-symbols-outlined text-[32px] md:text-[48px] text-slate-400">newspaper</span>
                     </div>
                 )}
                 {/* Badges */}
                 <div className="absolute left-2 top-2 flex flex-wrap gap-1">
-                    <span className={['rounded-md px-1.5 py-0.5 text-[8px] font-bold tracking-wide shadow-md capitalize', annBadgeClass(item.category)].join(' ')}>
+                    <span className={['rounded-md px-1.5 py-0.5 text-[8px] font-bold tracking-wide shadow-sm capitalize', annBadgeClass(item.category)].join(' ')}>
                         {annLabel(item.category)}
                     </span>
                     {item.isPinned && (
-                        <span className="rounded-md bg-emerald-500 px-1.5 py-0.5 text-[8px] font-bold text-slate-950 shadow-md">Prioritas</span>
+                        <span className="rounded-md bg-emerald-600 px-1.5 py-0.5 text-[8px] font-bold text-white shadow-sm">Prioritas</span>
                     )}
                 </div>
             </div>
@@ -2491,14 +2491,14 @@ function ArticleCard({ item, onRead }: { item: Announcement; onRead: () => void 
             {/* Content Section */}
             <div className="flex-1 flex flex-col justify-between p-3 md:p-5">
                 <div>
-                    <div className="mb-1 flex items-center gap-1.5 text-[9px] md:text-[10px] text-slate-400">
+                    <div className="mb-1 flex items-center gap-1.5 text-[9px] md:text-[10px] text-slate-500">
                         <Clock size={10} />
                         <span>{item.publishedAt || '-'}</span>
                     </div>
-                    <h3 className="line-clamp-2 text-xs md:text-base font-bold text-slate-100 group-hover:text-emerald-400 transition leading-snug">
+                    <h3 className="line-clamp-2 text-xs md:text-base font-bold text-slate-900 group-hover:text-emerald-700 transition leading-snug">
                         {item.title}
                     </h3>
-                    <p className="mt-1.5 hidden md:line-clamp-3 text-xs sm:text-sm leading-relaxed text-slate-400">
+                    <p className="mt-1.5 hidden md:line-clamp-3 text-xs sm:text-sm leading-relaxed text-slate-600">
                         {item.excerpt}
                     </p>
                 </div>
@@ -2510,7 +2510,7 @@ function ArticleCard({ item, onRead }: { item: Announcement; onRead: () => void 
                             e.stopPropagation();
                             onRead();
                         }}
-                        className="inline-flex items-center gap-1 text-[10px] md:text-xs font-bold text-emerald-400 hover:text-emerald-300 transition-transform group-hover:translate-x-0.5"
+                        className="inline-flex items-center gap-1 text-[10px] md:text-xs font-bold text-emerald-700 hover:text-emerald-800 transition-transform group-hover:translate-x-0.5"
                     >
                         Baca Selengkapnya <ArrowRight size={12} />
                     </button>
@@ -2522,9 +2522,9 @@ function ArticleCard({ item, onRead }: { item: Announcement; onRead: () => void 
 
 function EmptySection({ icon, title, description }: { icon: ReactNode; title: string; description: string }) {
     return (
-        <div className="rounded-3xl border border-dashed border-outline-variant/30 bg-surface-container-low p-10 text-center text-on-surface-variant">
-            <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-2xl bg-primary/10 text-primary">{icon}</div>
-            <p className="font-bold text-on-surface">{title}</p>
+        <div className="rounded-3xl border border-dashed border-slate-300 bg-slate-50 p-10 text-center text-slate-600">
+            <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-2xl bg-emerald-50 text-emerald-700 border border-emerald-200">{icon}</div>
+            <p className="font-bold text-slate-900">{title}</p>
             <p className="mx-auto mt-2 max-w-lg text-sm leading-6">{description}</p>
         </div>
     );
@@ -2532,13 +2532,13 @@ function EmptySection({ icon, title, description }: { icon: ReactNode; title: st
 
 function ContactCard({ icon, title, value, href }: { icon: ReactNode; title: string; value: string; href?: string }) {
     const content = (
-        <div className="rounded-2xl border border-slate-800 bg-slate-900/60 p-5 flex items-center gap-4 transition hover:-translate-y-0.5 hover:border-emerald-500/30 hover:shadow-lg hover:no-underline">
-            <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-emerald-500/10 text-emerald-400">
+        <div className="rounded-2xl border border-slate-200 bg-white p-5 flex items-center gap-4 transition hover:-translate-y-0.5 hover:border-emerald-500/40 hover:shadow-md hover:no-underline">
+            <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-emerald-50 text-emerald-700 border border-emerald-200">
                 {icon}
             </div>
             <div className="min-w-0 flex-1 text-left">
-                <p className="text-[10px] sm:text-xs font-semibold uppercase tracking-widest text-slate-400 leading-none">{title}</p>
-                <p className="mt-1.5 text-xs sm:text-sm font-bold text-slate-100 leading-snug break-words">{value}</p>
+                <p className="text-[10px] sm:text-xs font-bold uppercase tracking-widest text-slate-500 leading-none">{title}</p>
+                <p className="mt-1.5 text-xs sm:text-sm font-bold text-slate-900 leading-snug break-words">{value}</p>
             </div>
         </div>
     );
