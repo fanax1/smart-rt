@@ -142,6 +142,15 @@ class AdminDokumenController extends Controller
 
     public function store(Request $request): RedirectResponse
     {
+        // [DEBUG SEMENTARA] Log method dan data yang diterima server
+        Log::info('[AdminDokumen] store() dipanggil', [
+            'http_method'  => $request->method(),
+            'spoofed_method' => $request->input('_method', '(tidak ada)'),
+            'content_type' => $request->header('Content-Type'),
+            'has_files'    => array_keys($request->allFiles()),
+            'input_keys'   => array_keys($request->except(['_token', '_method'])),
+        ]);
+
         $validated = $this->validatedData($request);
 
         $uploadedPaths = [];
@@ -177,7 +186,18 @@ class AdminDokumenController extends Controller
 
     public function update(Request $request, Dokumen $dokumen): RedirectResponse
     {
+        // [DEBUG SEMENTARA] Log method dan data yang diterima server
+        Log::info('[AdminDokumen] update() dipanggil', [
+            'http_method'    => $request->method(),
+            'spoofed_method' => $request->input('_method', '(tidak ada)'),
+            'content_type'   => $request->header('Content-Type'),
+            'dokumen_id'     => $dokumen->id,
+            'has_files'      => array_keys($request->allFiles()),
+            'input_keys'     => array_keys($request->except(['_token', '_method'])),
+        ]);
+
         $validated = $this->validatedData($request);
+
 
         $uploadedPaths = [];
         $oldPathsToDelete = [];

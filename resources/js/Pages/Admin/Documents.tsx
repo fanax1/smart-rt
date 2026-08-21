@@ -332,7 +332,10 @@ export default function Documents({
         event.preventDefault();
 
         if (editingDocument) {
+            // Untuk update dengan file: gunakan POST + _method:patch (form-data spoofing)
+            // forceFormData:true wajib agar Inertia selalu kirim sebagai multipart/form-data
             documentForm.post(`/admin/documents/${editingDocument.id}`, {
+                forceFormData: true,
                 preserveScroll: true,
                 onSuccess: () => {
                     setShowForm(false);
@@ -343,6 +346,7 @@ export default function Documents({
         }
 
         documentForm.post('/admin/documents', {
+            forceFormData: true,
             preserveScroll: true,
             onSuccess: () => {
                 setShowForm(false);

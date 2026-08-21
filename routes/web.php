@@ -211,7 +211,7 @@ Route::middleware(['auth', 'verified', 'role:admin'])
         Route::post('/documents', [AdminDokumenController::class, 'store'])
             ->name('documents.store');
 
-        Route::put('/documents/{dokumen}', [AdminDokumenController::class, 'update'])
+        Route::patch('/documents/{dokumen}', [AdminDokumenController::class, 'update'])
             ->name('documents.update');
 
         Route::patch('/documents/{dokumen}/publish', [AdminDokumenController::class, 'publish'])
@@ -238,6 +238,8 @@ Route::middleware(['auth', 'verified', 'role:admin'])
 
         Route::delete('/documents/{dokumen}/files', [AdminDokumenController::class, 'destroyAllFiles'])
             ->name('documents.files.destroy-all');
+        // Note: _method spoofing (POST with _method=PATCH) requires the route to use PATCH or PUT.
+        // The update route uses PATCH, matched via Laravel's _method form field in multipart POST.
 
         Route::get('/settings', [CommitteeSettingController::class, 'index'])
             ->name('settings.index');
